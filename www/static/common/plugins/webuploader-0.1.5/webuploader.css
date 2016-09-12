@@ -1,0 +1,365 @@
+.webuploader-element-invisible {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px,1px,1px,1px);
+}
+
+/*****/
+input[type=file] {
+	font-size: 50px;
+	overflow: hidden;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	height: 26px;
+	cursor: pointer;
+}
+
+.uploaddoingUpconsole {
+	width: 110px;
+	height: 28px;
+	display: inline-block;
+	top: -28px;
+	left: 0px;
+	position: relative;
+	z-index: 999;
+	cursor: pointer;
+}
+
+.uploadupBtnconsole {
+	height: 26px;
+	display: inline-block;
+	text-align: center;
+	line-height: 26px;
+}
+
+.uploadupBtnconsole .doing {
+	background: url(./images/loading.gif) no-repeat 5px 6px;
+	text-align: right;
+	padding-left: 0px;
+	z-index: 999;
+}
+
+.uploadupBtn {
+	position: relative;
+	width: 98px;
+	height: 26px;
+	display: inline-block;
+	text-align: center;
+	line-height: 26px;
+	background-color: #fff;
+	border: 1px solid #eb8739;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.uploadbeforeUp {
+	
+}
+
+.muiti-uploadupBtn:hover{
+	background: #eb8739;
+	color: white;
+}
+.uploadbeforeUp .uploadupBtn:hover {
+	background: #eb8739;
+	color: white;
+}
+
+.uploadupBtn.success {
+	background: url(./images/successIcon.png) no-repeat 12px 8px;
+	width: 100px;
+}
+
+.uploadupBtn.doing {
+	background: url(./images/loading.gif) no-repeat 5px 6px;
+	width: 120px;
+	text-align: center;
+	padding-left: 4px;
+	z-index: 999;
+}
+
+.uploadupBtn_hover {
+	background: #eb8739;
+	color: white;
+}
+
+.uploadsuccessUp {
+	top: -30px;
+	position: relative;
+}
+
+.uploaddoingUp {
+	height: 30px;
+	margin-left: 10px;
+	display: inline-block;
+	top: -30px;
+	position: relative;
+	z-index: 999;
+}
+
+.cancle {
+	color: #3bb0fd !important;
+	text-decoration: underline !important;
+	vertical-align: bottom;
+	padding-left: 5px;
+}
+
+.delUpFile {
+	color: rgb(111, 111, 111) !important;
+}
+
+.opacity {
+	opacity: 0;
+	filter: alpha(opacity = 0);
+}
+
+.webup-hidden {
+	display: none
+}
+
+.upload-tips {
+	width: 150px;
+	line-height: 30px;
+	color: #ccc;
+	height: 30px;
+}
+
+/**
+.webuploader-pick {
+	text-align: center;
+	width: 100px;
+}
+**/
+
+/*涓婁紶寮瑰嚭灞傞�鎷╁涓枃浠舵椂*/
+.filesDiv {
+	background-color: white;
+	width: 508px;
+	margin: 0px auto;
+	min-height: 355px;
+	position: relative;
+	z-index: 500;
+	margin:-6px;
+	top: 0;
+	left: 0;
+	/* left: -webkit-calc(50% - 258px);left: -moz-calc(50% - 258px);left: -o-calc(50% - 258px); */
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+
+.filesBody {
+	width: 480px;
+	margin: 10px 0px 0px 12px;
+	display: inline-block;
+	min-height: 295px;
+}
+
+.filesBody .before_file {
+	width: 100%;
+	position: relative;
+	text-align: center;
+	height: 295px;
+}
+
+.filesBody .before_file span {
+	position: absolute;
+	top: 45%;
+	left: 40%;
+	color: rgb(163, 163, 163)
+}
+
+.filesBody ul {
+	width: 100%;
+}
+
+.filesBody ul li {
+	width: 96px;
+	height: auto;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+.filesBody ul li .imgFile {
+	width: 90px;
+	margin: 0px auto;
+	padding: 0;
+	position: relative;
+	display: inline-block;
+}
+
+.filesBody ul li img {
+	zoom: 1;
+	width: 100%;
+}
+
+.filesBody .fileBefore, .fileDoing, .fileFail, .fileCancel, .fileDelete
+	{
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	text-align: center;
+	color: white;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.filesBody .fileSuccess {
+	background-color: rgba(0, 0, 0, 0.6);
+	color: white;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 16px;
+}
+
+.filesBody .fileBefore span, .fileCancel span, .fileDoing span,
+	.fileDelete span {
+	position: absolute;
+	top: 40%;
+}
+
+.filesBody .fileCancel span, .fileDelete span {
+	cursor: pointer;
+}
+
+.filesBody .fileBefore span {
+	left: 12%;
+}
+
+.filesBody .fileDoing span {
+	left: 6%;
+}
+
+.filesBody .fileFail div:FIRST-CHILD {
+	position: absolute;
+	top: 27%;
+	left: 22%;
+	padding-top: 12px;
+	background: url(/theme/web/default/images/common/fail.png) no-repeat top
+		center;
+}
+
+.filesBody .fileFail div:LAST-CHILD {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.filesBody .fileFail div:LAST-CHILD span {
+	width: 48%;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.filesBody .fileCancel span {
+	left: 24%;
+}
+
+.filesBody .fileSuccess span {
+	position: absolute;
+	bottom: 0;
+	left: 30%;
+}
+
+.filesBody .fileDelete span {
+	left: 40%;
+}
+
+.filesBody .doingPercent:hover.fileCancel {
+	display: block;
+}
+
+.filesBottom {
+	width: 100%;
+	height: 60px;
+	border-top: 2px solid #CBD3D5;
+	display: inline-block;
+}
+
+.filesBottom .filesBtns {
+	width: 194px;
+	margin-top: 10px;
+	float: right;
+	margin-right: 26px;
+}
+
+.filesBottom .message {
+	width: 267px;
+	margin-top: 15px;
+	float: left;
+	text-align: left;
+	padding-left:20px;
+}
+
+.filesBottom .message .erroMessage {
+	background: url(/theme/web/default/images/common/fail.png) no-repeat 0px
+		2px;
+	color: red;
+	float: left;
+}
+
+.filesBottom .filesBtns div {
+	float: left;
+}
+
+.filesBottom .filesBtns .mulit-btnAdd {
+	display: inline-block;
+	cursor: pointer;
+	margin-right: 12px;
+	width: 80px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	color: #ED904B;
+	border: 1px solid #ED904B;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	position: relative;
+}
+
+.filesBottom .filesBtns .mulit-btnDone {
+	display: inline-block;
+	width: 100px;
+	cursor: pointer;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	background-color: #63D317;
+	color: white;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+
+.cancelupload{
+	text-align: center;
+	cursor: pointer;
+}
+.filesBottom .filesBtns .mulit-btnDone:hover {
+	background-color: #4cbd01;
+}
+
+.filesBottom .filesBtns .mulit-btnDoing {
+	display: inline-block;
+	width: 100px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	background-color: #C9C9C9;
+	color: white;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}

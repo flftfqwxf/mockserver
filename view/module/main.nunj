@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="single-screen">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="/static/common/bootstrap/scss/bootstrap-system.css">
+    <link rel="stylesheet" href="/static/common/plugins/validation/css/validationEngine.jquery.css">
+    <style>
+        .btns-wrap dt{ padding: 5px 0; }
+        .btns-wrap dd{ margin-bottom: 10px; }
+    </style>
+    <script src="/static/common/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/common/bootstrap/js/js/bootstrap.js?v=1"></script>
+    <script src="/static/common/js/toolbar.js"></script>
+    <script src="/static/common/plugins/validation/js/jquery.validationEngine-zh_CN.js"></script>
+    <script src="/static/common/plugins/validation/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="/static/common/bootstrap/js/artdialog/jquery.artDialog.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            function showDemoDialog(withTitle) {
+                var opts = {
+                    title: withTitle ? '详情统计' : false,
+                    //title: false,
+                    width: 500,
+                    height: 220,
+                    padding: '0 20px',
+                    isOuterBoxShadow: false,
+                    //isClose: false,
+                    content: '<center>hello world</center><p>API 文档见http://lab.seaning.com/_doc/API.html</p>',
+                    lock: true,
+                    fixed: true,
+                };
+                var btnOpt;
+
+                if(withTitle){
+                    btnOpt = {
+                        button: [
+                            {
+                                name: '常规按钮',
+                                callback: function(){
+                                    console.log('常规按钮..');
+                                }
+                            },
+                            {
+                                name: '蓝色按钮',
+                                className: 'btn-process',
+                                callback: function () {
+                                    this.content('你同意了').time(2);
+                                    return false;
+                                },
+                                focus: true
+                            },
+                            {
+                                name: '红色按钮',
+                                className: 'btn-important',
+                                callback: function () {
+                                    alert('你不同意')
+                                }
+                            },
+                            {
+                                name: '被禁用按钮',
+                                disabled: true
+                            }
+                        ]
+                    }
+                }else{
+                    btnOpt = {
+                        cancel: function () {},
+                        cancelVal: '关闭',
+                        okCssClass: 'btn-save',
+                        ok: function(){
+                            console.log('ok..');
+                        },
+                        okVal: '确认',
+                    }
+                }
+
+                $.dialog($.extend(opts, btnOpt));
+            }
+
+            $("#btn-open-dialog").click(function () {
+                showDemoDialog(true);
+            });
+            $("#btn-open-dialog-without-titlebar").click(function () {
+                showDemoDialog();
+            });
+
+            $('#formId').validationEngine();
+            // $('.page-content-inner').scrollTop(3811);
+        });
+    </script>
+</head>
+<body>
+<div class="page-wrapper">
+    {% include "./sidebar.nunj" %}
+    <div class="page-content-wrapper">
+        {% include "./top.nunj" %}
+        <div class="page-content-outer">
+            <div class="page-content-inner">
+                <div class="page-content">
+                    {% include "./breadcumn.nunj" %}
+                    <div class="page-main">
+                       {% block content %}{% endblock %}
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <ul class="pull-left">
+                        <li class="weixin linkGmQrcode">港马微信</li>
+                        <li class="hot_phone linkGmService">港马微博</li>
+                        <li>客服热线：400-028-7828</li>
+                    </ul>
+                    <span class="pull-right">Copyright ©&nbsp;2013-2015 gmmtour.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

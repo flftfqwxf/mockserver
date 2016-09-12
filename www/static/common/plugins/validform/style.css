@@ -1,0 +1,306 @@
+/* common css ============================================== */
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+del{color:#686868;}
+table{border-collapse:collapse; border-spacing:0;}
+/* for font & text & tag =================================== */
+.red{
+	color:red!important;
+}
+.gray{
+	color:#686868!important;
+}
+.hasDefaultText{color:#999;}
+.orange{
+	color:#f60!important;
+}
+.green{
+	color:#79a605!important;
+}
+.blue{
+	color:#0057b0!important;
+}
+b{font-weight:normal; display:inline-block; margin:0 8px; color:#f27f02;}
+/* for margin & padding | width & height =================== */
+.mb10{
+	margin-bottom:10px;
+}
+.mb18{margin-bottom:18px;}
+.mb22{margin-bottom:22px;}
+.mt10{
+	margin-top:10px;
+}
+.mr20{
+	margin-right:20px;
+}
+.p10{padding:10px;}
+.tl { text-align: left}
+.tr { text-align: right}
+.tc { text-align: center}
+.ml10 {margin-left: 10px;}
+.mr10 {margin-right: 10px;}
+/* class css ============================ class css ======== */
+.fl{
+	float:left;
+	display:inline;
+}
+.fr{
+	float:right;
+	display:inline;
+}
+.clear{clear:both; height:0; overflow:hidden;}
+.lireset li {
+    background: url("images/arrow1.gif") no-repeat left 8px;
+    margin-bottom: 4px;
+    padding-left: 15px;
+}
+.lireset2 li {
+    background: url("images/arrow2.gif") no-repeat left 8px;
+    margin-bottom: 4px;
+    padding-left: 15px;
+}
+.download{
+	padding:6px 0 6px 70px;
+	line-height:26px;
+	height:64px;
+	font-size:16px;
+	font-family:"microsoft yahei";
+	background:url(images/download.png) no-repeat;
+}
+.donate{
+	padding:15px 5px 6px 72px;
+	height:55px;
+	width:213px;
+	display:block;
+	color:#8b6300;
+	border:5px solid #F27F02;
+	background:url(images/donate.png) 3px center no-repeat #fae4ae;
+}
+.donate:hover{
+	text-decoration:none;
+	background-color:#fff79f;
+}
+/*--find height for float elements --------------------------*/
+.cls:after{content:"";font-size:0;display:block;height:0;clear:both;visibility:hidden;}
+* html .cls{ zoom: 1; } /* IE6 */
+*:first-child+html .cls{ zoom: 1; } /* IE7 */
+
+.wraper{
+	width:980px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.header{background:url(images/header-bg.gif) repeat-x left bottom;}
+.header h1 {
+	font-size:34px;
+	line-height:52px;
+	font-weight:normal;
+	padding:6px 0 8px 0;
+}
+.header h1 a{color:#fff;}
+.header .wraper{height:72px; position:relative;}
+
+.header .nav {
+	position:absolute;
+	right:-1px;
+	top:0;
+	font-family:"microsoft yahei";
+}
+.header .nav li {
+	float:left;
+}
+.header .nav li a {
+	font-size:20px;
+	color:#fff;
+	height:67px;
+	line-height:67px;
+	text-decoration:none;
+	padding-left:15px;
+	padding-right:15px;
+	text-align:center;
+	float:left;
+	margin-right:1px;
+	background:url(images/navbg.gif) repeat-x;
+}
+.header .nav li a.current, .header .nav li a:hover {
+	border-bottom:5px solid #f27f02;
+}
+.gallery{
+	height:496px;
+	overflow:hidden;
+	background:url(images/gallerry-bg.gif) 0 0 repeat-x #ccc;
+	border-bottom:5px solid #EAEAEA; 
+}
+.gallery li{background-color:#fff; overflow:hidden;}
+.roundabout-holder  { 
+	width:646px;
+	height:496px;
+	margin:0 auto;
+}
+.roundabout-moveable-item {
+	width: 646px;
+	height: 416px;
+	cursor: pointer;
+	border:3px solid #ccc;
+	border:3px solid rgba(255,255,255,0.5);
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+.roundabout-moveable-item img{
+	width:100%;
+}
+.roundabout-in-focus {
+	cursor:default;
+	border:3px solid rgba(255,255,255,0.8);
+}
+.main{background-color:#fff; color:#424242; padding:20px 0 30px; line-height:22px;}
+.aside{width:300px;}
+.main h3,
+.main h2{
+	color: #212222;
+    font-size:26px;
+    font-weight: normal;
+    line-height: 1.2em;
+    margin-bottom: 22px;
+	font-family:"microsoft yahei";
+}
+.main h3 span,
+.main h2 span{
+    color: #888;
+}
+.content{width:650px;}
+.main p{
+    margin-bottom: 18px;
+}
+.latestcomment li{max-height:36px; line-height:18px; overflow:hidden; margin-bottom:16px; color:#000;}
+.latestcomment a{
+	color:#8a8a8a;
+	text-decoration:underline;
+}
+.latestcomment a:hover{text-decoration:none;}
+
+.commentlist cite, .commentlist em {
+    font-style: normal;
+}
+.comment .tit {
+    border-bottom: 1px dashed #CCCCCC;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+}
+.comment .tit span.gray {
+    font-weight: normal;
+}
+.comment .comment-meta a{color:#999; cursor:default;}
+.comment .comment-meta a:hover{text-decoration:none;}
+.commentlist p {
+    color: #333333;
+    line-height: 23px;
+    margin: 8px 0;
+}
+.commentlist li {
+    color: #666666;
+    float: none;
+    height: auto;
+    margin: 0;
+    min-height: 50px;
+    padding: 10px 10px 10px 72px;
+    position: relative;
+    width: 898px;
+}
+.commentlist li.graybg {
+    background-color: #eee;
+}
+.commentlist li img {
+    border: 1px solid #DDDDDD;
+    height: 32px;
+    left: 10px;
+    padding: 4px;
+    position: absolute;
+    top: 13px;
+    width: 32px;
+}
+.commentlist li .said {
+    margin: 10px 0;
+}
+.sendcomment li {
+    padding: 5px 0;
+}
+.sendcomment .inputxt {
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+    width: 230px;
+}
+.sendcomment textarea {
+    border: 1px solid #CCCCCC;
+    height: 160px;
+    overflow: auto;
+    padding: 5px;
+    width: 566px;
+}
+.sendcomment .btn_sub {
+    cursor: pointer;
+    padding: 8px 20px;
+}
+
+.pagenav{
+	padding:10px 0;
+}
+.pagenav a{
+	display:inline-block;
+	border:1px solid #ddd;
+	padding:0 4px 1px;
+}
+.pagenav b{
+	color:red;
+}
+.pagenav *{
+	margin-right:6px;
+}
+
+.wp_syntax{margin-bottom:22px!important;}
+.post p{margin-bottom:8px;}
+
+.questionlist dt{
+	padding:5px 15px;
+	color:#333;
+	font-size:14px;
+	background-color:#eee; 
+}
+.questionlist dd{padding:6px 15px 15px; margin-bottom:10px; color:#666;}
+.questionlist p{margin:8px 0;}
+/*==========以下部分是Validform必须的===========*/
+.Validform_checktip{
+	margin-left:8px;
+	line-height:20px;
+	height:20px;
+	overflow:hidden;
+	color:#999;
+	font-size:12px;
+	display:inline-block;
+}
+.Validform_right{
+	color:#71b83d;
+	padding-left:20px;
+	background:url(images/right.png) no-repeat left center;
+}
+.Validform_wrong{
+	color:red;
+	padding-left:20px;
+	white-space:nowrap;
+	background:url(images/error.png) no-repeat left center;
+}
+.Validform_loading{
+	padding-left:20px;
+	background:url(images/onLoad.gif) no-repeat left center;
+}
+.Validform_error{
+	background-color:#ffe7e7;
+}
+#Validform_msg{color:#7d8289; font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif; width:280px; -webkit-box-shadow:2px 2px 3px #aaa; -moz-box-shadow:2px 2px 3px #aaa; background:#fff; position:absolute; top:0px; right:50px; z-index:99999; display:none;filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');}
+#Validform_msg .iframe{position:absolute; left:0px; top:-1px; z-index:-1;}
+#Validform_msg .Validform_title{line-height:25px; height:25px; text-align:left; font-weight:bold; padding:0 8px; color:#fff; position:relative; background-color:#000;}
+#Validform_msg a.Validform_close:link,#Validform_msg a.Validform_close:visited{line-height:22px; position:absolute; right:8px; top:0px; color:#fff; text-decoration:none;}
+#Validform_msg a.Validform_close:hover{color:#cc0;}
+#Validform_msg .Validform_info{padding:8px;border:1px solid #000; border-top:none; text-align:left;}

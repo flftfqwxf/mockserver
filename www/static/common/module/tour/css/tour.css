@@ -1,0 +1,1697 @@
+@charset "UTF-8";
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background: #f4f4f4 !important; }
+
+a:focus {
+  outline: none; }
+
+.w100 {
+  width: 100px; }
+
+.w200 {
+  width: 200px; }
+
+.w300 {
+  width: 300px; }
+
+.w400 {
+  width: 400px; }
+
+.removable-item:hover i, .plan_dialog .J_timeContent .input-Juxtaposed:hover i, .plan_dialog .J_timeContent .group .dates .dataItem i, .J_checkbox.active, .active.J_radio, .del, .flightInfo tbody .selected td:first-child {
+  font-family: "gmIcon" !important;
+  font-size: 16px;
+  font-style: normal; }
+
+.flightInfo tbody .selected td:first-child:before {
+  content: "\e60c"; }
+
+.removable-item:hover i:before, .plan_dialog .J_timeContent .input-Juxtaposed:hover i:before, .del:before, .plan_dialog .J_timeContent .group .dates .dataItem i:before {
+  content: "\e60d"; }
+
+.J_checkbox.active:before, .active.J_radio:before {
+  content: "\e61a"; }
+
+.removable-item:hover i, .plan_dialog .J_timeContent .input-Juxtaposed:hover i, .plan_dialog .J_timeContent .group .dates .dataItem i, .J_checkbox.active, .active.J_radio, .del, .flightInfo tbody .selected td:first-child {
+  font-family: "gmIcon" !important;
+  font-size: 16px;
+  font-style: normal; }
+
+.flightInfo tbody .selected td:first-child:before {
+  content: "\e60c"; }
+
+.removable-item:hover i:before, .plan_dialog .J_timeContent .input-Juxtaposed:hover i:before, .del:before, .plan_dialog .J_timeContent .group .dates .dataItem i:before {
+  content: "\e60d"; }
+
+.J_checkbox.active:before, .active.J_radio:before {
+  content: "\e61a"; }
+
+.J_checkbox, .J_radio {
+  margin-left: 14px;
+  margin-right: 4px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  vertical-align: bottom; }
+  .J_checkbox:hover, .J_radio:hover {
+    border: 1px solid #ff9248; }
+
+/*高亮样式*/
+.J_checkbox.active, .active.J_radio {
+  background-color: #ff9248;
+  color: #FFF;
+  border-color: #ff9248;
+  line-height: 1; }
+
+.J_radio {
+  border-radius: 50%; }
+
+.form-step {
+  margin: 18px 20px 0 20px; }
+  .form-step ul > li, .form-step ul > li.active {
+    padding-right: 140px !important; }
+
+#contents {
+  background-color: transparent;
+  border-radius: 4px;
+  padding-top: 20px; }
+
+input[type='checkbox']:checked::before {
+  top: 2px; }
+
+.page-main-tourinput {
+  width: 1000px; }
+
+.right_ {
+  background-color: #fff;
+  border-radius: 4px; }
+
+input {
+  height: 25px;
+  font-size: 14px; }
+
+textarea {
+  resize: none; }
+
+textarea[tag="edit"] {
+  opacity: 0;
+  border: 1px solid #000; }
+
+label {
+  margin-right: 0px; }
+
+.hide {
+  display: none; }
+
+.fa-info-circle, .fa-plane {
+  color: #ff9248; }
+
+.info-base-example {
+  position: relative; }
+  .info-base-example .example_demo {
+    margin-left: 20px;
+    top: 10px; }
+  .info-base-example .example_demo_box {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 600px;
+    height: 400px;
+    z-index: 4;
+    background: url(../../../image/other_visa.png) no-repeat #fff;
+    background-size: 100%;
+    display: none; }
+
+.set-notation {
+  margin: 5px 0; }
+
+.gm-delete:before {
+  content: "\e617" !important; }
+
+.removable-item, .plan_dialog .J_timeContent .input-Juxtaposed {
+  position: relative; }
+
+.removable-item:hover i, .plan_dialog .J_timeContent .input-Juxtaposed:hover i {
+  position: absolute;
+  right: -20px;
+  top: 0;
+  padding: 7px 2px;
+  cursor: pointer;
+  z-index: 4;
+  color: #c9cacc; }
+
+.formErrorArrow {
+  display: none !important; }
+
+.J_timeContent .group-wrapper {
+  position: relative;
+  display: inline-block; }
+  .J_timeContent .group-wrapper .delete-group {
+    display: none;
+    position: absolute;
+    right: -48px;
+    top: 0;
+    z-index: 2;
+    width: 48px;
+    padding-left: 10px;
+    height: 100%; }
+    .J_timeContent .group-wrapper .delete-group .btn {
+      text-decoration: none;
+      width: 38px;
+      padding: 8px 0;
+      border-radius: 5px;
+      background-color: white;
+      border-color: #D0D5D9;
+      color: #999999; }
+      .J_timeContent .group-wrapper .delete-group .btn:hover {
+        color: white;
+        background-color: #f98282;
+        border-color: #f98282; }
+
+.table-date-price + .delete-group {
+  height: 278px !important; }
+
+.J_timeContent > .group > .group-wrapper:hover > .delete-group,
+.J_timeContent .fgroup > .group-wrapper:hover > .delete-group {
+  display: block; }
+
+.J_timeContent .fgroup .group-wrapper .delete-group {
+  width: 78px;
+  right: -78px;
+  padding-left: 40px; }
+
+#free_dialog_price .fgroup {
+  margin: 20px 20px 0;
+  border-bottom: 1px solid #e5e5e5; }
+
+.fgroup-wrapper > .fgroup:only-child .delete-group {
+  display: none !important; }
+
+img {
+  border: none; }
+
+/*单独为新增行程添加提示*/
+.copytip {
+  background-color: #fffee9;
+  color: #dccf8b;
+  font-size: 12px;
+  font-weight: normal;
+  text-align: center;
+  display: none;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  margin: 20px 20px 0 20px; }
+
+/*行程步骤CSS*/
+.input_body, #base, #trip, #other {
+  margin: 0px auto;
+  background-color: white; }
+
+.input_body {
+  padding: 0 20px 20px;
+  min-height: 400px;
+  color: #333333; }
+
+.page_title {
+  color: #fafbfd;
+  font-size: 15px;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px; }
+
+.right_buts {
+  float: right; }
+
+.top_opt {
+  color: #f3f8fb;
+  font-size: 15px;
+  width: 120px;
+  height: 30px;
+  background: #ff7f79;
+  border-radius: 4px;
+  display: none;
+  text-align: center;
+  line-height: 30px; }
+
+.save_but {
+  color: #f3f8fb;
+  font-size: 15px;
+  width: 110px;
+  height: 27px;
+  background: #ff8400;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: center;
+  line-height: 27px;
+  margin-left: 29px;
+  margin-top: 3px; }
+
+#btnSave {
+  display: none; }
+
+.top_step {
+  position: fixed;
+  top: 0px;
+  z-index: 9;
+  width: 1200px;
+  background: #fff;
+  left: calc(50% - 600px);
+  box-shadow: 0px 2px 0px #ccc; }
+
+.step_btn {
+  position: absolute;
+  width: 160px;
+  right: 0px;
+  top: 8px; }
+
+.top_step .form-step {
+  margin: 10px; }
+
+.step_base, .step_trip, .step_other {
+  height: auto;
+  margin: 0px auto; }
+
+.step_trip {
+  padding-left: 15px;
+  margin-left: 20px; }
+
+.step_other {
+  margin-left: 20px; }
+
+.step_tripBody, .step_otherBody {
+  margin-right: 185px;
+  float: left;
+  height: auto;
+  background: #e5e5e5; }
+
+.tra {
+  margin-bottom: 7px; }
+
+.step_tripBody .J_arrow_icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ff9248;
+  float: left;
+  border: none;
+  margin-left: -52px;
+  text-align: center;
+  line-height: 30px;
+  color: #FFF; }
+
+.daily_trip, .daily_other {
+  width: 100%;
+  height: auto;
+  float: left;
+  margin-left: 3px;
+  background: #FFF; }
+  .daily_trip .control-label, .daily_other .control-label {
+    padding-top: 0;
+    padding-right: 20px; }
+
+.eat ul li, .hotels ul li, .price li {
+  float: left;
+  cursor: pointer; }
+  .eat ul li label, .hotels ul li label, .price li label, .eat ul li i, .hotels ul li i, .price li i {
+    cursor: pointer; }
+
+.eat ul li:first-child, .hotels ul li:first-child {
+  cursor: default; }
+
+.daily_trip_item, .daily_other_item {
+  padding: 0 20px 20px 35px; }
+  .daily_trip_item li:first-child, .daily_other_item li:first-child {
+    padding-right: 20px; }
+  .daily_trip_item li:nth-child(2) > .J_checkbox, .daily_other_item li:nth-child(2) > .J_checkbox, .daily_trip_item li:nth-child(2) > .J_radio, .daily_other_item li:nth-child(2) > .J_radio, .daily_trip_item li:nth-child(2) > .J_radio, .daily_other_item li:nth-child(2) > .J_radio {
+    margin-left: 0; }
+
+.daily_trip_item {
+  position: relative;
+  float: left;
+  width: 760px; }
+  .daily_trip_item li:first-child > .gm-icon {
+    margin: -7px 0 0 -45px;
+    font-size: 20px;
+    background-color: #FFF;
+    position: absolute;
+    color: #ff9248;
+    cursor: default; }
+  .daily_trip_item .J_switchTime {
+    margin-top: -7px; }
+
+.traffics .m-bottom-h {
+  margin-bottom: 10px; }
+
+.greyText {
+  color: #999999;
+  margin: 8px 0 8px 70px; }
+
+.greyText1 {
+  color: #999999;
+  margin: 8px 0; }
+
+/**/
+input[type=radio] {
+  height: 12px; }
+
+/*删除*/
+.del {
+  float: left;
+  border: none;
+  margin-left: 10px;
+  margin-top: 6px;
+  width: 14px;
+  height: 14px;
+  position: absolute; }
+
+/*酒店图标样式*/
+.cursor {
+  cursor: pointer; }
+
+/*第一步*/
+.step_base_Info {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-left: 0px; }
+
+.row {
+  width: 100%;
+  height: auto;
+  padding: 0px 0px;
+  margin: 0 0 20px 0; }
+
+.m-row {
+  margin-bottom: 10px;
+  position: relative; }
+
+.m-row-c {
+  margin-bottom: 1px; }
+
+.t-row {
+  margin-top: 10px; }
+
+.z-bed {
+  display: none; }
+
+.r-btn-c {
+  display: inline-block;
+  margin-left: 10px; }
+
+.table-pos {
+  position: relative;
+  padding-bottom: 40px; }
+
+.J-all-remove {
+  position: absolute;
+  right: 20px;
+  bottom: 10px; }
+
+.unit {
+  position: absolute;
+  top: 38px;
+  z-index: 10;
+  right: 10px;
+  font-style: normal;
+  font-size: 14px;
+  color: #838485;
+  font-weight: 100; }
+
+.unit-m {
+  top: 51px; }
+
+.unit-z {
+  top: 24px; }
+
+.b-input-d {
+  border-radius: 2px !important; }
+
+.step_base_Info .row .col1, .col2 {
+  float: left; }
+
+.step_base_Info .row .col1 {
+  width: 300px;
+  height: auto; }
+
+.step_base_Info .row .col2 {
+  width: calc(100% - 300px);
+  height: auto; }
+
+.row-divider {
+  padding-bottom: 20px !important;
+  border-bottom: 1px dashed #ededed; }
+
+.step_base_Info .pop_city {
+  left: auto;
+  width: 100%;
+  right: 0; }
+.step_base_Info .row .control-label {
+  color: #333333;
+  font-weight: normal;
+  width: 130px;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 6px; }
+.step_base_Info .row .col-right {
+  position: relative;
+  margin-left: 130px; }
+.step_base_Info > .row {
+  padding: 0 40px 0 20px; }
+  .step_base_Info > .row > .control-label {
+    width: 100px; }
+  .step_base_Info > .row > .col-right {
+    margin-left: 100px; }
+  .step_base_Info > .row .help-block {
+    margin-left: 0; }
+  .step_base_Info > .row:last-child, .step_base_Info > .row .plan_dialog, .step_base_Info > .row .row:last-child, .step_base_Info > .row #plan-prices {
+    margin-bottom: 0; }
+.step_base_Info .routeInfo {
+  padding-right: 10px; }
+.step_base_Info .table-date-price .row > .control-label {
+  width: 130px; }
+.step_base_Info .table-date-price .row > .col-right {
+  margin-left: 130px; }
+.step_base_Info .pull-left + .pull-left {
+  margin-left: 20px; }
+.step_base_Info .form-group:last-child {
+  margin-bottom: 0; }
+.step_base_Info .help-block {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle; }
+.step_base_Info .pic-wrapper {
+  width: 205px;
+  height: 225px;
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  position: relative;
+  background-color: #fff; }
+  .step_base_Info .pic-wrapper .gm-img {
+    font-size: 50px;
+    color: #999999;
+    line-height: 100%; }
+  .step_base_Info .pic-wrapper .pic-mask {
+    text-align: center;
+    margin-top: 75px; }
+  .step_base_Info .pic-wrapper .help-block {
+    display: block; }
+  .step_base_Info .pic-wrapper img {
+    width: 100%;
+    height: 100%; }
+  .step_base_Info .pic-wrapper .progress {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent; }
+.step_base_Info .beforeUp {
+  text-align: center; }
+.step_base_Info .product-ad > .control-label {
+  padding-top: 0; }
+.step_base_Info .product-ad .col-right .control-label {
+  text-align: left; }
+.step_base_Info .product-ad .help-block {
+  margin-left: 0;
+  margin-top: 0; }
+.step_base_Info .product-ad .successUp {
+  text-align: center; }
+.step_base_Info .dynamic-ad {
+  margin-left: 80px !important; }
+  .step_base_Info .dynamic-ad .form-control {
+    width: 330px; }
+  .step_base_Info .dynamic-ad p a:nth-child(n+2) {
+    margin-left: 20px; }
+
+.select-group.select-group-topbald .btn:first-child {
+  margin-left: -12px; }
+.select-group.select-group-topbald .btn:nth-child(n+2) {
+  margin-left: 20px; }
+
+.closedOffDeadlineDL {
+  margin-top: 20px; }
+
+.search-empty, .tour-empty {
+  display: none;
+  padding: 0 0 20px;
+  margin-top: -20px; }
+
+.datepicker {
+  font-size: 12px;
+  background: none !important; }
+
+.ui-datepicker {
+  z-index: 10 !important; }
+
+.plan_dialog .J_timeContent .group {
+  margin: 0;
+  position: relative; }
+  .plan_dialog .J_timeContent .group:nth-of-type(n+2) {
+    margin-top: 10px; }
+
+.J_add_priceitem, .btn-add-free-hotel, .btn-add-ship-price, .btn-add-group-item {
+  margin-top: 20px; }
+
+.plan_dialog .bl {
+  border-left: 1px solid #d9d9d9; }
+
+.plan_dialog .br {
+  border-right: 1px solid #d9d9d9; }
+
+.plan_dialog .J_timeContent .group > div {
+  min-height: 190px;
+  vertical-align: top;
+  display: inline-block; }
+
+.plan_dialog .J_timeContent .group .input {
+  padding: 20px; }
+  .plan_dialog .J_timeContent .group .input + .input {
+    padding-top: 0; }
+
+.plan_dialog .J_timeContent .group .input > div a[tip] {
+  font-weight: bold;
+  color: #fff; }
+
+.plan_dialog .J_timeContent .group .flight {
+  margin-left: 0;
+  padding: 10px 20px; }
+
+.samePrice {
+  display: none; }
+
+.has-feedback-left .form-control {
+  padding-left: 30px; }
+
+.plan_dialog .J_timeContent .group .everyday table {
+  font-size: 12px;
+  width: 168px;
+  margin-top: 10px; }
+
+.plan_dialog .J_timeContent .group .everyday table tr td {
+  height: 22px;
+  line-height: 22px; }
+
+.plan_dialog .J_timeContent .group .everyday table tr td input {
+  height: 24px;
+  line-height: 24px;
+  width: 94px;
+  border: none;
+  padding-left: 5px; }
+
+[name='airline.name'] {
+  width: 190px !important; }
+
+.plan_dialog .J_timeContent .group .flight > div > div {
+  position: relative; }
+
+.plan_dialog .J_timeContent .group .flight > div input.airline {
+  padding-left: 18px; }
+
+.plan_dialog .J_timeContent .ac_results {
+  font-size: 12px;
+  width: 180px; }
+
+.plan_dialog .J_timeContent .ac_results .hottip {
+  margin: 0px auto;
+  display: block;
+  line-height: 30px;
+  height: 35px; }
+
+.table-date-price .ac_results > ul:not(:last-child) {
+  border-bottom: none; }
+
+.ac_results .tips {
+  white-space: normal; }
+
+.hottip .charter {
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1px solid #e5e5e5; }
+
+.plan_dialog .J_timeContent .group .flight .option {
+  float: left;
+  width: 76px;
+  margin: 5px 0px 5px 5px;
+  cursor: pointer; }
+
+.plan_dialog .table-date-price {
+  border-collapse: collapse; }
+
+.plan_dialog .table-date-price td {
+  border: 1px solid #D9D9D9; }
+
+.m-table-add {
+  max-width: 230px; }
+
+.m-row-b {
+  margin-bottom: 0; }
+
+.plan_dialog .J_timeContent .group .cols1 {
+  text-align: left; }
+
+.plan_dialog .J_timeContent .group .cols1 .everyday .txt {
+  margin: 20px 0; }
+
+.plan_dialog .J_timeContent .group .cols1 .datepicker .selected {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: normal;
+  color: #fff; }
+
+.plan_dialog .J_timeContent .group .cols1 > div {
+  margin: 0;
+  min-height: 242px;
+  display: inline-block;
+  vertical-align: top; }
+
+.plan_dialog .J_timeContent .group .cols2 .txt {
+  margin: 5px auto; }
+
+/*.plan_dialog .J_timeContent .group .cols2 table {
+  margin: 10px 0px;
+  width: 168px;
+  border-collapse:collapse;
+}
+.plan_dialog .J_timeContent .group .cols2 table th {
+  color: #5bc0de;
+  font-weight: normal;
+  padding: 10px ;
+}
+.plan_dialog .J_timeContent .group .cols2 table th,
+.plan_dialog .J_timeContent .group .cols2 table td {
+  text-align: center;
+  border: 1px solid #d9d9d9;
+  padding: 2px;
+  position: relative;
+  font-size: 14px;
+}*/
+.plan_dialog .J_timeContent .del_ico {
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+  cursor: pointer; }
+
+.plan_dialog .J_timeContent .group .cols2 table .del_tr:hover {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  display: block; }
+
+.plan_dialog .J_timeContent .group .cols2 table tr:not(:nth-child(0)):hover .del_tr {
+  display: block; }
+
+.plan_dialog .J_timeContent .group .cols2 table .short {
+  width: 120px; }
+
+.plan_dialog .J_timeContent .group .col2 table select {
+  min-width: 170px; }
+
+.plan_dialog .J_timeContent .group .cols2 table input,
+.plan_dialog .J_timeContent .group .cols2 table textarea {
+  background: url("../images/tour/input_bg.png") repeat-y 0 center;
+  width: 230px;
+  height: 24px;
+  resize: none;
+  border: 0; }
+
+.plan_dialog .J_timeContent .group .cols2 table input:focus,
+.plan_dialog .J_timeContent .group .cols2 table textarea:focus {
+  background-image: none;
+  background-color: #fff; }
+
+.plan_dialog .J_timeContent .group .cols2 table textarea {
+  height: 60px;
+  width: 220px;
+  background-position: -2px center; }
+
+.plan_dialog .J_timeContent .group .cols2 table input {
+  width: 75px;
+  background: none; }
+
+.plan_dialog .J_timeContent .group .cols2 table .del_tr {
+  top: 3px;
+  right: 0px; }
+
+.plan_dialog .J_timeContent .group .cols3 > div .dates .dataItem input {
+  margin-left: 4px;
+  padding-left: 4px;
+  font-size: 12px; }
+
+.plan_dialog .J_timeContent .group .dates {
+  margin-top: 7px;
+  width: 288px;
+  float: left;
+  margin-left: -8px; }
+
+.plan_dialog .J_timeContent .group .dates .dataItem {
+  margin: 5px 0px 0px 10px;
+  float: left;
+  overflow: hidden; }
+
+.plan_dialog .J_timeContent .group .dates .dataItem label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0; }
+
+.plan_dialog .J_timeContent .group .dates .dataItem i {
+  height: 16px;
+  width: 16px;
+  line-height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  display: inline-block;
+  cursor: pointer;
+  color: #c9cacc; }
+
+.plan_dialog .J_timeContent .group .dates .dataItem .del_data_item_1 {
+  color: #939699; }
+
+.plan_dialog .J_timeContent .group .cols3 > div .dates .dataItem input {
+  width: 66px;
+  height: 24px;
+  padding: 2px 4px;
+  border: 1px solid #d9d9d9; }
+
+.plan_dialog .J_timeContent .group .del_group {
+  width: 20px;
+  height: 20px;
+  background: url(../images/tour/close.png) no-repeat #fdf4f4;
+  position: absolute;
+  top: 0;
+  right: -22px;
+  -webkit-transition: 0.5s;
+  -ms-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+  display: none; }
+
+.plan_dialog .J_timeContent .group .del_group:hover {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  display: block; }
+
+.plan_dialog .J_timeContent .group:hover .del_group {
+  display: block; }
+
+.upfileImg {
+  width: 300px;
+  height: 185px;
+  border: 1px solid #e5e5e5;
+  position: relative; }
+
+.upInfo {
+  width: 220px;
+  height: 36px;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -110px;
+  margin-top: -18px; }
+
+.fileBtn {
+  cursor: pointer;
+  margin-left: 40px;
+  line-height: 20px; }
+  .fileBtn > i {
+    font-size: 20px; }
+
+.tourName {
+  margin-bottom: 14px; }
+
+.tourName textarea {
+  width: 450px; }
+
+.tourLine select, .tourPlay select {
+  width: 450px;
+  height: 30px;
+  margin-bottom: 10px; }
+
+.brightSpot {
+  min-height: 182px; }
+
+.help-block-left {
+  margin-left: 0; }
+
+#brightSpot {
+  min-height: 132px; }
+
+.edui-icon-p {
+  display: inline-block;
+  width: 20px;
+  height: 19px;
+  background: url("/supplier/theme/manage/blue/images/tour/icons.png") no-repeat;
+  background-position: -726px -77px; }
+
+.upfile {
+  width: 100%;
+  padding-bottom: 10px;
+  height: 36px; }
+
+.doingUp {
+  width: 100%;
+  height: 30px; }
+
+.upfile small {
+  font-size: 12px !important;
+  color: #6f6f6f; }
+
+.upload {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  background: transparent;
+  border: none;
+  width: 100px;
+  font-size: 0px;
+  position: absolute;
+  height: 28px;
+  cursor: pointer; }
+
+.next-step {
+  text-align: center; }
+
+.bot {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin-top: 20px; }
+
+.bot p {
+  font-size: 14px;
+  line-height: 26px; }
+
+.nights {
+  width: 40px;
+  text-align: center;
+  display: inline-block;
+  margin: 0 5px; }
+
+.updateBtn {
+  width: 140px;
+  margin: 10px 0px 10px 0px;
+  background: #3bb0fd;
+  border: none;
+  height: 30px;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  line-height: 30px;
+  display: inline-block; }
+
+.upFileInfo {
+  line-height: 24px; }
+  .upFileInfo > :first-child {
+    margin-top: 10px; }
+
+.uping {
+  color: #ccc; }
+
+.upingImg {
+  padding: 0px 8px;
+  background: url("/supplier/theme/manage/blue/images/tour/uping.png") no-repeat 2px 4px; }
+
+.upedImg {
+  padding: 0px 8px;
+  background: url("/supplier/theme/manage/blue/images/tour/annex.png") no-repeat 0px 3px; }
+
+/*第二步右边悬浮的选项*/
+.days {
+  width: 140px;
+  height: auto;
+  position: fixed;
+  right: calc(50% - 565px);
+  top: 200px;
+  border: solid 1px #dfe0e1;
+  background: #fff;
+  display: none;
+  z-index: 10; }
+
+.days li ul li {
+  width: 138px;
+  border-bottom: 1px solid #f4f4f4;
+  height: auto;
+  background: white;
+  text-align: center;
+  line-height: 38px;
+  cursor: pointer; }
+
+.days li a {
+  color: #626466; }
+
+.days li .page {
+  float: none;
+  padding: 0; }
+
+.days li .page span {
+  color: #d0d5d9; }
+
+.days li .page span.active {
+  color: #626466;
+  cursor: pointer; }
+
+.days li .top {
+  text-align: center; }
+
+.days li .top span {
+  color: #fff;
+  display: none; }
+
+.days li .top:hover span {
+  display: block;
+  background: #ff9248; }
+
+.days li .top:hover i {
+  display: none; }
+
+.pre {
+  border-right: 1px solid #f4f4f4;
+  padding-right: 5px; }
+
+.order span {
+  background: url("/supplier/theme/manage/blue/images/tour/order.png") no-repeat 0px 5px;
+  color: orange; }
+
+.addDay span {
+  background: url("/supplier/theme/manage/blue/images/tour/order.png") no-repeat 0px -14px;
+  color: yellowgreen; }
+
+.top span {
+  background: url("/supplier/theme/manage/blue/images/tour/top.png") no-repeat 0px 4px; }
+
+/*天*/
+.daily_trip .daily_trip_item .day {
+  float: left;
+  margin-left: 10px;
+  font-size: 16px;
+  background: white url("/supplier/theme/manage/blue/images/tour/stepBg.png") no-repeat 0px 0px;
+  height: 28px;
+  color: white;
+  background-size: 80px 28px; }
+
+/*餐食*/
+.hotelInfo {
+  float: left;
+  width: 656px;
+  height: auto; }
+
+.hotelInfo .unconfirmedHotel ul.items, .hotelInfo .notation ul.items, .specificHotel ul.items li {
+  cursor: pointer; }
+
+body ul li input[type='checkbox'], body ul li input[type='radio'] {
+  cursor: pointer; }
+
+.hotelInfo ul.items > li {
+  float: left;
+  padding: 6px 0; }
+
+.hotelInfo ul.items > li label {
+  margin-right: 2px; }
+
+/*酒店*/
+.m-unconfirmedHotel {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 36px;
+  z-index: 3;
+  border-top: none;
+  border-radius: none; }
+  .m-unconfirmedHotel .items {
+    width: 100%; }
+    .m-unconfirmedHotel .items li {
+      float: none !important; }
+      .m-unconfirmedHotel .items li:hover {
+        background: #EDF0F2; }
+      .m-unconfirmedHotel .items li .J_radio {
+        opacity: 0;
+        margin: 6px  auto;
+        width: 0;
+        height: 0;
+        margin-left: 6px; }
+        .m-unconfirmedHotel .items li .J_radiobefore {
+          margin: 0; }
+
+.t-default-hotel {
+  position: relative; }
+
+.unconfirmedHotel, .notation {
+  display: inline-block;
+  padding: 15px 0 0 1px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px; }
+
+.specificHotel {
+  width: 100%;
+  display: block; }
+
+.specificHotel ul.items {
+  margin-top: 0px;
+  height: auto;
+  width: 100%;
+  padding-bottom: 10px;
+  position: relative; }
+
+.hotelName {
+  width: 600px; }
+
+.hotelCheck {
+  margin-left: -5px; }
+
+/*交通方式*/
+.single-house {
+  margin-top: 10px; }
+
+.page {
+  float: right;
+  padding-right: 20px; }
+
+.addTraffic {
+  display: inline-block; }
+  .addTraffic > li {
+    float: left; }
+  .addTraffic .J_add_traffics {
+    margin-top: -10px; }
+  .addTraffic .J_traffics {
+    width: 607px; }
+  .addTraffic .J_add_traffics_h {
+    margin-top: 3px; }
+
+.chlid-row {
+  margin-bottom: 0; }
+
+.addtra-m-c {
+  margin-left: 47px; }
+
+.traffics {
+  height: auto;
+  width: 607px;
+  float: left;
+  font-size: 14px;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px; }
+  .traffics .control-label {
+    padding-right: 10px; }
+
+.m-traffics {
+  border: none; }
+  .m-traffics .form-inline {
+    margin: 0;
+    padding: 0; }
+
+.sel_traffic_item {
+  padding-top: 8px; }
+
+.train label {
+  padding-right: 10px; }
+
+.traffics > ul {
+  height: auto;
+  float: left;
+  margin-top: 4px;
+  padding: 20px 20px 0;
+  width: 657px; }
+
+.traffics > ul > li {
+  width: auto;
+  float: left;
+  margin-bottom: 20px; }
+
+.trafficItems + select {
+  width: 150px;
+  float: left; }
+
+span.__shift_text {
+  width: 65px;
+  display: inline-block;
+  text-align: right; }
+
+.flight {
+  float: left;
+  margin-left: 20px;
+  cursor: pointer; }
+
+.departure, .destination {
+  width: 193px !important; }
+
+.trainShift {
+  width: 486px !important; }
+
+#flightInfo {
+  display: inline-block;
+  width: 547px;
+  margin: 0;
+  position: relative; }
+  #flightInfo .table {
+    border-width: 1px 0; }
+  #flightInfo .flight-number {
+    margin-left: 20px; }
+
+.opt-sel {
+  width: 120px;
+  box-sizing: border-box; }
+
+.traffics .form-inline {
+  padding: 0; }
+
+.m-traffics {
+  border: none; }
+
+.display-flight td {
+  padding: 9px 6px; }
+
+.f-match-data {
+  width: 196px;
+  position: absolute;
+  top: 36px;
+  left: 0;
+  background: #fff;
+  z-index: 4;
+  border: 1px solid #DCDFE2;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding-bottom: 4px; }
+  .f-match-data tr td {
+    padding: 15px 0;
+    color: #626466; }
+  .f-match-data tr:hover {
+    background: #78A7FF;
+    color: #fff; }
+    .f-match-data tr:hover span {
+      color: #fff;
+      margin-left: 10px; }
+  .f-match-data span {
+    display: block;
+    margin-left: 10px; }
+
+.display-flight {
+  float: right; }
+
+.city-wrap {
+  position: relative; }
+
+/*日程*/
+.dailyInfos .switch.time {
+  margin-top: -10px; }
+
+.dailyInfos ul {
+  display: inline-block; }
+
+.dailyInfos li {
+  float: left;
+  cursor: pointer; }
+
+.daily {
+  height: auto;
+  margin-top: 10px; }
+
+#description {
+  min-height: 122px; }
+
+.dayliyIcon1, .dayliyIcon2 {
+  padding: 0px 8px;
+  margin-left: 6px;
+  margin-right: 8px; }
+
+.dayliyIcon1 {
+  background: url("/supplier/theme/manage/blue/images/tour/eat.png") no-repeat 0px -192px; }
+
+.dayliyIcon2 {
+  background: url("/supplier/theme/manage/blue/images/tour/eat.png") no-repeat 0px -216px; }
+
+.desc1, .desc2, .desc3 {
+  min-height: 100px; }
+
+.desc2, .desc3 {
+  width: 535px; }
+
+.desc {
+  float: left;
+  width: 100%;
+  margin-bottom: 20px; }
+
+.desc .when select {
+  width: 53px; }
+
+.desc .when2, .when2 select {
+  width: 115px; }
+
+.when, .when2, .dayDescription {
+  float: left; }
+
+.dayDescription {
+  width: 533px;
+  padding-left: 20px; }
+
+.step_trip .desc {
+  margin-bottom: 10px; }
+
+.step_tripBody {
+  padding-bottom: 20px; }
+
+.add_days {
+  position: relative;
+  float: left;
+  width: 100%;
+  margin: -20px 0 0 3px;
+  padding-left: 35px;
+  background-color: #fff; }
+  .add_days:before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #ff9248;
+    left: -5px;
+    top: 14px;
+    border-radius: 50%; }
+
+.has-dropdown {
+  position: relative;
+  padding: 8px 44px 8px 12px;
+  border: none; }
+  .has-dropdown em {
+    font-style: normal; }
+  .has-dropdown > span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 32px;
+    width: 32px;
+    height: 100%;
+    text-align: center;
+    border-left: 1px solid #ff8c3e;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s; }
+  .has-dropdown:hover > span {
+    border-color: #ff6e0b; }
+  .has-dropdown .caret {
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s; }
+  .has-dropdown.open .caret {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg); }
+  .has-dropdown .dropdown-menu {
+    max-height: 155px; }
+
+/*第三步*/
+.daily_other_item {
+  position: relative;
+  padding: 0 0 0px 25px;
+  width: 830px;
+  display: inline-block;
+  margin-bottom: 15px; }
+  .daily_other_item li:first-child {
+    width: 90px;
+    text-align: right; }
+  .daily_other_item .info_set {
+    display: inline-block;
+    width: 100%; }
+    .daily_other_item .info_set .J_radio:first-child {
+      margin-left: 0; }
+  .daily_other_item:last-child {
+    margin-bottom: 0; }
+
+.daily_other_item_m {
+  margin-bottom: 0px; }
+
+.step_otherBody {
+  margin-left: 15px; }
+  .step_otherBody .arrow_icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: none;
+    margin-left: -6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ff9248; }
+
+.price {
+  width: 100%;
+  display: inline-block; }
+
+.price li {
+  float: left;
+  display: inline-block; }
+
+.price li.info {
+  width: calc(100% - 90px);
+  width: -moz-calc(100% - 90px);
+  width: -webkit-calc(100% - 90px);
+  width: -ms-calc(100% - 90px);
+  width: -o-calc(100% - 90px); }
+
+.price li.info .textAare {
+  width: 100%; }
+
+.price li.info .notation span {
+  float: left;
+  cursor: pointer;
+  line-height: 18px;
+  margin-left: 0px;
+  display: inline-block;
+  padding: 0px; }
+
+.price li.info .info_set span {
+  float: left;
+  cursor: pointer;
+  line-height: 18px;
+  margin-left: 30px;
+  display: inline-block;
+  padding: 0px; }
+
+.price li.info .info_set span:first-child, .price li.info .notation span:first-child {
+  margin-left: 0px; }
+
+.price li.info .notation .set-notation-m {
+  margin-right: 30px; }
+
+.price li.info .info_set span.recent {
+  float: right;
+  display: inline-block; }
+
+.consInfo, .consInfoDesc {
+  margin-top: 10px; }
+
+.consInfo table.info {
+  width: 100%;
+  border-top: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  text-align: center;
+  margin-bottom: 10px; }
+
+.consInfo table.info td, .consInfo table.info th {
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  height: 30px;
+  position: relative;
+  width: 25%; }
+
+.consInfo table.info td input {
+  height: 20px;
+  border: none;
+  border-radius: 2px;
+  width: 98%;
+  font-size: 12px !important; }
+
+.notation {
+  width: 715px;
+  padding: 5px 10px;
+  display: inline-block;
+  margin-top: 5px; }
+
+.m-notation {
+  border: none;
+  padding: 5px 0; }
+
+.notation p {
+  padding-bottom: 5px; }
+
+.noticeOther, .noticeInfo {
+  width: 100%; }
+
+.consInfoDesc {
+  width: 100%;
+  display: none; }
+
+.textHeight {
+  min-height: 86px; }
+
+.recent {
+  float: right; }
+
+.recentIcon {
+  background-size: 15px 15px;
+  padding: 0px 5px; }
+
+.set-notation .J_checkbox, .set-notation .J_radio {
+  margin-right: 5px;
+  border-radius: 2px; }
+
+.set-notation .checkbox-m {
+  margin-left: 0px; }
+
+/*自费项目和购物点删除按钮*/
+.selfTr {
+  position: absolute; }
+
+.flightInfo thead > tr > th {
+  padding: 0; }
+
+.flightInfo tbody .selected td:first-child {
+  width: 14px;
+  color: #ff9248;
+  padding: 0;
+  vertical-align: middle; }
+
+/*航班信息表格隔行变色*/
+.days li ul li.active {
+  background: #ff9248;
+  color: #fff; }
+
+.days li ul li.page {
+  cursor: default; }
+
+.days li ul li.page span.nextIcon, .days li ul li.page span.preIcon {
+  width: 8px;
+  height: 14px;
+  border: none;
+  margin-top: 6px;
+  color: lightgrey;
+  cursor: default; }
+
+.days li ul li.page span.nextIcon {
+  padding-right: 5px;
+  background: white url("/supplier/theme/manage/blue/images/tour/arrow_icon.png") no-repeat 42px -21px; }
+
+.days li ul li.page span.preIcon {
+  padding-left: 5px;
+  border-right: 1px solid #f4f4f4;
+  background: white url("/supplier/theme/manage/blue/images/tour/arrow_icon.png") no-repeat 0px -35px; }
+
+.days li ul li.page span.preIcon.active {
+  color: #3bb0fd;
+  background: url("/supplier/theme/manage/blue/images/tour/arrow_icon.png") no-repeat 0px -7px;
+  cursor: pointer; }
+
+.days li ul li.page span.nextIcon.active {
+  color: #3bb0fd;
+  background: url("/supplier/theme/manage/blue/images/tour/arrow_icon.png") no-repeat 42px 7px;
+  cursor: pointer; }
+
+/*调整排序*/
+.ui-icon {
+  display: inline-block; }
+
+.sortable.ui-sortable {
+  width: 100%;
+  height: 250px !important;
+  padding: 18px 20px; }
+
+.sortable.ui-sortable li {
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  margin: 1px 0;
+  background: #edf0f2 !important;
+  border-color: #dfe3e6 !important;
+  text-align: left !important; }
+
+.ui-icon-arrowthick-2-n-s {
+  background-position: -128px -45px; }
+
+.cover {
+  height: 36px;
+  width: 100px;
+  position: relative;
+  top: -36px; }
+
+.cover .upBtn {
+  height: 100%;
+  line-height: 36px;
+  color: grey !important;
+  border: 1px solid lightgrey;
+  background: lightgrey !important; }
+
+.hottip {
+  line-height: 30px;
+  height: 30px;
+  padding: 0;
+  border-bottom: 1px solid #e5e5e5;
+  float: none;
+  margin: 0; }
+
+.loading-wrap .loading {
+  margin-top: 265px; }
+
+.formError {
+  z-index: 99 !important; }
+
+.help-block {
+  color: #999999; }
+
+.trip-help-block {
+  margin-top: -10px; }
+
+.destination-wrap {
+  padding-left: 15px; }
+
+.city-wrap span span {
+  position: relative; }
+
+.day-loading {
+  position: relative;
+  width: 760px; }
+
+.day-loading div {
+  position: absolute;
+  margin-top: -15px;
+  width: 100%;
+  display: none;
+  text-align: center;
+  height: 20px; }
+
+.mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  display: none;
+  /*background: #ccc;*/
+  /*opacity: 0.3;*/ }
+
+.loading-wrap {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+  height: 400px;
+  left: 0;
+  top: 0; }
+
+.loading {
+  width: 200px;
+  height: 110px;
+  margin: auto;
+  margin-top: 165px; }
+
+.logo-loading {
+  margin: auto;
+  width: 100px;
+  height: 72px; }
+
+.loading-wait {
+  width: 21px;
+  height: 5px;
+  margin: auto; }
+
+.loading-text {
+  text-align: center;
+  padding-top: 15px; }
+
+#closedOffDeadlineDL label {
+  font-weight: normal; }
+
+.extraPrice-0formError .formErrorContent {
+  min-width: 206px !important; }
+
+/* 重置顶部面包屑导航 */
+.nav-step-wrap {
+  height: 76px; }
+  .nav-step-wrap .form-step {
+    margin: 0;
+    padding: 20px; }
+    .nav-step-wrap .form-step .btn-panel {
+      right: 20px;
+      top: 20px; }
+  .nav-step-wrap .secondbar-fixed {
+    left: 20px !important;
+    width: 1000px;
+    border-bottom: 1px solid #e5e5e5; }
+
+.step_other_bot {
+  clear: both;
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed #ededed; }
+
+.daily_trip [data-role="delete"] {
+  position: absolute;
+  margin-left: 10px; }
+
+.step_otherBody [data-role="delete"] {
+  position: absolute;
+  margin-left: 10px;
+  left: 100%;
+  top: 1px; }
+
+.hack-row {
+  margin-top: -10px !important; }
+
+.loading-img {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/distributor/theme/manage/blue/images/tour/loading.gif) no-repeat; }
+
+/*合同和退款规则*/
+.rulesInfo {
+  width: 100%;
+  border: 1px solid #d4d4d4;
+  min-height: 100px;
+  border-radius: 4px;
+  padding: 10px;
+  box-sizing: border-box; }
+
+.textareText {
+  width: 100%;
+  border-sizing: border-box;
+  height: 240px;
+  padding: 10px;
+  font-size: 14px; }
+
+.customize .rules_input {
+  box-sizing: border-box;
+  width: 40px;
+  padding: 0px 4px;
+  height: 26px;
+  border: 1px solid #d4d4d4;
+  margin: 5px; }
+
+.rulesTips {
+  color: #4BC5D1; }
+
+.margin_top {
+  margin: 8px 0px; }
+
+.standard p {
+  margin: 0px 0px 5px; }
+
+.J_delRules:hover {
+  background-color: #f98282 !important;
+  color: white !important;
+  border-color: #f98282; }
+
+.J_addRules:hover {
+  background-color: #ff7e1d !important;
+  color: white !important;
+  border-color: #ff7e1d; }
+
+/*# sourceMappingURL=tour.css.map */

@@ -1,0 +1,4 @@
+@mixin badges-variant($color, $background) {
+  color: $color;
+  background-color: $background;
+}

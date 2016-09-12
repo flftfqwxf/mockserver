@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td { padding: 0; margin: 0; }
+table { border-collapse: collapse; border-spacing: 0 }
+fieldset, img { border: 0 }
+address, caption, cite, code, dfn, em, th, var { font-weight: normal; font-style: normal }
+ol, ul { list-style: none }
+caption, th { text-align: left }
+h1, h2, h3, h4, h5, h6 { font-weight: 7100; }
+h1 { font-size: 18px }
+h2 { font-size: 16px }
+h3 { font-size: 14px }
+h4 { font-size: 14px }
+h5 { font-size: 12px }
+h6 { font-size: 12px }
+q:before, q:after { content: '' }
+abbr, acronym { border: 0 }
+hr { margin: 0; padding: 0; border: 0; color: #CDCDCD; background-color: #CDCDCD; height: 1px }
+blockquote { color: #666; font-style: italic; }
+sup, sub { line-height: 0 }
+abbr, acronym { border-bottom: 1px dotted #666 }
+pre { white-space: pre; }
+pre, code, tt { font: 12px 'andale mono', 'lucida console', monospace; line-height: 1.5 }
+/*clear clearfix*/
+.clearfix:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { zoom: 1; }
+.clear { clear: both; }
+/* CSS Document */
+i { font-style: normal }
+.SDemo-title { height: 50px }
+.SDemo-title h1 { height: 50px; background-color: #333; padding-left: 20px; line-height: 50px; font-size: 24px; font-family: \5fae\8f6f\96c5\9ed1, \9ed1\4f53; color: #FFFFFF }
+h3 { margin: 5px; font-size: 20px }
+pre { background-color: #FFFDDE; margin: 10px 0; padding: 10px }
+table.KS-table { border-top: none; border-right: none; border-bottom: 1px solid #6790ad; border-left: 1px solid #6790ad; }
+table.KS-table caption { height: 40px; line-height: 40px; border: 1px solid #6790ad; border-bottom: 0 none; padding-left: 10px; font-size: 12px; font-weight: 700; color: #F00; background-color: #EFF3F8 }
+table.KS-table td, table.KS-table th { border-top: 1px solid #6790ad; border-right: 1px solid #6790ad; border-bottom: none; border-left: 0; padding: 3px }
+table.KS-table th { height: 30px; background-color: #EFF3F8 }
+
+/* 代码高亮功能 */
+.linenums .linenums {
+	background: white;
+	overflow: auto;
+}
+pre .linenums li {
+	border-left: 2px solid green;
+	list-style-type: decimal;
+	padding-left: 1em;
+	margin-left: 4em;
+}

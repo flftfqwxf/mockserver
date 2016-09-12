@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+
+.schedule-list{margin:0 auto;width:1180px;margin-top:40px;overflow:hidden;}
+.schedule-list li{position:relative;float:left;width:20%;}
+.schedule-list li .schedule .line{position:absolute;top:13px;left:0px;height:3px;width:100%;background-color:#cccccc;box-sizing:border-box;border-radius:1.5px;}
+.schedule-list li:last-child .schedule .line{width:110%;}
+.schedule-list li .schedule .status-bg{position:relative;z-index:3;margin:0 auto;width:50px;height:40px;background-color:#f6f6f6;}
+.schedule-list li .schedule .status{margin:0 auto;padding:5px;width:30px;height:30px;text-align:center;color:#ffffff;background-color:#cccccc;border-radius:50%;box-sizing:border-box;}
+.schedule-list li .txt{text-align:center;color:#cccccc;}
+.schedule-list li .icon{display:none;width:20px;height:20px;background-color:#ff7e1d;border-radius:50%;}
+.schedule-list li i.fa-check{line-height:20px;text-align:center;color:#ffffff;font-size:12px;}
+
+
+
+
+.schedule-list li.present .icon em{font-style:normal;}
+.schedule-list li.present .icon i{display:none;}
+.schedule-list li.present .schedule .line{left:-10px;background-color:#ff7e1d;}
+.schedule-list li.present .schedule .status{background-color:#F9CAA7;}
+.schedule-list li.present .txt{color:#ff7e1d;}
+.schedule-list li.present .status .num{display:none;}
+.schedule-list li.present .icon{display:block;}
+
+.schedule-list li.active .icon em{display:none;}
+.schedule-list li.active .schedule .line{left:-10px;background-color:#ff7e1d;}
+.schedule-list li.active .schedule .status{background-color:#F9CAA7;}
+.schedule-list li.active .txt{color:#ff7e1d;}
+.schedule-list li.active .status .num{display:none;}
+.schedule-list li.active .icon{display:block;}

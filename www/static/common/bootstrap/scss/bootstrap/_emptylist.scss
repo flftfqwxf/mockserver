@@ -1,0 +1,26 @@
+@charset "utf-8";
+@mixin empty-placeHolder($padding-top,$padding-bottom,$margin-top,$margin-bottom,$font-size,$color:#e0e1e2) {
+  text-align: center;
+  padding: $padding-top 0 $padding-bottom;
+  margin: $margin-top 0 $margin-bottom;
+  >.gm-icon{
+    font-size: $font-size;
+    color:$color;
+  }
+  .btn{
+    margin-top: 10px;
+  }
+  p:first-of-type {
+    font-size: 16px;
+    color: #626466;
+  }
+  p:last-of-type {
+    color: #939699;
+  }
+}
+.emptylist-placeholder{
+  @include empty-placeHolder(55px, 90px,0,0,88px);
+}
+.sm-placeholder{
+  @include empty-placeHolder(0px, 5px,-10px,0,40px);
+}

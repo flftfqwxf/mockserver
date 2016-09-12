@@ -1,0 +1,21 @@
+@charset "utf-8";
+.toolbar-wrap {
+  height: 53px !important;
+  .btn{ margin-left: $smallPadding;
+    &:first-child{ margin-left: 0;}
+  }
+
+  .fixed-title{
+        padding: $smallPadding 0;
+    }
+}
+
+.scope-toolbar{
+    padding: $smallPadding 0 !important;
+
+    .btn-lg{
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $btn-line-height);
+    }
+}

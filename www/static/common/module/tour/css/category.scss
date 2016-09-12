@@ -1,0 +1,75 @@
+@charset "utf-8";
+@import "../../../../common/bootstrap/scss/bootstrap/variables";
+@import "../../../../common/bootstrap/scss/custom/custom-reset";
+@import "../../../../common/bootstrap/scss/custom/iconfontPlaceHolder";
+@import "../../../../common/bootstrap/scss/bootstrap/mixins";
+@import "../../../../common/bootstrap/scss/font-awesome/mixins";
+@import "../../../../common/bootstrap/scss/font-awesome/variables";
+
+.product-add{
+  .item-main{
+    padding-bottom: $paddingContent;
+  }
+  h3{
+    line-height: 65px;
+    padding-left: $paddingContent;
+    border-bottom: 1px solid #e8e8e8;
+    margin: 0;
+  }
+  .choice{
+    padding: $paddingContent 0;
+    margin-bottom: $paddingContent;
+    border-bottom: 1px dashed $border-dashed-color;
+    line-height: 22px;
+
+    span{
+      color: $gray-darker;
+    }
+  }
+
+  .gm-arrow{
+    display: inline-block;
+    vertical-align: -1px;
+    @include rotate(-90deg);
+  }
+}
+
+.category-wrap{
+  height: 250px;
+}
+.category{
+  float: left;
+  width: 240px;
+  height: 100%;
+  margin-right: $paddingContent;
+  padding-top: $smallPadding;
+
+  .dropdown-menu{
+    width: 100%;
+    height: 215px;
+    border-radius: 0;
+    @include box-shadow(none);
+
+    > li:not(.active):hover > a{
+      color: $brand-info !important;
+      background: none !important;
+    }
+  }
+
+  h5{
+    padding-bottom: $smallPadding;
+    margin: 0;
+  }
+
+  &:not(:last-child){
+    a{
+      position: relative;
+
+      &:before{
+        @include fa-icon;
+        content: $fa-var-angle-right;
+        float: right;
+      }
+    }
+  }
+}

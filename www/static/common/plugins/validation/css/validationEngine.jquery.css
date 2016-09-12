@@ -1,0 +1,68 @@
+/* jquery.validationEngine 2.6.2 Style */
+.formError{z-index:990;}
+.formError .formErrorContent{z-index:991;}
+.formError .formErrorArrow{z-index:996;}
+.ui-dialog .formError{z-index:5000;}
+.ui-dialog .formError .formErrorContent{z-index:5001;}
+.ui-dialog .formError .formErrorArrow{z-index:5006;}
+.inputContainer{position:relative;float:left;}
+.formError{display:block;position:absolute;top:300px;left:300px;text-align:left;cursor:pointer;}
+.formError.inline{display:inline-block;position:relative;top:0;left:0;}
+.ajaxSubmit{display:none;padding:20px;border:1px solid #999;background-color:#55ea55;}
+.formError .formErrorContent{position:relative;width:100%;min-width:140px;padding:5px 10px; line-height: 20px; border:1px solid #f9cdcd;border-radius:4px;background-color:#fff0f0;color:#e42519;}
+.formError.inline .formErrorContent{border:0;border-radius:0;box-shadow:none;}
+.greenPopup .formErrorContent{background-color:#33be40;}
+.whitePopup .formErrorContent{background-color:#f9f9f9;color:#ff3300;}
+.blackPopup .formErrorContent{background-color:#393939;color:#fff;}
+.formError .formErrorArrow{position:relative;margin:-2px 0 0 13px;width:15px;}
+body[dir='rtl'] .formError .formErrorArrow,
+body.rtl .formError .formErrorArrow{margin:-2px 13px 0 0;}
+.formError .formErrorArrowBottom{top:2px;margin:0 0 0 12px;box-shadow:none;}
+.formError .formErrorArrow div{display:block;height:1px;margin:0 auto;border-right:2px solid #ddd;border-left:2px solid #ddd;background-color:#ee0101;box-shadow:0 2px 3px #444;font-size:0;font-size:0;line-height:0;}
+.formError .formErrorArrowBottom div{box-shadow:none;}
+.greenPopup .formErrorArrow div{background-color:#33be40;}
+.whitePopup .formErrorArrow div{background-color:#f9f9f9;color:#ff3300;}
+.blackPopup .formErrorArrow div{background-color:#393939;color:#fff;}
+.formError .formErrorArrow .line10{width:15px;border:0;}
+.formError .formErrorArrow .line9{width:13px;border:0;}
+.formError .formErrorArrow .line8{width:11px;}
+.formError .formErrorArrow .line7{width:9px;}
+.formError .formErrorArrow .line6{width:7px;}
+.formError .formErrorArrow .line5{width:5px;}
+.formError .formErrorArrow .line4{width:3px;}
+.formError .formErrorArrow .line3{width:1px;border-right:2px solid #ddd;border-bottom:0 solid #ddd;border-left:2px solid #ddd;}
+.formError .formErrorArrow .line2{width:3px;border:0;background-color:#ddd;}
+.formError .formErrorArrow .line1{width:1px;border:0;background-color:#ddd;}
+
+/* jquery.validationEngine 2.6.2 Style Patch */
+.formError-noArrow .formErrorArrow{display:none;}
+
+.formError-text .formErrorContent{padding:0;border:none;background:none;color:#ed1b23;box-shadow:none;}
+.formError-text.greenPopup .formErrorContent{color:#33be40;}
+.formError-text.whitePopup .formErrorContent{color:#f9f9f9;}
+.formError-text.blackPopup .formErrorContent{color:#393939;}
+.formError-text .formErrorArrow{display:none;}
+
+.formError-small .formErrorContent{padding:3px 10px;border:1px solid #333;border-radius:4px;box-shadow:inset 0 0 2px #fff,0 0 2px #333;}
+.formError-small .formErrorArrow div{display:none;border-right-color:#333;border-left-color:#333;box-shadow:none;}
+.formError-small .formErrorArrow .line7,
+.formError-small .formErrorArrow .line6,
+.formError-small .formErrorArrow .line5,
+.formError-small .formErrorArrow .line4,
+.formError-small .formErrorArrow .line3,
+.formError-small .formErrorArrow .line1{display:block;border-width:0 1px 0 1px;}
+.formError-small .formErrorArrow .line7{border:0;}
+.formError-small .formErrorArrow .line3{border-width:0 1px 0 1px;border-color:#333;}
+.formError-small .formErrorArrow .line1{background-color:#333;}
+
+.formError-white .formErrorContent{border-color:#ed1b23;background-color:#fff;color:#ed1b23;box-shadow:0 0 2px #ed1b23;}
+.formError-white.greenPopup .formErrorContent{border-color:#333;background-color:#33be40;color:#fff;box-shadow:0 0 2px #333;}
+.formError-white.whitePopup .formErrorContent{border-color:#ccc;background-color:#f9f9f9;color:#ff3300;box-shadow:0 0 2px #dfdfdf;}
+.formError-white.blackPopup .formErrorContent{border-color:#333;background-color:#393939;color:#fff;box-shadow:0 0 2px #333;}
+.formError-white .formErrorArrow div{border-color:#ed1b23;background-color:#fff;box-shadow:none;}
+.formError-white.greenPopup .formErrorArrow div{border-color:#333;background-color:#33be40;}
+.formError-white.whitePopup .formErrorArrow div{border-color:#ccc;background-color:#f9f9f9;}
+.formError-white.blackPopup .formErrorArrow div{border-color:#333;background-color:#393939;}
+.formError-white .formErrorArrow .line3{border-color:#ed1b23;}
+.formError-white .formErrorArrow .line2{background-color:#ed1b23;}
+.formError-white .formErrorArrow .line1{background-color:#ed1b23;}

@@ -1,0 +1,13 @@
+@charset "utf-8";
+//第一步、第二步、第三步的模块样式，详见DEMO
+.form-step{line-height: 36px;background: #fff;position:relative;overflow:hidden;}
+.form-step li{border-bottom-left-radius:3px;border-top-left-radius:3px;float: left;text-align: center;cursor: pointer;color: #000;height:36px;font-size:14px;position:relative;background:#e8e8e8;padding:0 35px;text-decoration: none;}
+.form-step li:first-child{padding:0 55px 0 15px;}
+.form-step li em{font-style:normal;font-size:22px;float:left;margin-right:8px;}
+.form-step li i,.form-step li i:after{display: block;position: absolute;width: 0;height: 0;border-top: 18px solid transparent;border-bottom: 18px solid transparent;border-left: 18px solid #fff;}
+.form-step li i {right: -19px;top: 0;z-index:1;}
+.form-step li i:after{content: " ";right: 1px;top: -18px;z-index:2;border-left-color:#e8e8e8;}
+.form-step li.active {color: #fff;cursor: default;background: $brand-info; }
+.form-step li.active i:after {border-left-color: $brand-info; }
+.form-step .btn-panel{position:absolute;right:0;top:0;}
+.form-step .btn-panel .btn{margin-top:0;margin-left:10px;float:left;line-height: 20px;}

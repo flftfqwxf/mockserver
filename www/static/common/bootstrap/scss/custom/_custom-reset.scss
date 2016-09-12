@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+//根目录路径
+$rootPath:'';
+$sidebarWidth: 200px;
+$minisidebarWidth: 60px;
+$fullSize: 100%;
+//主体内容最小宽度
+$mainMinWidth: 1100px;
+//内容之间的间距
+$paddingContent: 20px !default;
+// padding margin
+$smallPadding: 10px !default;
+//小间距
+$xSmallPadding: 5px !default;
+//超小间距
+$footerHeight:  50px !default;
+// 页面标题高度
+$titleHeight:   60px !default;
+//底部高度
+$form-width: 900px !default;
+/// 导航高度
+$navHeight: 44px !default;
+
+$paddings: (
+    big:40px,
+    base:15px,
+    small:10px,
+    xSmall:5px
+);
+@function paddings($type:'base'){
+  @return map-get($paddings,$type);
+}
+
+
+@mixin sameHeight($size: 9999px) {
+  padding-bottom: $size;
+  margin-bottom: -$size;
+}
+@mixin sectionSpac{
+  margin: 0 $paddingContent;
+}
+
+// 导航收起的当前状态
+@mixin navCurrent{
+    // z-index: 1;
+    // border-width: 1px 0;
+    // border-style: solid;
+    // border-color: $border-color;
+    // margin-top: -1px;
+    // height: 1 + $navHeight;
+    color: $nav-link-hover-color;
+    background-color: $nav-link-hover-bg;
+}
+
+
+//重置默认参数
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+  background: $input-bg-disabled !important;
+}
+a:focus{ outline: none; }
+// 默认表单的4种尺寸
+.w100{width: 100px;}
+.w200{width: 200px;}
+.w300{width: 300px;}
+.w400{width: 400px;}

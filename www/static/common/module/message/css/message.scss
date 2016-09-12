@@ -1,0 +1,38 @@
+﻿@charset "utf-8";
+//消息中心列表
+.sel-condition {padding-left: 20px;background: #fff;margin-bottom: 20px;border-bottom: 2px solid #E4E4E3;}
+.sel-condition li {display: inline-block;padding: 16px 24px 8px 24px;background: #fff;margin-left: -4px;cursor: pointer;}
+.sel-condition .active {color: #ED7B28;position: relative;}
+.sel-condition .active:after {position: absolute;display: block;content: '';width: 100%;height: 2px;background: #ED7B28;bottom: -2px;left: 0;}
+.sel-condition li span{color:#ffac73;padding:0px 5px;}
+
+.mes_list{width:100%;}
+.mes_list .mes_list_item{min-height:60px;background:#fff;border:1px solid #e5e5e5;font-size:12px;padding:10px;margin-bottom:20px;}
+.mes_list_item table{width:100%;}
+.mes_list_item.unread{color:#333!important;}//未读
+.mes_list_item.read{color:#666!important;}//已读
+.mes_list_item .mes_title{margin-bottom:4px;line-height:24px;}
+.mes_list_item .mes_type{font-size:16px;padding-right:10px;}
+.mes_list_item .mes_time{color:#999999!important;}
+.mes_list_item table td.mes_icon{position:relative;width:30px;}
+.mes_list_item table td.mes_icon i{font-size:18px;position:absolute;top:0px;left:0px;}
+.mes_list_item .mes_info{line-height:18px;}
+.mes_list_item .mes_admin{color:#ffc200;}//系统消息
+.mes_list_item .mes_order{color:#ff7e1d;}//订单消息
+.mes_list_item .mes_money{color:#4bc5d1;}//财务消息
+
+//消息的提示
+.mes_tips{position:absolute;bottom:72px;right:38px;width:380px;}
+.mes_tips .mes_tips_item{border-radius:4px;background:rgba(0,0,0,0.8);color:#fff;width:100%;padding:10px;box-sizing:border-box;margin-top:10px;position:relative;cursor: pointer;display:none;}
+.mes_tips .mes_title{color:#f6f6f6;font-weight:bold;margin-bottom:5px;}
+.mes_tips .mes_time{color:#999999!important;padding-left:10px;}
+.mes_tips .mes_info a{font-size:12px;color:#d8d8d8;line-height: 18px;display: -webkit-box;-webkit-box-orient: vertical;overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; word-break: break-all;}
+.mes_tips table td.mes_icon{position:relative;width:25px;}
+.mes_tips table td.mes_icon i{font-size:18px;position:absolute;top:-3px;left:0px;}
+.mes_tips .mes_close{position:absolute;right:0px;top:0px;font-size:14px;padding:0px 5px 5px;cursor: pointer;}
+.mes_tips a:hover{text-decoration:none;color:#f6f6f6!important;}
+.fa.fa-volume-down{font-size:20px!important;}
+.mes_tips .mes_admin{color:#ffe8a6;}
+.mes_tips .mes_order{color:#ffac73;}
+.mes_tips .mes_money{color:#b6ffff;}
+

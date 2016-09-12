@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript" src="../internal.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4&services=true"></script>
+    <style type="text/css">
+        .content{width:530px; height: 350px;margin: 10px auto;}
+        .content table{width: 100%}
+        .content table td{vertical-align: middle;}
+        #city,#address{height:21px;background: #FFF;border:1px solid #d7d7d7; line-height: 21px;}
+        #city{width:60px}
+        #address{width:130px}
+        #is_dynamic_label span{vertical-align:middle;margin: 3px 0px 3px 3px;}
+        #is_dynamic_label input{vertical-align:middle;margin: 3px 3px 3px 50px;}
+    </style>
+</head>
+<body>
+<div class="content">
+    <table>
+        <tr>
+            <td>输入搜索:</td>
+            <td><input id="search" type="text" style="width:280px;"/></td>
+        </tr>
+    </table>
+    <div style="width:100%;height:340px;margin:5px auto;border:1px solid gray" id="container"></div>
+    <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+</div>
+<script type="text/javascript">
+    var map = new BMap.Map("container"),marker,point,styleStr;
+    map.enableScrollWheelZoom();
+    map.enableContinuousZoom();
+    var pointStr = editor.options.point;
+    point = new BMap.Point(116.404, 39.915);    // 创建点坐标
+    if (pointStr){
+    	point = new BMap.Point(pointStr.split('|')[0], pointStr.split('|')[1]);
+    }
+    marker = new BMap.Marker(point);
+    map.addControl(new BMap.NavigationControl());
+    map.centerAndZoom(point, 14);
+    marker.enableDragging();
+    map.addOverlay(marker);
+    if (!pointStr){
+	    var geolocation = new BMap.Geolocation();
+	    geolocation.getCurrentPosition(function(r){
+	        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+	        	point = r.point;
+	            marker = new BMap.Marker(r.point);
+	            marker.enableDragging();
+	            map.addOverlay(marker);
+	            map.panTo(r.point);
+	        } else {
+	            alert("需要共享你浏览器的位置，才能获取当前位置");
+	        }        
+	    },{enableHighAccuracy: true})
+    }
+    // 百度地图API功能
+    function G(id) {
+        return document.getElementById(id);
+    }
+    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+        {"input" : "search"
+        ,"location" : map
+    });
+
+    ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+        var str = "";
+        var _value = e.fromitem.value;
+        var value = "";
+        if (e.fromitem.index > -1) {
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }    
+        str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+        
+        value = "";
+        if (e.toitem.index > -1) {
+            _value = e.toitem.value;
+            value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+        }    
+        str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+        G("searchResultPanel").innerHTML = str;
+    });
+
+    var myValue;
+    ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+        var _value = e.item.value;
+            myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+            G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+            setPlace();
+    });
+
+    function setPlace(){
+        map.clearOverlays();    //清除地图上所有覆盖物
+        function search(){
+            point = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+            map.centerAndZoom(point, 14);
+            marker = new BMap.Marker(point)
+            marker.enableDragging();
+            map.addOverlay(marker);    //添加标注
+        }
+        var local = new BMap.LocalSearch(map, { //智能搜索
+            onSearchComplete: search
+        });
+        local.search(myValue);
+    }
+    
+    
+    // 添加地图点击事件给外部editor使用
+    map.addEventListener("click", function(e){
+    	map.clearOverlays();
+    	point = e.point;
+    	marker = new BMap.Marker(point);
+        marker.enableDragging();
+        map.addOverlay(marker);
+        //editor.fireEvent("afterClickMap", e);
+    });
+    
+    // 标注拖动时拾取坐标
+    marker.addEventListener("dragend", function(e){
+    	point = e.point;
+    });
+    
+    dialog.onok = function (){
+    	var e = {point: point};
+    	editor.fireEvent("afterClickMap", e);
+    }
+</script>
+
+
+</body>
+</html>

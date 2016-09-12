@@ -1,0 +1,30 @@
+@charset "utf-8";
+//字体ICON，所有字体图标都在此处管理
+$base: '../../../fonts/';
+$base: '../../../common/fonts/';
+
+@mixin icon-font-base($size: 16px){
+  font-family: "gmIcon" !important;
+  font-size: $size;
+  font-style: normal;
+}
+
+
+
+
+// 兼容360浏览器
+@mixin small-icon-font($size: 15px){
+  font-size:$size;
+}
+
+@font-face {font-family: "gmIcon";
+  src: url('#{$base}iconfont.eot'); /* IE9*/
+  src: url('#{$base}iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('#{$base}iconfont.woff') format('woff'), /* chrome、firefox */
+  url('#{$base}iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('#{$base}iconfont.svg#gmIcon') format('svg'); /* iOS 4.1- */
+}
+
+.gmIcon, .gm-icon{
+  @include icon-font-base;
+}

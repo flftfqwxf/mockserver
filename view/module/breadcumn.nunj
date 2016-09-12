@@ -1,0 +1,8 @@
+<div class="sub-title">
+                        <h2>当前模块</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#">供应商中心</a></li>
+                            <li class="active">当前模块</li>
+                        </ol>
+                    </div>

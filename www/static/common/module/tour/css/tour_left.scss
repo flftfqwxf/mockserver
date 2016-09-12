@@ -1,0 +1,128 @@
+@charset "utf-8";
+@import "../../../../common/bootstrap/scss/bootstrap/variables";
+@import "../../../../common/bootstrap/scss/custom/custom-reset";
+@import "../../../../common/bootstrap/scss/custom/iconfontPlaceHolder";
+@import "../../../../common/bootstrap/scss/bootstrap/mixins/vendor-prefixes";
+
+.page-main-tourinput {
+	.panel-group {
+		.panel {
+			border-top-width: 3px;
+			+ .panel {
+				margin-top: 20px;
+			}
+		}
+		.panel-default {
+			border-color: $border-color;
+			> .panel-heading {
+				background-color: white;
+			}
+		}
+		.panel-heading {
+			padding: 0;
+		}
+		.panel-title {
+			padding: 15px 20px;
+			overflow: hidden;
+			font-weight: normal;
+			color: $gray-dark;
+			position: relative;
+			i, span, small {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.gm-arrow {
+				position: absolute;
+				right: 15px;
+				top: 15px;
+				font-size: 18px;
+				@include rotate(180deg);
+			}
+			&.collapsed .gm-arrow {
+				@include rotate(0deg);
+			}
+			span {
+				margin: 0 20px;
+			}
+			small {
+				font-size: 14px;
+				color: $gray;
+			}
+		}
+		.content-body-m{
+			position:relative;
+		}
+		.panel-body {
+			padding: 0 20px;
+		}
+		.loadding-anim{
+			background:url("/supplier/theme/manage/blue/images/tour/left/loading.gif"); width:30px; height:30px; position:absolute; top:50%; left:50%; z-index:100;
+		}
+		.content-heading {
+			padding: 10px 0;
+			.pull-left {
+				color: $gray;
+				padding-top: 7px;
+			}
+			.result-count {
+				color: $brand-primary;
+				font-size: 16px;
+			}
+		}
+		.list-group-item {
+			padding: 15px;
+			line-height: 100%;
+			cursor: pointer;
+			&:hover {
+				background-color: #f7f7f7;
+				.gm-icon, .fa {
+					color: $gray;
+				}
+			}
+			> .list-group-item-text {
+				position: relative;
+				width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				padding-right: 25px;
+				color: $gray-darker;
+				> span {
+					font-size: 12px;
+					color: $gray;
+					padding-left: 20px;
+				}
+				> .gm-icon, .fa {
+					position: absolute;
+					right: 0;
+					top: 0;
+					&:hover {
+						cursor: pointer;
+						color: $brand-danger;
+					}
+				}
+			}
+			&.selected {
+				cursor: default;
+				> .list-group-item-text {
+					color: $brand-info;
+					> .gm-icon, .fa {
+						color: #ddd5d9 !important;
+						cursor: not-allowed !important;
+					}
+				}
+			}
+		}
+		.list-pagination {
+			display: none;
+			margin-bottom: 20px;
+			.pull-left {
+				padding: 5px 0;
+			}
+		}
+		.pagination {
+			margin: 0;
+			vertical-align: bottom;
+		}
+	}
+}

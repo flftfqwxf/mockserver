@@ -1,0 +1,47 @@
+@charset "utf-8";
+//美化SELECT样式，非模拟
+@mixin icons{
+  background: url("/common/image/iconfont-gmxiala.png") no-repeat right center;
+}
+
+.btn-select {
+  overflow: hidden;
+  padding: 0;
+  &:hover{
+    background:none
+  }
+  select{
+    position: relative;
+    text-indent: 0px;
+    border: none;
+    text-indent: 0px;
+    height: ($btn-height-base - 2); // 2px 是 边框的值
+    padding: 0 20px 0 5px;
+    @include icons;
+
+    background: none\9;
+    padding-right: 0 \9;
+
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance:none;
+    &::-ms-expand {
+      display: none;
+    }
+    
+    &[disabled]{
+      background-color: $input-bg-disabled;
+      cursor: $cursor-disabled;
+    }
+  }
+
+}
+
+// IE 10 only
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {   
+  .btn-select select{
+    @include icons;
+    padding-right: 20px;
+  }
+} 

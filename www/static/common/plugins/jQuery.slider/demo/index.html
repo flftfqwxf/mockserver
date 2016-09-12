@@ -1,0 +1,526 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JQ-Slide插件demo演示</title>
+    <script type="text/javascript" src="../../../js/jquery1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/jQuery.silder.js"></script>
+    <link href="base.css" rel="stylesheet" type="text/css">
+    <link href="../css/jQuery.silder.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $("#temp1").Slide({
+                effect: "scroolY",
+                speed: "normal",
+                timer: 3000,
+                createPage: false,
+                chooseNav: 'JQ-slide-nav'
+            });
+            $("#temp2").Slide({
+                effect: "scroolX",
+                speed: "normal",
+                timer: 3000,
+                createPage: false,
+                chooseNav: 'JQ-slide-nav'
+            });
+            $("#temp3").Slide({
+                effect: "fade",
+                speed: "normal",
+                timer: 3000,
+                createPage: false,
+                chooseNav: 'JQ-slide-nav'
+            });
+            //无限左右滚动，不支持数字切换
+            $("#temp4").Slide({
+                effect: "scroolLoop",
+                autoPlay: false,
+                speed: "normal",
+                chooseNav: 'headlNav',
+                individuallyNav: 'individuallyNav',
+                timer: 3000,
+                steps: 2
+            });
+            $("#temp5").Slide({
+                effect: "scroolTxt",
+                speed: "normal",
+                timer: 3000,
+                steps: 1,
+                chooseNav: 'JQ-slide-nav'
+            });
+            $("#temp6").Slide({
+                effect: "scroolY",
+                speed: "normal",
+                timer: 3000,
+                chooseNav: 'JQ-slide-nav'
+            });
+            $("#temp7").Slide({
+                effect: "fade",
+                speed: "normal",
+                timer: 3000,
+                chooseNav: 'headlNav'
+            });
+            //不无限循环滚动
+            $("#temp8").Slide({
+                effect: "scroolLoop",
+                autoPlay: false,
+                speed: "normal",
+                chooseNav: 'headlNav',
+                individuallyNav: 'individuallyNav',
+                timer: 3000,
+                steps: 2,
+                loop: false
+            });
+            //左右点击+不带数字选择
+            $("#temp9").Slide({
+                effect: "fade",
+                speed: "normal",
+                timer: 3000,
+                chooseNav: 'headlNav',
+                showNum: false,
+                individuallyNav: 'individuallyNav',
+            });
+            //左右点击+数字选择
+            $("#temp10").Slide({
+                effect: "fade",
+                speed: "normal",
+                timer: 3000,
+                chooseNav: 'headlNav',
+                individuallyNav: 'individuallyNav',
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="SDemo-title">
+    <h1>JQ-Slide插件demo-【雷先华】-【版本1.0】-【2013-9-17】演示：</h1>
+</div>
+<div id="page"><br>
+    <table class="KS-table" border="0" cellpadding="0" cellspacing="0" width="760">
+        <caption>
+            JQ-Slide插件参数说明表
+        </caption>
+        <tbody>
+        <tr>
+            <th scope="row" width="155">参数名</th>
+            <td width="438">参数值(默认值可以省略)</td>
+            <td width="166">&nbsp;</td>
+        </tr>
+        <tr>
+            <th rowspan="5" scope="row">effect</th>
+            <td>scroolY（默认）：垂直滚动</td>
+            <td rowspan="5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>scroolX：水平滚动</td>
+        </tr>
+        <tr>
+            <td>scroolTxt：文本垂直滚动</td>
+        </tr>
+        <tr>
+            <td>fade：淡出</td>
+        </tr>
+        <tr>
+            <td>scroolLoop：水平左右点击滚动</td>
+        </tr>
+        <tr>
+            <th scope="row">autoPlay</th>
+            <td>true（默认）： or false</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">speed</th>
+            <td>动画速度时间，默认"normal"，可以使用毫秒或者JQ中的fast，slow，normal</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">showNum</th>
+            <td>默认为(true):切换时，时否显示数字</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">timer</th>
+            <td>滚动间隔时间，默认"1000，可以使用毫秒或者JQ中的fast，slow，normal</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">chooseNav</th>
+            <td>JQ-slide-nav（默认）：触点对象数组父级</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">individuallyNav</th>
+            <td>clickNav（默认）：左右点击元素对象父级</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">claCon</th>
+            <td>JQ-slide-content（默认）：滚动对象或滚动对象父级</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">steps</th>
+            <td>1（默认）：滚动几个</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">createPage</th>
+            <td>true(默认):自动创建分页</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">loop</th>
+            <td>true(默认):无限循环</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th scope="row">slideTitle</th>
+            <td>slideTitle(默认):幻灯标题对象的class</td>
+            <td>&nbsp;</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <br>
+
+    <h3>滚动一：</h3>
+
+    <div id="temp1">
+        <div class="JQ-content-box">
+            <ul style="top: 0px;" class="JQ-slide-content">
+                <li><a href="" target="_blank"><img src="images/ad1.jpg" height="289" width="549"></a></li>
+                <li><a href="" target="_blank"><img src="images/ad2.jpg" height="289" width="549"></a></li>
+                <li><a href="" target="_blank"><img src="images/ad3.jpg" height="289" width="549"></a></li>
+                <li><a href="" target="_blank"><img src="images/ad4.jpg" height="289" width="549"></a></li>
+            </ul>
+        </div>
+        <ul class="JQ-slide-nav">
+            <li class="on"><a href="" class="next"><img src="images/guangg1.jpg"></a></li>
+            <li class=""><a href=""><img src="images/guangg2.jpg"></a></li>
+            <li class=""><a href=""><img src="images/guangg3.jpg"></a></li>
+            <li class=""><a href=""><img src="images/guangg4.jpg"></a></li>
+        </ul>
+    </div>
+  <pre>
+      $("#temp1").Slide({
+                effect: "scroolY",
+                speed: "normal",
+                timer: 3000,
+                createPage: false,
+                chooseNav: 'JQ-slide-nav'
+            });
+</pre>
+    <hr>
+    <h3>滚动二：</h3>
+
+    <div id="temp2">
+        <div class="JQ-content-box">
+            <ul style="width: 2196px; left: -1098px;" class="JQ-slide-content">
+                <li><a href="" target="_blank"><img src="images/ad1.jpg" height="289" width="549"></a></li>
+                <li><a href="" target="_blank"><img src="images/ad2.jpg" height="289" width="549"></a></li>
+                <li><a href="" target="_blank"><img src="images/ad3.jpg" height="289" width="549"></a></li>
+                <li><a href="" target="_blank"><img src="images/ad4.jpg" height="289" width="549"></a></li>
+            </ul>
+        </div>
+        <ul class="JQ-slide-nav">
+            <li class=""><a href=""><img src="images/guangg1.jpg"></a></li>
+            <li class=""><a href=""><img src="images/guangg2.jpg"></a></li>
+            <li class="on"><a href=""><img src="images/guangg3.jpg"></a></li>
+            <li class=""><a href=""><img src="images/guangg4.jpg"></a></li>
+        </ul>
+    </div>
+  <pre>
+       $("#temp2").Slide({
+                effect: "scroolX",
+                speed: "normal",
+                timer: 3000,
+                createPage: false,
+                chooseNav: 'JQ-slide-nav'
+            });
+
+</pre>
+    <hr>
+    <h3>滚动三：</h3>
+
+    <div id="temp3">
+        <div class="JQ-content-box">
+            <ul class="JQ-slide-content">
+                <li style="z-index: 0; opacity: 0;"><a href="" target="_blank"><img src="images/ad1.jpg" height="289" width="549"></a></li>
+                <li style="opacity: 0; z-index: 0;"><a href="" target="_blank"><img src="images/ad2.jpg" height="289" width="549"></a></li>
+                <li style="opacity: 1; z-index: 1;"><a href="" target="_blank"><img src="images/ad3.jpg" height="289" width="549"></a></li>
+                <li style="opacity: 0; z-index: 0;"><a href="" target="_blank"><img src="images/ad4.jpg" height="289" width="549"></a></li>
+            </ul>
+        </div>
+        <ul class="JQ-slide-nav">
+            <li class=""><a href=""><img src="images/guangg1.jpg"></a></li>
+            <li class=""><a href=""><img src="images/guangg2.jpg"></a></li>
+            <li class="on"><a href=""><img src="images/guangg3.jpg"></a></li>
+            <li class=""><a href=""><img src="images/guangg4.jpg"></a></li>
+        </ul>
+    </div>
+  <pre>  $("#temp3").Slide({
+                effect: "fade",
+                speed: "normal",
+                timer: 3000,
+                createPage: false,
+                chooseNav: 'JQ-slide-nav'
+            });
+
+</pre>
+    <hr>
+    <h3>滚动四：</h3>
+
+    <div id="slide-box"><b class="corner"></b>
+
+        <div class="slide-content" id="temp4">
+            <div class="wrap">
+                <ul style="width: 2040px; left: 0pt;" class="JQ-slide-content">
+                    <li><a href="" target="_blank"><img alt="" src="images/03.jpg" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img alt="" src="images/04.jpg" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img alt="" src="images/05.jpg" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img alt="" src="images/06.jpg" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img src="images/01.jpg" alt="" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img alt="" src="images/02.jpg" height="450" width="330"></a></li>
+                </ul>
+            </div>
+            <div class="individuallyNav">
+                <a class="prev" href="#"> <b class="corner"></b><span>‹</span><b class="corner"></b></a>
+                <a class="next" href="#"> <b class="corner"></b><span>›</span><b class="corner"></b></a>
+            </div>
+
+            <p class="opacity_bg"></p>
+
+            <p class="slideTitle"></p>
+
+            <div class="headlNav"></div>
+        </div>
+        <b class="corner"></b></div>
+  <pre>
+       //无限左右滚动，不支持数字切换
+      $("#temp4").Slide({
+                effect: "scroolLoop",
+                autoPlay: false,
+                speed: "normal",
+                chooseNav: 'headlNav',
+                individuallyNav: 'individuallyNav',
+                timer: 3000,
+                steps: 2
+            });
+
+</pre>
+    <hr>
+    <h3>滚动五：</h3>
+
+    <div id="temp5">
+        <div class="JQ-content-box">
+            <ul style="margin-top: 0pt;" class="JQ-slide-content">
+                <li>这是公告标题的第二行</li>
+                <li>这是公告标题的第三行</li>
+                <li>这是公告标题的第四行</li>
+                <li>这是公告标题的第五行</li>
+                <li>这是公告标题的第六行</li>
+                <li>这是公告标题的第七行</li>
+                <li>这是公告标题的第八行</li>
+                <li>这是公告标题的第9行</li>
+                <li>这是公告标题的第10行</li>
+                <li>这是公告标题的第11行</li>
+                <li>这是公告标题的第12行</li>
+                <li>这是公告标题的第一行</li>
+            </ul>
+        </div>
+    </div>
+  <pre>   $("#temp5").Slide({
+                effect: "scroolTxt",
+                speed: "normal",
+                timer: 3000,
+                steps: 1,
+                chooseNav: 'JQ-slide-nav'
+            });
+
+</pre>
+    <hr>
+    <h3>滚动六：</h3>
+
+    <div>
+        <div class="JQ-content-box" id="temp6">
+            <ul class="JQ-slide-content">
+                <li><a href="" target="_blank"><img alt="" title="" src="images/g5.jpg" height="144" width="710"></a>
+
+                    <p class="opacity_bg"></p>
+
+                    <p>富森美家居大团购1</p>
+                </li>
+                <li><a href="" target="_blank"><img alt="" title="" src="images/20100820-284f62ce01db688e.jpg" height="144" width="710"></a>
+
+                    <p class="opacity_bg"></p>
+
+                    <p>富森美家居大团购2</p>
+                </li>
+                <li><a href="" target="_blank"><img alt="" title="" src="images/g1.jpg" height="144" width="710"></a>
+
+                    <p class="opacity_bg"></p>
+
+                    <p>富森美家居大团购3</p>
+                </li>
+            </ul>
+            <ul class="JQ-slide-nav">
+            </ul>
+        </div>
+    </div>
+  <pre>   $("#temp6").Slide({
+                effect: "scroolY",
+                speed: "normal",
+                timer: 3000,
+                chooseNav: 'JQ-slide-nav'
+            });
+
+</pre>
+    <h3>滚动七：</h3>
+
+    <div>
+        <div class="zyh_headline" id="temp7">
+            <ul class="JQ-slide-content">
+                <li><a href="" target="_blank"><img src="images/pic7-1.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-2.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-1.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-2.jpg" alt="" title=""></a>
+                </li>
+            </ul>
+            <p class="opacity_bg"></p>
+
+            <p class="slideTitle"></p>
+
+            <div class="headlNav">
+            </div>
+        </div>
+    </div>
+  <pre>     $("#temp7").Slide({
+                effect: "fade",
+                speed: "normal",
+                timer: 3000,
+                chooseNav: 'headlNav'
+            });
+
+</pre>
+    <hr>
+    <h3>滚动八,左右有限滚动：</h3>
+
+    <div id="slide-box"><b class="corner"></b>
+
+        <div class="slide-content" id="temp8">
+            <div class="wrap">
+                <ul style="width: 2040px; left: 0pt;" class="JQ-slide-content">
+                    <li><a href="" target="_blank"><img alt="" src="images/03.jpg" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img alt="" src="images/04.jpg" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img alt="" src="images/05.jpg" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img alt="" src="images/06.jpg" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img src="images/01.jpg" alt="" height="450" width="330"></a></li>
+                    <li><a href="" target="_blank"><img alt="" src="images/02.jpg" height="450" width="330"></a></li>
+                </ul>
+            </div>
+            <div class="individuallyNav"><a class="prev" href="#"> <b class="corner"></b><span>‹</span><b class="corner"></b></a> <a class="next" href="#"> <b
+                    class="corner"></b><span>›</span><b class="corner"></b></a></div>
+            <p class="opacity_bg"></p>
+
+            <p class="slideTitle"></p>
+
+            <div class="headlNav"></div>
+        </div>
+        <b class="corner"></b>
+    </div>
+
+  <pre>
+        //不无限循环滚动
+            $("#temp8").Slide({
+                effect: "scroolLoop",
+                autoPlay: false,
+                speed: "normal",
+                chooseNav: 'headlNav',
+                individuallyNav: 'individuallyNav',
+                timer: 3000,
+                steps: 2,
+                loop: false
+            });
+
+</pre>
+    <hr>
+    <h3>滚动九,左右有限滚动，带切换不带数字：</h3>
+
+    <div id="slide-box">
+        <div class="zyh_headline" id="temp9">
+            <ul class="JQ-slide-content">
+                <li><a href="" target="_blank"><img src="images/pic7-1.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-2.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-1.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-2.jpg" alt="" title=""></a>
+                </li>
+            </ul>
+            <p class="opacity_bg"></p>
+
+            <p class="slideTitle"></p>
+
+            <div class="headlNav">
+            </div>
+            <div class="individuallyNav">
+                <a class="prev" href="#"> <b class="corner"></b><span>‹</span><b class="corner"></b></a>
+                <a class="next" href="#"> <b class="corner"></b><span>›</span><b class="corner"></b></a>
+            </div>
+        </div>
+    </div>
+
+  <pre>
+        //左右点击+不带数字选择
+            $("#temp9").Slide({
+                effect: "fade",
+                speed: "normal",
+                timer: 3000,
+                chooseNav: 'headlNav',
+                showNum: false,
+                individuallyNav: 'individuallyNav',
+            });
+
+</pre>
+    <h3>滚动十：</h3>
+
+    <div id="slide-box">
+        <div class="zyh_headline" id="temp10">
+            <ul class="JQ-slide-content">
+                <li><a href="" target="_blank"><img src="images/pic7-1.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-2.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-1.jpg" alt="" title=""></a>
+                </li>
+                <li><a href="" target="_blank"><img src="images/pic7-2.jpg" alt="" title=""></a>
+                </li>
+            </ul>
+            <p class="opacity_bg"></p>
+
+            <p class="slideTitle"></p>
+
+            <div class="headlNav">
+            </div>
+            <div class="individuallyNav">
+                <a class="prev" href="#"> <b class="corner"></b><span>‹</span><b class="corner"></b></a>
+                <a class="next" href="#"> <b class="corner"></b><span>›</span><b class="corner"></b></a>
+            </div>
+        </div>
+    </div>
+  <pre>   //左右点击+数字选择
+            $("#temp10").Slide({
+                effect: "fade",
+                speed: "normal",
+                timer: 3000,
+                chooseNav: 'headlNav',
+                individuallyNav: 'individuallyNav',
+            });
+</pre>
+</div>
+</body>
+</html>

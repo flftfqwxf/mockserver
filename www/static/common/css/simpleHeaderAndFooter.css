@@ -1,0 +1,115 @@
+@charset "UTF-8";
+body.greyBg {
+  background: #f6f6f6; }
+
+.heardnew {
+  background-color: #fff;
+  min-width: 1170px; }
+
+.heardnew .logo {
+  display: inline-block;
+  float: left;
+  width: 216px;
+  height: auto;
+  margin-right: 70px;
+  background: none; }
+
+.heardnew .logo img {
+  margin-top: 14px; }
+
+.heardnew .heard-center {
+  margin: 0 auto;
+  width: 1170px;
+  min-width: 1170px; }
+
+.heardnew .nav-list {
+  display: inline;
+  float: left; }
+
+.heardnew .nav-list li {
+  display: inline;
+  float: left; }
+
+.heardnew .nav-list li a {
+  display: inline-block;
+  height: 80px;
+  line-height: 80px;
+  padding: 0 20px;
+  font-size: 18px;
+  color: #626466;
+  font-family: \5FAE\8F6F\96C5\9ED1,\9ED1\4F53; }
+
+.heardnew .nav-list li a:hover, .reg-log a:hover, .footer-list li a:hover {
+  text-decoration: none; }
+
+.heardnew .nav-list li a.selected {
+  color: #313233;
+  background-color: #EDF0F2; }
+
+.heardnew .reg-log {
+  display: inline;
+  float: right;
+  height: 80px;
+  line-height: 80px; }
+
+.heardnew .reg-log a {
+  font-size: 12px;
+  color: #626466;
+  font-family: \5FAE\8F6F\96C5\9ED1,\9ED1\4F53; }
+
+.heardnew .reg-log a.login {
+  padding: 9px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px; }
+
+/* 2.0 底部 */
+.footernew {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  padding: 0;
+  background-color: #252D36;
+  clear: both; }
+
+.footernew .footer-centr {
+  margin: 0 auto;
+  width: 1190px; }
+
+.footernew .footer-list li {
+  position: relative;
+  display: inline;
+  float: left;
+  margin-right: 20px; }
+
+.footernew .footer-list li a {
+  color: #fff;
+  opacity: 0.5; }
+
+.footernew .footer-list li i {
+  margin-right: 5px; }
+
+.footernew .copyright {
+  display: inline;
+  float: right;
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.5; }
+
+.footernew .weixinImg {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: -205px;
+  left: -70px;
+  box-shadow: 0px 4px 4px grey;
+  z-index: 200; }
+
+body, html {
+  height: auto;
+  overflow: auto; }
+
+.login-state {
+  padding: 25px 0 13px;
+  line-height: 32px;
+  margin: 0 20px; }

@@ -1,0 +1,15 @@
+@charset "utf-8";
+@import "../../bootstrap/variables";
+body.greyBg{ background: $body-bg;}
+.heardnew{ background-color:#fff; min-width: 1170px; }
+.heardnew	.logo{ display: inline-block; float: left; width: 216px; height: auto; margin-right: 70px; background: none; }
+.heardnew	.logo img{ margin-top:14px; }
+.heardnew	.heard-center{ margin: 0 auto; width: 1170px;min-width: 1170px }
+.heardnew	.nav-list{ display: inline; float: left; }
+.heardnew	.nav-list li{ display: inline; float: left; }
+.heardnew	.nav-list li a{ display: inline-block; height: 80px; line-height: 80px; padding:0 20px; font-size: 18px; color: #626466; font-family:\5FAE\8F6F\96C5\9ED1,\9ED1\4F53; }
+.heardnew	.nav-list li a:hover,.reg-log a:hover,.footer-list li a:hover{ text-decoration:none; }
+.heardnew	.nav-list li a.selected{ color:#313233; background-color:#EDF0F2; }
+.heardnew	.reg-log{ display: inline; float:right; height: 80px; line-height: 80px; }
+.heardnew	.reg-log a{ font-size: 12px; color: #626466; font-family:\5FAE\8F6F\96C5\9ED1,\9ED1\4F53; }
+.heardnew	.reg-log a.login{ padding:9px 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; }

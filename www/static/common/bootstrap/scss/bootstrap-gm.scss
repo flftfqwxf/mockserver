@@ -1,0 +1,72 @@
+@charset "utf-8";
+//
+@import "custom/mixins/shape";
+//重置变量
+@import "custom/resetVariables";
+//重置 padding和margin
+@import "bootstrap/resetMarginAndPadding";
+//字体图标
+@import 'custom/iconfont';
+//重置webUploader样式
+@import "custom/resetWebUploader";
+@import 'bootstrap.src-gm';
+@import "custom/formsChange";
+//表单步骤组件
+@import "custom/formStep";
+//重构弹出层
+@import 'custom/artdialog';
+//美化SELECT
+@import "bootstrap/select";
+//指定的INPUT长度
+@import "bootstrap/inputSize";
+//内容为空时，列表样式
+@import "bootstrap/emptylist";
+//头部按钮小模块
+@import "custom/topBarWidget";
+
+@import "custom/schedule_nav";
+
+////输出所有背景颜色 CLASS
+//@include bgColorList();
+//@include bgColorList('dark');
+//@include bgColorList('light');
+//@include bgColorList('xlight');
+
+html, body {
+    background-color: $body-bg;
+}
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+li {
+
+    list-style: none;
+}
+:focus {
+    outline: none;
+}
+html.single-screen {
+    overflow: hidden;
+    height: $fullSize;
+
+    body, .page-wrapper {
+        overflow: hidden;
+        height: $fullSize;
+    }
+}
+.p-base {
+    padding: paddings() !important;
+}
+.p-lr-5 {
+    padding: 0 paddings('xSmall') !important;
+}
+
+// 浏览器升级提示
+.browser{width: 100%;height: 50px;background-color: #EB8739;color:#fff;text-align: center;line-height: 50px;font-family: "微软雅黑";font-size: 14px;}
+.browser .downBrowser{position: absolute;top:0;right: 200px;}
+.browser_desc{position: relative;}
+.browser .browser_info{position: absolute;top: 1px;left: -20px;background:url(/common/plugins/browser/images/info.png) no-repeat;display:inline-block;width:20px;height:16px;line-height:50px;}
+.browser_btn{float:left;width:44px;height:50px;border-right:1px solid lightgrey;line-height: 50px;background:#fff url(/common/images/icon.png) no-repeat 39px 45px;text-decoration: none;color: black;position: relative;   }
+a.browser_btn{position: relative;}
+.browser_btn img{margin:11px 10px;}

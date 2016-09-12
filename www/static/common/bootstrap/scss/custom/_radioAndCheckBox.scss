@@ -1,0 +1,27 @@
+@charset "utf-8";
+//模拟单选和复选样式，不推荐使用，建议使用bootstrap的样式
+@import "../bootstrap/variables";
+@import "iconfontPlaceHolder";
+.J_checkbox{
+  margin-left: 14px; margin-right: 4px;
+  width: 18px; height: 18px; line-height: 18px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  vertical-align: bottom;
+  &:hover{
+    border: 1px solid $brand-info;
+  }
+}
+/*高亮样式*/
+.J_checkbox.active{
+  @extend %gm-icon;
+  @extend %gm-right;
+  background-color: $brand-info;
+  color: #FFF; border-color: $brand-info;
+  line-height: 1;
+}
+.J_radio{
+  @extend .J_checkbox;
+  border-radius: 50%;
+
+}

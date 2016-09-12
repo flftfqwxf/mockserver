@@ -1,0 +1,191 @@
+@charset "utf-8";
+//字体ICON，所有字体图标都在此处管理
+$base: '../../fonts/';
+
+//$base: '/common/fonts/';
+@mixin icon-font-base($size: 16px){
+  font-family: "gmIcon" !important;
+  font-size: $size;
+  font-style: normal;
+}
+
+
+
+
+// 兼容360浏览器
+@mixin small-icon-font($size: 15px){
+  font-size:$size;
+}
+
+@font-face {font-family: "gmIcon";
+  src: url('#{$base}iconfont.eot'); /* IE9*/
+  src: url('#{$base}iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('#{$base}iconfont.woff') format('woff'), /* chrome、firefox */
+  url('#{$base}iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('#{$base}iconfont.svg#gmIcon') format('svg'); /* iOS 4.1- */
+}
+
+.gmIcon, .gm-icon{
+  @include icon-font-base;
+}
+.gm-rocket-up:before { content: "\e666"; }
+.gm-peer-plan:before { content: "\e604"; }
+.gm-word-tpl:before { content: "\e601"; }
+.gm-pro-manage:before { content: "\e602"; }
+.gm-order-manage:before { content: "\e603"; }
+.gm-ad-tpl:before { content: "\e605"; }
+.gm-home:before { content: "\e606"; }
+.gm-employee:before { content: "\e607"; }
+.gm-setting:before { content: "\e608"; }
+.gm-notice:before { content: "\e613"; }
+.gm-logout:before { content: "\e616"; }
+.gm-user:before { content: "\e614"; }
+.gm-warning:before { content: "\e609"; }
+.gm-add:before { content: "\e60a"; @include small-icon-font;}
+.gm-info-remind:before { content: "\e60b"; @include small-icon-font;}
+.gm-success:before { content: "\e60c"; }
+.gm-close:before { content: "\e60d"; }
+.gm-wrong:before { content: "\e60e"; }
+.gm-menu:before { content: "\e60f"; }
+.gm-delete:before { content: "\e617"; @include small-icon-font(17px);}
+.gm-arrow:before { content: "\e610"; }
+.gm-arrow-full:before { content: "\e611"; }
+.gm-supposed:before { content: "\e618"; }
+.gm-edit:before { content: "\e619"; }
+.gm-right:before { content: "\e61a"; }
+.gm-img:before { content: "\e615"; }
+.gm-refresh:before { content: "\e61b"; }
+.gm-eye:before { content: "\e61c"; }
+.gm-back:before { content: "\e61d"; }
+.gm-times:before { content: "\e61e"; }
+.gm-goTop:before { content: "\e61f"; }
+.gm-share:before { content: "\e620"; }
+.gm-hat:before { content: "\e621"; }
+.gm-travelDays:before { content: "\e622"; }
+.gm-address2:before { content: "\e623"; }
+.gm-customerService:before { content: "\e624"; }
+.gm-schedule:before { content: "\e625"; }
+.gm-download:before { content: "\e626"; }
+.gm-route:before { content: "\e627"; }
+.gm-house:before { content: "\e628"; }
+.gm-information:before { content: "\e629"; }
+.gm-mobile2:before { content: "\e62a"; }
+.gm-qq4:before { content: "\e62c"; }
+.gm-share2:before { content: "\e62d"; }
+.gm-supplierIntroduction:before { content: "\e62e"; }
+.gm-tableware:before { content: "\e62f"; }
+.gm-search2:before { content: "\e630"; }
+.gm-address:before { content: "\e631"; }
+.gm-theme:before { content: "\e632"; }
+.gm-supplierPhone:before { content: "\e633"; }
+.gm-train:before { content: "\e634"; }
+.gm-plain:before { content: "\e635"; }
+.gm-car:before { content: "\e636"; }
+.gm-steamboat:before { content: "\e637"; }
+.gm-accessory:before { content: "\e612"; }
+.gm-loading:before { content: "\e638"; }
+.gm-calendar:before { content: "\e639"; }
+.gm-system:before { content: "\e63a"; }
+.gm-createNew:before { content: "\e63b"; }
+.gm-editTravel:before { content: "\e63c"; }
+.gm-save:before { content: "\e63d"; }
+.gm-modify-pwd:before { content: "\e63e"; }
+.gm-distributor:before { content: "\e645"; }
+.gm-book:before { content: "\e648"; }
+.gm-supplier:before { content: "\e64b"; }
+.gm-back2:before { content: "\e640"; }
+.gm-next:before { content: "\e641"; }
+.gm-fire2:before { content: "\e642"; }
+.gm-fire:before { content: "\e643"; }
+.gm-contactPhone:before { content: "\e644"; }
+.gm-contact2:before { content: "\e646"; }
+.gm-contact:before { content: "\e647"; }
+.gm-telephone:before { content: "\e649"; }
+.gm-sunlight2:before { content: "\e64a"; }
+.gm-sunlight:before { content: "\e64c"; }
+.gm-home2:before { content: "\e64d"; }
+.gm-home3:before { content: "\e64e"; }
+.gm-weixin:before { content: "\e64f"; }
+.gm-qq2:before { content: "\e600"; }
+.gm-qq3:before { content: "\e650"; }
+.gm-scanCode:before { content: "\e651"; }
+.gm-shakeHands:before { content: "\e652"; }
+.gm-question:before { content: "\e653"; }
+.gm-shoppingCart:before { content: "\e654"; }
+.gm-search:before { content: "\e655"; }
+.gm-plan:before { content: "\e656"; }
+.gm-computerAndPhone:before { content: "\e657"; }
+.gm-box:before { content: "\e658"; }
+.gm-editor:before { content: "\e659"; }
+.gm-qq:before { content: "\e65a"; }
+.gm-rocket:before { content: "\e65b"; }
+.gm-onlineOffline:before { content: "\e65c"; }
+.gm-mobile:before { content: "\e65d"; }
+.gm-b2b2c:before { content: "\e65e"; }
+.gm-order:before { content: "\e65f"; }
+.gm-crm:before { content: "\e660"; }
+.gm-ok:before { content: "\e661"; }
+.gm-serial:before { content: "\e662"; }
+.gm-tooltip:before { content: "\e663"; }
+.gm-up:before { content: "\e664"; }
+.gm-warning-white:before { content: "\e665"; }
+.gm-success-1:before { content: "\e667"; }
+.gm-sort:before { content: "\e668"; }
+.gm-switch:before { content: "\e669"; }
+.gm-email:before { content: "\e62b"; }
+.gm-shoppingCartTow:before { content: "\e63f"; }
+.gm-money:before { content: "\e66a"; }
+.gm-info-logo:before { content: "\e66e"; }
+.gm-telephone1:before { content: "\e66b"; }
+.gm-face:before { content: "\e66c"; }
+.gm-add1:before { content: "\e66d"; }
+.gm-line:before { content: "\e66f"; }
+.gm-retracted:before { content: "\e670"; }
+.gm-right-shift:before { content: "\e671"; }
+.gm-open:before { content: "\e672"; }
+.gm-left-shift:before { content: "\e673"; }
+.gm-arrow2:before { content: "\e674"; }
+.gm-australia:before { content: "\e675"; }
+.gm-departure:before { content: "\e676"; }
+.gm-asia:before { content: "\e677"; }
+.gm-hk:before { content: "\e678"; }
+.gm-china:before { content: "\e679"; }
+.gm-outside:before { content: "\e67a"; }
+.gm-cruise:before { content: "\e67b"; }
+.gm-japan:before { content: "\e67c"; }
+.gm-europe:before { content: "\e67d"; }
+.gm-guide:before { content: "\e67e"; }
+.gm-site-manage:before { content: "\e67f"; }
+.gm-decoration:before { content: "\e680"; }
+.gm-sort1:before { content: "\e681"; }
+.gm-account:before { content: "\e682"; }
+.gm-yixiangdingdanicon:before { content: "\e683"; }
+.gm-yixiangdingdanicon:before { content: "\e683"; }
+.gm-logoheng:before { content: "\e684"; }
+.gm-logofang:before { content: "\e685"; }
+.gm-33payweixinword:before { content: "\e686"; }
+.gm-33success:before { content: "\e687"; }
+.gm-33loginpassword:before { content: "\e688"; }
+.gm-33loginuser:before { content: "\e689"; }
+.gm-33loginverificationcode:before { content: "\e68a"; }
+.gm-33noorder:before { content: "\e68b"; }
+.gm-33payalipay:before { content: "\e68c"; }
+.gm-33payalipayword:before { content: "\e68d"; }
+.gm-33paycountdown:before { content: "\e68e"; }
+.gm-33paysweep:before { content: "\e68f"; }
+.gm-33payweixin:before { content: "\e690"; }
+.gm-33loginqq:before { content: "\e691"; }
+.gm-33loginweixin:before { content: "\e692"; }
+.gm-daijiesuanjine:before { content: "\e693"; }
+.gm-daiquerenliuwei:before { content: "\e694"; }
+.gm-daishangchuanchutuantongzhi:before { content: "\e695"; }
+.gm-ketiqujine:before { content: "\e696"; }
+.gm-zhanghuzonge:before { content: "\e697"; }
+.gm-daifukuan01:before { content: "\e698"; }
+.gm-daitianxiechuyourenxinxi01:before { content: "\e699"; }
+.gm-hongbaoyue01:before { content: "\e69a"; }
+.gm-yishiyonghongbao0101:before { content: "\e69b"; }
+.gm-redpacket:before { content: "\e69c"; }
+.gm-wodehongbao01:before { content: "\e69c"; }
+.gm-traveldownload:before { content: "\e69d"; }
+.gm-authenticate:before { content: "\e69e"; }

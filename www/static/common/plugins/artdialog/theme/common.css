@@ -1,0 +1,27 @@
+@charset "utf-8";
+/**
+* 弹窗公共按钮样式
+* @author wuxing
+* @date 2015-02-27
+*/
+.aui_buttons button[class^="btn-"]{text-shadow:none;box-shadow: none; -moz-transition:none; -webkit-transition: none; transition: none;}
+/*.aui_buttons button[class^="btn-"]:active{border-color:#1c6a9e; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bbee', endColorstr='#2288cc'); background: linear-gradient(top, #33bbee, #2288cc); background: -moz-linear-gradient(top, #33bbee, #2288cc); background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#33bbee), to(#2288cc));}*/
+/*.aui_buttons button[class^="btn-"]:hover { color:#000; border-color:#666; }*/
+
+/*普通按钮*/
+.aui_buttons button.btn-save{margin-left: 15px;padding:5px 12px;line-height: 1;background: #91c35b;border: 4px solid #91c35b;border-radius: 4px;font-size:14px;}
+.aui_buttons button.btn-cancel{margin-left: 15px;padding:5px 12px;line-height: 1;background: #ff746d;border: 4px solid #ff746d;border-radius: 4px;font-size:14px;}
+.aui_buttons button.btn-common,.aui_buttons button[disabled].btn-common{margin-left: 15px;padding:5px 12px;line-height: 1;background: #DDDDDD;border: 4px solid #DDDDDD;border-radius: 4px;font-size:14px;}
+
+/*大按钮*/
+.aui_buttons button.btn-lg-save{margin-left: 20px;padding:6px 16px;line-height: 1.33;background: #91c35b;border: 5px solid #91c35b;border-radius: 5px;font-size:18px;}
+.aui_buttons button.btn-lg-cancel{margin-left: 20px;padding:6px 16px;line-height: 1.33;background: #ff746d;border: 5px solid #ff746d;border-radius: 5px;font-size:18px;}
+.aui_buttons button.btn-lg-common,.aui_buttons button[disabled].btn-lg-common{margin-left: 20px;padding:6px 16px;line-height: 1.33;background: #DDDDDD;border: 5px solid #DDDDDD;border-radius: 5px;font-size:18px;}
+
+/*小按钮*/
+.aui_buttons button.btn-sm-save{margin-left: 10px;padding:4px 8px;line-height: 0.8;background: #91c35b;border: 3px solid #91c35b;border-radius: 3px;font-size:12px;}
+.aui_buttons button.btn-sm-cancel{margin-left: 10px;padding:4px 8px;line-height: 0.8;background: #ff746d;border: 3px solid #ff746d;border-radius: 3px;font-size:12px;}
+.aui_buttons button.btn-sm-common,.aui_buttons button[disabled].btn-sm-common{margin-left: 10px;padding:4px 8px;line-height: 0.8;background: #DDDDDD;border: 3px solid #DDDDDD;border-radius: 3px;font-size:12px;}
+
+/*隐藏按钮*/
+.aui_buttons button.btn-hide{display:none;}

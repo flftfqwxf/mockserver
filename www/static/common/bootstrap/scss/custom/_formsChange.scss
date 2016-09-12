@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+//添加FORM表单 公共模块,效果见DEMO
+//重构带ICON的INPUT
+$multiple:1;
+.input-lg ~ .form-control-feedback,
+.input-group-lg ~ .form-control-feedback,
+.form-group-lg .form-control + .form-control-feedback {
+  width: $input-height-large;
+  height: $input-height-large;
+  line-height: $input-height-large;
+}
+.input-sm ~ .form-control-feedback,
+.input-group-sm ~ .form-control-feedback,
+.form-group-sm .form-control ~ .form-control-feedback {
+  width: $input-height-small;
+  height: $input-height-small;
+  line-height: $input-height-small;
+}
+.has-feedback{
+  .form-control {
+    padding-right: ($input-height-base * $multiple);
+  }
+  .input-sm{
+    padding-left: $padding-small-horizontal;
+    padding-right: ($input-height-small * $multiple);
+  }
+
+}
+.has-feedback-left {
+  @extend .has-feedback;
+  .form-control-feedback{
+    left: 0;
+  }
+  .form-control {
+    padding-left: ($input-height-base * $multiple);
+    padding-right: $padding-base-horizontal;
+  }
+  .input-sm{
+    padding-left:($input-height-small * $multiple) ;
+    padding-right: $padding-small-horizontal;
+  }
+}
+
+
+
+.feedback-sm {
+  .form-control-feedback{
+    width: $input-height-small;
+    height: $input-height-small;
+    line-height: $input-height-small;
+  }
+  .form-control {
+    padding-left: ($input-height-base * $multiple);
+    padding-right: 0;
+  }
+}
+//INPUT组
+
+.input-Juxtaposed{
+  .form-control{ float: left; position: relative;
+   &:focus{
+     z-index: 3;
+   }
+  }
+  >.form-control:first-child{
+    margin-left: 0;
+    &:not(:last-child):not(.dropdown-toggle) {
+      @include border-right-radius(0);
+    }
+  }
+   > .form-control:last-child:not(:first-child){
+    @include border-left-radius(0);
+  }
+  > :not(:first-child):not(:last-child) > .form-control {
+    border-radius: 0;
+  }
+    .form-control + .form-control{
+      margin-left: -1px;
+    }
+}
+
+//组合表单
+.input-group > .has-feedback{
+  >.form-control-feedback{ right: 0; cursor: pointer;pointer-events:auto}
+}

@@ -1,0 +1,56 @@
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏 -->
+    <meta name="x5-orientation" content="portrait"><!-- QQ强制竖屏 -->
+    <meta name="format-detection" content="telephone=no"><!--强制停止自动识别数字为电话号码-->
+    <title>将汉字转换为拼音，每个字的首字母大写</title>
+    <script src="/common/js/jquery1.9.1.min.js"></script>
+    <script src="pinyin.js"></script>
+    <script src="area_using.js"></script>
+   <!--  <script src="area.js"></script> -->
+</head>
+<body>
+    <div>
+    <h1>1）一个是将汉字翻译为拼音，其中每一个字的首字母大写:pinyin.getFullChars(this.value);</h1>
+    <h1>2）一个是可以将每一个字的拼音的首字母提取出来，是大写的形式:pinyin.getCamelChars(this.value);</h1>
+    </div>
+    
+    <div class="area">
+        <h1>出境游</h1>
+        <div class="abroad_areas">
+        </div>
+        <h1>国内游</h1>
+        <div class="domestic_areas">
+        </div>
+        <h1>周边游</h1>
+        <div class="weekend_areas">
+        </div>
+    </div>
+    <script type="text/javascript">
+    function changeToPinyin(obj){
+        for(var i=0;i<obj.length;i++){
+            var areaItem=obj[i].areaItem;
+            for(var j=0;j<areaItem.length;j++){
+            	var cityPinyin=pinyin.getFullChars(areaItem[j].cityName);
+            	//var cityJianpin=pinyin.getCamelChars(areaItem[j].cityName);
+            	areaItem[j].cityPinyin=cityPinyin;
+            	//areaItem[j].cityJianpin=cityJianpin;
+            }
+            /* obj[i].areaItem=obj[i].areaItem.sort(function(a,b){
+                return a.cityPinyin.charCodeAt(0) > b.cityPinyin.charCodeAt(0) ? 1 : -1;
+            }); */
+        }
+        return obj;
+    }
+    $(function(){
+        abroad_areas=changeToPinyin(abroad_areas);
+        domestic_areas=changeToPinyin(domestic_areas);
+        weekend_areas=changeToPinyin(weekend_areas);
+       console.log(JSON.stringify(abroad_areas));
+    })
+    </script>
+</body>
+</html>

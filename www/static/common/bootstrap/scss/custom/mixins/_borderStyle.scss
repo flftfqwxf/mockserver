@@ -1,0 +1,10 @@
+@charset "utf-8";
+@import "../../bootstrap/variables";
+@mixin borderStyle(){
+  background-color: $dropdown-bg;
+  border: 1px solid $dropdown-fallback-border; // IE8 fallback
+  border: 1px solid $dropdown-border;
+
+  border-radius: $border-radius-base;
+  //@include box-shadow(0 6px 12px rgba(0,0,0,.175));
+}

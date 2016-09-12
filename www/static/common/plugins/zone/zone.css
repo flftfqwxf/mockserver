@@ -1,0 +1,120 @@
+.select-zone *{
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑";
+}
+
+.select-zone li {
+    list-style: none;
+}
+
+.select-zone .box {
+    width: 160px;
+    height: 30px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 30px;
+}
+
+.select-zone {
+    width: 320px;
+    background: #dfdfdf;
+    background: #dfdfdf;
+    border-radius: 5px;
+    position: absolute;
+    display: none;
+    color: #fff;
+}
+
+.select-zone .name-title {
+    height: 43px;
+}
+
+.select-zone .name-title li {
+    float: left;
+    height: 100%;
+}
+
+.name-title-li {
+    border-bottom: 1px solid #828282;
+}
+
+.under-line {
+    border-bottom: 1px solid #eb8739;
+}
+
+.select-zone .ft {
+    width: 37px;
+    height: 30px;
+    border-radius: 5px;
+    background: #eb8739;
+    display: block;
+    margin: auto;
+    margin-top: 7px;
+    line-height: 30px;
+    text-align: center;
+}
+
+
+.select-zone .pro {
+    width: 90%;
+    margin: auto;
+}
+
+.select-zone .index-e {
+    color: #eb8739;
+    float: left;
+}
+
+.select-zone .clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.select-zone .pro-ul {
+    float: left;
+    width: 100%;
+}
+
+.select-zone .pro-one {
+    float: left;
+    margin-right: 9px;
+}
+
+.select-zone .city,.district {
+    width: 90%;
+    margin: auto;
+}
+
+.select-zone .city-ul li,.select-zone .district li {
+    float: left;
+    /*padding-right: 15px;*/
+    padding: 5px 8px 5px 0px;
+}
+
+.select-zone a {
+    color: #2a2a2a;
+    text-decoration: none;
+}
+
+.select-zone a:hover {
+    text-decoration: underline;
+}
+.select-zone .province-title{
+    width: 30%;
+}
+.select-zone .city-title{
+    width: 70%;
+}
+.select-zone .ft1{
+    visibility: hidden;
+}
+
+.select-zone .pro-kind-one{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.select-zone span{cursor: pointer;}

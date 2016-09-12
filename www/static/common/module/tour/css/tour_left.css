@@ -1,0 +1,120 @@
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background: #f4f4f4 !important; }
+
+a:focus {
+  outline: none; }
+
+.w100 {
+  width: 100px; }
+
+.w200 {
+  width: 200px; }
+
+.w300 {
+  width: 300px; }
+
+.w400 {
+  width: 400px; }
+
+.page-main-tourinput .panel-group .panel {
+  border-top-width: 3px; }
+  .page-main-tourinput .panel-group .panel + .panel {
+    margin-top: 20px; }
+.page-main-tourinput .panel-group .panel-default {
+  border-color: #e5e5e5; }
+  .page-main-tourinput .panel-group .panel-default > .panel-heading {
+    background-color: white; }
+.page-main-tourinput .panel-group .panel-heading {
+  padding: 0; }
+.page-main-tourinput .panel-group .panel-title {
+  padding: 15px 20px;
+  overflow: hidden;
+  font-weight: normal;
+  color: #666666;
+  position: relative; }
+  .page-main-tourinput .panel-group .panel-title i, .page-main-tourinput .panel-group .panel-title span, .page-main-tourinput .panel-group .panel-title small {
+    display: inline-block;
+    vertical-align: middle; }
+  .page-main-tourinput .panel-group .panel-title .gm-arrow {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 18px;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg); }
+  .page-main-tourinput .panel-group .panel-title.collapsed .gm-arrow {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  .page-main-tourinput .panel-group .panel-title span {
+    margin: 0 20px; }
+  .page-main-tourinput .panel-group .panel-title small {
+    font-size: 14px;
+    color: #999999; }
+.page-main-tourinput .panel-group .content-body-m {
+  position: relative; }
+.page-main-tourinput .panel-group .panel-body {
+  padding: 0 20px; }
+.page-main-tourinput .panel-group .loadding-anim {
+  background: url("/supplier/theme/manage/blue/images/tour/left/loading.gif");
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100; }
+.page-main-tourinput .panel-group .content-heading {
+  padding: 10px 0; }
+  .page-main-tourinput .panel-group .content-heading .pull-left {
+    color: #999999;
+    padding-top: 7px; }
+  .page-main-tourinput .panel-group .content-heading .result-count {
+    color: #26D2D6;
+    font-size: 16px; }
+.page-main-tourinput .panel-group .list-group-item {
+  padding: 15px;
+  line-height: 100%;
+  cursor: pointer; }
+  .page-main-tourinput .panel-group .list-group-item:hover {
+    background-color: #f7f7f7; }
+    .page-main-tourinput .panel-group .list-group-item:hover .gm-icon, .page-main-tourinput .panel-group .list-group-item:hover .fa {
+      color: #999999; }
+  .page-main-tourinput .panel-group .list-group-item > .list-group-item-text {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 25px;
+    color: #333333; }
+    .page-main-tourinput .panel-group .list-group-item > .list-group-item-text > span {
+      font-size: 12px;
+      color: #999999;
+      padding-left: 20px; }
+    .page-main-tourinput .panel-group .list-group-item > .list-group-item-text > .gm-icon, .page-main-tourinput .panel-group .list-group-item > .list-group-item-text .fa {
+      position: absolute;
+      right: 0;
+      top: 0; }
+      .page-main-tourinput .panel-group .list-group-item > .list-group-item-text > .gm-icon:hover, .page-main-tourinput .panel-group .list-group-item > .list-group-item-text .fa:hover {
+        cursor: pointer;
+        color: #f98282; }
+  .page-main-tourinput .panel-group .list-group-item.selected {
+    cursor: default; }
+    .page-main-tourinput .panel-group .list-group-item.selected > .list-group-item-text {
+      color: #26D2D6; }
+      .page-main-tourinput .panel-group .list-group-item.selected > .list-group-item-text > .gm-icon, .page-main-tourinput .panel-group .list-group-item.selected > .list-group-item-text .fa {
+        color: #ddd5d9 !important;
+        cursor: not-allowed !important; }
+.page-main-tourinput .panel-group .list-pagination {
+  display: none;
+  margin-bottom: 20px; }
+  .page-main-tourinput .panel-group .list-pagination .pull-left {
+    padding: 5px 0; }
+.page-main-tourinput .panel-group .pagination {
+  margin: 0;
+  vertical-align: bottom; }
+
+/*# sourceMappingURL=tour_left.css.map */

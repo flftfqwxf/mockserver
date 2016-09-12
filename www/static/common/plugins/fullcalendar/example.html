@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>演示：FullCalendar应用——增删改数据操作</title>
+<meta name="keywords" content="日程安排,FullCalendar,日历,JSON,jquery实例">
+<meta name="description" content="在线演示FullCalendar新建、修改和删除日程事件的示例。">
+<link rel="stylesheet" type="text/css" href="http://www.helloweba.com/demo/css/main.css">
+<link rel="stylesheet" type="text/css" href="css/fullcalendar2.css">
+<link rel="stylesheet" type="text/css" href="css/fancybox.css">
+<style type="text/css">
+#calendar{width:960px; margin:20px auto 10px auto}
+.fancy{width:450px; height:auto}
+.fancy h3{height:30px; line-height:30px; border-bottom:1px solid #d3d3d3; font-size:14px}
+.fancy form{padding:10px}
+.fancy p{height:28px; line-height:28px; padding:4px; color:#999}
+.input{height:20px; line-height:20px; padding:2px; border:1px solid #d3d3d3; width:100px}
+.btn{-webkit-border-radius: 3px;-moz-border-radius:3px;padding:5px 12px; cursor:pointer}
+.btn_ok{background: #360;border: 1px solid #390;color:#fff}
+.btn_cancel{background:#f0f0f0;border: 1px solid #d3d3d3; color:#666 }
+.btn_del{background:#f90;border: 1px solid #f80; color:#fff }
+.sub_btn{height:32px; line-height:32px; padding-top:6px; border-top:1px solid #f0f0f0; text-align:right; position:relative}
+.sub_btn .del{position:absolute; left:2px}
+.tongji{line-height:24px;height:24px;}
+</style>
+<script src='js/jquery-1.9.1.js'></script>
+<script src='js/jquery-ui.js'></script>
+<script src='js/My97DatePicker/WdatePicker.js'></script>
+<script src='js/fullcalendar.js'></script>
+<script type="text/javascript">
+$(function() {
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'selectYear selectMonth tongji',
+			center: '',
+			right: ''
+		},
+		events: [{"title":"￥3800","start":"2015-04-14 18:00","end":"2015-04-14 22:00","id":1,"color":"#fff","textColor":"#000"}],
+		weekMode: 'liquid',
+		dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+		updateTongji: function(el, event){
+			$(el).find(".tongji").html('有'+event.length+'个价格 / 共计'+event.length+'个价格');
+		},
+		dayClick: function(date, allDay, jsEvent, view) {}
+	});
+	
+});
+</script>
+</head>
+
+<body>
+<div id="header">
+   <div ></div>
+</div>
+
+<div id="main" style="width:1060px">
+   <h2 class="top_title"></h2>
+   <div id='calendar'></div>
+</div>
+<div id="footer">
+    <p></p>
+</div>
+<p id="stat"></p>
+</body>
+</html>

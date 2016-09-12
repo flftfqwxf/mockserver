@@ -1,0 +1,24 @@
+@charset "utf-8";
+@import "../bootstrap/variables";
+//重置webUploader上传组件样式
+/*上传样式*/
+input[type=file]{font-size:50px;overflow:hidden;opacity:0;filter:alpha(opacity=0);width:100%;}
+.upBtn.success{background: url(/supplier/theme/manage/blue/images/tour/uping.png) no-repeat 12px -15px; padding-left: 10px;}
+.upBtn.doing{ background: url(/supplier/theme/manage/blue/images/tour/loading.gif) no-repeat 8px 6px;width: auto; padding-left: 26px; padding-right: 2px; text-align: right;}
+
+.doingUp{height:30px;display:inline-block;top: -30px;position: relative;}
+.successUp { top: -30px; position: relative;}
+.cancle { color: #3bb0fd !important; text-decoration: underline !important; vertical-align: bottom; padding-left: 5px;}
+.delUpFile{color: rgb(111,111,111)!important;}
+.opacity{opacity:0;filter:alpha(opacity=0);}
+.hidden{display:none}
+
+.uploadupBtn,.webuploader-container,.upBtn{
+  width: 98px;height: 28px;display: inline-block; text-align: center; line-height: 28px; background-color: #fff; border-radius: 5px;-moz-border-radius: 5px; -webkit-border-radius: 5px;
+  border:1px solid $border-color !important;
+  &:hover{
+    background: $gray !important;
+    color: $gray-darker !important;
+  }
+}
+

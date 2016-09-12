@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html class="single-screen">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="scss/bootstrap-blue.css">
+    <link rel="stylesheet" href="http://static.gmmtour.com/common/plugins/validation/css/validationEngine.jquery.css">
+    <style>
+        .btns-wrap dt{ padding: 5px 0; }
+        .btns-wrap dd{ margin-bottom: 10px; }
+    </style>
+    <script src="../js/jquery1.9.1.min.js"></script>
+    <script src="../js/bootstrap.js?v=1"></script>
+    <script src="../js/toolbar.js"></script>
+    <script src="http://static.gmmtour.com/common/plugins/validation/js/jquery.validationEngine-zh_CN.js"></script>
+    <script src="http://static.gmmtour.com/common/plugins/validation/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="../plugins/artdialog/jquery.artDialog.js"></script>
+</head>
+<body>
+<div class="page-wrapper">
+    <div class="page-sidebar">
+        <a href="index.html" class="logo"></a>
+        <ul class="nav" id="nav">
+            <li>
+                <a href="#nav1" data-toggle="collapse" data-parent="#nav">
+                    <i class="gm-icon gm-peer-plan"></i>
+                    <span>出团计划</span>
+                    <span class="fa fa-angle-down"></span>
+                </a>
+                <ul class="collapse" id="nav1">
+                    <li><a href="/">出团计划1</a></li>
+                    <li><a href="/">出团计划2</a></li>
+                    <li><a href="/">出团计划3</a></li>
+                    <li><a href="/">出团计划4</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#nav2" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
+                    <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
+                    <i class="gm-icon gm-pro-manage"></i>
+                    <span>产品管理</span>
+                </a>
+                <ul class="collapse in" id="nav2">
+                    <li><a href="/">产品管理1</a></li>
+                    <li class="open"><a href="/">产品管理2</a></li>
+                    <li><a href="/">产品管理3</a></li>
+                    <li><a href="/">产品管理4</a></li>
+                    <li><a href="/">产品管理5</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="gm-icon gm-order-manage"></i>
+                    <span>订单管理</span>
+                    <span class="label label-info pull-right">2568</span>
+                </a>
+            </li>
+            <li>
+                <a href="#nav3" data-toggle="collapse" data-parent="#nav">
+                    <i class="gm-icon gm-information"></i>
+                    <span>行业资讯</span>
+                </a>
+                <ul class="collapse" id="nav3">
+                    <li><a href="/">出团计划1</a></li>
+                    <li><a href="/">出团计划2</a></li>
+                    <li><a href="/">出团计划3</a></li>
+                    <li><a href="/">出团计划4</a></li>
+                    <li><a href="/">出团计划5</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="gm-icon gm-ad-tpl"></i>
+                    <span>广告模板</span>
+                    <span class="label label-warning pull-right">NEW</span>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="gm-icon gm-word-tpl"></i>
+                    <span>word 模板</span>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="gm-icon gm-employee"></i>
+                    <span>员工管理</span>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="gm-icon gm-setting"></i>
+                    <span>资料设置</span>
+                </a>
+            </li>
+            <li class="home">
+                <a href="/">
+                    <i class="gm-icon gm-home"></i>
+                    <span>我的主页</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="page-title clearfix">
+            <div class="pull-left">
+                <button type="button" class="btn btn-default" id="nav-button"><i class="gm-icon gm-menu"></i></button>
+                <h2>
+                    分销商管理中心 - 成都青旅
+                    <small>
+                        <a href="#"><i class="fa fa-retweet"></i>供应商管理中心</a>
+                    </small>
+                </h2>
+            </div>
+            <ul class="pull-right login-state">
+                <li class="common-notice">
+                    <a href="#">
+                        <i class="gm-icon gm-notice"></i>
+                        <span class="label label-warning">8</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <div id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="gm-icon gm-user"></i>
+                        183****1324
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="drop1">
+                        <li><a href="#"><i class="gm-icon gm-supplier"></i>供应商中心</a></li>
+                        <li><a href="#"><i class="gm-icon gm-distributor"></i>分销商中心</a></li>
+                        <li><a href="#"><i class="gm-icon gm-modify-pwd"></i>修改密码</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#"><i class="gm-icon gm-logout"></i>退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="page-content-outer">
+            <div class="page-content-inner">
+                <div class="page-content">
+                    <div class="sub-title">
+                        <h2>当前模块</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#">供应商中心</a></li>
+                            <li class="active">当前模块</li>
+                        </ol>
+                    </div>
+                    <div class="page-main">
+                        <!-- 可关闭的警告框 -->
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                            <i class="fa fa-exclamation-circle"></i>
+                            线上文档 <a href="http://v3.bootcss.com/css/" class="base-red" target="_blank">http://v3.bootcss.com/css/</a>
+                            <a href="http://v3.bootcss.com/css/">点击查看</a>
+                        </div>
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                            <i class="fa fa-exclamation-circle"></i>
+                            一般性操作帮助类提醒，提示帮助用户进行系统的使用。
+                            <a href="#">点击查看</a>
+                            <button class="btn btn-primary" id="btn-open-dialog">弹出框demo</button>
+                            <button class="btn btn-primary" id="btn-open-dialog-without-titlebar">弹出框demo(无标题栏)</button>
+                        </div>
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                            <i class="fa fa-warning"></i>
+                            一般警告类提醒，警告提醒用户当前操作出现的问题。
+                            <a href="#">点击查看</a>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                            <i class="fa fa-times-circle"></i>
+                            严重警告类提醒，系统危险性预告通知等，提醒用户及时发现处理。
+                            <a href="#">点击查看</a>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="item">
+                                            <h4>字体类型及大小</h4>
+                                            <div class="item-main">
+                                                <p>优先使用 <strong>冬青黑体简体中文 W3</strong></p>
+                                                <p>其次使用 <strong>微软雅黑 nomail</strong></p>
+                                                <p>英文使用 <strong>Arial</strong></p>
+                                                <p>其他字体请依照前端规则添加</p>
+                                                <h2><span class="tips">20px</span>港马觅途供应商管理平台</h2>
+                                                <h3><span class="tips">18px</span>港马觅途供应商管理平台</h3>
+                                                <h4><span class="tips">16px</span>港马觅途供应商管理平台</h4>
+                                                <h5><span class="tips">14px</span>港马觅途供应商管理平台</h5>
+                                                <h6><span class="tips">12px</span>港马觅途供应商管理平台</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="item">
+                                            <h4>全局浮动提醒</h4>
+                                            <div class="item-main">
+                                                <p>
+                                                    <span class="common-tips btn btn-success">
+                                                        <i class="fa fa-check-circle"></i>
+                                                            已成功上架该产品！
+                                                        </span>
+                                                </p>
+                                                <p>
+                                                    <span class="common-tips btn btn-info">
+                                                        <i class="fa fa-warning"></i>
+                                                            该操作暂不支持！
+                                                        </span>
+                                                </p>
+                                                <p>
+                                                        <span class="common-tips btn btn-danger">
+                                                        <i class="fa fa-times-circle"></i>
+                                                            操作失败，请重试！
+                                                        </span>
+                                                </p>
+                                                <p>位于导航信息栏，用于操作反馈，浮现消失，85%透明度</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="item">
+                                            <h4>分页
+                                                <small>除了首、尾页最多显示6条（ps：全部替换比较花时间，可以先换样式）</small>
+                                            </h4>
+                                            <div class="item-main">
+                                                <ul class="pagination pagination-sm">
+                                                    <li class="disabled"><a href="#">上一页</a></li>
+                                                    <li><a href="#">1</a></li>
+                                                    <li><a href="#">2</a></li>
+                                                    <li class="active"><a href="#">3</a></li>
+                                                    <li><a href="#">4</a></li>
+                                                    <li><a href="#">5</a></li>
+                                                    <li><a href="#">6</a></li>
+                                                    <li><span>...</span></li>
+                                                    <li><a href="#">下一页</a></li>
+                                                </ul>
+                                                <div class="paginationWrap">
+                                                    <div>
+                                                        每页12条 - 共72条
+                                                    </div>
+                                                    <ul class="pagination">
+                                                        <li class="disabled"><a href="#">上一页</a></li>
+                                                        <li><a href="#">1</a></li>
+                                                        <li><a href="#">2</a></li>
+                                                        <li class="active"><a href="#">3</a></li>
+                                                        <li><a href="#">4</a></li>
+                                                        <li class="disabled"><a href="#">下一页</a></li>
+                                                        <li><span>跳转到</span></li>
+                                                        <li><input type="text" class="form-control input-sm"/></li>
+                                                        <li><a href="javascript:void(0);">GO</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="paginationWrap">
+                                                    <div>
+                                                        每页12条 - 共72条
+                                                    </div>
+                                                    <ul class="pagination">
+                                                        <li><a href="#">上一页</a></li>
+                                                        <li><a href="#">1</a></li>
+                                                        <li><span>...</span></li>
+                                                        <li><a href="#">10</a></li>
+                                                        <li class="active"><a href="#">11</a></li>
+                                                        <li><a href="#">12</a></li>
+                                                        <li><a href="#">13</a></li>
+                                                        <li><a href="#">14</a></li>
+                                                        <li><a href="#">15</a></li>
+                                                        <li><span>...</span></li>
+                                                        <li><a href="#">下一页</a></li>
+                                                        <li><span>跳转到</span></li>
+                                                        <li><input type="text" class="form-control input-sm"/></li>
+                                                        <li><a href="javascript:void(0);">GO</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="item">
+                                            <h4>表单样式-垂直表单 <a href="http://v3.bootcss.com/css/#form" class="base-red" target="_blank">http://v3.bootcss.com/css/#form</a>
+                                            </h4>
+                                            <div class="item-main">
+                                                <form class="form-horizontal" id="formId">
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">
+                                                                <span class="common-required">*</span>基本
+                                                            </label>
+                                                            <div class="col-sm-6">
+                                                                <p class="top-help-block">这是在INPUT上的提示文字</p>
+                                                                <input type="text" class="form-control w100 validate[required]"/>
+                                                                <p class="help-block">这里是INPUT下的提醒文字，提醒用户输入表单需要注意事项</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">
+                                                                <span class="common-required">*</span>必填项
+                                                            </label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control w200 validate[required]" placeholder="请输入要求输入的内容"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">换行提示</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control w300"/>
+                                                                <p class="help-block">这里是提醒文字，提醒用户输入表单需要注意事项</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">已被禁用</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control w400" disabled="disabled"
+                                                                       value="http://www.gmmtour.com"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">静态控件</label>
+                                                            <div class="col-sm-6">
+                                                                <p class="form-control-static">email@example.com</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">表单大小</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control input-lg" placeholder="大尺寸输入框.."/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label"></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" placeholder="默认大小输入框..."/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label"></label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control input-sm" placeholder="小尺寸输入框..."/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">上传 input</label>
+                                                            <div class="col-sm-6">
+                                                                <span class="btn btn-default btn-file">Browse <input type="file"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">原生下拉选择</label>
+                                                            <div class="col-sm-6">
+                                                                <label class="btn btn-default btn-select">
+                                                                    <select style="" name="touristLine.id" class="validate[required]"
+                                                                            data-errormessage-value-missing="请选择专线" _value="10022" old_val="10022">
+                                                                        <option value="">请选择专线</option>
+                                                                        <option data-name="港澳台专线" data-deadline="1" data-price="300" selected="" value="10022">
+                                                                            港澳台专线
+                                                                        </option>
+                                                                    </select>
+                                                                </label>
+                                                                <p class="help-block">PS: 不兼容IE9及以下，IE9及以下作降级处理</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">原生下拉选择</label>
+                                                            <div class="col-sm-6">
+                                                                <label class="btn btn-default btn-select">
+                                                                    <select style="" name="touristLine.id" class="validate[required]"
+                                                                            data-errormessage-value-missing="请选择专线" _value="10022" old_val="10022">
+                                                                        <option value="">请选择专线</option>
+                                                                        <option data-name="港澳台专线" data-deadline="1" data-price="300" selected="" value="10022">
+                                                                            港澳台专线
+                                                                        </option>
+                                                                    </select>
+                                                                </label>
+                                                                <p class="help-block">PS: 不兼容IE9及以下，IE9及以下作降级处理</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">选择表单</label>
+                                                            <div class="col-sm-6">
+                                                                <div class="select-group radio-group" data-toggle="buttons">
+                                                                    <!-- <div> -->
+                                                                    <label class="btn active">
+                                                                        <input type="radio" name="options" autocomplete="off" checked>单选框
+                                                                    </label>
+                                                                    <label class="btn">
+                                                                        <input type="radio" name="options" autocomplete="off">单选框
+                                                                    </label>
+                                                                    <label class="btn disabled">
+                                                                        禁用单选框
+                                                                    </label>
+                                                                    <!-- </div> -->
+                                                                </div>
+                                                                <div class="select-group" data-toggle="buttons">
+                                                                    <label class="btn active">
+                                                                        <input type="checkbox" name="options1" autocomplete="off" checked> checkbox 1
+                                                                        (preselected)
+                                                                    </label>
+                                                                    <label class="btn">
+                                                                        <input type="checkbox" name="options1" autocomplete="off"> checkbox 2
+                                                                    </label>
+                                                                    <label class="btn disabled">
+                                                                        <input disabled type="checkbox" name="options1" autocomplete="off">
+                                                                        禁用checkbox 3
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">组合INPUT</label>
+                                                            <div class="col-sm-6 input-group input-Juxtaposed">
+                                                                <input type="text" class="form-control col-sm-6" placeholder="col-sm-6"/>
+                                                                <input type="text" class="form-control col-sm-3" placeholder="col-sm-3"/>
+                                                                <input type="text" class="form-control col-sm-3" placeholder="col-sm-3"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label"></label>
+                                                            <div class="col-sm-6 input-group input-Juxtaposed">
+                                                                <input type="text" class="form-control col-sm-6" placeholder="col-sm-6"/>
+                                                                <input type="text" class="form-control col-sm-6" placeholder="col-sm-3"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">垂直表单中的横各表单</label>
+                                                            <div class="form-inline col-sm-6">
+                                                                <label class="btn btn-default btn-select">
+                                                                    <select style="" name="touristLine.id" class="validate[required]"
+                                                                            data-errormessage-value-missing="请选择专线" _value="10022" old_val="10022">
+                                                                        <option value="">请选择专线</option>
+                                                                        <option data-name="港澳台专线" data-deadline="1" data-price="300" selected="" value="10022">
+                                                                            港澳台专线
+                                                                        </option>
+                                                                    </select>
+                                                                </label>
+                                                                <input type="text" class="form-control col-sm-2"/>
+                                                                <input type="text" class="form-control col-sm-2"/>
+                                                            </div>
+                                                            <p class="help-block">这里是提醒文字，提醒用户输入表单需要注意事项</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">组合表单</label>
+                                                            <div class="col-sm-6 input-group">
+                                                                <input type="text" class="form-control"/>
+                                                                <span class="input-group-btn">
+                                                                        <button class="btn btn-info" type="button">搜搜</button>
+                                                                    </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">带ICON的组合表单</label>
+                                                            <div class="col-sm-6 input-group">
+                                                                <div class="has-feedback">
+                                                                    <input type="text" class="form-control"/>
+                                                                    <i class="fa fa-times-circle form-control-feedback" data-role="button"></i>
+                                                                </div>
+                                                                <span class="input-group-btn">
+                                                                        <button class="btn btn-info" type="button">搜搜</button>
+                                                                    </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label"></label>
+                                                            <div class="col-sm-6 input-group">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn btn-info" type="button">输入提示</button>
+                                                                    </span>
+                                                                <input type="text" class="form-control" placeholder="输入相关内容"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">非按钮的左右侧组合</label>
+                                                            <div class="col-sm-6 input-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">$</div>
+                                                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                                                                    <div class="input-group-addon">.00</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group has-error">
+                                                            <label class="col-sm-2 control-label">非按钮的左右侧组合</label>
+                                                            <div class="col-sm-6 input-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">$</div>
+                                                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                                                                    <div class="input-group-addon">.00</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group has-warning">
+                                                            <label class="col-sm-2 control-label">非按钮的左右侧组合</label>
+                                                            <div class="col-sm-6 input-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">$</div>
+                                                                    <input type="text" class="form-control" placeholder="Amount">
+                                                                    <div class="input-group-addon">.00</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group has-success">
+                                                            <label class="col-sm-2 control-label">非按钮的左右侧组合</label>
+                                                            <div class="col-sm-6 input-group">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon bg-info">$</div>
+                                                                    <input type="text" class="form-control" id="exampleInputAmount4" placeholder="Amount">
+                                                                    <div class="input-group-addon">.00</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-dashed">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label"></label>
+                                                            <div class="col-sm-6">
+                                                                <button class="btn btn-default" type="button">取消</button>
+                                                                <button class="btn btn-info" type="submit">保存修改</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <h4>表单样式-横向表单 <a href="http://v3.bootcss.com/css/#forms-inline" class="base-red" target="_blank">http://v3.bootcss.com/css/#forms-inline</a>
+                                            </h4>
+                                            <div class="item-main">
+                                                <div class="form-inline">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName2">Name</label>
+                                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail2">Email</label>
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default">Send invitation</button>
+                                                </div>
+                                                <div class="form-inline">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                                                        <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="exampleInputPassword3">Password</label>
+                                                        <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox"> Remember me
+                                                        </label>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default">Sign in</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <h4>表单样式-带icon的图标 <a href="http://v3.bootcss.com/css/#forms-control-validation" class="base-red" target="_blank">http://v3.bootcss.com/css/#forms-control-validation</a>
+                                            </h4>
+                                            <div class="item-main">
+                                                <div class="form-group has-feedback">
+                                                    <label class="control-label">Input with warning</label>
+                                                    <input type="text" class="form-control input-lg"/>
+                                                    <span class="fa fa-plane form-control-feedback"></span>
+                                                    <!-- <span class="gmIcon gm-plain form-control-feedback"></span> -->
+                                                </div>
+                                                <div class="form-group has-error has-feedback-left">
+                                                    <label class="control-label">Input with warning</label>
+                                                    <input type="text" class="form-control">
+                                                    <span class="fa fa-plane form-control-feedback"></span>
+                                                </div>
+                                                <div class="form-group has-success has-feedback">
+                                                    <label class="control-label">Input with warning</label>
+                                                    <input type="text" class="form-control input-sm"/>
+                                                    <span class="fa fa-plane form-control-feedback"></span>
+                                                </div>
+                                                <div class="form-group has-warning has-feedback-left">
+                                                    <label class="control-label">Input with warning</label>
+                                                    <input type="text" class="form-control">
+                                                    <span class="fa fa-plane form-control-feedback"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <h4>TAB选项卡</h4>
+                                            <div class="item-main" style="background-color: #f6f6f6;">
+                                                <ul class="nav nav-tabs">
+                                                    <li>
+                                                        <a href="#">欧洲<span class="badge">15</span></a>
+                                                    </li>
+                                                    <li class="active">
+                                                        <a href="#">美洲<span class="badge">8</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">亚洲<span class="badge">10</span></a>
+                                                    </li>
+                                                    <li class="dropdown">
+                                                        <a href="#drop2" data-toggle="dropdown">
+                                                            北美
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu" aria-labelledby="drop2">
+                                                            <li><a href="#">供应商中心</a></li>
+                                                            <li class="active"><a href="#">分销商中心</a></li>
+                                                            <li><a href="#">修改密码</a></li>
+                                                            <li><a href="#">退出登录</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <p>内容1</p>
+                                                    <p>内容2</p>
+                                                    <p>内容3</p>
+                                                    <p>内容4</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--table-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="item">
+                                            <div class="item-head clearfix">
+                                                <h4 class="pull-left">同行产品列表</h4>
+                                                <div class="pull-right form-inline">
+                                                    <div class="input-group">
+                                                        <div class="has-feedback">
+                                                            <input type="text" class="form-control">
+                                                            <i class="fa fa-times-circle form-control-feedback" data-role="button"></i>
+                                                        </div>
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-info" type="button">搜搜</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-main">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>全名</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr class="selected">
+                                                        <td>选中状态</td>
+                                                        <td>Otto</td>
+                                                        <td>@mdo 中文测试</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jacob</td>
+                                                        <td>Thornton</td>
+                                                        <td>@fat 中文测试</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Larry 中文测试</td>
+                                                        <td>the Bird</td>
+                                                        <td>@twitter</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--table end-->
+                                <!--table 空列表-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="item">
+                                            <h4>空列表样式
+                                                <small>标题提示文字</small>
+                                            </h4>
+                                            <div class="item-main">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>全名</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                                <div class="emptylist-placeholder">
+                                                    <i class="gm-icon gm-supposed"></i>
+                                                    <p class="base-fontColor">暂无相关数据!</p>
+                                                    <p>未找到 ”123“ 相关的产品</p>
+                                                    <button class="btn btn-default" type="button" onclick="history.go(-1);">返回</button>
+                                                </div>
+                                            </div>
+                                            <div class="sm-placeholder">
+                                                <i class="gm-icon gm-supposed"></i>
+                                                <p class="base-fontColor">暂无相关数据!</p>
+                                                <p>未找到 ”123“ 相关的产品</p>
+                                                <button class="btn btn-default" type="button" onclick="history.go(-1);">返回</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--table end-->
+                                <!-- form step start-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="item">
+                                            <h4>表单导航
+                                                <small>标题提示文字</small>
+                                            </h4>
+                                            <div class="item-main">
+                                                <div class="form-step">
+                                                    <ul class="clearfix">
+                                                        <li class="active"><em>1</em>基本信息<i></i></li>
+                                                        <li><em>2</em>每日安排<i></i></li>
+                                                        <li><em>3</em>其他信息<i></i></li>
+                                                    </ul>
+                                                    <div class="btn-panel clearfix">
+                                                        <button class="btn btn-default" type="button">下一步</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- form step end-->
+                            </div>
+                            <div class="col-md-4">
+                                <div class="item">
+                                    <h4>文本、背景颜色
+                                        <small>几个主色调的颜色</small>
+                                    </h4>
+                                    <div class="item-main">
+                                        <div>
+                                            <span class="text-primary">我是默认主色调 .text-primary</span>
+                                            <span class="bg-primary">我是默认主色调 .bg-primary</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-info">我是info的颜色，和主色调差不多 .text-info</span>
+                                            <span class="bg-info">阿斯达 .bg-info</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-warning">我是警告色 .text-warning</span>
+                                            <span class="bg-warning">我是警告色 .bg-warning</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-success">我是成功色 .text-success</span>
+                                            <span class="bg-success">我是成功色 .bg-success</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-danger">我很危险的 .text-danger</span>
+                                            <span class="bg-danger">我很危险的 .bg-danger</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-base">黑色 #000 .text-gray-base</span>
+                                            <span class="bg-gray-base">黑色 #000 .bg-gray-base</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-darker">深灰 #333 .text-gray-darker</span>
+                                            <span class="bg-gray-darker">深灰 #333 .bg-gray-darker</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-dark">较灰 #666 .text-gray-dark</span>
+                                            <span class="bg-gray-dark">较灰 #666 .bg-gray-dark</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray">灰色 #999 .text-gray</span>
+                                            <span class="bg-gray">灰色 #999 .bg-gray</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-light">较浅色 #c4c4c4 .text-gray-light</span>
+                                            <span class="bg-gray-light">较浅色 #c4c4c4 .bg-gray-light</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-lighter">很浅 #f3f3f3 .text-gray-lighter</span>
+                                            <span class="bg-gray-lighter">很浅 #f3f3f3 .bg-gray-lighter</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <h4>按钮样式</h4>
+                                    <div class="item-main">
+                                        <dl class="btns-wrap">
+                                            <dt>常态</dt>
+                                            <dd>
+                                                <button class="btn btn-default" type="button">常规</button>
+                                                <button class="btn btn-info" type="button">默认</button>
+                                                <button class="btn btn-success" type="button">成功</button>
+                                                <button class="btn btn-warning" type="button">警告</button>
+                                                <button class="btn btn-danger" type="button">危险</button>
+                                            </dd>
+                                            <dt>聚焦</dt>
+                                            <dd>
+                                                <button class="btn btn-default focus" type="button">常规</button>
+                                                <button class="btn btn-info focus" type="button">默认</button>
+                                                <button class="btn btn-success focus" type="button">成功</button>
+                                                <button class="btn btn-warning focus" type="button">警告</button>
+                                                <button class="btn btn-danger focus" type="button">危险</button>
+                                            </dd>
+                                            <dt>按下</dt>
+                                            <dd>
+                                                <button class="btn btn-default active" type="button">常规</button>
+                                                <button class="btn btn-info active" type="button">默认</button>
+                                                <button class="btn btn-success active" type="button">成功</button>
+                                                <button class="btn btn-warning active" type="button">警告</button>
+                                                <button class="btn btn-danger active" type="button">危险</button>
+                                            </dd>
+                                            <dt>按钮大小</dt>
+                                            <dd>
+                                                <p>
+                                                    <button class="btn btn-default btn-lg" type="button">最大按钮</button>
+                                                    <button class="btn btn-default" type="button">默认按钮</button>
+                                                    <button class="btn btn-default btn-sm" type="button">较小按钮</button>
+                                                    <button class="btn btn-default btn-xs" type="button">最小按钮</button>
+                                                </p>
+                                            </dd>
+                                            <dt>禁用按钮</dt>
+                                            <dd>
+                                                <button class="btn btn-default" type="button" disabled="disabled">禁用按钮</button>
+                                                <button class="btn btn-info" type="button" disabled="disabled">禁用按钮</button>
+                                            </dd>
+                                            <dt>图标按钮</dt>
+                                            <dd>
+                                                <button class="btn btn-info" type="button">
+                                                    <i class="fa fa-plus"></i>
+                                                    增加一条
+                                                </button>
+                                                <button class="btn btn-default" type="button">
+                                                    <i class="fa fa-plus"></i>
+                                                    增加一条
+                                                </button>
+                                            </dd>
+                                            <dt>鼠标移入不同颜色</dt>
+                                            <dd>
+                                                <button class="btn btn-default hover-info">info</button>
+                                                <button class="btn btn-default hover-primary">primary</button>
+                                                <button class="btn btn-default hover-warning">warning</button>
+                                                <button class="btn btn-default hover-success">success</button>
+                                                <button class="btn btn-default hover-danger">danger</button>
+                                                <button class="btn btn-default" type="button" data-role="delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </dd>
+                                            <dt>按钮组件</dt>
+                                            <dd>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-default" type="button">切换按钮</button>
+                                                    <button class="btn btn-info" type="button">切换按钮</button>
+                                                    <button class="btn btn-default" type="button">切换按钮</button>
+                                                </div>
+                                            </dd>
+                                            <dt>提交按钮组件</dt>
+                                            <dd>
+                                                <button class="btn btn-info" type="submit">提交修改</button>
+                                                <button class="btn btn-primary common-loading" type="submit">正在提交</button>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fa fa-spinner fa-spin fa-fw margin-bottom"></i>
+                                                    正在提交
+                                                </button>
+                                                <button class="btn btn-info" type="submit">
+                                                    <i class="gm-icon gm-success-transparent"></i>
+                                                    提交成功
+                                                </button>
+                                            </dd>
+                                            <dt>白色镂空按钮</dt>
+                                            <dd style="background-color: #454b52; padding: 30px;">
+                                                <button class="btn btn-stroke" type="button">使用</button>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <h4>标记 &amp; 提示 &amp; 进度条</h4>
+                                    <div class="item-main">
+                                        <p>
+                                            <span class="badge">0</span>
+                                            <span class="badge">16</span>
+                                            <i class="fa fa-exclamation-circle"></i>
+                                        </p>
+                                        <p>
+                                            <span class="badge badge-info">8</span>
+                                            <span class="badge badge-info">20</span>
+                                            <i class="fa fa-exclamation-circle text-info"></i>
+                                        </p>
+                                        <p>
+                                            <span class="badge badge-success">10</span>
+                                            <span class="badge badge-success">20</span>
+                                            <i class="fa fa-exclamation-circle text-warning"></i>
+                                        </p>
+                                        <p>
+                                            <span class="badge badge-warning">110</span>
+                                            <span class="badge badge-warning">400</span>
+                                            <i class="fa fa-exclamation-circle text-success"></i>
+                                        </p>
+                                        <p>
+                                            <span class="badge badge-danger">1110</span>
+                                            <span class="badge badge-danger">7000</span>
+                                            <i class="fa fa-exclamation-circle text-danger"></i>
+                                        </p>
+                                        <p>
+                                            <button type="button" class="btn btn-sm" data-toggle="tooltip"
+                                                    title="Tooltip on left.Tooltip on left.Tooltip on left.Tooltip on left.Tooltip on left.">Tooltip on left.
+                                            </button>
+                                            <button type="button" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip
+                                                on top
+                                            </button>
+                                            <button type="button" class="btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom.">
+                                                Tooltip on
+                                                bottom
+                                            </button>
+                                            <button type="button" class="btn btn-sm" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
+                                                Tooltip on
+                                                right
+                                            </button>
+                                        </p>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 40%"></div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 55%"></div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 65%"></div>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <ul class="pull-left">
+                        <li class="weixin linkGmQrcode">港马微信</li>
+                        <li class="hot_phone linkGmService">港马微博</li>
+                        <li>客服热线：400-028-7828</li>
+                    </ul>
+                    <span class="pull-right">Copyright ©&nbsp;2013-2015 gmmtour.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
