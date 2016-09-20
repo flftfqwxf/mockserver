@@ -5,7 +5,8 @@ export default class extends Base {
      * index action
      * @return {Promise} []
      */
-    indexAction() {
+    async indexAction() {
+        let res = await this.model('mockserver').select();
         //auto render template file index_index.html
         return this.display();
     }
@@ -14,10 +15,11 @@ export default class extends Base {
         //auto render template file index_index.html
         return this.display();
     }
-    async updateAction(){
-        console.log(this.post())
+
+    async updateAction() {
+        // console.log(this.post())
         let data = this.post();
-        let res = await this.model('index').addmockserver(data);
+        let res = await this.model('mockserver').addmockserver(data);
         if (res) {
             //行为记录
             if (!res.data.id) {
@@ -26,11 +28,11 @@ export default class extends Base {
             } else {
                 this.success({name: "更新成功"});
             }
-
         } else {
             this.fail("操作失败！");
         }
     }
+
     demoAction() {
         //auto render template file index_index.html
         return this.display();
