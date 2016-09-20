@@ -9,11 +9,11 @@
         .btns-wrap dd{ margin-bottom: 10px; }
     </style>
     <script src="/static/common/bootstrap/js/jquery.min.js"></script>
-    <script src="/static/common/bootstrap/js/js/bootstrap.js?v=1"></script>
+    <script src="/static/common/bootstrap/js/bootstrap.js"></script>
     <script src="/static/common/js/toolbar.js"></script>
     <script src="/static/common/plugins/validation/js/jquery.validationEngine-zh_CN.js"></script>
     <script src="/static/common/plugins/validation/js/jquery.validationEngine.js"></script>
-    <script type="text/javascript" src="/static/common/bootstrap/js/artdialog/jquery.artDialog.js"></script>
+    <script type="text/javascript" src="/static/common/plugins/artdialog/jquery.artDialog.js"></script>
     <script type="text/javascript">
         $(function () {
             function showDemoDialog(withTitle) {
@@ -30,13 +30,12 @@
                     fixed: true,
                 };
                 var btnOpt;
-
-                if(withTitle){
+                if (withTitle) {
                     btnOpt = {
                         button: [
                             {
                                 name: '常规按钮',
-                                callback: function(){
+                                callback: function () {
                                     console.log('常规按钮..');
                                 }
                             },
@@ -62,18 +61,18 @@
                             }
                         ]
                     }
-                }else{
+                } else {
                     btnOpt = {
-                        cancel: function () {},
+                        cancel: function () {
+                        },
                         cancelVal: '关闭',
                         okCssClass: 'btn-save',
-                        ok: function(){
+                        ok: function () {
                             console.log('ok..');
                         },
                         okVal: '确认',
                     }
                 }
-
                 $.dialog($.extend(opts, btnOpt));
             }
 
@@ -83,11 +82,12 @@
             $("#btn-open-dialog-without-titlebar").click(function () {
                 showDemoDialog();
             });
-
             $('#formId').validationEngine();
             // $('.page-content-inner').scrollTop(3811);
         });
     </script>
+    <title>
+        {{ title }}    </title>
 </head>
 <body>
 <div class="page-wrapper">
@@ -99,7 +99,7 @@
                 <div class="page-content">
                     {% include "./breadcumn.nunj" %}
                     <div class="page-main">
-                       {% block content %}{% endblock %}
+                        {% block content %}{% endblock %}
                     </div>
                 </div>
                 <div class="page-footer">

@@ -13,43 +13,39 @@
                                 <input type="text" class="form-control">
                                 <i class="fa fa-times-circle form-control-feedback" data-role="button"></i>
                             </div>
-                                                        <span class="input-group-btn">
-                                                            <button class="btn btn-info" type="button">搜搜</button>
+                            <span class="input-group-btn">
+                                  <button class="btn btn-info" type="button">搜搜</button>
                                                         </span>
                         </div>
                     </div>
+                    <span  style="padding-right: 20px;float: right">
+                                                            <a class="btn btn-info" href="/home2/index/add.html">添加接口</a>
+                                                        </span>
                 </div>
                 <div class="item-main">
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>全名</th>
+                            <th>项目名称</th>
+                            <th>接口名称</th>
+                            <th>接口内容</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="selected">
-                            <td>选中状态</td>
-                            <td>Otto</td>
-                            <td>@mdo 中文测试</td>
-                        </tr>
-                        <tr>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat 中文测试</td>
-                        </tr>
-                        <tr>
-                            <td>Larry 中文测试</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {% for item in list %}
+                            <tr>
+                                <td>{{ item.project_name }}</td>
+                                <td>{{ item.api_name }}</td>
+                                <td>{{ item.api_url }}</td>
+                                <td><a href="/home2/index/delete?mockid={{ item.mockid }}">删除</a> <a href="/home2/index/edit?mockid={{ item.mockid }}">修改</a></td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <!--table end-->
-
     </div>
 {% endblock %}

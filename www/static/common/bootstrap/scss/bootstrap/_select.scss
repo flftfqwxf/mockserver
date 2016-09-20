@@ -1,7 +1,7 @@
 @charset "utf-8";
 //美化SELECT样式，非模拟
 @mixin icons{
-  background: url("/common/image/iconfont-gmxiala.png") no-repeat right center;
+  background: url("../image/iconfont-gmxiala.png") no-repeat right center;
 }
 
 .btn-select {

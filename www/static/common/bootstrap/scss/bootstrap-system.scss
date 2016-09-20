@@ -22,6 +22,7 @@
 //内容为空时，列表样式
 @import "bootstrap/emptylist";
 //头部按钮小模块
+
 @import "custom/topBarWidget";
 @import "custom/schedule_nav";
 ////输出所有背景颜色 CLASS
@@ -97,7 +98,6 @@ html.single-screen {
 			display: block;
 			height: $fullSize;
 			width: $fullSize;
-			background: url(../../image/logo.png) center no-repeat;
 		}
 	}
 	.nav{

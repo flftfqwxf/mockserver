@@ -10,10 +10,10 @@ export default {
         mysql: {
             host: '127.0.0.1',
             port: '3306',
-            database: 'cmswing',
+            database: 'mockserver',
             user: 'root',
             password: '',
-            prefix: 'cmswing_',
+            prefix: 'mock_',
             encoding: 'UTF8MB4_GENERAL_CI'
         },
         mongo: {

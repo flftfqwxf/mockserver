@@ -2,9 +2,9 @@
     <div class="pull-left">
         <button type="button" class="btn btn-default" id="nav-button"><i class="gm-icon gm-menu"></i></button>
         <h2>
-            分销商管理中心 - 成都青旅
+            mock-server
             <small>
-                <a href="#"><i class="fa fa-retweet"></i>供应商管理中心</a>
+                {#<a href="#"><i class="fa fa-retweet"></i>供应商管理中心</a>#}
             </small>
         </h2>
     </div>
@@ -22,9 +22,9 @@
                 <i class="fa fa-angle-down"></i>
             </div>
             <ul class="dropdown-menu" aria-labelledby="drop1">
-                <li><a href="#"><i class="gm-icon gm-supplier"></i>供应商中心</a></li>
-                <li><a href="#"><i class="gm-icon gm-distributor"></i>分销商中心</a></li>
-                <li><a href="#"><i class="gm-icon gm-modify-pwd"></i>修改密码</a></li>
+                {#<li><a href="#"><i class="gm-icon gm-supplier"></i>供应商中心</a></li>#}
+                {#<li><a href="#"><i class="gm-icon gm-distributor"></i>分销商中心</a></li>#}
+                {#<li><a href="#"><i class="gm-icon gm-modify-pwd"></i>修改密码</a></li>#}
                 <li role="separator" class="divider"></li>
                 <li><a href="#"><i class="gm-icon gm-logout"></i>退出登录</a></li>
             </ul>

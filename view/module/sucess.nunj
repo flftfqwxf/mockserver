@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="item">
+            <h4>提示信息
+            </h4>
+            <div class="item-main">
+                <div class="emptylist-placeholder">
+                    <p class="base-fontColor">{{ message }}!</p>
+                    <a class="btn btn-default" href="{{ url }}">返回</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
