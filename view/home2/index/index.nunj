@@ -18,8 +18,8 @@
                                                         </span>
                         </div>
                     </div>
-                    <span  style="padding-right: 20px;float: right">
-                                                            <a class="btn btn-info" href="/home2/index/add.html">添加接口</a>
+                    <span style="padding-right: 20px;float: right">
+                            <a class="btn btn-info" href="/home2/index/add.html">添加接口</a>
                                                         </span>
                 </div>
                 <div class="item-main">
@@ -28,6 +28,7 @@
                         <tr>
                             <th>项目名称</th>
                             <th>接口名称</th>
+                            <th>接口地址</th>
                             <th>接口内容</th>
                             <th>操作</th>
                         </tr>
@@ -37,8 +38,45 @@
                             <tr>
                                 <td>{{ item.project_name }}</td>
                                 <td>{{ item.api_name }}</td>
-                                <td>{{ item.api_url }}</td>
-                                <td><a href="/home2/index/delete?mockid={{ item.mockid }}">删除</a> <a href="/home2/index/edit?mockid={{ item.mockid }}">修改</a></td>
+                                <td><a target="_blank" href="{{ item.api_url }}">{{ item.api_url }}</a></td>
+                                <td>
+                                    <span id="formatWrap{{ item.mockid }}">
+                                    <textarea style="display: none;" name="api_content" placeholder="请输入要求输入的内容" class="form-control  validate[required] formContent" id="content" cols="30"
+                                              rows="10">{{ item.api_content }}</textarea>
+                                        <div>
+                                            <label for="QuoteKeys">
+                                                <input type="checkbox" class="formatQuoteKeys" checked="true"/>
+                                                引号
+                                            </label>&nbsp;
+                                            <a href="javascript:void(0);" class="formatAllSelect">全选</a>
+                                            &nbsp;
+                                            <span>
+                                            <label for="CollapsibleView">
+                                                <input type="checkbox" class="formatCollapsibleView"
+                                                       checked="checked"/>显示控制</label>
+                                        </span>
+                                            <span class="formatCollapsibleViewDetail">
+                                            <a href="javascript:void(0);" class="formatExpand">展开</a>
+                                            <a href="javascript:void(0);" class="formatCollapse">叠起</a>
+                                            <a href="javascript:void(0);" class="formLevel">2级</a>
+                                            <a href="javascript:void(0);" class="formLevel">3级</a>
+                                            <a href="javascript:void(0);" class="formLevel">4级</a>
+                                            <a href="javascript:void(0);" class="formLevel">5级</a>
+                                            <a href="javascript:void(0);" class="formLevel">6级</a>
+                                            <a href="javascript:void(0);" class="formLevel">7级</a>
+                                            <a href="javascript:void(0);" class="formLevel">8级</a>
+                                        </span>
+                                        </div>
+                                        <div class="formatCanvas"></div>
+                                    </span>
+                                    <script>
+                                        var formatObj = new jsonFormat('#formatWrap{{ item.mockid }}');
+                                        formatObj.CollapseLevel(3);
+                                    </script>
+                                </td>
+                                <td><a href="/home2/index/delete?mockid={{ item.mockid }}">删除</a> <a href="/home2/index/edit?mockid={{ item.mockid }}">修改</a>
+                                    <a href="{{ item.api_url }}" target="_blank">查看</a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -48,4 +86,6 @@
         </div>
         <!--table end-->
     </div>
+    <script>
+    </script>
 {% endblock %}

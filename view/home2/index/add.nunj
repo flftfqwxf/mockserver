@@ -1,6 +1,7 @@
 {% extends '../../module/main.nunj' %}
 {% block content %}
 
+
     <div class="row">
         <div class="col-md-12">
             <div class="item">
@@ -46,8 +47,35 @@
                         <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">接口内容</label>
-                                <div class="col-sm-10">
-                                    <textarea name="api_cotent" placeholder="请输入要求输入的内容" class="form-control  validate[required]" id="cotent" cols="30" rows="10">{{ api_cotent }}</textarea>
+                                <div class="col-sm-10" id="formatWrap">
+                                    <textarea name="api_content"  placeholder="请输入要求输入的内容" class="form-control  validate[required] formContent" id="content" cols="30"
+                                              rows="10">{{ api_content }}</textarea>
+                                    <div >
+                                        <input type="Button" id="format" value="格式化"/>
+                                        <label for="QuoteKeys">
+                                            <input type="checkbox" class="formatQuoteKeys" checked="true"/>
+                                            引号
+                                        </label>&nbsp;
+                                        <a href="javascript:void(0);" class="formatAllSelect">全选</a>
+                                        &nbsp;
+                                        <span >
+                                            <label for="CollapsibleView">
+                                                <input type="checkbox" class="formatCollapsibleView"
+                                                       checked="checked"/>显示控制</label>
+                                        </span>
+                                        <span  class="formatCollapsibleViewDetail">
+                                            <a href="javascript:void(0);" class="formatExpand">展开</a>
+                                            <a href="javascript:void(0);" class="formatCollapse">叠起</a>
+                                            <a href="javascript:void(0);" class="formLevel">2级</a>
+                                            <a href="javascript:void(0);" class="formLevel">3级</a>
+                                            <a href="javascript:void(0);" class="formLevel">4级</a>
+                                            <a href="javascript:void(0);" class="formLevel">5级</a>
+                                            <a href="javascript:void(0);" class="formLevel">6级</a>
+                                            <a href="javascript:void(0);" class="formLevel">7级</a>
+                                            <a href="javascript:void(0);" class="formLevel">8级</a>
+                                        </span>
+                                    </div>
+                                    <div  class="formatCanvas"></div>
                                 </div>
                             </div>
                         </div>
@@ -65,4 +93,10 @@
             </div>
         </div>
     </div>
+    <script>
+        var formatObj = new jsonFormat('#formatWrap');
+        $('#format').click(function () {
+            formatObj.Process();
+        })
+    </script>
 {% endblock %}
