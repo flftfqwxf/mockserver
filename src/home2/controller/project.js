@@ -6,9 +6,9 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
-        let res = await this.model('mockserver').select();
+        let res = await this.model('project').select();
         this.assign({
-            title: '首页',
+            title: '项目列表',
             list: res
         })
         //auto render template file index_index.html

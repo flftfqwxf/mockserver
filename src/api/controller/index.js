@@ -13,7 +13,12 @@ export default class extends Base {
         if (data.length) {
             var item = data[0];
             var _this = this;
+            let headers;
             if (item.is_proxy === 0) {
+                if (item.api_header) {
+                    headers = item.api_header.split(':');
+                    this.http.header(headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
+                }
                 this.json(item.api_content)
             } else {
                 if (item.proxy_prefix) {
