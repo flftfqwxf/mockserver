@@ -25,8 +25,8 @@ export default class extends Base {
 
     async  editAction() {
         let data = this.get();
-        if (data.mockid) {
-            let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
+        if (data.project_id) {
+            let res = await this.model('project').where('project_id=' + data.project_id).select();
             if (res.length === 1) {
                 this.assign(res[0])
             }
@@ -38,8 +38,8 @@ export default class extends Base {
 
     async deleteAction() {
         let get = this.get();
-        if (get.mockid) {
-            let res = await this.model('mockserver').where('mockid=' + get.mockid).delete();
+        if (get.project_id) {
+            let res = await this.model('project').where('project_id=' + get.project_id).delete();
             if (res) {
                 this.assign({message: '删除成功', url: '/'})
                 return this.display('common/tips/sucess.nunj');
@@ -53,11 +53,11 @@ export default class extends Base {
     async updateAction() {
         // console.log(this.post())
         let data = this.post();
-        if (data.mockid) {
-            let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
-            //行为记录
+        if (data.project_id) {
+            let res = await this.model('project').where('project_id=' + data.project_id).select();
+            //行为记录˙
             if (res) {
-                await this.model('mockserver').update(data);
+                await this.model('project').update(data);
                 this.assign({
                     message: '修改成功',
                     url: '/'
@@ -67,7 +67,8 @@ export default class extends Base {
                 this.fail("操作失败！");
             }
         } else {
-            let res = await this.model('mockserver').add(data);
+
+            let res = await this.model('project').add(data);
             if (res) {
                 // this.active = "/";
                 this.assign({
@@ -83,8 +84,5 @@ export default class extends Base {
         return this.display();
     }
 
-    demoAction() {
-        //auto render template file index_index.html
-        return this.display();
-    }
+
 }
