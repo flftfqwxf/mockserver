@@ -8609,7 +8609,7 @@ button.aui_state_highlight {
     text-indent: 0px;
     height: 30px;
     padding: 0 20px 0 5px;
-    background: url("../image/iconfont-gmxiala.png") no-repeat right center;
+    background: url("/static/common/image/iconfont-gmxiala.png") no-repeat right center;
     background: none\9;
     padding-right: 0 \9;
     border: none;
@@ -8624,7 +8624,7 @@ button.aui_state_highlight {
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .btn-select select {
-    background: url("../image/iconfont-gmxiala.png") no-repeat right center;
+    background: url("/static/common/image/iconfont-gmxiala.png") no-repeat right center;
     padding-right: 20px; } }
 .sInputW {
   width: 100px !important; }

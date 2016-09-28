@@ -5,12 +5,33 @@
             <a href="#nav2" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
                 <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
                 <i class="gm-icon gm-peer-plan"></i>
-                <span>接口管理</span>
+                <span>项目管理</span>
             </a>
             <ul class="collapse in" id="nav2">
-                <li><a href="/">接口管理</a></li>
-
+                <li><a href="/">项目列表</a></li>
+                <li><a href="/home2/project/add.html">添加接口</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#nav3" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
+                <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
+                <i class="gm-icon gm-peer-plan"></i>
+                <span>接口管理</span>
+            </a>
+            <ul class="collapse in" id="nav3">
+                <li><a href="/home2/index/index">接口管理</a></li>
                 <li><a href="/home2/index/add.html">添加接口</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#nav4" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
+                <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
+                <i class="gm-icon gm-peer-plan"></i>
+                <span>模板管理</span>
+            </a>
+            <ul class="collapse in" id="nav4">
+                <li><a href="/home2/template/index">模板列表</a></li>
+                <li><a href="/home2/template/add.html">添加模板</a></li>
             </ul>
         </li>
     </ul>

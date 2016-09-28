@@ -6,28 +6,54 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
-        let res = await this.model('mockserver').select();
+        let data = this.get(), res;
+        if (data.project_id) {
+            res = await this.model('mockserver').where({'mockserver.project_id': data.project_id})
+                .alias('mockserver')
+                .field('`mockserver`.*, `project`.`project_name`')
+                .join([{
+                    table: 'project',
+                    as: 'project',
+                    on: ['`mockserver`.`project_id`', '`project`.`project_id`']
+                }])
+                .select();
+        } else {
+            res = await this.model('mockserver')
+                .alias('mockserver')
+                .field('`mockserver`.*, `project`.`project_name`')
+                .join([{
+                    table: 'project',
+                    as: 'project',
+                    on: ['`mockserver`.`project_id`', '`project`.`project_id`']
+                }])
+                .select();
+        }
+        // let res = await this.model.join('project on mockserver.project_id=project.project_id').select();
         this.assign({
-            title: '首页',
+            title: '接口列表',
             list: res
         })
         //auto render template file index_index.html
         return this.display();
     }
 
-    addAction() {
+    async addAction() {
         //auto render template file index_index.html
+        let project = await this.model('project').select();
         this.assign({
-            is_proxy:0
+            is_proxy: 0,
+            project:project
         })
         return this.display();
     }
 
     async  editAction() {
         let data = this.get();
+        let project = await this.model('project').select();
         if (data.mockid) {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
             if (res.length === 1) {
+                res[0].project = project;
                 this.assign(res[0])
             }
         } else {

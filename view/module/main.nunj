@@ -15,8 +15,7 @@
     <script src="/static/common/plugins/validation/js/jquery.validationEngine-zh_CN.js"></script>
     <script src="/static/common/plugins/validation/js/jquery.validationEngine.js"></script>
     <script type="text/javascript" src="/static/common/plugins/artdialog/jquery.artDialog.js"></script>
-    <script src="/static/common/json/c.js"></script>
-
+    {% block js %}{% endblock %}
     <script type="text/javascript">
         $(function () {
             function showDemoDialog(withTitle) {

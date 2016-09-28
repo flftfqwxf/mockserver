@@ -46,6 +46,9 @@ PRE.CodeContainer{
     margin-top: 0px;
     margin-bottom: 0px;
 }
+PRE.CodeContainer span{
+
+}
 PRE.CodeContainer img{
     cursor: pointer;
     border: none;
