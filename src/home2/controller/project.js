@@ -18,7 +18,7 @@ export default class extends Base {
     addAction() {
         //auto render template file index_index.html
         this.assign({
-            is_proxy:0
+            is_proxy: 0
         })
         return this.display();
     }
@@ -31,7 +31,7 @@ export default class extends Base {
                 this.assign(res[0])
             }
         } else {
-            return this.display('common/tips/sucess.nunj');
+            return this.setSucess('项目不存在', '/')
         }
         return this.display('add.nunj')
     }
@@ -41,41 +41,40 @@ export default class extends Base {
         if (get.project_id) {
             let res = await this.model('project').where('project_id=' + get.project_id).delete();
             if (res) {
-                this.assign({message: '删除成功', url: '/'})
-                return this.display('common/tips/sucess.nunj');
+                return this.setSucess('删除成功', '/')
             }
         } else {
-            this.assign({message: 'ID不存在', url: '/'})
-            return this.display('common/tips/sucess.nunj');
+            return this.setSucess('ID不存在', '/')
         }
     }
 
     async updateAction() {
         // console.log(this.post())
         let data = this.post();
+        if (think.isEmpty(data)) {
+            return this.setSucess('数据为空:点击返回列表', '/')
+        }
+        let projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
         if (data.project_id) {
+            if (!think.isEmpty(projectData) && data.project_id !== projectData.project_id.toString()) {
+                return this.setSucess('项目名称已存在', '/')
+            }
             let res = await this.model('project').where('project_id=' + data.project_id).select();
             //行为记录˙
             if (res) {
                 await this.model('project').update(data);
-                this.assign({
-                    message: '修改成功',
-                    url: '/'
-                })
-                return this.display('common/tips/sucess.nunj');
+                return this.setSucess('修改成功', '/')
             } else {
                 this.fail("操作失败！");
             }
         } else {
-
+            if (!think.isEmpty(projectData)) {
+                return this.setSucess('项目名称已存在', '/')
+            }
             let res = await this.model('project').add(data);
             if (res) {
                 // this.active = "/";
-                this.assign({
-                    message: '添加成功',
-                    url: '/'
-                })
-                return this.display('common/tips/sucess.nunj');
+                return this.setSucess('添加成功', '/')
             } else {
                 this.fail("操作失败！");
             }
@@ -83,6 +82,4 @@ export default class extends Base {
         }
         return this.display();
     }
-
-
 }

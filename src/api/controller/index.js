@@ -8,7 +8,7 @@ export default class extends Base {
      */
     async indexAction() {
         //auto render template file index_index.html
-        console.log(this.http.url)
+        // console.log(this.http.url)
         const prefix='/api/';
         const data = await this.model('mockserver').where("api_url='" + this.http.url.replace('/api/','') + "'").select();
         if (data.length) {

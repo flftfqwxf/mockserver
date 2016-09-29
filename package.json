@@ -18,10 +18,11 @@
   },
   "devDependencies": {
     "babel-cli": "6.x.x",
+    "babel-core": "6.x.x",
+    "babel-plugin-transform-runtime": "6.x.x",
     "babel-preset-es2015-loose": "6.x.x",
     "babel-preset-stage-1": "6.x.x",
-    "babel-plugin-transform-runtime": "6.x.x",
-    "babel-core": "6.x.x"
+    "pm2": "^2.0.17"
   },
   "repository": "",
   "license": "MIT"

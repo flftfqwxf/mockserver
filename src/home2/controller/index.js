@@ -40,10 +40,22 @@ export default class extends Base {
     async addAction() {
         //auto render template file index_index.html
         let project = await this.model('project').select();
-        this.assign({
-            is_proxy: 0,
-            project:project
-        })
+        let data = this.get();
+        if (data.mockid && data.iscopy === '1') {
+            let res = await this.model('mockserver').where('mockid=' + data.mockid).find();
+            if (!think.isEmpty(res)) {
+                res.mockid='';
+                res.project = project;
+                this.assign(res)
+            }else{
+                return this.setSucess('复制的数据不存在', '/home2/index')
+            }
+        } else {
+            this.assign({
+                is_proxy: 0,
+                project: project
+            })
+        }
         return this.display();
     }
 
@@ -67,40 +79,42 @@ export default class extends Base {
         if (get.mockid) {
             let res = await this.model('mockserver').where('mockid=' + get.mockid).delete();
             if (res) {
-                this.assign({message: '删除成功', url: '/'})
-                return this.display('common/tips/sucess.nunj');
+                return this.setSucess('删除成功', this.http.header.referer)
             }
         } else {
-            this.assign({message: 'ID不存在', url: '/'})
-            return this.display('common/tips/sucess.nunj');
+            return this.setSucess('ID不存在', this.http.header.referer)
         }
     }
 
     async updateAction() {
         // console.log(this.post())
         let data = this.post();
+        if (think.isEmpty(data)) {
+            return this.setSucess('数据为空:点击返回列表', '/home2/index')
+        }
+        let urlData = await this.model('mockserver').where('api_url="' + data.api_url + '"').find();
         if (data.mockid) {
-            let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
-            //行为记录
-            if (res) {
-                await this.model('mockserver').update(data);
-                this.assign({
-                    message: '修改成功',
-                    url: '/'
-                })
-                return this.display('common/tips/sucess.nunj');
+            if (!think.isEmpty(urlData) && urlData.mockid.toString() !== data.mockid) {
+                return this.setSucess('修改失败:接口地址[' + data.api_url + ']已存在,返回修改', this.http.header.referer)
             } else {
-                this.fail("操作失败！");
+                let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
+                //行为记录
+                if (res) {
+                    await this.model('mockserver').update(data);
+                    return this.setSucess('修改成功', '/home2/index')
+                } else {
+                    this.fail("操作失败！");
+                }
             }
+            return this.display('common/tips/sucess.nunj');
         } else {
+            if (!think.isEmpty(urlData)) {
+                return this.setSucess('添加失败:接口地址[' + data.api_url + ']已存在,返回修改', this.http.headers.referer)
+            }
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.assign({
-                    message: '添加成功',
-                    url: '/'
-                })
-                return this.display('common/tips/sucess.nunj');
+                this.setSucess('添加成功', '/home2/index')
             } else {
                 this.fail("操作失败！");
             }

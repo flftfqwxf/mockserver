@@ -59,9 +59,6 @@
         </div>
     </div>
     <script>
-        var formatObj = new jsonFormat('#formatWrap');
-        $('#format').click(function () {
-            formatObj.Process();
-        })
+
     </script>
 {% endblock %}
