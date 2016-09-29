@@ -1,0 +1,279 @@
+div.fileretriever-background,div.fileretriever-overlay {
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	z-index:999
+}
+div.fileretriever-overlay {
+	background-color:gray;
+	opacity:.2;
+	filter:alpha(opacity=20)
+}
+div.fileretriever-border {
+	width:410px;
+	margin:100px auto;
+	padding:20px;
+	background-color:#fff;
+	border:1px solid gray;
+	border-radius:2px;
+	-moz-box-shadow:2px 2px 12px rgba(128,128,128,.3);
+	-webkit-box-shadow:2px 2px 12px rgba(128,128,128,.3);
+	box-shadow:2px 2px 12px rgba(128,128,128,.3)
+}
+div.fileretriever-title {
+	font-weight:700
+}
+div.fileretriever-description {
+	color:gray;
+	margin:30px 0 0
+}
+div.fileretriever-contents {
+	margin:30px 0
+}
+div.fileretriever-buttons {
+	text-align:right
+}
+input.fileretriever-field[type=file] {
+	width:400px;
+	padding:3px
+}
+input.fileretriever-field[type=text] {
+	width:400px;
+	border:1px solid #d3d3d3;
+	border-radius:2px;
+	padding:3px
+}
+input.fileretriever-cancel,input.fileretriever-submit {
+	margin-left:10px
+}
+body,html {
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	overflow:hidden
+}
+span.header-light {
+	color:gray
+}
+.json_header {
+	width:100%;
+	height:40px;
+	background:#4D4D4D;
+	color:#fff
+}
+
+.json_menu {
+	position:absolute;
+	top:5px;
+	right:15px;
+	font-size:11pt
+}
+.json_menu ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	clear:both
+}
+.json_menu ul li {
+	color:#e6e6e6;
+	background:0 0;
+	border:0;
+	border-right:1px solid #737373;
+	height:30px;
+	padding:0;
+	margin:0;
+	float:left;
+	position:relative;
+	text-decoration:none
+}
+.json_menu ul li:first-child {
+	border-left:1px solid #737373
+}
+.json_menu ul li:hover {
+	color:#fff;
+	background-color:#737373
+}
+.json_menu ul li ul {
+	display:none
+}
+.json_menu ul li:hover>ul {
+	display:block
+}
+.json_menu ul li ul {
+	position:absolute;
+	top:30px;
+	left:0;
+	z-index:999;
+	background:#f5f5f5;
+	border:1px solid #d3d3d3;
+	box-shadow:0 0 15px rgba(128,128,128,.5)
+}
+.json_menu ul li ul li {
+	color:#737373;
+	background:0 0;
+	border:0;
+	margin:0;
+	padding:0
+}
+.json_menu ul li ul li:first-child {
+	border-left:0
+}
+.json_menu ul li ul li:hover {
+	background-color:#fff
+}
+.json_menu a {
+	padding:6px 10px;
+	display:block;
+	cursor:pointer;
+	text-decoration:none;
+	color:#fff
+}
+.json_menu ul li ul li a {
+	color:#737373;
+	width:80px
+}
+#openMenuButton {
+	font-size:75%;
+	margin-left:2px
+}
+.json_menu #open {
+	cursor:default
+}
+#auto {
+	width:100%;
+	height:100%;
+	margin:-40px 0 -24px 0;
+	padding:40px 0 24px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	overflow:hidden
+}
+#contents {
+	width:100%;
+	height:100%;
+	overflow:hidden
+}
+#codeEditor,#treeEditor {
+	height:100%;
+	width:400px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box
+}
+#codeEditor {
+	float:left;
+	padding:15px 0 15px 15px
+}
+#treeEditor {
+	float:left;
+	padding:15px 15px 15px 0
+}
+#splitter {
+	text-align:center;
+	float:left;
+	height:100%;
+	padding:15px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box
+}
+#splitter #buttons {
+	margin:0 0 15px
+}
+#splitter #toTree {
+	margin:40px 0 0
+}
+#splitter #toCode {
+	margin:20px 0 0
+}
+#splitter #drag {
+	font-size:32px;
+	color:#d3d3d3;
+	border-radius:3px;
+	min-width:24px;
+	cursor:col-resize
+}
+#splitter #drag.active,#splitter #drag:hover {
+	color:gray;
+	background-color:#f5f5f5
+}
+#footer {
+	width:100%;
+	height:23px;
+	font-size:10pt;
+	overflow:hidden;
+	color:#BFBFBF;
+	border-top:1px solid #d3d3d3;
+	text-align:center;
+	background-color:#F5F5F5
+}
+#footer-inner {
+	margin:4px
+}
+a.header {
+	color:#fff;
+	text-decoration:none
+}
+a.footer {
+	color:#BFBFBF;
+	text-decoration:none
+}
+a.footer:hover {
+	color:red;
+	text-decoration:underline
+}
+#ad {
+	float:right;
+	right:15px;
+	padding:15px 0;
+	position:relative
+}
+#chromeAppInfo {
+	line-height:normal;
+	padding:0 5px 20px
+}
+div.error,div.notification {
+	border-radius:2px;
+	padding:5px;
+	margin:5px;
+	box-shadow:0 0 15px rgba(128,128,128,.5)
+}
+div.error {
+	color:red;
+	background-color:pink;
+	border:1px solid red
+}
+div.notification {
+	color:#1a1a1a;
+	background-color:#FFFFAB;
+	border:1px solid #e6d600
+}
+pre.error {
+	margin:0 0 10px;
+	white-space:pre-wrap;
+	font-family:droid sans mono,monospace,courier new,courier,sans-serif;
+	font-size:10pt
+}
+a.error {
+	color:red;
+	font-size:8pt
+}
+button.convert {
+	cursor:default;
+	padding:2px
+}
+div.convert-left,div.convert-right {
+	width:24px;
+	height:24px;
+	margin:0
+}
+div.convert-right {
+	background:url(jsoneditor-icons.png) -0 -48px
+}
+div.convert-left {
+	background:url(jsoneditor-icons.png) -24px -48px
+}

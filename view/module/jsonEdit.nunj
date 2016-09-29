@@ -1,0 +1,67 @@
+<link rel="stylesheet" type="text/css" href="/static/common/jsoneditor/app-min.css">
+<link rel="stylesheet" type="text/css" href="/static/common/jsoneditor/jsoneditor-min.css">
+<script type="text/javascript" src="/static/common/jsoneditor/jsoneditor-min.js"></script>
+<script type="text/javascript" src="/static/common/jsoneditor/ace-min.js"></script>
+<script type="text/javascript" src="/static/common/jsoneditor/app-min.js"></script>
+<div class="json_header">
+    <div class="json_menu">
+        <ul>
+            <li>
+                <a id="clear" title="Clear contents">Clear</a>
+            </li>
+            <li>
+                <a id="open" title="Open file from disk">
+                    Open
+                    <span id="openMenuButton" title="Open file from disk or url">
+                    &#x25BC;
+                    </span>
+                </a>
+                <ul id="openMenu">
+                    <li>
+                        <a id="menuOpenFile" title="Open file from disk">Open&nbsp;file</a>
+                    </li>
+                    <li>
+                        <a id="menuOpenUrl" title="Open file from url">Open&nbsp;url</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a id="save" title="Save file to disk">Save</a>
+            </li>
+            <li>
+                <a id="help" title="Open documentation (opens in a new window)" href="doc/index.html" target="_blank">Help</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="auto">
+    <div id="contents">
+        <div id="codeEditor"></div>
+        <div id="splitter">
+            <div id="buttons">
+                <div>
+                    <button id="toTree" class="convert" title="Copy code to tree editor">
+                        <div class="convert-right"></div>
+                    </button>
+                </div>
+                <div>
+                    <button id="toCode" class="convert" title="Copy tree to code editor">
+                        <div class="convert-left"></div>
+                    </button>
+                </div>
+            </div>
+            <div id="drag">
+            </div>
+        </div>
+        <div id="treeEditor"></div>
+        <script type="text/javascript">
+            app.load();
+            app.resize();
+        </script>
+    </div>
+</div>
+<script type="text/javascript">
+    app.resize();
+</script>
+<script type="text/javascript" src="/static/common/jsoneditor/jsonlint.js"></script>
+

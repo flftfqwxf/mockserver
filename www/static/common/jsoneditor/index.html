@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>在线JSON校验格式化工具(K JSON)</title>
+    <meta name="keywords"
+          content="JSON在线编辑器(JSON Editor Online),JSON,JSON在线,json解析,json教程,json数组,JSON 校验,格式化JSON,xml转json 工具,json视图,在线json格式化工具,json 格式化,json格式化工具,json字符串格式化,json 在线查看器,json在线,json 在线验证"/>
+    <meta name="description"
+          content="json解析,json教程,json数组,JSON在线,JSON在线校验工具,JSON,JSON 校验,格式化,xml转json 工具,json视图,在线json格式化工具,json 格式化,json格式化工具,json字符串格式化,json 在线查看器,json在线,json 在线验证,JSON在线编辑器(JSON Editor Online)">
+    <link rel="stylesheet" type="text/css" href="app-min.css">
+    <link rel="stylesheet" type="text/css" href="jsoneditor-min.css">
+    <script type="text/javascript" src="jsoneditor-min.js"></script>
+    <script type="text/javascript" src="ace-min.js"></script>
+    <script type="text/javascript" src="app-min.js"></script>
+</head>
+<body>
+<div class="json_header">
+    <div class="json_menu">
+        <ul>
+            <li>
+                <a id="clear" title="Clear contents">Clear</a>
+            </li>
+            <li>
+                <a id="open" title="Open file from disk">
+                    Open
+                    <span id="openMenuButton" title="Open file from disk or url">
+                    &#x25BC;
+                    </span>
+                </a>
+                <ul id="openMenu">
+                    <li>
+                        <a id="menuOpenFile" title="Open file from disk">Open&nbsp;file</a>
+                    </li>
+                    <li>
+                        <a id="menuOpenUrl" title="Open file from url">Open&nbsp;url</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a id="save" title="Save file to disk">Save</a>
+            </li>
+            <li>
+                <a id="help" title="Open documentation (opens in a new window)" href="doc/index.html" target="_blank">Help</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="auto">
+    <div id="contents">
+        <div id="codeEditor"></div>
+        <div id="splitter">
+            <div id="buttons">
+                <div>
+                    <button id="toTree" class="convert" title="Copy code to tree editor">
+                        <div class="convert-right"></div>
+                    </button>
+                </div>
+                <div>
+                    <button id="toCode" class="convert" title="Copy tree to code editor">
+                        <div class="convert-left"></div>
+                    </button>
+                </div>
+            </div>
+            <div id="drag">
+            </div>
+        </div>
+        <div id="treeEditor"></div>
+        <script type="text/javascript">
+            function getJson() {
+                document.querySelector('#toTree').click();
+                try {
+                    JSON.parse(codeEditor.getText());
+                    return codeEditor.getText();
+                } catch (e) {
+                    return false
+                }
+            }
+            function setJson(json) {
+                app.load(json);
+                app.resize();
+                document.querySelector('#toTree').click();
+
+            }
+
+//            app.load();
+//            app.resize();
+        </script>
+    </div>
+</div>
+<script type="text/javascript">
+//    app.resize();
+</script>
+<script type="text/javascript" src="jsonlint.js"></script>
+</body>
+</html>

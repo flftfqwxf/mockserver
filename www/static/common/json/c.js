@@ -51,7 +51,7 @@ jsonFormat.prototype = {
     Process: function () {
         var _this = this;
         this.proFun(this.container.find('.formContent').val())
-        this.Canvas.find('.addBtn').off().on('click', function () {
+        this.Canvas.off().on('click', '.addBtn', function () {
             _this.addImgClicked(this);
         })
     },
@@ -77,7 +77,7 @@ jsonFormat.prototype = {
             })
         }
     },
-    GetRow: function (indent, data, isPropertyContent,parent) {
+    GetRow: function (indent, data, isPropertyContent, parent) {
         var tabs = "";
         for (var i = 0; i < indent && !isPropertyContent; i++) tabs += this.TAB;
         if (data != null && data.length > 0 && data.charAt(data.length - 1) != "\n") {
@@ -87,7 +87,11 @@ jsonFormat.prototype = {
         return tabs + data;
     },
     addImgClicked: function (img) {
-       console.log($(img).attr('cindex'))
+        var cindex = $(img).attr('cindex')
+        var indent = $(img).attr('cindex').split('||').length;
+        var tabs = '';
+        for (var i = 0; i < indent; i++) tabs += this.TAB;
+        $(img).after('\n' + tabs + '<span class="PropertyName" contenteditable="true">"key"</span>:<span class="String" title="value">"value"</span><img class="addBtn" cindex="' + cindex + '" src="/static/common/json/add.png">')
         // this.proFun(JSON.stringify({a: 3}));
         // this.autoFormate()
     },
@@ -101,15 +105,15 @@ jsonFormat.prototype = {
         }
         return str;
     },
-    FormatLiteral: function (literal, quote, comma, indent, isArray, style,parent) {
+    FormatLiteral: function (literal, quote, comma, indent, isArray, style, parent) {
         if (typeof literal == 'string')
             literal = literal.split("<").join("&lt;").split(">").join("&gt;");
         var str = "<span class='" + style + "' title='" + literal + "'>" + quote + literal + quote + comma + "</span>";
-        if (isArray) str = this.GetRow(indent, str,false,parent);
+        if (isArray) str = this.GetRow(indent, str, false, parent);
         return str;
     },
     getAddBtn: function (parent) {
-        return "<img class='addBtn' cindex='add_" + parent + "' src=\"" + this.ImgAdd + "\"  />";
+        return "<img class='addBtn' cindex='" + parent + "' src=\"" + this.ImgAdd + "\"  />";
     },
     getExpImgBtn: function () {
         return "<img class='icon_format' src=\"" + this.ImgCollapsed + "\"  />";
@@ -144,10 +148,10 @@ jsonFormat.prototype = {
         console.log(parent)
         if (this.IsArray(obj)) {
             if (obj.length == 0) {
-                html += this.GetRow(indent, "<span class='ArrayBrace'>[" + this.getExpImgBtn() + "]</span>" + comma, isPropertyContent,parent);
+                html += this.GetRow(indent, "<span class='ArrayBrace'>[" + this.getExpImgBtn() + "]</span>" + comma, isPropertyContent, parent);
             } else {
                 clpsHtml = this.IsCollapsible ? "<span>" + this.getExpImgBtn() + "</span><span class='collapsible'>" : "";
-                html += this.GetRow(indent, "<span class='ArrayBrace'>[</span>" + clpsHtml, isPropertyContent,parent);
+                html += this.GetRow(indent, "<span class='ArrayBrace'>[</span>" + clpsHtml, isPropertyContent, parent);
                 for (var i = 0; i < obj.length; i++) {
                     var curParent = i;
                     if (parent) {
@@ -156,23 +160,23 @@ jsonFormat.prototype = {
                     html += this.ProcessObject(obj[i], indent + 1, i < (obj.length - 1), true, false, curParent);
                 }
                 clpsHtml = this.IsCollapsible ? "</span>" : "";
-                html += this.GetRow(indent, clpsHtml + "<span class='ArrayBrace'>]</span>" + comma,false, curParent);
+                html += this.GetRow(indent, clpsHtml + "<span class='ArrayBrace'>]</span>" + comma, false, curParent);
             }
         } else if (type == 'object') {
             if (obj == null) {
-                html += this.FormatLiteral("null", "", comma, indent, isArray, "Null",parent);
+                html += this.FormatLiteral("null", "", comma, indent, isArray, "Null", parent);
             } else if (obj.constructor == this._dateObj.constructor) {
-                html += this.FormatLiteral("new Date(" + obj.getTime() + ") /*" + obj.toLocaleString() + "*/", "", comma, indent, isArray, "Date",parent);
+                html += this.FormatLiteral("new Date(" + obj.getTime() + ") /*" + obj.toLocaleString() + "*/", "", comma, indent, isArray, "Date", parent);
             } else if (obj.constructor == this._regexpObj.constructor) {
-                html += FormatLiteral("new RegExp(" + obj + ")", "", comma, indent, isArray, "RegExp",parent);
+                html += FormatLiteral("new RegExp(" + obj + ")", "", comma, indent, isArray, "RegExp", parent);
             } else {
                 var numProps = 0;
                 for (var prop in obj) numProps++;
                 if (numProps == 0) {
-                    html += this.GetRow(indent, "<span class='ObjectBrace'>{ " + this.getExpImgBtn() + " }</span>" + comma, isPropertyContent,parent);
+                    html += this.GetRow(indent, "<span class='ObjectBrace'>{ " + this.getExpImgBtn() + " }</span>" + comma, isPropertyContent, parent);
                 } else {
                     clpsHtml = this.IsCollapsible ? "<span class='add'>" + this.getExpImgBtn() + "</span><span class='collapsible'>" : "";
-                    html += this.GetRow(indent, "<span class='ObjectBrace'>{</span>" + clpsHtml, isPropertyContent,parent);
+                    html += this.GetRow(indent, "<span class='ObjectBrace'>{</span>" + clpsHtml, isPropertyContent, parent);
                     var j = 0;
                     for (var prop in obj) {
                         var quote = this.QuoteKeys ? "\"" : "";
@@ -180,27 +184,27 @@ jsonFormat.prototype = {
                         if (parent) {
                             curParent = parent + '||' + prop
                         }
-                        html += this.GetRow(indent + 1, "<span class='PropertyName' >" + quote + prop + quote + "</span>: " + this.ProcessObject(obj[prop], indent + 1, ++j < numProps, false, true, curParent),false, curParent);
+                        html += this.GetRow(indent + 1, "<span class='PropertyName' >" + quote + prop + quote + "</span>: " + this.ProcessObject(obj[prop], indent + 1, ++j < numProps, false, true, curParent), false, curParent);
                     }
                     clpsHtml = this.IsCollapsible ? "</span>" : "";
-                    html += this.GetRow(indent, clpsHtml + "<span class='ObjectBrace'>}</span>" + comma,false,parent);
+                    html += this.GetRow(indent, clpsHtml + "<span class='ObjectBrace'>}</span>" + comma, false, parent);
                 }
             }
         } else if (type == 'number') {
-            html += this.FormatLiteral(obj, "", comma, indent, isArray, "Number",parent);
+            html += this.FormatLiteral(obj, "", comma, indent, isArray, "Number", parent);
         } else if (type == 'boolean') {
-            html += this.FormatLiteral(obj, "", comma, indent, isArray, "Boolean"),parent;
+            html += this.FormatLiteral(obj, "", comma, indent, isArray, "Boolean"), parent;
         } else if (type == 'function') {
             if (obj.constructor == this._regexpObj.constructor) {
-                html += this.FormatLiteral("new RegExp(" + obj + ")", "", comma, indent, isArray, "RegExp",parent);
+                html += this.FormatLiteral("new RegExp(" + obj + ")", "", comma, indent, isArray, "RegExp", parent);
             } else {
                 obj = this.FormatFunction(indent, obj);
-                html += this.FormatLiteral(obj, "", comma, indent, isArray, "Function",parent);
+                html += this.FormatLiteral(obj, "", comma, indent, isArray, "Function", parent);
             }
         } else if (type == 'undefined') {
-            html += this.FormatLiteral("undefined", "", comma, indent, isArray, "Null",parent);
+            html += this.FormatLiteral("undefined", "", comma, indent, isArray, "Null", parent);
         } else {
-            html += this.FormatLiteral(obj.toString().split("\\").join("\\\\").split('"').join('\\"'), "\"", comma, indent, isArray, "String",parent);
+            html += this.FormatLiteral(obj.toString().split("\\").join("\\\\").split('"').join('\\"'), "\"", comma, indent, isArray, "String", parent);
         }
         return html;
     },
