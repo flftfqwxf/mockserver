@@ -1,6 +1,7 @@
 'use strict';
 import request from "request";
 import Base from './base.js';
+const prefix = '/api/';
 export default class extends Base {
     /**
      * index action
@@ -9,7 +10,6 @@ export default class extends Base {
     async indexAction() {
         //auto render template file index_index.html
         // console.log(this.http.url)
-        const prefix = '/api/';
         const data = await this.model('mockserver').where("api_url='" + this.http.url.replace('/api/', '') + "'").find();
         if (!think.isEmpty(data)) {
             var item = data;
@@ -27,23 +27,41 @@ export default class extends Base {
                     // console.log(fn)
                     // this.json({message: '此接口没有提定代理地址请检查并修改2'});
                 } else {
-                    this.fail({message: '此接口没有提定代理地址请检查并修改'})
+                    if (!this.checkProjectProxy()) {
+                        this.fail({message: '此接口没有指定全局和局部代理地址请检查并修改'})
+                    } else {
+                        this.getProxyFromProject()
+                    }
                 }
             }
         } else {
-            const project_id = this.http.headers.mock_project_id;
-            const api_url = this.http.url.replace()
-            if (project_id) {
-                const projectItem = await this.model('project').where("project_id=" + project_id).find();
-                // console.log(projectItem)
-                if (!think.isEmpty(projectItem) && projectItem.proxy_url) {
-                    this.getProxy(projectItem.proxy_url, prefix, this.http.url.replace('/api/', ''));
-                }
-            } else {
-                this.fail({message: '此接口未定义'})
-            }
+            this.getProxyFromProject()
         }
         // return this.display();
+    }
+
+    async getProxyFromProject() {
+        const projectItem = await this.checkProjectProxy()
+        if (projectItem) {
+            this.getProxy(projectItem.proxy_url, prefix, this.http.url.replace('/api/', ''));
+        } else {
+            this.fail({message: '此接口未定义全局代理'})
+        }
+    }
+
+    async checkProjectProxy() {
+        const project_id = this.http.headers.mock_project_id;
+        if (project_id) {
+            const projectItem = await this.model('project').where("project_id=" + project_id).find();
+            // console.log(projectItem)
+            if (!think.isEmpty(projectItem) && projectItem.proxy_url) {
+                return projectItem
+            }
+            return false
+        } else {
+            // this.fail({message: '未指定项目名称'})
+            return false
+        }
     }
 
     getProxy(httpPrefix, prefix, api_url) {
@@ -85,6 +103,8 @@ export default class extends Base {
                 _this.header(item, content.headers[item])
             }
             console.log(content.body)
+            content.body = JSON.parse(content.body)
+            content.body.proxyDataSource = url
             _this.json(content.body);
         }).catch(function (err) {
             console.log(err)

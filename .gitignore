@@ -33,3 +33,4 @@ output.tar.gz
 app/
 
 runtime/
+/src/common/config/db-noUpload.js
