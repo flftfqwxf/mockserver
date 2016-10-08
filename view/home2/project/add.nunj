@@ -43,24 +43,24 @@
                                     <p class="help-block">格式如:http://192.168.1.2</p>
                                 </div>
                             </div>
-                            <div class="form-group ">
-                                <label class="col-sm-2 control-label">
-                                    <span class="common-required">*</span>开启全局二次代理
-                                </label>
-                                <div class="col-sm-10">
-                                    <div class="select-group radio-group" data-toggle="buttons">
-                                        <!-- <div> -->
-                                        <label class="btn {% if open_proxy==0 %}active{% endif %}">
-                                            <input type="radio" name="open_proxy" value="0" {% if open_proxy==0 %}checked{% endif %} autocomplete="off">关闭
-                                        </label>
-                                        <label class="btn {% if open_proxy==1 %}active{% endif %}">
-                                            <input type="radio" name="open_proxy" value="1" {% if open_proxy==1 %}checked{% endif %} autocomplete="off">开启
-                                        </label>
-                                        <!-- </div> -->
-                                    </div>
-                                    <p class="help-block">开启后,所有未定义的接口,都会通过【全局二次代理前缀】的地址,获取数据</p>
-                                </div>
-                            </div>
+                            {#<div class="form-group ">#}
+                                {#<label class="col-sm-2 control-label">#}
+                                    {#<span class="common-required">*</span>开启全局二次代理#}
+                                {#</label>#}
+                                {#<div class="col-sm-10">#}
+                                    {#<div class="select-group radio-group" data-toggle="buttons">#}
+                                        {#<!-- <div> -->#}
+                                        {#<label class="btn {% if open_proxy==0 %}active{% endif %}">#}
+                                            {#<input type="radio" name="open_proxy" value="0" {% if open_proxy==0 %}checked{% endif %} autocomplete="off">关闭#}
+                                        {#</label>#}
+                                        {#<label class="btn {% if open_proxy==1 %}active{% endif %}">#}
+                                            {#<input type="radio" name="open_proxy" value="1" {% if open_proxy==1 %}checked{% endif %} autocomplete="off">开启#}
+                                        {#</label>#}
+                                        {#<!-- </div> -->#}
+                                    {#</div>#}
+                                    {#<p class="help-block">开启后,所有未定义的接口,都会通过【全局二次代理前缀】的地址,获取数据</p>#}
+                                {#</div>#}
+                            {#</div>#}
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
