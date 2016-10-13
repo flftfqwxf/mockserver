@@ -44,10 +44,10 @@ export default class extends Base {
         if (data.mockid && data.iscopy === '1') {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).find();
             if (!think.isEmpty(res)) {
-                res.mockid='';
+                res.mockid = '';
                 res.project = project;
                 this.assign(res)
-            }else{
+            } else {
                 return this.setSucess('复制的数据不存在', '/home2/index')
             }
         } else {
@@ -101,7 +101,7 @@ export default class extends Base {
                 //行为记录
                 if (res) {
                     await this.model('mockserver').update(data);
-                    return this.setSucess('修改成功', '/home2/index')
+                    return this.setSucess('修改成功', '/home2/index/index?project_id=' + data.project_id,'返回列表')
                 } else {
                     this.fail("操作失败！");
                 }
@@ -114,7 +114,7 @@ export default class extends Base {
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.setSucess('添加成功', '/home2/index')
+                this.setSucess('添加成功', '/home2/index/index?project_id=' + data.project_id,'返回列表')
             } else {
                 this.fail("操作失败！");
             }

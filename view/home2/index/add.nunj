@@ -24,8 +24,17 @@
                                     <label class="btn btn-default btn-select">
                                         <select name="project_id" class="validate[required]"
                                                 id="form-validation-field-0">
+                                            {% set curGlobalProxy='eee' %}
+
                                             {% for item in  project %}
-                                                <option value="{{ item.project_id }}">{{ item.project_name }}</option>
+                                                {% if item.project_id== project_id %}
+                                                    {% set curGlobalProxy=item.proxy_url %}
+
+                                                    <option selected value="{{ item.project_id }}">{{ item.project_name }}</option>
+                                                {% else %}
+                                                    <option value="{{ item.project_id }}">{{ item.project_name }}</option>
+
+                                                {% endif %}
                                             {% endfor %}
                                         </select>
                                     </label>
@@ -64,7 +73,7 @@
                                 </label>
                                 <div class="col-sm-10 has-feedback-left">
                                     <span class="form-control-feedback" style="padding-left: 20px">/api/</span>
-                                    <input type="text" name="api_url" style="padding-left: 38px" value="{{ api_url }}" class="form-control  validate[required]"
+                                    <input type="text" name="api_url" style="padding-left: 38px" value="{{ api_url }}" class="form-control api_url  validate[required]"
                                            placeholder="请输入要求输入的内容"/>
                                     <p class="help-block">所有接口统一加上【/api/】前缀</p>
                                 </div>
@@ -76,7 +85,7 @@
                                     全局二次代理前缀
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" readonly value="{{ proxy_prefix }}" class="form-control " placeholder=""/>
+                                    <input type="text" readonly value="{{ curGlobalProxy }}" class="form-control globalProxy" placeholder=""/>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +95,7 @@
                                     <span class="common-required">*</span>二次代理前缀
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}" class="form-control" placeholder="请输入要求输入的内容"/>
+                                    <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}" class="form-control proxy_prefix" placeholder="请输入要求输入的内容"/>
                                     <p class="help-block">格式如:http://192.168.1.2/</p>
                                 </div>
                             </div>
@@ -114,6 +123,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">接口内容</label>
                                 <div class="col-sm-10">
+                                    <a href="javascript:;" class="getProxy">从二次代理中获取数据,并填充,保存后生效</a>
+                                    <span class="getTips"></span>
                                     <textarea name="api_content" style="display: none" id="api_content" cols="30" rows="10">
                                         {{ api_content }}
                                     </textarea>
@@ -147,8 +158,33 @@
     </div>
     <script>
         console.log({{ api_content | safe }})
+        var api_content ={{ api_content | safe }};
+        $('.getProxy').click(function () {
+            var gp = '{{ curGlobalProxy }}';
+            var url = '{{ proxy_prefix }}';
+            var api_url = '{{ api_url }}';
+            var is_proxy = {{ is_proxy }};
+            if ((gp || api_url) && is_proxy == 1) {
+                url += '/api/' + api_url;
+                $('.getTips').html('正在从【' + url + '】获取数据');
+                $.ajax({
+                    'datatype': 'json', type: 'get', url: url, success: function (data) {
+                        if (data) {
+                            api_content = data;
+                            $("#jsonIframe")[0].src = $("#jsonIframe")[0].src;
+                            $('.getTips').html('获取成功')
+                        }
+                    }, error: function (err) {
+                        $('.getTips').html('获取失败' + err)
+                    }
+                })
+            } else {
+                $('.getTips').html('此功能必须设置了全局二次代理和局部二次代理之一,并开启二次代理才有效');
+                return false;
+            }
+        });
         $("#jsonIframe").load(function () {
-            $("#jsonIframe")[0].contentWindow.setJson({{ api_content | safe }});
+            $("#jsonIframe")[0].contentWindow.setJson(api_content);
         })
         //        ("#jsonIframe")[0].contentWindow.getJson();
         $('#formId').submit(function () {

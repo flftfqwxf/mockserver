@@ -34,7 +34,7 @@
                         <tbody>
                         {% for item in list %}
                             <tr>
-                                <td>{{ item.project_name }}</td>
+                                <td><a href="/home2/index/index?project_id={{ item.project_id }}">{{ item.project_name }}</a></td>
                                 <td>{{ item.proxy_url }}</td>
                                 <td><a href="/home2/project/delete?project_id={{ item.project_id }}">删除</a> <a href="/home2/project/edit?project_id={{ item.project_id }}">修改</a>
                                     <a href="/home2/index/index?project_id={{ item.project_id }}">查看接口</a>

@@ -41,21 +41,27 @@ export default class extends Base {
     }
 
     async getProxyFromProject() {
-        const projectItem = await this.checkProjectProxy()
-        if (projectItem) {
-            this.getProxy(projectItem.proxy_url, prefix, this.http.url.replace('/api/', ''));
+        const proxy_url = await this.checkProjectProxy()
+        if (proxy_url) {
+            this.getProxy(proxy_url, prefix, this.http.url.replace('/api/', ''));
         } else {
             this.fail({message: '此接口未定义全局代理'})
         }
     }
 
     async checkProjectProxy() {
+        // const proxy_prefix = this.cookie('proxy_prefix');
+        const proxy_prefix = 'http://192.168.28.218';
+
+        if (proxy_prefix) {
+            return proxy_prefix;
+        }
         const project_id = this.http.headers.mock_project_id;
         if (project_id) {
             const projectItem = await this.model('project').where("project_id=" + project_id).find();
             // console.log(projectItem)
             if (!think.isEmpty(projectItem) && projectItem.proxy_url) {
-                return projectItem
+                return projectItem.proxy_url
             }
             return false
         } else {
@@ -96,13 +102,13 @@ export default class extends Base {
                 'authorization': this.http.headers.authorization
             }
         }
-        // console.log(curHttp)
+        console.log(url)
         fn(send).then(function (content) {
             for (var item in content.headers) {
                 // console.log(item)
                 _this.header(item, content.headers[item])
             }
-            console.log(content.body)
+            // console.log(content.body)
             content.body = JSON.parse(content.body)
             content.body.proxyDataSource = url
             _this.json(content.body);
