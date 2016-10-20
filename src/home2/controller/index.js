@@ -8,7 +8,7 @@ export default class extends Base {
     async indexAction() {
         let data = this.get(), res;
         if (data.project_id) {
-            res = await this.model('mockserver').where({'mockserver.project_id': data.project_id})
+            res = await this.model('mockserver').where({'mockserver.project_id': data.project_id}).order('mockid desc')
                 .alias('mockserver')
                 .field('`mockserver`.*, `project`.`project_name`')
                 .join([{
@@ -120,7 +120,7 @@ export default class extends Base {
             }
             // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         }
-        return this.display();
+        // return this.display();
     }
 
     demoAction() {

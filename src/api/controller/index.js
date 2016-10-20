@@ -17,8 +17,16 @@ export default class extends Base {
             let headers;
             if (item.is_proxy === 0) {
                 if (item.api_header) {
-                    headers = item.api_header.split(':');
-                    this.http.header(prefix + headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
+                    try {
+                        const api_header = JSON.parse(item.api_header);
+                        for (var header in api_header) {
+                            this.http.header(header, api_header[header]);
+                        }
+                    } catch (e) {
+                        this.fail({message: e})
+                    }
+                    // headers = item.api_header.split(':');
+                    // this.http.header(prefix + headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
                 }
                 this.json(item.api_content)
             } else {
@@ -52,7 +60,6 @@ export default class extends Base {
     async checkProjectProxy() {
         // const proxy_prefix = this.cookie('proxy_prefix');
         const proxy_prefix = 'http://192.168.28.218';
-
         if (proxy_prefix) {
             return proxy_prefix;
         }
@@ -71,22 +78,23 @@ export default class extends Base {
     }
 
     getProxy(httpPrefix, prefix, api_url) {
-        const _this = this,
+        let _this = this,
             method = this.method().toLowerCase();
+        method = 'post';
         const post = this.post();
-        switch (method.toLowerCase()) {
-            case 'post':
-                ;
-                break;
-            case 'get':
-                ;
-                break;
-            case '':
-                ;
-                break;
-            default:
-                break;
-        }
+        // switch (method.toLowerCase()) {
+        //     case 'post':
+        //         ;
+        //         break;
+        //     case 'get':
+        //         ;
+        //         break;
+        //     case '':
+        //         ;
+        //         break;
+        //     default:
+        //         break;
+        // }
         let fn = think.promisify(request[method]);
         const curHttp = this.http;
         console.log(this.http.headers)

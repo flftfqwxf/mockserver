@@ -29,6 +29,7 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
+                            <th>ID</th>
                             <th>项目名称</th>
                             <th>接口名称</th>
                             <th>接口地址</th>
@@ -39,6 +40,7 @@
                         <tbody>
                         {% for item in list %}
                             <tr>
+                                <td>{{ item.mockid }}</td>
                                 <td>{{ item.project_name }}</td>
                                 <td>{{ item.api_name }}</td>
                                 <td><a target="_blank" href="/api/{{ item.api_url }}">{{ item.api_url }}</a></td>
