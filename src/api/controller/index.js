@@ -31,7 +31,7 @@ export default class extends Base {
                 this.json(item.api_content)
             } else {
                 if (item.proxy_prefix) {
-                    _this.getProxy(item.proxy_prefix, prefix, item.api_url)
+                    _this.getProxy(item.proxy_prefix, prefix, item.api_url,item.api_type)
                     // console.log(fn)
                     // this.json({message: '此接口没有提定代理地址请检查并修改2'});
                 } else {
@@ -77,11 +77,12 @@ export default class extends Base {
         }
     }
 
-    getProxy(httpPrefix, prefix, api_url) {
-        let _this = this,
-            method = this.method().toLowerCase();
-        method = 'post';
-        const post = this.post();
+    getProxy(httpPrefix, prefix, api_url, method) {
+        let _this = this
+        // method = 'post';
+        method = method || this.method().toLowerCase();
+        let post = this.post();
+        // post = {"mobile": "15800000003", "password": "123456"}
         // switch (method.toLowerCase()) {
         //     case 'post':
         //         ;
@@ -103,6 +104,7 @@ export default class extends Base {
         let send = {
             url: url,
             form: post,
+            postDataSource: ''
             // headers:this.http.headers
         };
         if (method === 'get') {
