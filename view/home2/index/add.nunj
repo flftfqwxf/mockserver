@@ -132,16 +132,6 @@
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">字段说明</label>
-                                <div class="col-sm-10">
-                                    <textarea name="api_desc" id="api_desc" cols="30" rows="10">
-                                        {{ api_desc }}
-                                    </textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group-dashed">
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label">接口内容</label>
                                 <div class="col-sm-10">
                                     <a href="javascript:;" class="getProxy">从二次代理中获取数据,并填充,保存后生效</a>
@@ -181,13 +171,46 @@
         </div>
     </div>
     {% if api_content|length ==0 %}
-        {% set api_content=false %}
+        {% set api_content='{"desc": {
+    "username": "参数说明",
+    "password": "参数说明"
+  },
+  "data": {
+  "array": [
+    1,
+    2,
+    3
+  ],
+  "boolean": true,
+  "null": null,
+  "number": 123,
+  "object": {
+    "a": "b",
+    "c": "d",
+    "e": "f"
+  },
+  "string": "Hello World"
+}}' %}
     {% endif %}
     {% if api_parms|length ==0 %}
-        {% set api_parms='{"username":"xxx","password":"xxx"}' %}
+        {% set api_parms='{"desc": {
+    "username": "参数说明",
+    "password": "参数说明"
+  },
+  "data": {
+    "username": "模拟参数值",
+    "password": "模拟参数值"
+  }}' %}
     {% endif %}
     {% if api_header|length ==0 %}
-        {% set api_header='{"header1":"xxx","header2":"xxx"}' %}
+        {% set api_header='{"desc": {
+    "username": "参数说明",
+    "password": "参数说明"
+  },
+  "data": {
+    "headere1": "模拟参数值",
+    "header2": "模拟参数值"
+  }}' %}
     {% endif %}
     <script>
         try {

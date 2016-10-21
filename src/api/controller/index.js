@@ -19,19 +19,27 @@ export default class extends Base {
                 if (item.api_header) {
                     try {
                         const api_header = JSON.parse(item.api_header);
-                        for (var header in api_header) {
-                            this.http.header(header, api_header[header]);
+                        if (api_header.data) {
+                            for (var header in api_header.data) {
+                                this.http.header(header, api_header.data[header]);
+                            }
                         }
                     } catch (e) {
-                        this.fail({message: e})
+                       return this.fail({message: e.message});
                     }
                     // headers = item.api_header.split(':');
                     // this.http.header(prefix + headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
                 }
-                this.json(item.api_content)
+                // this.json(item.api_content)
+
+                if (item.api_content.data) {
+                    this.json(item.api_content.data)
+                } else {
+                    this.json({message: '接口内容格式错误,请参考格式说明'})
+                }
             } else {
                 if (item.proxy_prefix) {
-                    _this.getProxy(item.proxy_prefix, prefix, item.api_url,item.api_type)
+                    _this.getProxy(item.proxy_prefix, prefix, item.api_url, item.api_type)
                     // console.log(fn)
                     // this.json({message: '此接口没有提定代理地址请检查并修改2'});
                 } else {
