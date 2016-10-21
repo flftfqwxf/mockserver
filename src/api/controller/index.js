@@ -10,7 +10,34 @@ export default class extends Base {
     async indexAction() {
         //auto render template file index_index.html
         // console.log(this.http.url)
-        const data = await this.model('mockserver').where("api_url='" + this.http.url.replace('/api/', '') + "'").find();
+        let url = this.http.url.replace('/api/', '');
+        //先全路径匹配
+        let data = await this.model('mockserver').where("api_url='" + this.http.url.replace('/api/', '') + "'").find();
+        //如果查不到相应接口,则将 URL【?】后去掉后再查询
+        if (think.isEmpty(data)) {
+            let firstObj = this.urlParmsTransform(url);
+            let tempUrl = url.split('?');
+            if (tempUrl.length == 2) {
+                url = tempUrl[0];
+                // let parmsList = tempUrl[1].split('&');
+                // let parm, parmstr = [];
+                // parmsList.forEach((item)=> {
+                //     parm = item.split('=');
+                //     if (parm.length == 2) {
+                //         parmstr.push(parm[0] + ':' + parm[0])
+                //     }
+                // })
+                // url += '?' + parmstr.join('&');
+                data = await this.model('mockserver').where("api_url regexp '^" + url + "'").select();
+                if (data.length == 1) {
+                    data = data[0];
+                }
+                if (data.length > 1) {
+                    return this.json({'message':'有多个接口使用了此路径',list:data})
+                }
+
+            }
+        }
         if (!think.isEmpty(data)) {
             var item = data;
             var _this = this;
@@ -51,7 +78,26 @@ export default class extends Base {
         // return this.display();
     }
 
-    async getProxyFromProject(methodType) {
+    compreData(firstUrl, secondUrl) {
+
+    }
+
+    urlParmsTransform(url) {
+        let tempUrl = url.split('?');
+        let parm, parmstr = [], tempObj = {};
+        if (tempUrl.length == 2) {
+            let parmsList = tempUrl[1].split('&');
+            parmsList.forEach((item)=> {
+                parm = item.split('=');
+                if (parm.length == 2) {
+                    tempObj[parm[0]] = parm[1];
+                }
+            })
+        }
+        return tempObj;
+    }
+
+    async  getProxyFromProject(methodType) {
         const proxy_url = await this.checkProjectProxy()
         if (proxy_url) {
             this.getProxy(proxy_url, prefix, this.http.url.replace('/api/', ''), methodType);
@@ -110,10 +156,9 @@ export default class extends Base {
             postDataSource: ''
             // headers:this.http.headers
         };
-
         //将请求端的header信息获取,并传递给请求
         //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误
-        send.headers = Object.assign({}, this.http.headers, {'accept-encoding':null})
+        send.headers = Object.assign({}, this.http.headers, {'accept-encoding': null})
         // }
         console.log(url)
         fn(send).then(function (content) {
