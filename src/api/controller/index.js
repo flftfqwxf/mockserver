@@ -19,24 +19,19 @@ export default class extends Base {
                 if (item.api_header) {
                     try {
                         const api_header = JSON.parse(item.api_header);
-                        if (api_header.data) {
-                            for (var header in api_header.data) {
-                                this.http.header(header, api_header.data[header]);
-                            }
+                        for (var header in api_header) {
+                            console.log(header, api_header[header])
+                            let val = api_header[header];
+                            this.http.header(header, encodeURIComponent(val)
+                            );
                         }
                     } catch (e) {
-                       return this.fail({message: e.message});
+                        return this.fail({message: e.message});
                     }
                     // headers = item.api_header.split(':');
                     // this.http.header(prefix + headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
                 }
-                // this.json(item.api_content)
-
-                if (item.api_content.data) {
-                    this.json(item.api_content.data)
-                } else {
-                    this.json({message: '接口内容格式错误,请参考格式说明'})
-                }
+                this.json(item.api_content)
             } else {
                 if (item.proxy_prefix) {
                     _this.getProxy(item.proxy_prefix, prefix, item.api_url, item.api_type)
@@ -46,7 +41,7 @@ export default class extends Base {
                     if (!this.checkProjectProxy()) {
                         this.fail({message: '此接口没有指定全局和局部代理地址请检查并修改'})
                     } else {
-                        this.getProxyFromProject()
+                        this.getProxyFromProject(item.api_type)
                     }
                 }
             }
@@ -56,10 +51,10 @@ export default class extends Base {
         // return this.display();
     }
 
-    async getProxyFromProject() {
+    async getProxyFromProject(methodType) {
         const proxy_url = await this.checkProjectProxy()
         if (proxy_url) {
-            this.getProxy(proxy_url, prefix, this.http.url.replace('/api/', ''));
+            this.getProxy(proxy_url, prefix, this.http.url.replace('/api/', ''), methodType);
         } else {
             this.fail({message: '此接口未定义全局代理'})
         }
@@ -115,11 +110,11 @@ export default class extends Base {
             postDataSource: ''
             // headers:this.http.headers
         };
-        if (method === 'get') {
-            send.headers = {
-                'authorization': this.http.headers.authorization
-            }
-        }
+
+        //将请求端的header信息获取,并传递给请求
+        //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误
+        send.headers = Object.assign({}, this.http.headers, {'accept-encoding':null})
+        // }
         console.log(url)
         fn(send).then(function (content) {
             for (var item in content.headers) {

@@ -79,14 +79,23 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">接口参数</label>
+                                <label class="col-sm-2 control-label">请求参数说明</label>
+                                <div class="col-sm-10">
+
+                                        <textarea name="api_parms_desc" style="display: none" id="api_parms_desc" cols="30" rows="10">
+                                        {{ api_parms_desc }}
+                                    </textarea>
+                                    <iframe id="parmsDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">请求参数</label>
                                 <div class="col-sm-10">
 
                                         <textarea name="api_parms" style="display: none" id="api_parms" cols="30" rows="10">
                                         {{ api_parms }}
                                     </textarea>
                                     <iframe id="parmsIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
-                                    <p class="help-block">接口提交的POST参数</p>
                                 </div>
                             </div>
                         </div>
@@ -132,6 +141,15 @@
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">接口参数说明</label>
+                                <div class="col-sm-10">
+                                    <textarea name="api_content_desc" style="display: none" id="api_content_desc" cols="30" rows="10">
+                                        {{ api_content_desc }}
+                                    </textarea>
+                                    <iframe id="jsonDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 600px;" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">接口内容</label>
                                 <div class="col-sm-10">
                                     <a href="javascript:;" class="getProxy">从二次代理中获取数据,并填充,保存后生效</a>
@@ -144,6 +162,16 @@
                             </div>
                         </div>
                         <div class="form-group-dashed">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">返回header参数说明</label>
+                                <div class="col-sm-10">
+
+                                        <textarea name="api_header_desc" style="display: none" id="api_header_desc" cols="30" rows="10">
+                                        {{ api_header_desc }}
+                                    </textarea>
+                                    <iframe id="headerDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">返回header信息</label>
                                 <div class="col-sm-10">
@@ -170,53 +198,62 @@
             </div>
         </div>
     </div>
-    {% if api_content|length ==0 %}
-        {% set api_content='{"desc": {
-    "username": "参数说明",
-    "password": "参数说明"
-  },
-  "data": {
-  "array": [
-    1,
-    2,
-    3
-  ],
-  "boolean": true,
-  "null": null,
-  "number": 123,
-  "object": {
-    "a": "b",
-    "c": "d",
-    "e": "f"
-  },
-  "string": "Hello World"
-}}' %}
+    {% if api_content|length ==0 or api_content|trim|length%}
+        {% set api_content='
+              {"array": [
+                1,
+                2,
+                3
+              ],
+              "boolean": true,
+              "null": null,
+              "number": 123,
+              "object": {
+                "a": "b",
+                "c": "d",
+                "e": "f"
+              },
+              "string": "Hello World"
+            }' %}
     {% endif %}
-    {% if api_parms|length ==0 %}
-        {% set api_parms='{"desc": {
-    "username": "参数说明",
-    "password": "参数说明"
-  },
-  "data": {
-    "username": "模拟参数值",
-    "password": "模拟参数值"
-  }}' %}
+    {% if api_content_desc|length ==0 or api_content_desc|trim|length%}
+        {% set api_content_desc=' {
+                "username": "参数说明",
+                "password": "参数说明"
+            }' %}
     {% endif %}
-    {% if api_header|length ==0 %}
-        {% set api_header='{"desc": {
-    "username": "参数说明",
-    "password": "参数说明"
-  },
-  "data": {
-    "headere1": "模拟参数值",
-    "header2": "模拟参数值"
-  }}' %}
+    {% if api_parms |length ==0 or api_parms|trim|length%}
+        {% set api_parms='{
+                    "username": "模拟参数值",
+                     "password": "模拟参数值"
+                }' %}
+    {% endif %}
+    {% if api_parms_desc |length ==0 or api_parms_desc|trim|length%}
+        {% set api_parms_desc='{
+                "username": "模拟参数值",
+                "password": "模拟参数值"
+        }' %}
+    {% endif %}
+    {% if api_header |length ==0 or api_header|trim|length%}
+        {% set api_header=' {
+                    "headere1": "模拟参数值",
+                     "header2": "模拟参数值"
+                }' %}
+    {% endif %}
+    {% if api_header_desc|length ==0 or api_header_desc|trim|length%}
+        {% set api_header_desc=' {
+                "headere1": "headere1参数说明",
+                "header2": "header2参数说明"
+            }' %}
     {% endif %}
     <script>
         try {
             var api_content ={{ api_content | safe }};
+            var api_content_desc ={{ api_content_desc | safe }};
             var api_parms ={{ api_parms | safe }};
+            var api_parms_desc ={{ api_parms_desc | safe }};
             var api_header ={{ api_header | safe }};
+            var api_header_desc ={{ api_header_desc | safe }};
         } catch (e) {
         }
         $('.getProxy').click(function () {
@@ -246,25 +283,48 @@
         $("#jsonIframe").load(function () {
             $("#jsonIframe")[0].contentWindow.setJson(api_content);
         })
+        $("#jsonDescIframe").load(function () {
+            $("#jsonDescIframe")[0].contentWindow.setJson(api_content_desc);
+        })
         $("#parmsIframe").load(function () {
             $("#parmsIframe")[0].contentWindow.setJson(api_parms);
         })
+        $("#parmsDescIframe").load(function () {
+            $("#parmsDescIframe")[0].contentWindow.setJson(api_parms_desc);
+        })
         $("#headerIframe").load(function () {
             $("#headerIframe")[0].contentWindow.setJson(api_header);
+        })
+        $("#headerDescIframe").load(function () {
+            $("#headerDescIframe")[0].contentWindow.setJson(api_header_desc);
         })
         //        ("#jsonIframe")[0].contentWindow.getJson();
         $('#formId').submit(function () {
             var json = $("#jsonIframe")[0].contentWindow.getJson();
             var parms = $("#parmsIframe")[0].contentWindow.getJson();
             var header = $("#headerIframe")[0].contentWindow.getJson();
+            var jsonDesc = $("#jsonDescIframe")[0].contentWindow.getJson();
+            var parmsDesc = $("#parmsDescIframe")[0].contentWindow.getJson();
+            var headerDesc = $("#headerDescIframe")[0].contentWindow.getJson();
             if (parms) {
                 $('#api_parms').val(parms);
+            }
+            if (parmsDesc) {
+                $('#api_parms_desc').val(parmsDesc);
             }
             if (header) {
                 $('#api_header').val(header);
             }
-            if (json && parms && header) {
+            if (headerDesc) {
+                $('#api_header_desc').val(headerDesc);
+            }
+            if (json) {
                 $('#api_content').val(json);
+            }
+            if (jsonDesc) {
+                $('#api_content_desc').val(jsonDesc);
+            }
+            if (json && parms && header && jsonDesc && parmsDesc && headerDesc) {
                 return true;
             }
             return false
