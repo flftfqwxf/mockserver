@@ -15,7 +15,7 @@ export default class extends Base {
         let data = await this.model('mockserver').where("api_url='" + this.http.url.replace('/api/', '') + "'").find();
         //如果查不到相应接口,则将 URL【?】后去掉后再查询
         if (think.isEmpty(data)) {
-            let firstObj = this.urlParmsTransform(url);
+            // let firstObj = this.urlParmsTransform(url);
             let tempUrl = url.split('?');
             if (tempUrl.length == 2) {
                 url = tempUrl[0];
@@ -28,7 +28,7 @@ export default class extends Base {
                 //     }
                 // })
                 // url += '?' + parmstr.join('&');
-                data = await this.model('mockserver').where("api_url regexp '^" + url + "'").select();
+                data = await this.model('mockserver').where("api_url regexp '^" + url + "\\\\?'").select();
                 if (data.length == 1) {
                     data = data[0];
                 }
