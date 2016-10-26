@@ -6,9 +6,13 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
-        let data = this.get(), res;
+        let data = this.get(), res, where = {};
+        if (data.api_name) {
+            where.api_name = ["like", "%" + data.api_name + "%"];
+        }
         if (data.project_id) {
-            res = await this.model('mockserver').where({'mockserver.project_id': data.project_id}).order('mockid desc')
+            where['mockserver.project_id'] = data.project_id;
+            res = await this.model('mockserver').where(where).order('mockid desc')
                 .alias('mockserver')
                 .field('`mockserver`.*, `project`.`project_name`')
                 .join([{
@@ -18,7 +22,7 @@ export default class extends Base {
                 }])
                 .select();
         } else {
-            res = await this.model('mockserver')
+            res = await this.model('mockserver').where(where)
                 .alias('mockserver')
                 .field('`mockserver`.*, `project`.`project_name`')
                 .join([{
@@ -31,7 +35,9 @@ export default class extends Base {
         // let res = await this.model.join('project on mockserver.project_id=project.project_id').select();
         this.assign({
             title: '接口列表',
-            list: res
+            list: res,
+            project_id: data.project_id,
+            api_name: data.api_name
         })
         //auto render template file index_index.html
         return this.display();
@@ -101,7 +107,7 @@ export default class extends Base {
                 //行为记录
                 if (res) {
                     await this.model('mockserver').update(data);
-                    return this.setSucess('修改成功', '/home2/index/index?project_id=' + data.project_id,'返回列表')
+                    return this.setSucess('修改成功', '/home2/index/index?project_id=' + data.project_id, '返回列表')
                 } else {
                     this.fail("操作失败！");
                 }
@@ -114,11 +120,53 @@ export default class extends Base {
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.setSucess('添加成功', '/home2/index/index?project_id=' + data.project_id,'返回列表')
+                this.setSucess('添加成功', '/home2/index/index?project_id=' + data.project_id, '返回列表')
             } else {
                 this.fail("操作失败！");
             }
             // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
+        }
+        // return this.display();
+    }
+
+    async setproxyAction() {
+        const mockid = this.get('mockid');
+        const is_proxy = this.get('is_proxy');
+        if (think.isEmpty(mockid)) {
+            this.fail({message: 'mockid为空 '})
+        }
+        if (think.isEmpty(is_proxy)) {
+            this.fail({message: 'is_proxy为空 '})
+        }
+        let data = await this.model('mockserver').where("mockid=" + mockid + "").find();
+        if (!think.isEmpty(data)) {
+            var _this = this;
+            let data = await this.model('mockserver').where("mockid=" + mockid + "").update({is_proxy: is_proxy});
+            if (data) {
+                this.success({message: '修改成功'})
+            } else {
+                this.fail({message: '修改失败'})
+            }
+        } else {
+            this.fail({message: 'mockid不存在'})
+        }
+        // return this.display();
+    }
+
+    async setproxysAction() {
+        const is_proxy = this.get('is_proxy');
+        const mockids = this.get('mockids');
+        if (think.isEmpty(is_proxy)) {
+            this.fail({message: 'is_proxy为空 '})
+        }
+        if (think.isEmpty(mockids)) {
+            this.fail({message: 'mockids为空 '})
+        }
+        let data = await this.model('mockserver').where(" mockid in (" + mockids + ")").update({is_proxy: is_proxy});
+        if (data) {
+            this.success({message: '修改成功'})
+        } else {
+            this.fail({message: '修改失败'})
         }
         // return this.display();
     }

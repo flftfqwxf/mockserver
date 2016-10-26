@@ -33,9 +33,8 @@ export default class extends Base {
                     data = data[0];
                 }
                 if (data.length > 1) {
-                    return this.json({'message':'有多个接口使用了此路径',list:data})
+                    return this.json({'message': '有多个接口使用了此路径', list: data})
                 }
-
             }
         }
         if (!think.isEmpty(data)) {
@@ -79,7 +78,10 @@ export default class extends Base {
     }
 
     compreData(firstUrl, secondUrl) {
+    }
 
+
+    compreData(firstUrl, secondUrl) {
     }
 
     urlParmsTransform(url) {
