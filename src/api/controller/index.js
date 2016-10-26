@@ -80,7 +80,6 @@ export default class extends Base {
     compreData(firstUrl, secondUrl) {
     }
 
-
     compreData(firstUrl, secondUrl) {
     }
 
@@ -160,7 +159,7 @@ export default class extends Base {
         };
         //将请求端的header信息获取,并传递给请求
         //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误
-        send.headers = Object.assign({}, this.http.headers, {'accept-encoding': null})
+        // send.headers = Object.assign({}, this.http.headers, {'accept-encoding': null})
         // }
         console.log(url)
         fn(send).then(function (content) {
@@ -174,6 +173,7 @@ export default class extends Base {
             _this.json(content.body);
         }).catch(function (err) {
             console.log(err)
+            _this.fail({message: url + ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'+err });
         });
     }
 }

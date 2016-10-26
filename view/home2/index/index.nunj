@@ -135,7 +135,7 @@
             $.getJSON('/home2/index/setproxy', {mockid: mockid, is_proxy: oper_proxy}).done(function (data) {
                 if (data) {
                     _this.html(txt).attr('data-is-proxy', oper_proxy);
-                    _this.sibling('.proxy_state').html(state)
+                    _this.parent().siblings('.proxy_state').html(state)
                 }
             }).fail(function (err) {
                 alert(err.message)

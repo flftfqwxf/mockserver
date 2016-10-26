@@ -78,6 +78,29 @@
                                     <p class="help-block">所有接口统一加上【/api/】前缀</p>
                                 </div>
                             </div>
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label">
+                                    <span class="common-required">*</span>匹配方式
+                                </label>
+                                <div class="col-sm-10 ">
+                                    <div class="select-group radio-group" data-toggle="buttons">
+                                        <!-- <div> -->
+                                        <label class="btn {% if is_proxy==0 %}active{% endif %}">
+                                            <input type="radio" name="is_proxy" value="0" {% if is_proxy==0 %}checked{% endif %} autocomplete="off">全匹配
+                                        </label>
+                                        <label class="btn {% if is_proxy==1 %}active{% endif %}">
+                                            <input type="radio" name="is_proxy" value="1" {% if is_proxy==1 %}checked{% endif %} autocomplete="off">只匹配【?】前部分
+                                        </label>
+                                        <!-- </div> -->
+                                    </div>
+                                    <p class="help-block">全匹配时,只有路径完全一致时才会匹配,<br>
+                                        只匹配【?】则以下都会匹配:
+                                        website/articles/comment?post_id=12
+                                        website/articles/comment?post_id=13
+                                        website/articles/comment?xxx=12
+                                    </p>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">请求参数说明</label>
                                 <div class="col-sm-10">
