@@ -57,8 +57,7 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <label class="btn btn-default btn-select">
-                                        <select style="" name="api_type" class="validate[required]"
-                                        >
+                                        <select style="" name="api_type" class="validate[required]">
                                             <option value="get" {{ "selected" if api_type=="get" }}>GET</option>
                                             <option value="post" {{ "selected" if api_type=="post" }}>POST</option>
                                             <option value="put" {{ "selected" if api_type=="put" }}>PUT</option>
@@ -85,15 +84,15 @@
                                 <div class="col-sm-10 ">
                                     <div class="select-group radio-group" data-toggle="buttons">
                                         <!-- <div> -->
-                                        <label class="btn {% if is_proxy==0 %}active{% endif %}">
-                                            <input type="radio" name="is_proxy" value="0" {% if is_proxy==0 %}checked{% endif %} autocomplete="off">全匹配
+                                        <label class="btn {% if exact_match===1 %}active{% endif %}">
+                                            <input type="radio" name="exact_match" value="0" {% if exact_match==0 %}checked{% endif %} autocomplete="off">精准匹配
                                         </label>
-                                        <label class="btn {% if is_proxy==1 %}active{% endif %}">
-                                            <input type="radio" name="is_proxy" value="1" {% if is_proxy==1 %}checked{% endif %} autocomplete="off">只匹配【?】前部分
+                                        <label class="btn {% if exact_match==0 or exact_match=="" or exact_match==null%}active{% endif %}">
+                                            <input type="radio" name="exact_match" value="1" {% if exact_match==1 %}checked{% endif %} autocomplete="off">只匹配【?】前部分
                                         </label>
                                         <!-- </div> -->
                                     </div>
-                                    <p class="help-block">全匹配时,只有路径完全一致时才会匹配,<br>
+                                    <p class="help-block">精准匹配时,只有路径完全一致时才会匹配,<br>
                                         只匹配【?】则以下都会匹配:
                                         website/articles/comment?post_id=12
                                         website/articles/comment?post_id=13
@@ -221,7 +220,7 @@
             </div>
         </div>
     </div>
-    {% if api_content|length ==0 or api_content|trim|length%}
+    {% if api_content|length ===0 or api_content|trim|length===0 %}
         {% set api_content='
               {"array": [
                 1,
@@ -239,31 +238,32 @@
               "string": "Hello World"
             }' %}
     {% endif %}
-    {% if api_content_desc|length ==0 or api_content_desc|trim|length%}
+    {% if api_content_desc|length ===0 or api_content_desc|trim|length===0 %}
         {% set api_content_desc=' {
                 "username": "参数说明",
                 "password": "参数说明"
             }' %}
     {% endif %}
-    {% if api_parms |length ==0 or api_parms|trim|length%}
+
+    {% if api_parms | length ===0 or api_parms|trim|length===0 %}
         {% set api_parms='{
                     "username": "模拟参数值",
                      "password": "模拟参数值"
                 }' %}
     {% endif %}
-    {% if api_parms_desc |length ==0 or api_parms_desc|trim|length%}
+    {% if api_parms_desc |length ===0 or api_parms_desc|trim|length===0 %}
         {% set api_parms_desc='{
                 "username": "模拟参数值",
                 "password": "模拟参数值"
         }' %}
     {% endif %}
-    {% if api_header |length ==0 or api_header|trim|length%}
+    {% if api_header |length ===0 or api_header|trim|length===0 %}
         {% set api_header=' {
                     "headere1": "模拟参数值",
                      "header2": "模拟参数值"
                 }' %}
     {% endif %}
-    {% if api_header_desc|length ==0 or api_header_desc|trim|length%}
+    {% if api_header_desc|length ===0 or api_header_desc|trim|length===0 %}
         {% set api_header_desc=' {
                 "headere1": "headere1参数说明",
                 "header2": "header2参数说明"

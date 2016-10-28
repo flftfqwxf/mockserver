@@ -1,16 +1,17 @@
 {
   "apps": [{
-    "name": "thinkjs",
-    "script": "www/production.js",
-    "cwd": "/Users/leixianhua/project/thinkjs/thinkjs",
+    "name": "mockserver",
+    "script": "www/development.js",
+    "cwd": "/var/www/mockserver",
     "exec_mode": "cluster",
+//    "watch":"../",
     "instances": 0,
     "max_memory_restart": "1G",
     "autorestart": true,
     "node_args": [],
     "args": [],
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
     "env": {
-      
     }
   }]
 }

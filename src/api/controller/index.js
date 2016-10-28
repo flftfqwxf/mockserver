@@ -28,12 +28,19 @@ export default class extends Base {
                 //     }
                 // })
                 // url += '?' + parmstr.join('&');
-                data = await this.model('mockserver').where("api_url regexp '^" + url + "\\\\?'").select();
-                if (data.length == 1) {
-                    data = data[0];
-                }
-                if (data.length > 1) {
-                    return this.json({'message': '有多个接口使用了此路径', list: data})
+                const tempdata = await this.model('mockserver').where("api_url regexp '^" + url + "\\\\?'").select();
+                if (tempdata.length == 1 && tempdata[0].exact_match === 0) {
+                    data = tempdata[0];
+                } else if (tempdata.length > 1) {
+                    data = [];
+                    tempdata.forEach((item, index)=> {
+                        if (item.exact_match !== 1) {
+                            data.push(item);
+                        }
+                    })
+                    if (data.length > 1) {
+                        return this.json({'message': '有多个接口使用了此路径', list: data})
+                    }
                 }
             }
         }
@@ -42,17 +49,17 @@ export default class extends Base {
             var _this = this;
             let headers;
             if (item.is_proxy === 0) {
+                let api_header;
                 if (item.api_header) {
                     try {
-                        const api_header = JSON.parse(item.api_header);
-                        for (var header in api_header) {
-                            console.log(header, api_header[header])
-                            let val = api_header[header];
-                            this.http.header(header, encodeURIComponent(val)
-                            );
-                        }
+                        api_header = JSON.parse(item.api_header);
                     } catch (e) {
-                        return this.fail({message: e.message});
+                        return this.fail({message: 'header信息格式错误'});
+                    }
+                    for (var header in api_header) {
+                        // console.log(header, api_header[header])
+                        let val = api_header[header];
+                        this.http.header(header, encodeURIComponent(val));
                     }
                     // headers = item.api_header.split(':');
                     // this.http.header(prefix + headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
@@ -75,12 +82,6 @@ export default class extends Base {
             this.getProxyFromProject()
         }
         // return this.display();
-    }
-
-    compreData(firstUrl, secondUrl) {
-    }
-
-    compreData(firstUrl, secondUrl) {
     }
 
     urlParmsTransform(url) {
@@ -176,7 +177,7 @@ export default class extends Base {
             _this.json(content.body);
         }).catch(function (err) {
             console.log(err)
-            _this.fail({message: url + ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'+err });
+            _this.fail({message: url + ':获取数据错误,可能是接口不存在,或参数错误,错误信息:' + err});
         });
     }
 }
