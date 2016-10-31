@@ -103,7 +103,6 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">请求参数说明</label>
                                 <div class="col-sm-10">
-
                                         <textarea name="api_parms_desc" style="display: none" id="api_parms_desc" cols="30" rows="10">
                                         {{ api_parms_desc }}
                                     </textarea>
