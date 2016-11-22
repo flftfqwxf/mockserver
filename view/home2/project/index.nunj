@@ -36,7 +36,7 @@
                             <tr>
                                 <td><a href="/home2/index/index?project_id={{ item.project_id }}">{{ item.project_name }}</a></td>
                                 <td>{{ item.proxy_url }}</td>
-                                <td><a href="/home2/project/delete?project_id={{ item.project_id }}">删除</a> <a href="/home2/project/edit?project_id={{ item.project_id }}">修改</a>
+                                <td><a class="deleteLnk" href="/home2/project/delete?project_id={{ item.project_id }}">删除</a> <a href="/home2/project/edit?project_id={{ item.project_id }}">修改</a>
                                     <a href="/home2/index/index?project_id={{ item.project_id }}">查看接口</a>
                                 </td>
                             </tr>
@@ -49,5 +49,12 @@
         <!--table end-->
     </div>
     <script>
+        $('.deleteLnk').click(function () {
+            if (confirm('删除项目无法恢复且其项目下的接口不会同步删除,你确定删除该项目么?')) {
+                return true;
+            } else {
+                return false;
+            }
+        })
     </script>
 {% endblock %}

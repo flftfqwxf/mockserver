@@ -1,6 +1,7 @@
 'use strict';
 import request from "request";
 import Base from './base.js';
+import Mock from 'mockjs';
 const prefix = '/api/';
 export default class extends Base {
     /**
@@ -64,7 +65,10 @@ export default class extends Base {
                     // headers = item.api_header.split(':');
                     // this.http.header(prefix + headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
                 }
-                this.json(item.api_content)
+                if (item.is_mockjs) {
+                    item.api_content = Mock.mock(JSON.parse(item.api_content));
+                }
+                this.json(item.api_content);
             } else {
                 if (item.proxy_prefix) {
                     _this.getProxy(item.proxy_prefix, prefix, item.api_url, item.api_type)
@@ -159,7 +163,7 @@ export default class extends Base {
             // headers:this.http.headers
         };
         send.headers = {
-            'authorization': this.http.headers.authorization
+            'Authorization': 'Token token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwidXNlcl9uYW1lIjoibGVvY25kIiwiZXhwIjoxNDgwNjQ3MTEwfQ.224E9BMv8kLB2iKgJpJUhik4h3bAyjnxXl4Q5h0jxKw'
         }
         //将请求端的header信息获取,并传递给请求
         //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误

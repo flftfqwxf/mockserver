@@ -102,7 +102,7 @@
                                     </script>
                                 </td>
                                 <td class="proxy_state">{{ '已关闭' if item.is_proxy==0 else '已开启' }}</td>
-                                <td><a href="/home2/index/delete?mockid={{ item.mockid }}">删除</a>
+                                <td><a class="deleteLnk" href="/home2/index/delete?mockid={{ item.mockid }}">删除</a>
                                     <a href="/home2/index/edit?mockid={{ item.mockid }}">修改</a>
                                     <a href="/home2/index/add?iscopy=1&mockid={{ item.mockid }}">复制</a>
                                     <a href="/api/{{ item.api_url }}" target="_blank">查看</a>
@@ -124,6 +124,13 @@
         <!--table end-->
     </div>
     <script>
+        $('.deleteLnk').click(function () {
+            if (confirm('删除后无法恢复,你确定删除该接口么?')) {
+                return true;
+            } else {
+                return false;
+            }
+        })
         $('.fa-times-circle').click(function () {
             $(this).prev('.form-control').val('')
         })

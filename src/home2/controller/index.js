@@ -107,7 +107,7 @@ export default class extends Base {
                 //行为记录
                 if (res) {
                     await this.model('mockserver').update(data);
-                    return this.setSucess('修改成功', '/home2/index/index?project_id=' + data.project_id, '返回列表')
+                    return this.setSucess('修改成功', '/home2/index/index?project_id=' + data.project_id, '返回列表', '/api/' + data.api_url, '查看接口')
                 } else {
                     this.fail("操作失败！");
                 }
@@ -120,7 +120,7 @@ export default class extends Base {
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.setSucess('添加成功', '/home2/index/index?project_id=' + data.project_id, '返回列表')
+                this.setSucess('添加成功', '/home2/index/index?project_id=' + data.project_id, '返回列表', '/api/' + data.api_url, '查看接口')
             } else {
                 this.fail("操作失败！");
             }
