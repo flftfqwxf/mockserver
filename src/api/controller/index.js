@@ -162,8 +162,10 @@ export default class extends Base {
             postDataSource: ''
             // headers:this.http.headers
         };
-        send.headers = {
-            'Authorization': 'Token token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwidXNlcl9uYW1lIjoibGVvY25kIiwiZXhwIjoxNDgwNjQ3MTEwfQ.224E9BMv8kLB2iKgJpJUhik4h3bAyjnxXl4Q5h0jxKw'
+        if (this.http.headers.authorization) {
+            send.headers = {
+                'Authorization': this.http.headers.authorization
+            }
         }
         //将请求端的header信息获取,并传递给请求
         //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误

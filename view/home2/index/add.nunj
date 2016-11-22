@@ -24,7 +24,7 @@
                                     <label class="btn btn-default btn-select">
                                         <select name="project_id" class="validate[required]"
                                                 id="form-validation-field-0">
-                                            {% set curGlobalProxy='eee' %}
+                                            {% set curGlobalProxy='' %}
 
                                             {% for item in  project %}
                                                 {% if item.project_id== project_id %}
