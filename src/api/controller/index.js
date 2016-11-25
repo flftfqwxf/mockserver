@@ -169,21 +169,31 @@ export default class extends Base {
         // console.log(url)
         // _this.fail({message: ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'});
         fn(send).then(function (content) {
-            for (var item in content.headers) {
-                // console.log(item)
-                _this.header(item, content.headers[item])
-            }
             // console.log(content.body)
+
             try {
                 content.body = JSON.parse(content.body)
             } catch (e) {
                 return Promise.reject(e.message);
             }
+            //todo:将返回的HEADER返回给客户端,有BUG,
+            //有些HEADER信息返回后会无法返回数据
+            /**
+             * todo:将返回的HEADER返回给客户端.
+             * todo:有BUG有些HEADER信息返回后会无法返回数据
+             * todo:此处必须try 之后,因为返回content-length header信息,在返回 fail时,会报错:
+             * net::ERR_CONTENT_LENGTH_MISMATCH
+             */
+            for (var item in content.headers) {
+                // console.log(item)
+                _this.header(item, content.headers[item])
+            }
+
             content.body.proxyDataSource = url
             _this.json(content.body);
         }).catch(function (err) {
             console.log(err)
-            _this.fail({message: ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'});
+            _this.fail({message: url + ':获取数据错误,可能是接口不存在,或参数错误,错误信息:' + err});
         });
     }
 }
