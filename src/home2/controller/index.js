@@ -6,7 +6,8 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
-        let data = this.get(), res, where = {};
+        let data = this.get(), res, where = {}, projectData={project_name:'全部接口'};
+
         if (data.keyword) {
             where._complex = {
                 api_name: ["like", "%" + data.keyword + "%"],
@@ -15,6 +16,7 @@ export default class extends Base {
             };
         }
         if (data.project_id) {
+            projectData = await  this.model('project').where({project_id: data.project_id}).find();
             where['mockserver.project_id'] = data.project_id;
             res = await this.model('mockserver').where(where).order('mockid desc')
                 .alias('mockserver')
@@ -41,6 +43,7 @@ export default class extends Base {
             title: '接口列表',
             list: res,
             project_id: data.project_id,
+            project_name: projectData.project_name,
             api_name: data.api_name
         })
         //auto render template file index_index.html
