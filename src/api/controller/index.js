@@ -107,29 +107,23 @@ export default class extends Base {
     async  getProxyFromProject(methodType) {
         const proxy_url = await this.checkProjectProxy()
         if (proxy_url) {
-            this.getProxy(proxy_url, prefix, this.http.url.replace('/api/', ''), methodType);
+            return this.getProxy(proxy_url, prefix, this.http.url.replace('/api/', ''), methodType);
         } else {
-            this.fail({message: '此接口未定义全局代理'})
+            return this.fail({message: '此接口未定义全局代理'})
         }
     }
 
     async checkProjectProxy() {
-        // const proxy_prefix = this.cookie('proxy_prefix');
-        const proxy_prefix = 'http://192.168.28.218';
+        let proxy_prefix = this.cookie('proxy_prefix') || this.http.headers.proxy_prefix;
         if (proxy_prefix) {
             return proxy_prefix;
         }
-        const project_id = this.http.headers.mock_project_id;
-        if (project_id) {
-            const projectItem = await this.model('project').where("project_id=" + project_id).find();
-            // console.log(projectItem)
-            if (!think.isEmpty(projectItem) && projectItem.proxy_url) {
-                return projectItem.proxy_url
-            }
-            return false
+        const systemConfig = await this.model('system').limit(1).find();
+        // console.log(projectItem)
+        if (!think.isEmpty(systemConfig) && systemConfig.proxy_url) {
+            return systemConfig.proxy_url
         } else {
-            // this.fail({message: '未指定项目名称'})
-            return false
+            return this.fail({message: '请在全局设置中设置全局二次代理'})
         }
     }
 
@@ -154,7 +148,7 @@ export default class extends Base {
         // }
         let fn = think.promisify(request[method]);
         const curHttp = this.http;
-        console.log(this.http.headers)
+        // console.log(this.http.headers)
         let url = httpPrefix + prefix + api_url;
         curHttp.url = url;
         let send = {
@@ -172,19 +166,24 @@ export default class extends Base {
         //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误
         // send.headers = Object.assign({}, this.http.headers, {'accept-encoding': null})
         // }
-        console.log(url)
+        // console.log(url)
+        // _this.fail({message: ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'});
         fn(send).then(function (content) {
             for (var item in content.headers) {
                 // console.log(item)
                 _this.header(item, content.headers[item])
             }
             // console.log(content.body)
-            content.body = JSON.parse(content.body)
+            try {
+                content.body = JSON.parse(content.body)
+            } catch (e) {
+                return Promise.reject(e.message);
+            }
             content.body.proxyDataSource = url
             _this.json(content.body);
         }).catch(function (err) {
             console.log(err)
-            _this.fail({message: url + ':获取数据错误,可能是接口不存在,或参数错误,错误信息:' + err});
+            _this.fail({message: ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'});
         });
     }
 }

@@ -23,6 +23,16 @@
                 <li><a href="/home2/index/add.html">添加接口</a></li>
             </ul>
         </li>
+        <li>
+            <a href="#nav4" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
+                <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
+                <i class="gm-icon gm-peer-plan"></i>
+                <span>系统管理</span>
+            </a>
+            <ul class="collapse in" id="nav3">
+                <li><a href="/home2/system/add.html">全局参数设置</a></li>
+            </ul>
+        </li>
         {#<li>#}
             {#<a href="#nav4" data-toggle="collapse" data-parent="#nav" aria-expanded="true">#}
                 {#<!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->#}

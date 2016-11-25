@@ -8,7 +8,7 @@
                 <div class="item-main">
                     <div class="emptylist-placeholder">
                         <p class="base-fontColor">{{ message }}</p>
-                        <a class="btn btn-default" href="javascript:history.go(-1)">返回上一步</a>
+                        <a class="btn btn-default" href="{{ preUrl }}">返回上一步</a>
                         <a class="btn btn-default" href="{{ url }}">{{ btnTxt }}</a>
                         {% if apiUrl %}
                             <a class="btn btn-default" href="{{ apiUrl }}">{{ apiUrlTxt }}</a>
