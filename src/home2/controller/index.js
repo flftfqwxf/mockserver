@@ -7,8 +7,12 @@ export default class extends Base {
      */
     async indexAction() {
         let data = this.get(), res, where = {};
-        if (data.api_name) {
-            where.api_name = ["like", "%" + data.api_name + "%"];
+        if (data.keyword) {
+            where._complex = {
+                api_name: ["like", "%" + data.keyword + "%"],
+                api_url: ["like", "%" + data.keyword + "%"],
+                _logic: "or"
+            };
         }
         if (data.project_id) {
             where['mockserver.project_id'] = data.project_id;

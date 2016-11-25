@@ -30,6 +30,7 @@ export default class extends Base {
                 // })
                 // url += '?' + parmstr.join('&');
                 const tempdata = await this.model('mockserver').where("api_url regexp '^" + url + "\\\\?'").select();
+                //当匹配方式为只匹配【?】后面参数时
                 if (tempdata.length == 1 && tempdata[0].exact_match === 0) {
                     data = tempdata[0];
                 } else if (tempdata.length > 1) {

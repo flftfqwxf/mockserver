@@ -16,7 +16,7 @@
                             <div class="input-group">
                                 <div class="has-feedback">
                                     <input type="hidden" name="project_id" value="{{ project_id }}">
-                                    <input type="text" class="form-control" name="api_name" value="{{ api_name }}">
+                                    <input type="text" class="form-control" placeholder="路径或名称" name="keyword" value="{{ keyword }}">
                                     <i class="fa fa-times-circle form-control-feedback" data-role="button"></i>
                                 </div>
                                 <span class="input-group-btn">
