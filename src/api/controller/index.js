@@ -9,6 +9,8 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
+        //获取全局配置
+        this.systemConfig = await this.model('system').limit(1).find();
         //auto render template file index_index.html
         // console.log(this.http.url)
         let url = this.http.url.replace('/api/', '');
@@ -76,15 +78,15 @@ export default class extends Base {
                     // console.log(fn)
                     // this.json({message: '此接口没有提定代理地址请检查并修改2'});
                 } else {
-                    if (!this.checkProjectProxy()) {
+                    if (!this.checkProjectProxy(_this.systemConfig.proxy_url)) {
                         this.fail({message: '此接口没有指定全局和局部代理地址请检查并修改'})
                     } else {
-                        this.getProxyFromProject(item.api_type)
+                        this.getProxyFromProject(item.api_type, _this.systemConfig.proxy_url)
                     }
                 }
             }
         } else {
-            this.getProxyFromProject()
+            this.getProxyFromProject(null, this.systemConfig.proxy_url)
         }
         // return this.display();
     }
@@ -104,8 +106,8 @@ export default class extends Base {
         return tempObj;
     }
 
-    async  getProxyFromProject(methodType) {
-        const proxy_url = await this.checkProjectProxy()
+    async  getProxyFromProject(methodType, systemProxyUrl) {
+        const proxy_url = await this.checkProjectProxy(systemProxyUrl);
         if (proxy_url) {
             return this.getProxy(proxy_url, prefix, this.http.url.replace('/api/', ''), methodType);
         } else {
@@ -113,15 +115,18 @@ export default class extends Base {
         }
     }
 
-    async checkProjectProxy() {
+    /**
+     * 获取代理前缀地址,获取权重 COOKIE>header>系统全局设置
+     * @param systemProxyUrl 系统全局的代理路径
+     * @returns {*}
+     */
+    async checkProjectProxy(systemProxyUrl) {
         let proxy_prefix = this.cookie('proxy_prefix') || this.http.headers.proxy_prefix;
         if (proxy_prefix) {
             return proxy_prefix;
         }
-        const systemConfig = await this.model('system').limit(1).find();
-        // console.log(projectItem)
-        if (!think.isEmpty(systemConfig) && systemConfig.proxy_url) {
-            return systemConfig.proxy_url
+        if (systemProxyUrl) {
+            return systemProxyUrl
         } else {
             return this.fail({message: '请在全局设置中设置全局二次代理'})
         }
@@ -157,9 +162,24 @@ export default class extends Base {
             postDataSource: ''
             // headers:this.http.headers
         };
-        if (this.http.headers.authorization) {
-            send.headers = {
-                'Authorization': this.http.headers.authorization
+        if (this.systemConfig && this.systemConfig.api_headers) {
+            let api_headers;
+            try {
+                api_headers = JSON.parse(this.systemConfig.api_headers);
+            } catch (e) {
+                return this.fail({message: e.message})
+            }
+            if (think.isArray(api_headers.headers)) {
+                let headersObj = {};
+                api_headers.headers.forEach((item)=> {
+                    item = item.toLowerCase();
+                    if (_this.http.headers[item]) {
+                        headersObj[item] = _this.http.headers[item];
+                    }
+                });
+                send.headers = headersObj;
+            } else {
+                return this.fail({message: 'header格式错误,请参考全局配置中格式说明'})
             }
         }
         //将请求端的header信息获取,并传递给请求
@@ -168,9 +188,8 @@ export default class extends Base {
         // }
         // console.log(url)
         // _this.fail({message: ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'});
-        fn(send).then(function (content) {
+        fn(send).then(function(content) {
             // console.log(content.body)
-
             try {
                 content.body = JSON.parse(content.body)
             } catch (e) {
@@ -188,10 +207,9 @@ export default class extends Base {
                 // console.log(item)
                 _this.header(item, content.headers[item])
             }
-
             content.body.proxyDataSource = url
             _this.json(content.body);
-        }).catch(function (err) {
+        }).catch(function(err) {
             console.log(err)
             _this.fail({message: url + ':获取数据错误,可能是接口不存在,或参数错误,错误信息:' + err});
         });

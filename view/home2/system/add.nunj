@@ -22,7 +22,6 @@
                                         <b>重要:此参数用于设置所有通过此系统,再次代理到其他服务的URL前缀</b>
                                         <br><br><br>
                                         重要!!!二次代理用途:<br>
-
                                         开发过程中,由于实际的数据未准备好,通过访问本系统定义的API,并关闭所有二次代理,则会直接返回模拟的数据<br>
                                         但在开发完成后,需要访问真实的数据时,则可以通过设置二次代理,将请求再次代理到【真实数据服务上】,并返回真实数据<br><br>
                                         举例说明:<br><br>
@@ -55,6 +54,29 @@
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">全局header字段</label>
+                                <div class="col-sm-10">
+
+                                        <textarea name="api_headers" style="display: none" id="api_headers" cols="30" rows="10">
+                                        {{ api_headers }}
+                                    </textarea>
+                                    <iframe id="headerIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">全局header字段参数说明</label>
+                                <div class="col-sm-10">
+
+                                        <textarea name="api_headers_desc" style="display: none" id="api_headers_desc" cols="30" rows="10">
+                                        {{ api_headers_desc }}
+                                    </textarea>
+                                    <iframe id="headerDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                    <p class="help-block">添加返回接口的 header信息</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-dashed">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-10">
                                     <button class="btn btn-default" type="button">取消</button>
@@ -67,6 +89,42 @@
             </div>
         </div>
     </div>
+
+    {% if api_headers |length ===0 or api_headers|trim|length===0 %}
+        {% set api_headers=' {
+                    "headers":["header1","header2","header3"]
+                }' %}
+    {% endif %}
+    {% if api_headers_desc|length ===0 or api_headers_desc|trim|length===0 %}
+        {% set api_headers_desc=' {
+                "headers": ["header字段名1","header字段名2","header字段名3"]
+            }' %}
+    {% endif %}
     <script>
+        try {
+            var api_headers ={{ api_headers | safe }};
+            var api_headers_desc ={{ api_headers_desc | safe }};
+        } catch (e) {
+        }
+        $("#headerIframe").load(function() {
+            $("#headerIframe")[0].contentWindow.setJson(api_headers);
+        })
+        $("#headerDescIframe").load(function() {
+            $("#headerDescIframe")[0].contentWindow.setJson(api_headers_desc);
+        })
+        $('#formId').submit(function() {
+            var header = $("#headerIframe")[0].contentWindow.getJson();
+            var headerDesc = $("#headerDescIframe")[0].contentWindow.getJson();
+            if (header) {
+                $('#api_headers').val(header);
+            }
+            if (headerDesc) {
+                $('#api_headers_desc').val(headerDesc);
+            }
+            if (header && headerDesc) {
+                return true;
+            }
+            return false
+        })
     </script>
 {% endblock %}
