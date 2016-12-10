@@ -15,7 +15,7 @@ npm install
 npm start
 ```
 
-#### 需要安装mysql数据,并导入最新的mockserver-xx-xx.sql 文件
+##需要安装mysql[5.7.14], 并导入最新的mockserver-xx-xx.sql 文件
 
 ##功能说明:
 
