@@ -124,6 +124,7 @@ npm start
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-299c062b72462c64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-299c062b72462c64.png?imageMogr2/auto-orient/strip" data-image-slug="299c062b72462c64" data-width="1072" data-height="581" class="imagebubble-image">
 
+<img src="http://upload-images.jianshu.io/upload_images/1347474-b940b977fbfb2d12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-b940b977fbfb2d12.png?imageMogr2/auto-orient/strip" data-image-slug="b940b977fbfb2d12" data-width="1052" data-height="590" class="imagebubble-image">
 
 
  ```
