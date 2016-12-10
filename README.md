@@ -19,7 +19,7 @@ npm start
 
 ##功能说明:
 
- ```支持可视化编辑JSON接口数据
+ ```支持可视化编辑JSON接口数据及接口文档
  
  支持GET、POST、PUT、DELETE请求类型
 
@@ -55,7 +55,8 @@ npm start
 
  ```
 
- 有些时候，你的请求地址的参数是动态的，比如分页【http:192.168.0.2/a?page=1】,这个时候的路径匹配就不能全路径匹配，而是只需要匹配【？】前部分
+ 有些时候，你的请求地址的参数是动态的，比如分页【http:192.168.0.2/a?page=1】,
+ 这个时候的路径匹配就不能全路径匹配，而是只需要匹配【？】前部分
 
  ```
 
@@ -75,7 +76,11 @@ npm start
 
 
  ```
- 在实际开发中，我们常常会遇到这种情况，在开发的前期，数据接口的数据是模拟的，但是开发到了中后期，部分真实的接口已经开发好，就需要以真实的数据来测试，在以前只能将整个mock-server服务切换到真实的接口服务上，但是这样存在一个问题，就是如果在项目中期，部分接口完成了，部分接口没完成，就比较麻烦，此功能就是指定某个接口去访问真实的接口的方法。
+ 在实际开发中，我们常常会遇到这种情况，在开发的前期，数据接口的数据是模拟的，
+ 但是开发到了中后期，部分真实的接口已经开发好，就需要以真实的数据来测试，
+ 在以前只能将整个mock-server服务切换到真实的接口服务上，但是这样存在一个问题，
+ 就是如果在项目中期，部分接口完成了，部分接口没完成，就比较麻烦，
+ 此功能就是指定某个接口去访问真实的接口的方法。
 
  二次代理是指将本来代理到mock-server系统的接口，再次代理到其他的服务上
 
@@ -113,7 +118,8 @@ npm start
 
 ```
 ```
- 注意：如果开启了二次代理，在返回接口的最后一个字段将为[proxyDataSource],值为你实际请求的接口完整地址，以方便实际使用中，知道自己是访问的模拟数据，还是真实数据
+ 注意：如果开启了二次代理，在返回接口的最后一个字段将为[proxyDataSource],
+ 值为你实际请求的接口完整地址，以方便实际使用中，知道自己是访问的模拟数据，还是真实数据
 ```
 
 ##接口返回值及参数说明:
@@ -123,9 +129,8 @@ npm start
 
 
  ```
-
- 你可以通过点击从【从二次代理中获取数据,并填充,保存后生效】从你设置的二次代理中获取到真实数据，达到类似postman验证数据接口正确性的功能
-
+ 你可以通过点击从【从二次代理中获取数据,并填充,保存后生效】从你设置的二次代理中获取到真实数据，
+ 达到类似postman验证数据接口正确性的功能
  ```
 ##开启mockjs:
 
@@ -133,17 +138,16 @@ npm start
 
 ```
  同时，为了更好的模拟数据，整合了mockjs，mockjs官网
-
 ```
 
-####header头信息返回数据：
+##header头信息返回数据：
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-08217d0d4e58f0a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-08217d0d4e58f0a7.png?imageMogr2/auto-orient/strip" data-image-slug="08217d0d4e58f0a7" data-width="1122" data-height="582" class="imagebubble-image">
 
 ```
  除了返回json外，有些时候还需要返回一些特定的header信息，如登录的token验证
  如此一个模拟数据基本成型.
- ```
+```
 
 ##接口列表：
 
@@ -168,8 +172,10 @@ npm start
  <img src="http://upload-images.jianshu.io/upload_images/1347474-878a55a81a6c1253.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-878a55a81a6c1253.png?imageMogr2/auto-orient/strip" data-image-slug="878a55a81a6c1253" data-width="1121" data-height="85" class="imagebubble-image">
 
 ```
- 前面已讲过作用，此处是设置一个全局二次代理，当你在项目或添加接口时没有二次代理时，就会使用此二次代理（强烈建议设置，因为当你访问一个在本系统中根本没有定义的接口时，如果设置了此项，系统依然会将你访问的接口代理到此处设置的服务上，这对于一些老接口非常有用，不用在此系统上，将老接口在此系统上再定义一遍，当然从文档记录上讲，再定义一遍，作为接口的文档记录是可取的）
-
+ 前面已讲过作用，此处是设置一个全局二次代理，当你在项目或添加接口时没有二次代理时，就会使用此二次
+ 代理（强烈建议设置，因为当你访问一个在本系统中根本没有定义的接口时，如果设置了此项，系统依然会将
+ 你访问的接口代理到此处设置的服务上，这对于一些老接口非常有用，不用在此系统上，将老接口在此系统上
+ 再定义一遍，当然从文档记录上讲，再定义一遍，作为接口的文档记录是可取的）
  ```
 
 ##header头信息设置：
@@ -177,7 +183,6 @@ npm start
 <img src="http://upload-images.jianshu.io/upload_images/1347474-f85cc043e9dba29f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-f85cc043e9dba29f.png?imageMogr2/auto-orient/strip" data-image-slug="f85cc043e9dba29f" data-width="1103" data-height="312" class="imagebubble-image">
 
 ```
-
  在某些时候，AJAX请求的头信息中需要传递一些特殊字段，如：当发起一个AJAX请求，请求的header中带有【Authorization】字段，用于验证用户权限，此处就是用于设置当存在这些header字段时，需要传递到真实的server端，主要是二次代理开启后使用：
 
  举例说明：
