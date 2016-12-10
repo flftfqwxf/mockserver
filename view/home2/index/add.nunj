@@ -196,7 +196,7 @@
                                         <label class="btn {% if is_mockjs==1 %}active{% endif %}">
                                             <input type="radio" name="is_mockjs" value="1" {% if is_mockjs==1 %}checked{% endif %} autocomplete="off">开启
                                         </label>
-                                        <p style="display: inline;"><a href="http://mockjs.com/" target="_blank" class="getProxy">mockjs官网</a>
+                                        <p style="display: inline;"><a href="http://mockjs.com/" target="_blank" >mockjs官网</a>
                                         </p>
                                         <!-- </div> -->
                                     </div>
