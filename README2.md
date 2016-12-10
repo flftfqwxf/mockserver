@@ -31,11 +31,9 @@ npm start
  <img src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip" data-image-slug="b9d7d981cfeda35b" data-width="2440" data-height="6890" class="imagebubble-image">
 
 
+###如图所示，大致包含了以下功能：
 
-  ###如图所示，大致包含了以下功能：
-
-
- ####选择项目、接口名称、接口地址：
+####选择项目、接口名称、接口地址：
 
  <img src="http://upload-images.jianshu.io/upload_images/1347474-a5c23d82ff208684.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-a5c23d82ff208684.png?imageMogr2/auto-orient/strip" data-image-slug="a5c23d82ff208684" data-width="1064" data-height="243" class="imagebubble-image">
 
