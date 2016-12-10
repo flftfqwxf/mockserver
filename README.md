@@ -19,7 +19,8 @@ npm start
 
 ##功能说明:
 
- ```支持可视化编辑JSON接口数据及接口文档
+ ```
+ 支持可视化编辑JSON接口数据及接口文档
  
  支持GET、POST、PUT、DELETE请求类型
 
@@ -28,7 +29,7 @@ npm start
  支持局部二次代理(开发过程中某个接口使用模拟数据,当此接口已开发完成后,可将指定接口,通过此服务指向到指定接口上)
 ```
 
- <img src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip" data-image-slug="b9d7d981cfeda35b" data-width="2440" data-height="6890" class="imagebubble-image">
+ <img src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip" >
 
 
 #如图所示，大致包含了以下功能：
@@ -40,7 +41,6 @@ npm start
 
 
  ```
-
  （注意：所以接口都强制了[API]前缀，这个是为了规范接口，后期如有需要可以改为可配置）
 
  接口请求类型：PUT、POST、GET、DELETE
@@ -54,7 +54,6 @@ npm start
 
 
  ```
-
  有些时候，你的请求地址的参数是动态的，比如分页【http:192.168.0.2/a?page=1】,
  这个时候的路径匹配就不能全路径匹配，而是只需要匹配【？】前部分
 
@@ -65,7 +64,6 @@ npm start
 <img src="http://upload-images.jianshu.io/upload_images/1347474-ff953ef1964c7d84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-ff953ef1964c7d84.png?imageMogr2/auto-orient/strip" data-image-slug="ff953ef1964c7d84" data-width="997" data-height="552" class="imagebubble-image">
 
  ```
-
  添加了可视化的JSON编辑器，方便查看，也可验证数据格式正确性
 
 ```
