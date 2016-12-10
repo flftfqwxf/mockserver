@@ -31,9 +31,9 @@ npm start
  <img src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip" data-image-slug="b9d7d981cfeda35b" data-width="2440" data-height="6890" class="imagebubble-image">
 
 
-###如图所示，大致包含了以下功能：
+#如图所示，大致包含了以下功能：
 
-####选择项目、接口名称、接口地址：
+##选择项目、接口名称、接口地址：
 
  <img src="http://upload-images.jianshu.io/upload_images/1347474-a5c23d82ff208684.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-a5c23d82ff208684.png?imageMogr2/auto-orient/strip" data-image-slug="a5c23d82ff208684" data-width="1064" data-height="243" class="imagebubble-image">
 
@@ -46,7 +46,7 @@ npm start
  接口请求类型：PUT、POST、GET、DELETE
 ```
 
- ####匹配方式：分为全地址匹配和部分匹配
+##匹配方式：分为全地址匹配和部分匹配
 
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-6d75a15f17eb648e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-6d75a15f17eb648e.png?imageMogr2/auto-orient/strip" data-image-slug="6d75a15f17eb648e" data-width="1073" data-height="87" class="imagebubble-image">
@@ -59,7 +59,7 @@ npm start
 
  ```
 
- ####请求参数及请求参数说明：
+##请求参数及请求参数说明：
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-ff953ef1964c7d84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-ff953ef1964c7d84.png?imageMogr2/auto-orient/strip" data-image-slug="ff953ef1964c7d84" data-width="997" data-height="552" class="imagebubble-image">
 
@@ -69,7 +69,7 @@ npm start
 
 ```
 
- ####二次代理设置
+##二次代理设置
 
  <img src="http://upload-images.jianshu.io/upload_images/1347474-3342a3771d0c2a40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-3342a3771d0c2a40.png?imageMogr2/auto-orient/strip" data-image-slug="3342a3771d0c2a40" data-width="1152" data-height="215" class="imagebubble-image">
 
@@ -116,7 +116,7 @@ npm start
  注意：如果开启了二次代理，在返回接口的最后一个字段将为[proxyDataSource],值为你实际请求的接口完整地址，以方便实际使用中，知道自己是访问的模拟数据，还是真实数据
 ```
 
- ####接口返回值及参数说明:
+##接口返回值及参数说明:
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-299c062b72462c64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-299c062b72462c64.png?imageMogr2/auto-orient/strip" data-image-slug="299c062b72462c64" data-width="1072" data-height="581" class="imagebubble-image">
 
@@ -127,7 +127,7 @@ npm start
  你可以通过点击从【从二次代理中获取数据,并填充,保存后生效】从你设置的二次代理中获取到真实数据，达到类似postman验证数据接口正确性的功能
 
  ```
- ####开启mockjs:
+##开启mockjs:
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-8e72fad775f67b5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-8e72fad775f67b5b.png?imageMogr2/auto-orient/strip" data-image-slug="8e72fad775f67b5b" data-width="1164" data-height="78" class="imagebubble-image">
 
@@ -145,7 +145,7 @@ npm start
  如此一个模拟数据基本成型.
  ```
 
- ####接口列表：
+##接口列表：
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-479bc64316bc03cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-479bc64316bc03cd.png?imageMogr2/auto-orient/strip" data-image-slug="479bc64316bc03cd" data-width="1200" data-height="557" class="imagebubble-image">
 
@@ -154,10 +154,10 @@ npm start
  提供搜索、复制、快速开启关闭二次代理功能，点击接口可以直接查看接口返回内容
  ```
 
- ##其他的功能：
+ #其他的功能：
 
 
- ###全局设置：
+ ##全局设置：
 
 
 
@@ -172,7 +172,7 @@ npm start
 
  ```
 
- ####header头信息设置：
+##header头信息设置：
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-f85cc043e9dba29f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-f85cc043e9dba29f.png?imageMogr2/auto-orient/strip" data-image-slug="f85cc043e9dba29f" data-width="1103" data-height="312" class="imagebubble-image">
 
@@ -190,18 +190,17 @@ npm start
 
  这确实是一种方案，这样就不用去单独去设置，但是在此前的实践中，发现完全把客户端的头信息传递给二次代理，有时候会发现服务端无法返回正确数据，查了相关资料，原因可能是:http信息的传递是有顺序的，当通过循环将HEADER信息传递给 真实服务时，可能服务端无法返回正确数据，如果哪位有解决方案，可以告之，谢谢。
  ```
+#项目管理：
 
- ###项目管理：
 
-
- ####添加/修改项目
+##添加/修改项目
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-79e30cef7dc25873.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-79e30cef7dc25873.png?imageMogr2/auto-orient/strip" data-image-slug="79e30cef7dc25873" data-width="1167" data-height="284" class="imagebubble-image">
 
 ```
  主要用于在不同项目中作区分管理
  ```
-#### 项目列表：
+## 项目列表：
 
 <img src="http://upload-images.jianshu.io/upload_images/1347474-7ab45e9703e10cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-7ab45e9703e10cfd.png?imageMogr2/auto-orient/strip" data-image-slug="7ab45e9703e10cfd" data-width="1196" data-height="306" class="imagebubble-image">
 
