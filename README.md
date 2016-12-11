@@ -8,14 +8,19 @@
 ```
 npm install
 ```
+##导入mysql数据库文件
 
+```
+需要安装mysql[5.7.14], 并导入最新的mockserver-xx-xx.sql 文件
+修改/src/common/config/db.js中的数据库配置
+```
 ## Start server
 
 ```
 npm start
 ```
 
-##需要安装mysql[5.7.14], 并导入最新的mockserver-xx-xx.sql 文件
+##
 
 ##功能说明:
 
