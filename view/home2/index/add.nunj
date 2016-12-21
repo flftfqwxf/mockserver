@@ -183,6 +183,19 @@
                             </div>
                         </div>
                         <div class="form-group-dashed">
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label">
+                                    <span class="common-required">*</span>返回状态码
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="api_state_code" maxlength="10" value="{{ api_state_code if api_state_code else  200 }}"
+                                           class="form-control api_state_code w100  validate[required,integer]"
+                                           placeholder="默认200"/>
+                                    <p class="help-block">返回状态码，默认200</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
                                     开启mockjs
@@ -196,7 +209,7 @@
                                         <label class="btn {% if is_mockjs==1 %}active{% endif %}">
                                             <input type="radio" name="is_mockjs" value="1" {% if is_mockjs==1 %}checked{% endif %} autocomplete="off">开启
                                         </label>
-                                        <p style="display: inline;"><a href="http://mockjs.com/" target="_blank" >mockjs官网</a>
+                                        <p style="display: inline;"><a href="http://mockjs.com/" target="_blank">mockjs官网</a>
                                         </p>
                                         <!-- </div> -->
                                     </div>
@@ -299,7 +312,7 @@
             var api_header_desc ={{ api_header_desc | safe }};
         } catch (e) {
         }
-        $('.getProxy').click(function () {
+        $('.getProxy').click(function() {
             var gp = '{{ curGlobalProxy }}';
             var url = '{{ proxy_prefix }}';
             var api_url = '{{ api_url }}';
@@ -308,13 +321,13 @@
                 url += '/api/' + api_url;
                 $('.getTips').html('正在从【' + url + '】获取数据');
                 $.ajax({
-                    'datatype': 'json', type: 'get', url: url, success: function (data) {
+                    'datatype': 'json', type: 'get', url: url, success: function(data) {
                         if (data) {
                             api_content = data;
                             $("#jsonIframe")[0].src = $("#jsonIframe")[0].src;
                             $('.getTips').html('获取成功')
                         }
-                    }, error: function (err) {
+                    }, error: function(err) {
                         $('.getTips').html('获取失败' + err)
                     }
                 })
@@ -323,26 +336,26 @@
                 return false;
             }
         });
-        $("#jsonIframe").load(function () {
+        $("#jsonIframe").load(function() {
             $("#jsonIframe")[0].contentWindow.setJson(api_content);
         })
-        $("#jsonDescIframe").load(function () {
+        $("#jsonDescIframe").load(function() {
             $("#jsonDescIframe")[0].contentWindow.setJson(api_content_desc);
         })
-        $("#parmsIframe").load(function () {
+        $("#parmsIframe").load(function() {
             $("#parmsIframe")[0].contentWindow.setJson(api_parms);
         })
-        $("#parmsDescIframe").load(function () {
+        $("#parmsDescIframe").load(function() {
             $("#parmsDescIframe")[0].contentWindow.setJson(api_parms_desc);
         })
-        $("#headerIframe").load(function () {
+        $("#headerIframe").load(function() {
             $("#headerIframe")[0].contentWindow.setJson(api_header);
         })
-        $("#headerDescIframe").load(function () {
+        $("#headerDescIframe").load(function() {
             $("#headerDescIframe")[0].contentWindow.setJson(api_header_desc);
         })
         //        ("#jsonIframe")[0].contentWindow.getJson();
-        $('#formId').submit(function () {
+        $('#formId').submit(function() {
             var json = $("#jsonIframe")[0].contentWindow.getJson();
             var parms = $("#parmsIframe")[0].contentWindow.getJson();
             var header = $("#headerIframe")[0].contentWindow.getJson();

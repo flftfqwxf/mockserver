@@ -1,6 +1,6 @@
 {
-  "name": "web-mock-server",
-  "description": "A web system for mock-server,一个WEB版本的mock-server系统",
+  "name": "thinkjs-application",
+  "description": "application created by thinkjs",
   "version": "1.0.0",
   "scripts": {
     "start": "node www/development.js",
@@ -23,21 +23,6 @@
     "babel-preset-es2015-loose": "6.x.x",
     "babel-preset-stage-1": "6.x.x"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/flftfqwxf/mock-server.git"
-  },
-  "license": "MIT",
-  "main": "index.js",
-  "keywords": [
-    "mock-server",
-    "nodejs",
-    "thinkjs",
-    "web"
-  ],
-  "author": "flftfqwxf",
-  "bugs": {
-    "url": "https://github.com/flftfqwxf/mock-server/issues"
-  },
-  "homepage": "https://github.com/flftfqwxf/mock-server#readme"
+  "repository": "",
+  "license": "MIT"
 }
