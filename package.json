@@ -1,7 +1,7 @@
 {
   "name": "web-mock-server",
   "description": "A web system for mock-server,一个WEB版本的mock-server系统",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start": "node www/development.js",
     "compile": "babel --presets es2015-loose,stage-1 --plugins transform-runtime src/ --out-dir app/ --source-maps",
@@ -28,7 +28,7 @@
     "url": "git+https://github.com/flftfqwxf/mock-server.git"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "www/development.js",
   "keywords": [
     "mock-server",
     "nodejs",
