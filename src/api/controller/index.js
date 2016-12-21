@@ -22,15 +22,6 @@ export default class extends Base {
             let tempUrl = url.split('?');
             if (tempUrl.length == 2) {
                 url = tempUrl[0];
-                // let parmsList = tempUrl[1].split('&');
-                // let parm, parmstr = [];
-                // parmsList.forEach((item)=> {
-                //     parm = item.split('=');
-                //     if (parm.length == 2) {
-                //         parmstr.push(parm[0] + ':' + parm[0])
-                //     }
-                // })
-                // url += '?' + parmstr.join('&');
                 const tempdata = await this.model('mockserver').where("api_url regexp '^" + url + "\\\\?'").select();
                 //当匹配方式为只匹配【?】后面参数时
                 if (tempdata.length == 1 && tempdata[0].exact_match === 0) {
@@ -70,6 +61,9 @@ export default class extends Base {
                 }
                 if (item.is_mockjs) {
                     item.api_content = Mock.mock(JSON.parse(item.api_content));
+                }
+                if (item.api_state_code) {
+                    this.http.status(item.api_state_code)
                 }
                 this.json(item.api_content);
             } else {

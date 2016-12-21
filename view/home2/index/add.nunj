@@ -188,7 +188,7 @@
                                     <span class="common-required">*</span>返回状态码
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="api_state_code" maxlength="10" value="{{ api_state_code if api_state_code else  200 }}"
+                                    <input type="text" name="api_state_code" maxlength="3" value="{{ api_state_code if api_state_code else  200 }}"
                                            class="form-control api_state_code w100  validate[required,integer]"
                                            placeholder="默认200"/>
                                     <p class="help-block">返回状态码，默认200</p>
