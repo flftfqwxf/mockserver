@@ -28,12 +28,20 @@ npm start
  支持可视化编辑JSON接口数据及接口文档
  
  支持GET、POST、PUT、DELETE请求类型
-
+ 
+ 支持指定返回状态码，默认200
+ 
  支持mockjs
 
- 支持局部二次代理(开发过程中某个接口使用模拟数据,当此接口已开发完成后,可将指定接口,通过此服务指向到指定接口上)
+ 支持单个接口代理到真实服务器(开发过程中某个接口使用模拟数据,当此接口已开发完成后,可将指定接口,通过此服务指向到指定接口上)
 ```
 
+##开发中功能：
+
+```
+ 支持延时返回数据
+ 支持类似【postman】接口测试功能
+```
  <img src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip" >
 
 
@@ -61,7 +69,6 @@ npm start
  ```
  有些时候，你的请求地址的参数是动态的，比如分页【http:192.168.0.2/a?page=1】,
  这个时候的路径匹配就不能全路径匹配，而是只需要匹配【？】前部分
-
  ```
 
 ##请求参数及请求参数说明：
@@ -70,7 +77,6 @@ npm start
 
  ```
  添加了可视化的JSON编辑器，方便查看，也可验证数据格式正确性
-
 ```
 
 ##二次代理设置
@@ -78,19 +84,20 @@ npm start
  <img src="http://upload-images.jianshu.io/upload_images/1347474-3342a3771d0c2a40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-3342a3771d0c2a40.png?imageMogr2/auto-orient/strip" data-image-slug="3342a3771d0c2a40" data-width="1152" data-height="215" class="imagebubble-image">
 
 
- ```
- 在实际开发中，我们常常会遇到这种情况，在开发的前期，数据接口的数据是模拟的，
+**在实际开发中，我们常常会遇到这种情况，在开发的前期，数据接口的数据是模拟的，
  但是开发到了中后期，部分真实的接口已经开发好，就需要以真实的数据来测试，
  在以前只能将整个mock-server服务切换到真实的接口服务上，但是这样存在一个问题，
  就是如果在项目中期，部分接口完成了，部分接口没完成，就比较麻烦，
- 此功能就是指定某个接口去访问真实的接口的方法。
-
+ 此功能就是指定某个接口去访问真实的接口的方法。**
+ 
+ ```
  二次代理是指将本来代理到mock-server系统的接口，再次代理到其他的服务上
 
  二次代理前缀：是指将此接口的域名指向到你想指向的地址
+```
+ **举例说明**
 
- ****举例说明****
-
+ ```
  开发中:
 
  1)某个AJAX服务,需要模拟,通过NGINX或其他方法将 [http://127.0.0.1/api]下所有请求,全部指向到本系统,
@@ -118,8 +125,9 @@ npm start
  分别开发了,全站级二次代理、项目级二次代理、单个接口的二次代理
 
  权重为全站级二次代理 <项目级二次代理 <单个接口的二次代理
-
+ 
 ```
+
 ```
  注意：如果开启了二次代理，在返回接口的最后一个字段将为[proxyDataSource],
  值为你实际请求的接口完整地址，以方便实际使用中，知道自己是访问的模拟数据，还是真实数据
