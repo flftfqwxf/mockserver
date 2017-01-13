@@ -22,20 +22,20 @@ export default class extends Base {
             let tempUrl = url.split('?');
             if (tempUrl.length == 2) {
                 url = tempUrl[0];
-                const tempdata = await this.model('mockserver').where("api_url regexp '^" + url + "\\\\?'").select();
-                //当匹配方式为只匹配【?】后面参数时
-                if (tempdata.length == 1 && tempdata[0].exact_match === 0) {
-                    data = tempdata[0];
-                } else if (tempdata.length > 1) {
-                    data = [];
-                    tempdata.forEach((item, index)=> {
-                        if (item.exact_match !== 1) {
-                            data.push(item);
-                        }
-                    })
-                    if (data.length > 1) {
-                        return this.json({'message': '有多个接口使用了此路径', list: data})
+            }
+            const tempdata = await this.model('mockserver').where("api_url regexp '^" + url + "\\\\?'").select();
+            //当匹配方式为只匹配【?】后面参数时
+            if (tempdata.length == 1 && tempdata[0].exact_match === 0) {
+                data = tempdata[0];
+            } else if (tempdata.length > 1) {
+                data = [];
+                tempdata.forEach((item, index)=> {
+                    if (item.exact_match !== 1) {
+                        data.push(item);
                     }
+                })
+                if (data.length > 1) {
+                    return this.json({'message': '有多个接口使用了此路径', list: data})
                 }
             }
         }

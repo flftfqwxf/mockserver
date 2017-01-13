@@ -94,9 +94,8 @@
                                     </div>
                                     <p class="help-block">精准匹配时,只有路径完全一致时才会匹配,<br>
                                         只匹配【?】则以下都会匹配:
-                                        website/articles/comment?post_id=12
-                                        website/articles/comment?post_id=13
-                                        website/articles/comment?xxx=12
+                                        website/articles/comment
+                                        website/articles/comment?post_id=xx....
                                     </p>
                                 </div>
                             </div>
