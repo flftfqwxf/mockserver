@@ -42,6 +42,7 @@ export default class extends Base {
         if (!think.isEmpty(data)) {
             var item = data;
             var _this = this;
+            this.item = data;
             let headers;
             if (item.is_proxy === 0) {
                 let api_header;
@@ -65,7 +66,13 @@ export default class extends Base {
                 if (item.api_state_code) {
                     this.http.status(item.api_state_code)
                 }
-                this.json(item.api_content);
+                if (item.api_lazy_time && item.api_lazy_time > 0) {
+                    setTimeout(()=> {
+                        this.json(item.api_content);
+                    }, item.api_lazy_time)
+                } else {
+                    this.json(item.api_content);
+                }
             } else {
                 if (item.proxy_prefix) {
                     _this.getProxy(item.proxy_prefix, prefix, item.api_url, item.api_type)
@@ -202,7 +209,13 @@ export default class extends Base {
                 _this.header(item, content.headers[item])
             }
             content.body.proxyDataSource = url
-            _this.json(content.body);
+            if (_this.item.api_lazy_time && _this.item.api_lazy_time > 0) {
+                setTimeout(()=> {
+                    _this.json(content.body);
+                }, _this.item.api_lazy_time)
+            } else {
+                _this.json(content.body);
+            }
         }).catch(function(err) {
             console.log(err)
             _this.fail({message: url + ':获取数据错误,可能是接口不存在,或参数错误,错误信息:' + err});

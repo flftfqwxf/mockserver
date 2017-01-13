@@ -94,8 +94,8 @@
                                     </div>
                                     <p class="help-block">精准匹配时,只有路径完全一致时才会匹配,<br>
                                         只匹配【?】则以下都会匹配:
-                                        website/articles/comment
-                                        website/articles/comment?post_id=xx....
+                                        website/articles/comment<br>
+                                        website/articles/comment?post_id=xx&rrr=vvv...
                                     </p>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                         <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
-                                    <span class="common-required">*</span>二次代理前缀
+                                    二次代理前缀
                                 </label>
                                 <div class="col-sm-10">
                                     <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}" class="form-control proxy_prefix" placeholder="请输入要求输入的内容"/>
@@ -143,7 +143,7 @@
                         <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
-                                    <span class="common-required">*</span>开启二次代理
+                                    开启二次代理
                                 </label>
                                 <div class="col-sm-10">
                                     <div class="select-group radio-group" data-toggle="buttons">
@@ -161,7 +161,7 @@
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">接口参数说明</label>
+                                <label class="col-sm-2 control-label"><span class="common-required">*</span>接口参数说明</label>
                                 <div class="col-sm-10">
                                     <textarea name="api_content_desc" style="display: none" id="api_content_desc" cols="30" rows="10">
                                         {{ api_content_desc }}
@@ -187,10 +187,25 @@
                                     <span class="common-required">*</span>返回状态码
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="api_state_code" maxlength="3" value="{{ api_state_code if api_state_code else  200 }}"
-                                           class="form-control api_state_code w100  validate[required,integer]"
+                                    <input type="text" name="api_state_code" maxlength="8" value="{{ api_state_code if api_state_code else  200 }}"
+                                           class="form-control api_state_code w100  validate[required,custom[md8]]"
                                            placeholder="默认200"/>
                                     <p class="help-block">返回状态码，默认200</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-dashed">
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label">
+                                    <span class="common-required">*</span>延迟返回数据
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="api_lazy_time" maxlength="8" value="{{ api_lazy_time if api_lazy_time else  0 }}"
+                                           class="form-control api_state_code w100  validate[required,custom[md8]]"
+                                           placeholder="默认0"/>
+                                    <p class="help-block">延迟单位为毫秒，默认0<br>
+                                        注意：请求数据本身会消耗一定时间，所以返回数据的时候会大于设置的延迟时间
+                                    </p>
                                 </div>
                             </div>
                         </div>

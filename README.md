@@ -31,6 +31,8 @@ npm start
  
  支持指定返回状态码，默认200
  
+ 支持延时返回数据
+ 
  支持mockjs
 
  支持单个接口代理到真实服务器(开发过程中某个接口使用模拟数据,当此接口已开发完成后,可将指定接口,通过此服务指向到指定接口上)
@@ -39,10 +41,21 @@ npm start
 ##开发中功能：
 
 ```
- 支持延时返回数据
+ 
  支持类似【postman】接口测试功能
 ```
- <img src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1347474-b9d7d981cfeda35b.png?imageMogr2/auto-orient/strip" >
+
+##更新日志：
+
+ ```
+添加返回状态码
+
+添加延迟返回数据
+
+优化部分验证
+ ```
+ 
+ <img src="http://upload-images.jianshu.io/upload_images/1347474-c11919590cc6c1a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" >
 
 
 #如图所示，大致包含了以下功能：
