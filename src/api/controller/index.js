@@ -16,14 +16,14 @@ export default class extends Base {
         let url = this.http.url.replace('/api/', '');
         //先全路径匹配
         let data = await this.model('mockserver').where("api_url='" + this.http.url.replace('/api/', '') + "'").find();
+        let tempUrl = url;
+        if (tempUrl.split('?').length == 2) {
+            tempUrl = tempUrl.split('?')[0];
+        }
         //如果查不到相应接口,则将 URL【?】后去掉后再查询
         if (think.isEmpty(data)) {
             // let firstObj = this.urlParmsTransform(url);
-            let tempUrl = url.split('?');
-            if (tempUrl.length == 2) {
-                url = tempUrl[0];
-            }
-            const tempdata = await this.model('mockserver').where("api_url regexp '^" + url + "\\\\?'").select();
+            const tempdata = await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\?'").select();
             //当匹配方式为只匹配【?】后面参数时
             if (tempdata.length == 1 && tempdata[0].exact_match === 0) {
                 data = tempdata[0];
@@ -75,6 +75,18 @@ export default class extends Base {
                 }
             } else {
                 if (item.proxy_prefix) {
+                    let api_url = item.api_url.split('?');
+                    let request_url = url.split('?');
+                    /**
+                     * 当模式为只匹配【?】前部分并开启了二次代理时，直接请求用户发送的URL，
+                     * 原因是：当能匹配到数据时，说明用户发送的URL与数据库的数据的【？】前部分匹配，而【?】后的参数不一定相同，如：
+                     * 数据库URL为：/a/b?a=1
+                     * 用户请求URL为:/a/b?a=2
+                     * 此时开启了二次代理，直接请求用户请数的URL，才可获取到用户动态参数的的数据
+                     */
+                    if (item.exact_match === 0) {
+                        item.api_url = url;
+                    }
                     _this.getProxy(item.proxy_prefix, prefix, item.api_url, item.api_type)
                     // console.log(fn)
                     // this.json({message: '此接口没有提定代理地址请检查并修改2'});
@@ -133,25 +145,18 @@ export default class extends Base {
         }
     }
 
+    /**
+     * 从指定URL获取数据
+     * @param httpPrefix {string} 域名前缀，格式如:http://192.168.0.1/
+     * @param prefix {string} 接口前缀，目前指定为 [api]目的是为了规范接口格式，也避免与系统本身的路由冲突
+     * @param api_url {string} 接口地址
+     * @param method {string} 请求方式：GET,PUT,DELETE,POST等
+     * @returns {*}
+     */
     getProxy(httpPrefix, prefix, api_url, method) {
         let _this = this
-        // method = 'post';
         method = method || this.method().toLowerCase();
         let post = this.post();
-        // post = {"mobile": "15800000003", "password": "123456"}
-        // switch (method.toLowerCase()) {
-        //     case 'post':
-        //         ;
-        //         break;
-        //     case 'get':
-        //         ;
-        //         break;
-        //     case '':
-        //         ;
-        //         break;
-        //     default:
-        //         break;
-        // }
         let fn = think.promisify(request[method]);
         const curHttp = this.http;
         // console.log(this.http.headers)
@@ -209,7 +214,7 @@ export default class extends Base {
                 _this.header(item, content.headers[item])
             }
             content.body.proxyDataSource = url
-            if (_this.item.api_lazy_time && _this.item.api_lazy_time > 0) {
+            if (_this.item && _this.item.api_lazy_time && _this.item.api_lazy_time > 0) {
                 setTimeout(()=> {
                     _this.json(content.body);
                 }, _this.item.api_lazy_time)
