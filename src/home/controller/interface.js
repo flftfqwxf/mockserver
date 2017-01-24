@@ -6,8 +6,7 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
-        let data = this.get(), res, where = {}, projectData={project_name:'全部接口'};
-
+        let data = this.get(), res, where = {}, projectData = {project_name: '全部接口'};
         if (data.keyword) {
             where._complex = {
                 api_name: ["like", "%" + data.keyword + "%"],
@@ -44,7 +43,8 @@ export default class extends Base {
             list: res,
             project_id: data.project_id,
             project_name: projectData.project_name,
-            api_name: data.api_name
+            api_name: data.api_name,
+            keyword: data.keyword
         })
         //auto render template file index_index.html
         return this.display();
@@ -61,7 +61,7 @@ export default class extends Base {
                 res.project = project;
                 this.assign(res)
             } else {
-                return this.setSucess('复制的数据不存在', '/home2/index')
+                return this.setSucess('复制的数据不存在', '/interface/index')
             }
         } else {
             this.assign({
@@ -103,7 +103,7 @@ export default class extends Base {
         // console.log(this.post())
         let data = this.post();
         if (think.isEmpty(data)) {
-            return this.setSucess('数据为空:点击返回列表', '/home2/index')
+            return this.setSucess('数据为空:点击返回列表', '/interface/index')
         }
         let urlData = await this.model('mockserver').where('api_url="' + data.api_url + '"').find();
         if (data.mockid) {
@@ -114,7 +114,7 @@ export default class extends Base {
                 //行为记录
                 if (res) {
                     await this.model('mockserver').update(data);
-                    return this.setSucess('修改成功', '/home2/index/index?project_id=' + data.project_id, '返回列表', '/api/' + data.api_url, '查看接口')
+                    return this.setSucess('修改成功', '/interface/index?project_id=' + data.project_id, '返回列表', '/api/' + data.api_url, '查看接口')
                 } else {
                     this.fail("操作失败！");
                 }
@@ -127,7 +127,7 @@ export default class extends Base {
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.setSucess('添加成功', '/home2/index/index?project_id=' + data.project_id, '返回列表', '/api/' + data.api_url, '查看接口')
+                this.setSucess('添加成功', '/interface/index?project_id=' + data.project_id, '返回列表', '/api/' + data.api_url, '查看接口')
             } else {
                 this.fail("操作失败！");
             }

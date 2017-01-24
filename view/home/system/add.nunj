@@ -9,7 +9,7 @@
                     系统设置
                 </h4>
                 <div class="item-main">
-                    <form class="form-horizontal" id="formId" method="post" action="/home2/system/update">
+                    <form class="form-horizontal" id="formId" method="post" action="/system/update">
                         <div class="form-group-dashed">
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">

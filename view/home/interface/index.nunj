@@ -43,7 +43,7 @@
                     {#</div>#}
                     <button style="padding-right: 20px;float: right" data-is-proxy="1" id="oer_all_proxy" class="btn btn-info" type="button">关闭全部二次代理</button>
                     <span style="padding-right: 20px;float: right">
-                            <a class="btn btn-info" href="/home2/index/add.html">添加接口</a>
+                            <a class="btn btn-info" href="/interface/add.html">添加接口</a>
                                                         </span>
                 </div>
                 <div class="item-main">
@@ -66,10 +66,10 @@
                                 <td>{{ item.api_name }}</td>
                                 <td><a target="_blank" href="/api/{{ item.api_url }}">{{ item.api_url }}</a></td>
                                 <td class="proxy_state">{{ '已关闭' if item.is_proxy==0 else '已开启' }}</td>
-                                <td><a class="deleteLnk" href="/home2/index/delete?mockid={{ item.mockid }}">删除</a>
-                                    <a href="/home2/index/edit?mockid={{ item.mockid }}">修改</a>
-                                    <a href="/home2/index/add?iscopy=1&mockid={{ item.mockid }}">复制</a>
-                                    <a href="/api/{{ item.api_url }}" target="_blank">查看</a>
+                                <td><a class="deleteLnk" href="/api/delete?mockid={{ item.mockid }}">删除</a>
+                                    <a href="/interface/edit?mockid={{ item.mockid }}">修改</a>
+                                    <a href="/interface/add?iscopy=1&mockid={{ item.mockid }}">复制</a>
+                                    <a href="/interface/{{ item.api_url }}" target="_blank">查看</a>
                                     <a href="javascript:;" mockid="{{ item.mockid }}" class="oper_proxy" data-is-proxy="{{ item.is_proxy }}">
                                         {% if item.is_proxy==0 %}
                                             开启二次代理
@@ -88,46 +88,46 @@
         <!--table end-->
     </div>
     <script>
-        $('.deleteLnk').click(function () {
+        $('.deleteLnk').click(function() {
             if (confirm('删除后无法恢复,你确定删除该接口么?')) {
                 return true;
             } else {
                 return false;
             }
         })
-        $('.fa-times-circle').click(function () {
+        $('.fa-times-circle').click(function() {
             $(this).prev('.form-control').val('')
         })
-        $('.oper_proxy').click(function () {
+        $('.oper_proxy').click(function() {
             var _this = $(this), is_proxy = $(this).attr('data-is-proxy'),
                     mockid = $(this).attr('mockid'), txt = is_proxy === "0" ? '关闭二次代理' : '开启二次代理',
                     oper_proxy = is_proxy === "0" ? 1 : 0,
                     state = is_proxy === "0" ? '已开启' : '已关闭';
-            $.getJSON('/home2/index/setproxy', {mockid: mockid, is_proxy: oper_proxy}).done(function (data) {
+            $.getJSON('/interface/setproxy', {mockid: mockid, is_proxy: oper_proxy}).done(function(data) {
                 if (data) {
                     _this.html(txt).attr('data-is-proxy', oper_proxy);
                     _this.parent().siblings('.proxy_state').html(state)
                 }
-            }).fail(function (err) {
+            }).fail(function(err) {
                 alert(err.message)
             });
         })
-        $('#oer_all_proxy').click(function () {
+        $('#oer_all_proxy').click(function() {
             var _this = $(this), is_proxy = $(this).attr('data-is-proxy'),
                     txt = is_proxy === "0" ? '关闭全部二次代理' : '开启全部二次代理',
                     txtitem = is_proxy === "0" ? '关闭二次代理' : '开启二次代理',
                     oper_proxy = is_proxy === "0" ? 1 : 0,
                     state = is_proxy === "0" ? '已开启' : '已关闭';
-            var mockids = $('.oper_proxy').map(function () {
+            var mockids = $('.oper_proxy').map(function() {
                 return $(this).attr('mockid');
             }).get().join(",");
-            $.getJSON('/home2/index/setProxys', {is_proxy: oper_proxy, mockids: mockids}).done(function (data) {
+            $.getJSON('/interface/setproxys', {is_proxy: oper_proxy, mockids: mockids}).done(function(data) {
                 if (data) {
                     $('.oper_proxy').html(txtitem);
                     _this.html(txt).attr('data-is-proxy', oper_proxy);
                     $('.proxy_state').html(state)
                 }
-            }).fail(function (err) {
+            }).fail(function(err) {
                 alert(err.message)
             });
         })

@@ -13,7 +13,7 @@
                     {% endif %}
                 </h4>
                 <div class="item-main">
-                    <form class="form-horizontal" id="formId" method="post" action="/home2/index/update">
+                    <form class="form-horizontal" id="formId" method="post" action="/interface/update">
                         <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
@@ -53,15 +53,99 @@
                         <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
+                                    <h4>代理设置</h4>
+                                </label>
+                                <div class="col-sm-10">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    项目二次代理前缀
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly value="{{ curGlobalProxy }}" class="form-control globalProxy" placeholder=""/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    二次代理前缀
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}" class="form-control proxy_prefix" placeholder="请输入要求输入的内容"/>
+                                    <p class="help-block">格式如:http://192.168.1.2/</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    开启二次代理
+                                </label>
+                                <div class="col-sm-10">
+                                    <div class="select-group radio-group" data-toggle="buttons">
+                                        <!-- <div> -->
+                                        <label class="btn {% if is_proxy==0 %}active{% endif %}">
+                                            <input type="radio" name="is_proxy" value="0" {% if is_proxy==0 %}checked{% endif %} autocomplete="off">关闭
+                                        </label>
+                                        <label class="btn {% if is_proxy==1 %}active{% endif %}">
+                                            <input type="radio" name="is_proxy" value="1" {% if is_proxy==1 %}checked{% endif %} autocomplete="off">开启
+                                        </label>
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-dashed">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <h4>请求参数设置</h4>
+                                </label>
+                                <div class="col-sm-10">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
                                     <span class="common-required">*</span>接口类型
                                 </label>
                                 <div class="col-sm-10">
+                                    {% set methods=[
+                                    'GET',
+                                    'POST',
+                                    'PUT',
+                                    'DELETE',
+                                    'SEARCH',
+                                    'HEAD',
+                                    'OPTIONS',
+                                    'ACL',
+                                    'BIND',
+                                    'CHECKOUT',
+                                    'CONNECT',
+                                    'COPY',
+                                    'LINK',
+                                    'LOCK',
+                                    'M-SEARCH',
+                                    'MERGE',
+                                    'MKACTIVITY',
+                                    'MKCALENDAR',
+                                    'MKCOL',
+                                    'MOVE',
+                                    'NOTIFY',
+                                    'PATCH',
+                                    'PROPFIND',
+                                    'PROPPATCH',
+                                    'PURGE',
+                                    'REBIND',
+                                    'REPORT',
+                                    'SUBSCRIBE',
+                                    'TRACE',
+                                    'UNBIND',
+                                    'UNLINK',
+                                    'UNLOCK',
+                                    'UNSUBSCRIBE' ] %}
                                     <label class="btn btn-default btn-select">
                                         <select style="" name="api_type" class="validate[required]">
-                                            <option value="get" {{ "selected" if api_type=="get" }}>GET</option>
-                                            <option value="post" {{ "selected" if api_type=="post" }}>POST</option>
-                                            <option value="put" {{ "selected" if api_type=="put" }}>PUT</option>
-                                            <option value="delete" {{ "selected" if api_type=="delete" }}>DELETE</option>
+                                            {% for  method in methods %}
+                                                <option value="{{ method.toLowerCase() }}" {{ "selected" if api_type==method.toLowerCase() }}>{{ method }}</option>
+
+                                            {% endfor %}
                                         </select>
                                     </label>
                                 </div>
@@ -75,6 +159,41 @@
                                     <input type="text" name="api_url" style="padding-left: 38px" value="{{ api_url }}" class="form-control api_url  validate[required]"
                                            placeholder="请输入要求输入的内容"/>
                                     <p class="help-block">所有接口统一加上【/api/】前缀</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">请求Query参数说明</label>
+                                <div class="col-sm-10">
+                                        <textarea name="api_querys_desc" style="display: none" id="api_querys_desc" cols="30" rows="10">
+                                        {{ api_querys_desc }}
+                                    </textarea>
+                                    <iframe id="querysDescIframe" class="jsoneditor" data-obj="api_querys_desc" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;"
+                                            frameborder="0"></iframe>
+                                    <p class="help-block">说明：接口地址中【?】query参数说明</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">请求 header参数说明</label>
+                                <div class="col-sm-10">
+                                        <textarea name="api_req_header_desc" style="display: none" id="api_req_header_desc" cols="30" rows="10">
+                                        {{ api_req_header_desc }}
+                                    </textarea>
+                                    <iframe id="querysDescIframe" class="jsoneditor" data-obj="api_req_header_desc" src="/static/common/jsoneditor/index.html"
+                                            style="width: 100%;height: 300px;"
+                                            frameborder="0"></iframe>
+                                    <p class="help-block">说明：发送请求的header信息参数说明</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">请求 header信息</label>
+                                <div class="col-sm-10">
+                                        <textarea name="api_req_header_desc" style="display: none" id="api_req_header_desc" cols="30" rows="10">
+                                        {{ api_req_header_desc }}
+                                    </textarea>
+                                    <iframe id="querysDescIframe" class="jsoneditor" data-obj="api_req_header_desc" src="/static/common/jsoneditor/index.html"
+                                            style="width: 100%;height: 300px;"
+                                            frameborder="0"></iframe>
+                                    <p class="help-block">说明：发送请求的header信息参数值</p>
                                 </div>
                             </div>
                             <div class="form-group ">
@@ -100,84 +219,57 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">请求参数说明</label>
+                                <label class="col-sm-2 control-label">请求 body 参数说明</label>
                                 <div class="col-sm-10">
                                         <textarea name="api_parms_desc" style="display: none" id="api_parms_desc" cols="30" rows="10">
                                         {{ api_parms_desc }}
                                     </textarea>
-                                    <iframe id="parmsDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                    <iframe id="parmsDescIframe" class="jsoneditor" data-obj="api_parms_desc" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;"
+                                            frameborder="0"></iframe>
+                                    <p class="help-block">post,put等非URL带的参数，如post表单提交的数据字段</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">请求参数</label>
+                                <label class="col-sm-2 control-label">请求 body 参数</label>
                                 <div class="col-sm-10">
 
                                         <textarea name="api_parms" style="display: none" id="api_parms" cols="30" rows="10">
                                         {{ api_parms }}
                                     </textarea>
-                                    <iframe id="parmsIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                    <iframe id="parmsIframe" class="jsoneditor" data-obj="api_parms" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;"
+                                            frameborder="0"></iframe>
+                                    <p class="help-block">post,put等非URL带的参数，如post表单提交的数据字段</p>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
-                                    项目二次代理前缀
+                                    <h4>响应参数设置</h4>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" readonly value="{{ curGlobalProxy }}" class="form-control globalProxy" placeholder=""/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group-dashed">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    二次代理前缀
-                                </label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}" class="form-control proxy_prefix" placeholder="请输入要求输入的内容"/>
-                                    <p class="help-block">格式如:http://192.168.1.2/</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group-dashed">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">
-                                    开启二次代理
-                                </label>
-                                <div class="col-sm-10">
-                                    <div class="select-group radio-group" data-toggle="buttons">
-                                        <!-- <div> -->
-                                        <label class="btn {% if is_proxy==0 %}active{% endif %}">
-                                            <input type="radio" name="is_proxy" value="0" {% if is_proxy==0 %}checked{% endif %} autocomplete="off">关闭
-                                        </label>
-                                        <label class="btn {% if is_proxy==1 %}active{% endif %}">
-                                            <input type="radio" name="is_proxy" value="1" {% if is_proxy==1 %}checked{% endif %} autocomplete="off">开启
-                                        </label>
-                                        <!-- </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group-dashed">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><span class="common-required">*</span>接口参数说明</label>
+                                <label class="col-sm-2 control-label"><span class="common-required">*</span>响应数据参数说明</label>
                                 <div class="col-sm-10">
                                     <textarea name="api_content_desc" style="display: none" id="api_content_desc" cols="30" rows="10">
                                         {{ api_content_desc }}
                                     </textarea>
-                                    <iframe id="jsonDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 600px;" frameborder="0"></iframe>
+                                    <iframe id="jsonDescIframe" class="jsoneditor" data-obj="api_content_desc" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 600px;"
+                                            frameborder="0"></iframe>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">接口内容</label>
+                                <label class="col-sm-2 control-label">响应数据内容</label>
                                 <div class="col-sm-10">
                                     <a href="javascript:;" class="getProxy">从二次代理中获取数据,并填充,保存后生效</a>
                                     <span class="getTips"></span>
                                     <textarea name="api_content" style="display: none" id="api_content" cols="30" rows="10">
                                         {{ api_content }}
                                     </textarea>
-                                    <iframe id="jsonIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 600px;" frameborder="0"></iframe>
+                                    <iframe id="jsonIframe" class="jsoneditor" data-obj="api_content" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 600px;"
+                                            frameborder="0"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -232,23 +324,25 @@
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">返回header参数说明</label>
+                                <label class="col-sm-2 control-label">响应header参数说明</label>
                                 <div class="col-sm-10">
 
                                         <textarea name="api_header_desc" style="display: none" id="api_header_desc" cols="30" rows="10">
                                         {{ api_header_desc }}
                                     </textarea>
-                                    <iframe id="headerDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                    <iframe id="headerDescIframe" class="jsoneditor" data-obj="api_header_desc" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;"
+                                            frameborder="0"></iframe>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">返回header信息</label>
+                                <label class="col-sm-2 control-label">响应header信息</label>
                                 <div class="col-sm-10">
 
                                         <textarea name="api_header" style="display: none" id="api_header" cols="30" rows="10">
                                         {{ api_header }}
                                     </textarea>
-                                    <iframe id="headerIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                    <iframe id="headerIframe" class="jsoneditor" data-obj="api_header" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;"
+                                            frameborder="0"></iframe>
                                     <p class="help-block">添加返回接口的 header信息</p>
                                 </div>
                             </div>
@@ -267,6 +361,19 @@
             </div>
         </div>
     </div>
+    {% if api_req_header |length ===0 or api_req_header|trim|length===0 %}
+        {% set api_req_header=' {
+                    "headere1": "模拟参数值",
+                     "header2": "模拟参数值"
+                }' %}
+    {% endif %}
+    {% if api_req_header_desc|length ===0 or api_req_header_desc|trim|length===0 %}
+        {% set api_req_header_desc=' {
+                "headere1": "headere1参数说明",
+                "header2": "header2参数说明"
+            }' %}
+    {% endif %}
+
     {% if api_content|length ===0 or api_content|trim|length===0 %}
         {% set api_content='
               {"array": [
@@ -292,6 +399,12 @@
             }' %}
     {% endif %}
 
+    {% if api_querys_desc |length ===0 or api_querys_desc|trim|length===0 %}
+        {% set api_querys_desc='{
+                "query1": "参数说明",
+                "query2": "参数说明"
+        }' %}
+    {% endif %}
     {% if api_parms | length ===0 or api_parms|trim|length===0 %}
         {% set api_parms='{
                     "username": "模拟参数值",
@@ -318,12 +431,18 @@
     {% endif %}
     <script>
         try {
-            var api_content ={{ api_content | safe }};
-            var api_content_desc ={{ api_content_desc | safe }};
-            var api_parms ={{ api_parms | safe }};
-            var api_parms_desc ={{ api_parms_desc | safe }};
-            var api_header ={{ api_header | safe }};
-            var api_header_desc ={{ api_header_desc | safe }};
+            var jsonEditorData = {
+                api_content:{{ api_content | safe }},
+                api_content_desc:{{ api_content_desc | safe }},
+                api_parms:{{ api_parms | safe }},
+                api_parms_desc:{{ api_parms_desc | safe }},
+                api_querys_desc:{{ api_querys_desc | safe }},
+                api_req_header:{{ api_req_header | safe }},
+                api_req_header_desc:{{ api_req_header_desc | safe }},
+                api_querys_desc:{{ api_querys_desc | safe }},
+                api_header:{{ api_header | safe }},
+                api_header_desc:{{ api_header_desc | safe }},
+            }
         } catch (e) {
         }
         $('.getProxy').click(function() {
@@ -350,64 +469,19 @@
                 return false;
             }
         });
-        $("#jsonIframe").load(function() {
-            $("#jsonIframe")[0].contentWindow.setJson(api_content);
-        })
-        $("#jsonDescIframe").load(function() {
-            $("#jsonDescIframe")[0].contentWindow.setJson(api_content_desc);
-        })
-        $("#parmsIframe").load(function() {
-            $("#parmsIframe")[0].contentWindow.setJson(api_parms);
-        })
-        $("#parmsDescIframe").load(function() {
-            $("#parmsDescIframe")[0].contentWindow.setJson(api_parms_desc);
-        })
-        $("#headerIframe").load(function() {
-            $("#headerIframe")[0].contentWindow.setJson(api_header);
-        })
-        $("#headerDescIframe").load(function() {
-            $("#headerDescIframe")[0].contentWindow.setJson(api_header_desc);
+        $('.jsoneditor').load(function() {
+            var toObj = $(this).attr('data-obj')
+            $(this)[0].contentWindow.setJson(jsonEditorData[toObj]);
         })
         //        ("#jsonIframe")[0].contentWindow.getJson();
         $('#formId').submit(function() {
-            var json = $("#jsonIframe")[0].contentWindow.getJson();
-            var parms = $("#parmsIframe")[0].contentWindow.getJson();
-            var header = $("#headerIframe")[0].contentWindow.getJson();
-            var jsonDesc = $("#jsonDescIframe")[0].contentWindow.getJson();
-            var parmsDesc = $("#parmsDescIframe")[0].contentWindow.getJson();
-            var headerDesc = $("#headerDescIframe")[0].contentWindow.getJson();
-            if (parms) {
-                $('#api_parms').val(parms);
-            }
-            if (parmsDesc) {
-                $('#api_parms_desc').val(parmsDesc);
-            }
-            if (header) {
-                $('#api_header').val(header);
-            }
-            if (headerDesc) {
-                $('#api_header_desc').val(headerDesc);
-            }
-            if (json) {
-                $('#api_content').val(json);
-            }
-            if (jsonDesc) {
-                $('#api_content_desc').val(jsonDesc);
-            }
-            if (json && parms && header && jsonDesc && parmsDesc && headerDesc) {
-                return true;
-            }
-            return false
+            var result = true;
+            $('.jsoneditor').each(function() {
+                var toObj = $(this).attr('data-obj')
+                var json = $(this)[0].contentWindow.getJson();
+                json ? $('#' + toObj).val(json) : result = false;
+            })
+            return result
         })
-        //        var formatObj = new jsonFormat('#formatWrap');
-        //        $('#preView').click(function () {
-        //            formatObj.Process();
-        //        })
-        //        $('#format').click(function () {
-        //            formatObj.Process();
-        //            formatObj.autoFormate()
-        //        })
-        //        $('#addFiled').click(function () {
-        //        })
     </script>
 {% endblock %}

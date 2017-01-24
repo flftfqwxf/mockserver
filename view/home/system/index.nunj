@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <span style="padding-right: 20px;float: right">
-                            <a class="btn btn-info" href="/home2/project/add.html">添加项目</a>
+                            <a class="btn btn-info" href="/project/add.html">添加项目</a>
                                                         </span>
                 </div>
                 <div class="item-main">
@@ -36,8 +36,9 @@
                             <tr>
                                 <td>{{ item.project_name }}</td>
                                 <td>{{ item.proxy_url }}</td>
-                                <td><a href="/home2/project/delete?mockid={{ item.mockid }}">删除</a> <a href="/home2/project/edit?project_id={{ item.project_id }}">修改</a>
-                                    <a href="/home2/index/index?project_id={{ item.project_id }}">查看接口</a>
+                                <td><a href="/project/delete?mockid={{ item.mockid }}">删除</a>
+                                    <a href="/project/edit?project_id={{ item.project_id }}">修改</a>
+                                    <a href="/interface/index?project_id={{ item.project_id }}">查看接口</a>
                                 </td>
                             </tr>
                         {% endfor %}
