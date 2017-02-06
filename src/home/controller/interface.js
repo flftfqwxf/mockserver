@@ -37,14 +37,13 @@ export default class extends Base {
                 }])
                 .select();
         }
-        // let res = await this.model.join('project on mockserver.project_id=project.project_id').select();
         this.assign({
             title: '接口列表',
             list: res,
             project_id: data.project_id,
             project_name: projectData.project_name,
             api_name: data.api_name,
-            keyword: data.keyword
+            keyword: data.keyword,
         })
         //auto render template file index_index.html
         return this.display();
@@ -53,6 +52,7 @@ export default class extends Base {
     async addAction() {
         //auto render template file index_index.html
         let project = await this.model('project').select();
+        let systemConfig = await this.model('system').find();
         let data = this.get();
         if (data.mockid && data.iscopy === '1') {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).find();
@@ -66,7 +66,8 @@ export default class extends Base {
         } else {
             this.assign({
                 is_proxy: 0,
-                project: project
+                project: project,
+                systemConfig: systemConfig
             })
         }
         return this.display();
@@ -75,10 +76,12 @@ export default class extends Base {
     async  editAction() {
         let data = this.get();
         let project = await this.model('project').select();
+        let systemConfig = await this.model('system').find();
         if (data.mockid) {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
             if (res.length === 1) {
                 res[0].project = project;
+                res[0].systemConfig = systemConfig;
                 this.assign(res[0])
             }
         } else {
