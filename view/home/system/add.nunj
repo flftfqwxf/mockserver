@@ -61,6 +61,7 @@
                                         {{ api_headers }}
                                     </textarea>
                                     <iframe id="headerIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
+                                    <p class="help-block">二次代理开启后，将被传递的header字段</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -71,7 +72,7 @@
                                         {{ api_headers_desc }}
                                     </textarea>
                                     <iframe id="headerDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
-                                    <p class="help-block">添加返回接口的 header信息</p>
+                                    <p class="help-block">二次代理开启后，将被传递的header字段</p>
                                 </div>
                             </div>
                         </div>
