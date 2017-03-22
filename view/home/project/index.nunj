@@ -27,6 +27,7 @@
                         <thead>
                         <tr>
                             <th>项目名称</th>
+                            <th>项目接口前缀</th>
                             <th>代理前缀</th>
                             <th>操作</th>
                         </tr>
@@ -35,6 +36,8 @@
                         {% for item in list %}
                             <tr>
                                 <td><a href="/interface/index?project_id={{ item.project_id }}">{{ item.project_name }}</a></td>
+                                <td>{{ item.project_prefix if item.project_prefix else '/api/(默认)' }}</td>
+
                                 <td>{{ item.proxy_url }}</td>
                                 <td><a class="deleteLnk" href="/project/delete?project_id={{ item.project_id }}">删除</a> <a href="/project/edit?project_id={{ item.project_id }}">修改</a>
                                     <a href="/interface/index?project_id={{ item.project_id }}">查看接口</a>

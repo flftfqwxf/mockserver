@@ -52,19 +52,19 @@
                         <h4>全局浮动提醒</h4>
                         <div class="item-main">
                             <p>
-                                                    <span class="common-tips btn btn-success J_common-tips">
+                                                    <span class="common-tips btn btn-success J_common_success">
                                                         <i class="fa fa-check-circle"></i>
                                                             已成功上架该产品！
                                                         </span>
                             </p>
                             <p>
-                                                    <span class="common-tips btn btn-info">
+                                                    <span class="common-tips btn btn-info J_common_info">
                                                         <i class="fa fa-warning"></i>
                                                             该操作暂不支持！
                                                         </span>
                             </p>
                             <p>
-                                                        <span class="common-tips btn btn-danger">
+                                                        <span class="common-tips btn btn-danger J_common_danger">
                                                         <i class="fa fa-times-circle"></i>
                                                             操作失败，请重试！
                                                         </span>

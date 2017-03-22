@@ -43,7 +43,7 @@
                     {#</div>#}
                     <button style="padding-right: 20px;float: right" data-is-proxy="1" id="oer_all_proxy" class="btn btn-info" type="button">关闭全部二次代理</button>
                     <span style="padding-right: 20px;float: right">
-                            <a class="btn btn-info" href="/interface/add.html">添加接口</a>
+                            <a class="btn btn-info" href="/interface/add/{{ project_id }}">添加接口</a>
                                                         </span>
                 </div>
                 <div class="item-main">

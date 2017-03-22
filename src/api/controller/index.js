@@ -2,6 +2,7 @@
 import request from "request";
 import Base from './base.js';
 import Mock from 'mockjs';
+let prefix = '/api/';
 export default class extends Base {
     /**
      * index action
@@ -14,13 +15,18 @@ export default class extends Base {
         // console.log(this.http.url)
         this.api_prefix = this.http.url.match(/\/[\w_\d]+\//);
         if (this.api_prefix.length > 0) {
-            this.api_prefix = this.api_prefix [0];
-        } else {
-            this.api_prefix = '/api/';
+            prefix = this.api_prefix [0];
         }
-        let url = this.http.url.replace(this.api_prefix, '');
+        let url = this.http.url.replace(prefix, '');
         //先全路径匹配
-        let data = await this.model('mockserver').where("api_url='" + this.http.url.replace(this.api_prefix, '') + "'").find();
+        let data = await this.model('mockserver').where({api_url: this.http.url.replace(prefix, ''), project_prefix: prefix})
+            .alias('mockserver')
+            .join([{
+                table: 'project',
+                as: 'project',
+                on: ['`mockserver`.`project_id`', '`project`.`project_id`']
+            }])
+            .find();
         let tempUrl = url;
         if (tempUrl.split('?').length == 2) {
             tempUrl = tempUrl.split('?')[0];
@@ -127,7 +133,7 @@ export default class extends Base {
     async  getProxyFromProject(methodType, systemProxyUrl) {
         const proxy_url = await this.checkProjectProxy(systemProxyUrl);
         if (proxy_url) {
-            return this.getProxy(proxy_url, prefix, this.http.url.replace(this.api_prefix, ''), methodType);
+            return this.getProxy(proxy_url, prefix, this.http.url.replace(prefix, ''), methodType);
         } else {
             return this.fail({message: '此接口未定义全局代理'})
         }
@@ -153,7 +159,7 @@ export default class extends Base {
     /**
      * 从指定URL获取数据
      * @param httpPrefix {string} 域名前缀，格式如:http://192.168.0.1/
-     * @param prefix {string} 接口前缀，目前指定为 默认为[api]，可以在每个项目中单独指定，目的是为了规范接口格式，也避免与系统本身的路由冲突
+     * @param prefix {string} 接口前缀，默认指定为 [api]，可以在每个项目中自定义，目的是为了规范接口格式，也避免与系统本身的路由冲突
      * @param api_url {string} 接口地址
      * @param method {string} 请求方式：GET,PUT,DELETE,POST等
      * @returns {*}

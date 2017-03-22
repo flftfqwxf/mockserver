@@ -87,13 +87,13 @@
                 showDemoDialog();
             });
             $('#formId').validationEngine();
-            $('.J_common-tips').click(function() {
+            $('.J_common_success').click(function() {
                 $.gmMessage('已成功上架该产品', 'success', 3)
             })
-            $('.btn-info').click(function() {
+            $('.J_common_info').click(function() {
                 $.gmMessage('已成功上架该产品', 'info', 3)
             })
-            $('.btn-danger').click(function() {
+            $('.J_common_danger').click(function() {
                 $.gmMessage('已成功上架该产品', 'danger', 2)
             })
             // $('.page-content-inner').scrollTop(3811);

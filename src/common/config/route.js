@@ -15,12 +15,13 @@ export default [
     [/^system\/edit/, 'home/system/edit'],
     //接口设置路由
     [/^interface\/index/, 'home/interface/index'],
-    [/^interface\/add/, 'home/interface/add'],
+    [/^interface\/add$/, 'home/interface/add'],
+    [/^interface\/add\/(\d+)$/, 'home/interface/add?project_id=:1'],
     [/^interface\/update/, '/home/interface/update'],
     [/^interface\/delete/, '/home/interface/delete'],
     [/^interface\/edit/, '/home/interface/edit'],
     [/^interface\/setproxy/, '/home/interface/setproxye'],
     [/^api\//, 'api/index'],
-    [/^[a-zA-Z_]\/]+/, 'api/index'],
+    [/^[\w_\d]+\//, 'api/index'],
 ]
 

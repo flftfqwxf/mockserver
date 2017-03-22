@@ -214,6 +214,11 @@
                 "d15": {
                     "regex": /^\d{0,15}$/,
                     "alertText": "* 只能是15位以内的数字"
+                },
+                "project_prefix":{
+                    "regex":/^\/[\w_\d]+\/$/,
+                    "alertText": "格式错误，正确格式为/xxx/"
+
                 }
 
                 /**

@@ -54,6 +54,12 @@ export default class extends Base {
         let project = await this.model('project').select();
         let systemConfig = await this.model('system').find();
         let data = this.get();
+        let curr_pronect;
+        let project_prefix = '/api/';
+        if (data.project_id) {
+            curr_pronect = project.filter(item=>item.project_id.toString() === data.project_id);
+            curr_pronect.length > 0 ? project_prefix = curr_pronect[0].project_prefix ? curr_pronect[0].project_prefix : project_prefix : '';
+        }
         if (data.mockid && data.iscopy === '1') {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).find();
             if (!think.isEmpty(res)) {
@@ -67,7 +73,9 @@ export default class extends Base {
             this.assign({
                 is_proxy: 0,
                 project: project,
-                systemConfig: systemConfig
+                systemConfig: systemConfig,
+                project_id: data.project_id,
+                project_prefix: project_prefix
             })
         }
         return this.display();

@@ -20,7 +20,7 @@
                                     <span class="common-required">*</span>项目名称
                                     <input type="hidden" name="project_id" value="{{ project_id }}">
                                 </label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <input type="text" name="project_name" value="{{ project_name }}" class="form-control  validate[required]"/>
                                     <p class="help-block">用于区分不同项目的接口</p>
                                 </div>
@@ -29,43 +29,55 @@
                             {#<label class="col-sm-2 control-label">#}
                             {#<span class="common-required">*</span>二次代理前缀#}
                             {#</label>#}
-                            {#<div class="col-sm-10">#}
+                            {#<div class="col-sm-6">#}
                             {#<input type="text" style="padding-left: 50px;" name="proxy_url" value="{{ proxy_url }}" class="form-control  validate[required]" placeholder=""/> <span class="form-control-feedback" style="padding-left: 20px">http://</span>#}
                             {#<p class="help-block">此项用于设置整个项目的代理前缀地址,格式: 192.168.22.11或 192.168.22.11/xxx 最后不带 【/】</p>#}
                             {#</div>#}
                             {#</div>#}
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">
+                                    接口前缀
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="project_prefix" value="{{ project_prefix }}" class="form-control validate[custom[project_prefix]]" placeholder="请输入接口前缀,不填写，默认为 /api/"/>
+                                    <p class="help-block">格式如: /api/,默认为：/api/<br>
+                                        不能为以下关键词开头，因为以下关键词已经被系统占用:<br>
+                                        project,system,interface
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label">
                                     项目二次代理前缀
                                 </label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control" placeholder="请输入要求输入的内容"/>
                                     <p class="help-block">格式如:http://192.168.1.2</p>
                                 </div>
                             </div>
                             {#<div class="form-group ">#}
-                                {#<label class="col-sm-2 control-label">#}
-                                    {#<span class="common-required">*</span>开启全局二次代理#}
-                                {#</label>#}
-                                {#<div class="col-sm-10">#}
-                                    {#<div class="select-group radio-group" data-toggle="buttons">#}
-                                        {#<!-- <div> -->#}
-                                        {#<label class="btn {% if open_proxy==0 %}active{% endif %}">#}
-                                            {#<input type="radio" name="open_proxy" value="0" {% if open_proxy==0 %}checked{% endif %} autocomplete="off">关闭#}
-                                        {#</label>#}
-                                        {#<label class="btn {% if open_proxy==1 %}active{% endif %}">#}
-                                            {#<input type="radio" name="open_proxy" value="1" {% if open_proxy==1 %}checked{% endif %} autocomplete="off">开启#}
-                                        {#</label>#}
-                                        {#<!-- </div> -->#}
-                                    {#</div>#}
-                                    {#<p class="help-block">开启后,所有未定义的接口,都会通过【全局二次代理前缀】的地址,获取数据</p>#}
-                                {#</div>#}
+                            {#<label class="col-sm-2 control-label">#}
+                            {#<span class="common-required">*</span>开启全局二次代理#}
+                            {#</label>#}
+                            {#<div class="col-sm-6">#}
+                            {#<div class="select-group radio-group" data-toggle="buttons">#}
+                            {#<!-- <div> -->#}
+                            {#<label class="btn {% if open_proxy==0 %}active{% endif %}">#}
+                            {#<input type="radio" name="open_proxy" value="0" {% if open_proxy==0 %}checked{% endif %} autocomplete="off">关闭#}
+                            {#</label>#}
+                            {#<label class="btn {% if open_proxy==1 %}active{% endif %}">#}
+                            {#<input type="radio" name="open_proxy" value="1" {% if open_proxy==1 %}checked{% endif %} autocomplete="off">开启#}
+                            {#</label>#}
+                            {#<!-- </div> -->#}
+                            {#</div>#}
+                            {#<p class="help-block">开启后,所有未定义的接口,都会通过【全局二次代理前缀】的地址,获取数据</p>#}
+                            {#</div>#}
                             {#</div>#}
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <button class="btn btn-default" type="button">取消</button>
                                     <button class="btn btn-info" type="submit">保存修改</button>
                                 </div>
