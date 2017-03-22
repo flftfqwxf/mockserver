@@ -20,7 +20,7 @@ export default [
     [/^interface\/update/, '/home/interface/update'],
     [/^interface\/delete/, '/home/interface/delete'],
     [/^interface\/edit/, '/home/interface/edit'],
-    [/^interface\/setproxy/, '/home/interface/setproxye'],
+    [/^interface\/setproxy/, '/home/interface/setproxy'],
     [/^api\//, 'api/index'],
     [/^[\w_\d]+\//, 'api/index'],
 ]

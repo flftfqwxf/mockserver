@@ -117,6 +117,7 @@
                                         <div class="input-group"><span class="input-group-addon">{{ project_prefix }}</span>
                                             <input type="text" name="api_url" value="{{ api_url }}" class="form-control api_url  validate[required]"
                                                    placeholder="请输入路径地址"/>
+                                            <input type="hidden" name="project_prefix" value="{{ project_prefix }}">
                                         </div>
                                         <p class="help-block">此项目下所有接口统一加上【{{ project_prefix }}】前缀</p>
                                     </div>

@@ -1,5 +1,6 @@
 'use strict';
 import Base from './base.js';
+let project_prefix = '/api/';
 export default class extends Base {
     /**
      * index action
@@ -19,7 +20,7 @@ export default class extends Base {
             where['mockserver.project_id'] = data.project_id;
             res = await this.model('mockserver').where(where).order('mockid desc')
                 .alias('mockserver')
-                .field('`mockserver`.*, `project`.`project_name`')
+                .field('`mockserver`.*, `project`.`project_name`,`project`.`project_prefix`')
                 .join([{
                     table: 'project',
                     as: 'project',
@@ -29,7 +30,7 @@ export default class extends Base {
         } else {
             res = await this.model('mockserver').where(where)
                 .alias('mockserver')
-                .field('`mockserver`.*, `project`.`project_name`')
+                .field('`mockserver`.*, `project`.`project_name`,`project`.`project_prefix`')
                 .join([{
                     table: 'project',
                     as: 'project',
@@ -54,11 +55,10 @@ export default class extends Base {
         let project = await this.model('project').select();
         let systemConfig = await this.model('system').find();
         let data = this.get();
-        let curr_pronect;
-        let project_prefix = '/api/';
+        let curr_project;
         if (data.project_id) {
-            curr_pronect = project.filter(item=>item.project_id.toString() === data.project_id);
-            curr_pronect.length > 0 ? project_prefix = curr_pronect[0].project_prefix ? curr_pronect[0].project_prefix : project_prefix : '';
+            curr_project = project.filter(item=>item.project_id.toString() === data.project_id);
+            curr_project.length > 0 ? project_prefix = curr_project[0].project_prefix ? curr_project[0].project_prefix : project_prefix : '';
         }
         if (data.mockid && data.iscopy === '1') {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).find();
@@ -85,11 +85,18 @@ export default class extends Base {
         let data = this.get();
         let project = await this.model('project').select();
         let systemConfig = await this.model('system').find();
+        let curr_project;
         if (data.mockid) {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
             if (res.length === 1) {
+                if (res[0].project_id) {
+                    curr_project = project.filter(item=>item.project_id === res[0].project_id);
+                    curr_project.length > 0 ? project_prefix = curr_project[0].project_prefix ? curr_project[0].project_prefix :
+                        project_prefix : '';
+                }
                 res[0].project = project;
                 res[0].systemConfig = systemConfig;
+                res[0].project_prefix = project_prefix;
                 this.assign(res[0])
             }
         } else {
@@ -117,6 +124,7 @@ export default class extends Base {
             return this.setSucess('数据为空:点击返回列表', '/interface/index')
         }
         let urlData = await this.model('mockserver').where('api_url="' + data.api_url + '"').find();
+        project_prefix = data.project_prefix;
         if (data.mockid) {
             if (!think.isEmpty(urlData) && urlData.mockid.toString() !== data.mockid) {
                 return this.setSucess('修改失败:接口地址[' + data.api_url + ']已存在,返回修改', this.http.header.referer)
@@ -125,7 +133,7 @@ export default class extends Base {
                 //行为记录
                 if (res) {
                     await this.model('mockserver').update(data);
-                    return this.setSucess('修改成功', '/interface/index?project_id=' + data.project_id, '返回列表', '/api/' + data.api_url, '查看接口')
+                    return this.setSucess('修改成功', '/interface/index?project_id=' + data.project_id, '返回列表', project_prefix + data.api_url, '查看接口')
                 } else {
                     this.fail("操作失败！");
                 }
@@ -138,7 +146,7 @@ export default class extends Base {
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.setSucess('添加成功', '/interface/index?project_id=' + data.project_id, '返回列表', '/api/' + data.api_url, '查看接口')
+                this.setSucess('添加成功', '/interface/index?project_id=' + data.project_id, '返回列表', project_prefix + data.api_url, '查看接口')
             } else {
                 this.fail("操作失败！");
             }
