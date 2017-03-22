@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.14)
 # Database: mockserver
-# Generation Time: 2017-01-24 10:10:09 +0000
+# Generation Time: 2017-03-22 09:53:28 +0000
 # ************************************************************
 
 
@@ -26,26 +26,26 @@
 DROP TABLE IF EXISTS `mock_mockserver`;
 
 CREATE TABLE `mock_mockserver` (
-  `mockid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `project_id` int(11) NOT NULL DEFAULT '0',
-  `api_name` varchar(2000) NOT NULL DEFAULT '',
-  `api_url` varchar(2000) NOT NULL DEFAULT '',
-  `api_content` longtext NOT NULL,
-  `api_content_desc` longtext,
-  `is_proxy` int(1) DEFAULT '0',
-  `proxy_prefix` varchar(2000) DEFAULT NULL,
-  `api_header` varchar(2000) DEFAULT NULL,
-  `api_header_desc` longtext,
-  `api_parms` longtext,
-  `api_parms_desc` longtext,
-  `api_type` varchar(11) DEFAULT 'get',
-  `api_state_code` int(11) DEFAULT NULL,
-  `exact_match` int(1) DEFAULT '1',
-  `is_mockjs` int(1) DEFAULT '0',
-  `api_lazy_time` int(10) DEFAULT '0',
-  `api_querys_desc` longtext,
-  `api_req_header` longtext,
-  `api_req_header_desc` longtext,
+  `mockid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '接口ID，自动生成',
+  `project_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联的项目ID',
+  `api_name` varchar(2000) NOT NULL DEFAULT '' COMMENT '接口名称',
+  `api_url` varchar(2000) NOT NULL DEFAULT '' COMMENT '接口地址',
+  `api_content` longtext NOT NULL COMMENT '接口响应数据',
+  `api_content_desc` longtext COMMENT '接口响应数据的参数描述',
+  `is_proxy` int(1) DEFAULT '0' COMMENT '是否开启二次代理，0为不开启，1为开启',
+  `proxy_prefix` varchar(2000) DEFAULT NULL COMMENT '代理前缀',
+  `api_header` longtext COMMENT '接口请求HEADER参数',
+  `api_header_desc` longtext COMMENT '接口请求HEADER参数说明',
+  `api_parms` longtext COMMENT '接口请求POST等表单请求参数',
+  `api_parms_desc` longtext COMMENT '接口请求POST等表单请求参数说明',
+  `api_type` varchar(11) DEFAULT 'get' COMMENT '接口请求类型，HTTP请求类型，GET,PUT,POST等',
+  `api_state_code` int(11) DEFAULT NULL COMMENT '接口响应状态码，200，404等',
+  `exact_match` int(1) DEFAULT '1' COMMENT '接口匹配类型，1为全局匹配，0为只匹配【?】前面部分',
+  `is_mockjs` int(1) DEFAULT '0' COMMENT '接口响应数据是否使用mockjs',
+  `api_lazy_time` int(10) DEFAULT '0' COMMENT '接口响应延迟时间，单位为毫秒，默认0',
+  `api_querys_desc` longtext COMMENT '接口请求url中？后参数说明',
+  `api_req_header` longtext COMMENT '接口响应HEADER参数',
+  `api_req_header_desc` longtext COMMENT '接口响应HEADER参数说明',
   PRIMARY KEY (`mockid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -72,8 +72,10 @@ VALUES
 	(72,4,'项目列表','project/list','[\r\n  {\r\n    \"project_id\": 2,\r\n    \"project_name\": \"物联安全-web\",\r\n    \"proxy_url\": \"http://192.168.28.218\",\r\n    \"open_proxy\": 1\r\n  },\r\n  {\r\n    \"project_id\": 3,\r\n    \"project_name\": \"物联安全-mobile\",\r\n    \"proxy_url\": \"http://192.168.28.219\",\r\n    \"open_proxy\": 1\r\n  }\r\n]','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,0,0,0,NULL,NULL,NULL),
 	(73,2,'感动天二','sss?sdfsdf','{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,1,0,0,NULL,NULL,NULL),
 	(74,4,'11111','sdfsdf?dddd','{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,0,0,5000,NULL,NULL,NULL),
-	(75,2,'sdfsdf','ddddd','{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','post',200,1,0,0,NULL,NULL,NULL),
-	(76,2,'ddd','search','{\r\n  \"arraysearch\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"bsearch\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"usernamesearch\": \"参数说明\",\r\n  \"passwordsearch\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1search\": \"模拟参数值\",\r\n  \"header2search\": \"模拟参数值\"\r\n}','{\r\n  \"headere1search\": \"headere1参数说明\",\r\n  \"header2search\": \"header2参数说明\"\r\n}','{\r\n  \"usernamesearch\": \"模拟参数值\",\r\n  \"passwordsearch\": \"模拟参数值\"\r\n}','{\r\n  \"usernamesearch\": \"模拟参数值\",\r\n  \"passwordsearch\": \"模拟参数值\"\r\n}','search',200,0,0,0,'{\r\n  \"searchquery1\": \"参数说明\",\r\n  \"searchquery2\": \"参数说明\"\r\n}',NULL,NULL);
+	(75,2,'sdfsdf','ddddd','{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','post',200,0,0,0,'{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}',NULL,NULL),
+	(76,2,'ddd','searchsssss','{\r\n  \"arraysearch\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"bsearch\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"usernamesearch\": \"参数说明\",\r\n  \"passwordsearch\": \"参数说明\"\r\n}',0,'https://192.168.1.2/','{\r\n  \"headere1search\": \"模拟参数值\",\r\n  \"header2search\": \"模拟参数值\"\r\n}','{\r\n  \"headere1search\": \"headere1参数说明\",\r\n  \"header2search\": \"header2参数说明\"\r\n}','{\r\n  \"usernamesearch\": \"模拟参数值\",\r\n  \"passwordsearch\": \"模拟参数值\"\r\n}','{\r\n  \"usernamesearch\": \"模拟参数值\",\r\n  \"passwordsearch\": \"模拟参数值\"\r\n}','search',200,0,0,0,'{\r\n  \"searchquery1\": \"参数说明\",\r\n  \"searchquery2\": \"参数说明\"\r\n}',NULL,NULL),
+	(77,32,'dddd','test','{\r\n  \"array\": [\r\n    13,\r\n    23,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 1323,\r\n  \"object\": {\r\n    \"a\": \"b3\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参3数说明\",\r\n  \"password\": \"参3数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,1,0,0,'{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}',NULL,NULL),
+	(78,32,'dddd','testuuyyyy','{\r\n  \"array\": [\r\n    1,\r\n    26666666,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,1,0,0,'{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}',NULL,NULL);
 
 /*!40000 ALTER TABLE `mock_mockserver` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -87,6 +89,7 @@ DROP TABLE IF EXISTS `mock_project`;
 CREATE TABLE `mock_project` (
   `project_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `project_name` varchar(2000) NOT NULL DEFAULT '',
+  `project_prefix` varchar(200) DEFAULT NULL,
   `proxy_url` varchar(2000) DEFAULT NULL,
   `open_proxy` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`project_id`)
@@ -95,11 +98,11 @@ CREATE TABLE `mock_project` (
 LOCK TABLES `mock_project` WRITE;
 /*!40000 ALTER TABLE `mock_project` DISABLE KEYS */;
 
-INSERT INTO `mock_project` (`project_id`, `project_name`, `proxy_url`, `open_proxy`)
+INSERT INTO `mock_project` (`project_id`, `project_name`, `project_prefix`, `proxy_url`, `open_proxy`)
 VALUES
-	(2,'物联安全-web','http://192.168.28.218',1),
-	(3,'物联安全-mobile','http://192.168.28.219',1),
-	(4,'react','ddd',1);
+	(2,'物联安全-web','/ajax/','http://192.168.28.218',1),
+	(3,'物联安全-mobile',NULL,'http://192.168.28.219',1),
+	(32,'reactsss','/ajax/','',1);
 
 /*!40000 ALTER TABLE `mock_project` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -123,7 +126,7 @@ LOCK TABLES `mock_system` WRITE;
 
 INSERT INTO `mock_system` (`id`, `proxy_url`, `api_headers`, `api_headers_desc`)
 VALUES
-	(1,'http://192.168.28.218','{\r\n  \"headers\": [\r\n    \"AdminAuthorization\",\r\n    \"Authorization\"\r\n  ]\r\n}','{\r\n  \"headers\": [\r\n    \"管理员TOKEN信息\",\r\n    \"普通用户登录TOKEN信息\"\r\n  ]\r\n}');
+	(1,'http://192.168.28.218','{\r\n  \"headers\": [\r\n    \"AdminAuthorization\",\r\n    \"Authorization\"\r\n  ]\r\n}','{}');
 
 /*!40000 ALTER TABLE `mock_system` ENABLE KEYS */;
 UNLOCK TABLES;
