@@ -1,19 +1,9 @@
 'use strict';
-// import think from 'thinkjs/c'
-class GetRoute {
-    getUrls() {
-        let list = []
-        const reg = /^api/;
-        const url = "api/index";
-        let item = [reg, url]
-        list.push(item)
-        return list
-        // return this.model('mockserver').select();
-    }
-}
+// let routes = new GetRoute();
+// const apiroutes = routes.getRoute();
+// const apireg=/^/
 export default [
     [/^demo$/, 'home/interface/demo'],
-    [/^api/, 'api/index'],
     //项目设置路由
     [/^project\/add$/, 'home/project/add'],
     [/^project\/update$/, 'home/project/update'],
@@ -29,6 +19,8 @@ export default [
     [/^interface\/update/, '/home/interface/update'],
     [/^interface\/delete/, '/home/interface/delete'],
     [/^interface\/edit/, '/home/interface/edit'],
-    [/^interface\/setproxy/, '/home/interface/setproxye']
+    [/^interface\/setproxy/, '/home/interface/setproxye'],
+    [/^api\//, 'api/index'],
+    [/^[a-zA-Z_]\/]+/, 'api/index'],
 ]
 

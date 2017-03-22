@@ -52,7 +52,7 @@
                         <h4>全局浮动提醒</h4>
                         <div class="item-main">
                             <p>
-                                                    <span class="common-tips btn btn-success">
+                                                    <span class="common-tips btn btn-success J_common-tips">
                                                         <i class="fa fa-check-circle"></i>
                                                             已成功上架该产品！
                                                         </span>

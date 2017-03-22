@@ -2,7 +2,6 @@
 import request from "request";
 import Base from './base.js';
 import Mock from 'mockjs';
-const prefix = '/api/';
 export default class extends Base {
     /**
      * index action
@@ -13,9 +12,15 @@ export default class extends Base {
         this.systemConfig = await this.model('system').limit(1).find();
         //auto render template file index_index.html
         // console.log(this.http.url)
-        let url = this.http.url.replace('/api/', '');
+        this.api_prefix = this.http.url.match(/\/[\w_\d]+\//);
+        if (this.api_prefix.length > 0) {
+            this.api_prefix = this.api_prefix [0];
+        } else {
+            this.api_prefix = '/api/';
+        }
+        let url = this.http.url.replace(this.api_prefix, '');
         //先全路径匹配
-        let data = await this.model('mockserver').where("api_url='" + this.http.url.replace('/api/', '') + "'").find();
+        let data = await this.model('mockserver').where("api_url='" + this.http.url.replace(this.api_prefix, '') + "'").find();
         let tempUrl = url;
         if (tempUrl.split('?').length == 2) {
             tempUrl = tempUrl.split('?')[0];
@@ -122,7 +127,7 @@ export default class extends Base {
     async  getProxyFromProject(methodType, systemProxyUrl) {
         const proxy_url = await this.checkProjectProxy(systemProxyUrl);
         if (proxy_url) {
-            return this.getProxy(proxy_url, prefix, this.http.url.replace('/api/', ''), methodType);
+            return this.getProxy(proxy_url, prefix, this.http.url.replace(this.api_prefix, ''), methodType);
         } else {
             return this.fail({message: '此接口未定义全局代理'})
         }
@@ -148,7 +153,7 @@ export default class extends Base {
     /**
      * 从指定URL获取数据
      * @param httpPrefix {string} 域名前缀，格式如:http://192.168.0.1/
-     * @param prefix {string} 接口前缀，目前指定为 [api]目的是为了规范接口格式，也避免与系统本身的路由冲突
+     * @param prefix {string} 接口前缀，目前指定为 默认为[api]，可以在每个项目中单独指定，目的是为了规范接口格式，也避免与系统本身的路由冲突
      * @param api_url {string} 接口地址
      * @param method {string} 请求方式：GET,PUT,DELETE,POST等
      * @returns {*}

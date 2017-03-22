@@ -12,6 +12,8 @@
     <script src="/static/common/bootstrap/js/jquery.min.js"></script>
     <script src="/static/common/bootstrap/js/bootstrap.js"></script>
     <script src="/static/common/js/toolbar.js"></script>
+    <script src="/static/common/plugins/jQuery.cookie/jQuery.cookie.js"></script>
+
     <script src="/static/common/plugins/validation/js/jquery.validationEngine-zh_CN.js"></script>
     <script src="/static/common/plugins/validation/js/jquery.validationEngine.js"></script>
     <script type="text/javascript" src="/static/common/plugins/artdialog/jquery.artDialog.js"></script>
@@ -78,13 +80,22 @@
                 $.dialog($.extend(opts, btnOpt));
             }
 
-            $("#btn-open-dialog").click(function () {
+            $("#btn-open-dialog").click(function() {
                 showDemoDialog(true);
             });
-            $("#btn-open-dialog-without-titlebar").click(function () {
+            $("#btn-open-dialog-without-titlebar").click(function() {
                 showDemoDialog();
             });
             $('#formId').validationEngine();
+            $('.J_common-tips').click(function() {
+                $.gmMessage('已成功上架该产品', 'success', 3)
+            })
+            $('.btn-info').click(function() {
+                $.gmMessage('已成功上架该产品', 'info', 3)
+            })
+            $('.btn-danger').click(function() {
+                $.gmMessage('已成功上架该产品', 'danger', 2)
+            })
             // $('.page-content-inner').scrollTop(3811);
         });
     </script>
