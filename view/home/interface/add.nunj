@@ -166,10 +166,10 @@
                                         <div class="select-group radio-group" data-toggle="buttons">
                                             <!-- <div> -->
                                             <label class="btn {% if exact_match===1 %}active{% endif %}">
-                                                <input type="radio" name="exact_match" value="1" {% if exact_match==0 %}checked{% endif %} autocomplete="off">精准匹配
+                                                <input type="radio"   name="exact_match" value="1" {% if exact_match==1 %}checked{% endif %} autocomplete="off">精准匹配
                                             </label>
                                             <label class="btn {% if exact_match==0 or exact_match=="" or exact_match==null %}active{% endif %}">
-                                                <input type="radio" name="exact_match" value="0" {% if exact_match==1 %}checked{% endif %} autocomplete="off">只匹配【?】前部分
+                                                <input type="radio" name="exact_match" value="0" {% if exact_match==0 or exact_match=="" or exact_match==null %}checked{% endif %} autocomplete="off">只匹配【?】前部分
                                             </label>
                                             <!-- </div> -->
                                         </div>
