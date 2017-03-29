@@ -75,7 +75,12 @@ export default class extends Base {
                 project: project,
                 systemConfig: systemConfig,
                 project_id: data.project_id,
-                project_prefix: project_prefix
+                project_prefix: project_prefix,
+                curr_project: project.filter((item)=> {
+                    if (item['project_id'] == data.project_id) {
+                        return item;
+                    }
+                })
             })
         }
         return this.display();
@@ -98,7 +103,9 @@ export default class extends Base {
                 res[0].systemConfig = systemConfig;
                 res[0].project_prefix = project_prefix;
                 res[0].curr_project = project.filter((item)=> {
-                    item['project_id'] == res[0].project_id
+                    if (item['project_id'] == res[0].project_id) {
+                        return item;
+                    }
                 });
                 this.assign(res[0])
             }

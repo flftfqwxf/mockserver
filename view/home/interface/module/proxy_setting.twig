@@ -13,7 +13,7 @@
                 项目二次代理前缀
             </label>
             <div class="col-sm-6">
-                <input type="text" readonly value="{{ curProjectProxy }}" class="form-control projectProxy" placeholder=""/>
+                <input type="text" readonly value="{{ curr_project[0].proxy_url }}" class="form-control projectProxy" placeholder=""/>
             </div>
         </div>
         <div class="form-group">
@@ -21,7 +21,12 @@
                 二次代理前缀
             </label>
             <div class="col-sm-6">
-                <input type="text" name="proxy_prefix" value="{{ proxy_prefix if proxy_prefix else curProjectProxy }}"
+                {#{% if not proxy_prefix and  curr_project[0].proxy_url %}#}
+                    {#{% set  proxy_prefix= curr_project[0].proxy_url %}#}
+                {#{% elseif not proxy_prefix and systemConfig.proxy_url %}#}
+                    {#{% set  proxy_prefix= systemConfig.proxy_url %}#}
+                {#{% endif %}#}
+                <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}"
                        class="form-control proxy_prefix validate[custom[url]]"
                        placeholder="请输入要求输入的内容"/>
                 <p class="help-block">格式如:http://192.168.1.2/</p>
