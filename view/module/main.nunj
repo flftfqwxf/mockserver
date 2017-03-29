@@ -7,6 +7,9 @@
     <style>
         .btns-wrap dt{ padding: 5px 0; }
         .btns-wrap dd{ margin-bottom: 10px; }
+        #interfaceTabs [aria-expanded="true"]{
+            background: #FFF; color: #333;
+        }
     </style>
     <link rel="stylesheet" href="/static/common/json/s.css">
     <script src="/static/common/bootstrap/js/jquery.min.js"></script>

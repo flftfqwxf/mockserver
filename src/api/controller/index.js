@@ -210,7 +210,7 @@ export default class extends Base {
             try {
                 content.body = JSON.parse(content.body)
             } catch (e) {
-                return Promise.reject(e.message);
+                return Promise.reject(content.body);
             }
             //todo:将返回的HEADER返回给客户端,有BUG,
             //有些HEADER信息返回后会无法返回数据
