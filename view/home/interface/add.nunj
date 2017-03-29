@@ -42,11 +42,11 @@
                                         <label class="btn btn-default btn-select">
                                             <select name="project_id" class="validate[required]"
                                                     id="form-validation-field-0">
-                                                {% set curProjecteProxy='' %}
+                                                {% set curProjectProxy='' %}
 
                                                 {% for item in  project %}
                                                     {% if item.project_id== project_id %}
-                                                        {% set curProjecteProxy=item.proxy_url %}
+                                                        {% set curProjectProxy=item.proxy_url %}
 
                                                         <option selected value="{{ item.project_id }}">{{ item.project_name }}</option>
                                                     {% else %}
@@ -110,7 +110,7 @@
                                             'UNLOCK',
                                             'UNSUBSCRIBE' ] %}
                                             <label class="btn btn-default btn-select">
-                                                <select style="" name="api_type" class="validate[required]">
+                                                <select style="" name="api_type" class="validate[required] use_test">
                                                     {% for  method in methods %}
                                                         <option value="{{ method.toLowerCase() }}" {{ "selected" if api_type==method.toLowerCase() }}>{{ method }}</option>
 
@@ -125,7 +125,7 @@
                                         </label>
                                         <div class="col-sm-6 ">
                                             <div class="input-group"><span class="input-group-addon">{{ project_prefix }}</span>
-                                                <input type="text" name="api_url" value="{{ api_url }}" class="form-control api_url  validate[required]"
+                                                <input type="text" name="api_url" value="{{ api_url }}" class="form-control api_url  validate[required] use_test"
                                                        placeholder="请输入路径地址"/>
                                                 <input type="hidden" name="project_prefix" value="{{ project_prefix }}">
                                             </div>
@@ -159,7 +159,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">请求 header信息</label>
                                         <div class="col-sm-10">
-                                        <textarea name="api_req_header_desc" style="display: none" id="api_req_header_desc" cols="30" rows="10">
+                                        <textarea name="api_req_header_desc use_test" style="display: none" id="api_req_header_desc" cols="30" rows="10">
                                         {{ api_req_header_desc }}
                                     </textarea>
                                             <iframe id="querysDescIframe" class="jsoneditor" data-obj="api_req_header_desc" src="/static/common/jsoneditor/index.html"
@@ -168,7 +168,7 @@
                                             <p class="help-block">说明：发送请求的header信息参数值</p>
                                         </div>
                                     </div>
-                                    <div class="form-group ">
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label">
                                             <span class="common-required">*</span>匹配方式
                                         </label>
@@ -207,7 +207,7 @@
                                         <label class="col-sm-2 control-label">请求 body 参数</label>
                                         <div class="col-sm-10">
 
-                                        <textarea name="api_parms" style="display: none" id="api_parms" cols="30" rows="10">
+                                        <textarea name="api_parms use_test" style="display: none" id="api_parms" cols="30" rows="10">
                                         {{ api_parms }}
                                     </textarea>
                                             <iframe id="parmsIframe" class="jsoneditor" data-obj="api_parms" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;"
@@ -222,7 +222,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"><span class="common-required">*</span>响应数据参数说明</label>
                                         <div class="col-sm-10">
-                                    <textarea name="api_content_desc" style="display: none" id="api_content_desc" cols="30" rows="10">
+                                    <textarea name="api_content_desc " style="display: none" id="api_content_desc" cols="30" rows="10">
                                         {{ api_content_desc }}
                                     </textarea>
                                             <iframe id="jsonDescIframe" class="jsoneditor" data-obj="api_content_desc" src="/static/common/jsoneditor/index.html"
@@ -335,7 +335,7 @@
                                             项目二次代理前缀
                                         </label>
                                         <div class="col-sm-6">
-                                            <input type="text" readonly value="{{ curProjecteProxy }}" class="form-control projectProxy" placeholder=""/>
+                                            <input type="text" readonly value="{{ curProjectProxy }}" class="form-control projectProxy" placeholder=""/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -343,7 +343,8 @@
                                             二次代理前缀
                                         </label>
                                         <div class="col-sm-6">
-                                            <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}" class="form-control proxy_prefix validate[custom[url]]"
+                                            <input type="text" name="proxy_prefix" value="{{ proxy_prefix if proxy_prefix else curProjectProxy }}"
+                                                   class="form-control proxy_prefix validate[custom[url]]"
                                                    placeholder="请输入要求输入的内容"/>
                                             <p class="help-block">格式如:http://192.168.1.2/</p>
                                         </div>
@@ -493,7 +494,7 @@
         } catch (e) {
         }
         $('.getProxy').click(function() {
-            var gp = '{{ curProjecteProxy }}';
+            var gp = '{{ curProjectProxy }}';
             var url = '{{ proxy_prefix }}';
             var api_url = '{{ api_url }}';
             var is_proxy = {{ is_proxy }};
@@ -554,7 +555,6 @@
             $(this).next('div').toggle();
         })
         $('#send_test').click(function() {
-
             return false;
         });
     </script>
