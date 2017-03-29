@@ -1,0 +1,103 @@
+<div class="form-group-dashed tab-pane fade" role="tabpanel" id="response_set">
+    <div class="content_wrap">
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><span class="common-required">*</span>响应数据参数说明</label>
+            <div class="col-sm-10">
+                                    <textarea name="api_content_desc " style="display: none" id="api_content_desc" cols="30" rows="10">
+                                        {{ api_content_desc }}
+                                    </textarea>
+                <iframe id="jsonDescIframe" class="jsoneditor" data-obj="api_content_desc" src="/static/common/jsoneditor/index.html"
+                        style="width: 100%;height: 600px;"
+                        frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><span class="common-required">*</span>响应数据内容</label>
+            <div class="col-sm-10">
+                <a href="javascript:;" class="getProxy">从二次代理中获取数据,并填充,保存后生效</a>
+                <span class="getTips"></span>
+                <textarea name="api_content" style="display: none" id="api_content" cols="30" rows="10">
+                                        {{ api_content }}
+                                    </textarea>
+                <iframe id="jsonIframe" class="jsoneditor" data-obj="api_content" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 600px;"
+                        frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="form-group-dashed">
+            <div class="form-group ">
+                <label class="col-sm-2 control-label">
+                    <span class="common-required">*</span>返回状态码
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" name="api_state_code" maxlength="8" value="{{ api_state_code if api_state_code else  200 }}"
+                           class="form-control api_state_code w100  validate[required,custom[md8]]"
+                           placeholder="默认200"/>
+                    <p class="help-block">返回状态码，默认200</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group-dashed">
+            <div class="form-group ">
+                <label class="col-sm-2 control-label">
+                    <span class="common-required">*</span>延迟返回数据
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" name="api_lazy_time" maxlength="8" value="{{ api_lazy_time if api_lazy_time else  0 }}"
+                           class="form-control api_state_code w100  validate[required,custom[md8]]"
+                           placeholder="默认0"/>
+                    <p class="help-block">延迟单位为毫秒，默认0<br>
+                        注意：请求数据本身会消耗一定时间，所以返回数据的时候会大于设置的延迟时间
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group-dashed">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    开启mockjs
+                </label>
+                <div class="col-sm-6">
+                    <div class="select-group radio-group" data-toggle="buttons">
+                        <!-- <div> -->
+                        <label class="btn {% if is_mockjs==0 or is_mockjs===null %}active{% endif %}">
+                            <input type="radio" name="is_mockjs" value="0" {% if is_mockjs==0 %}checked{% endif %} autocomplete="off">关闭
+                        </label>
+                        <label class="btn {% if is_mockjs==1 %}active{% endif %}">
+                            <input type="radio" name="is_mockjs" value="1" {% if is_mockjs==1 %}checked{% endif %} autocomplete="off">开启
+                        </label>
+                        <p style="display: inline;"><a href="http://mockjs.com/" target="_blank">mockjs官网</a>
+                        </p>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group-dashed">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">响应header参数说明</label>
+                <div class="col-sm-10">
+
+                                        <textarea name="api_header_desc" style="display: none" id="api_header_desc" cols="30" rows="10">
+                                        {{ api_header_desc }}
+                                    </textarea>
+                    <iframe id="headerDescIframe" class="jsoneditor" data-obj="api_header_desc" src="/static/common/jsoneditor/index.html"
+                            style="width: 100%;height: 300px;"
+                            frameborder="0"></iframe>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">响应header信息</label>
+                <div class="col-sm-10">
+
+                                        <textarea name="api_header" style="display: none" id="api_header" cols="30" rows="10">
+                                        {{ api_header }}
+                                    </textarea>
+                    <iframe id="headerIframe" class="jsoneditor" data-obj="api_header" src="/static/common/jsoneditor/index.html"
+                            style="width: 100%;height: 300px;"
+                            frameborder="0"></iframe>
+                    <p class="help-block">添加返回接口的 header信息</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

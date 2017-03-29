@@ -1,0 +1,36 @@
+<div class="form-group-dashed tab-pane fade in active" role="tabpanel" id="base_set">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">
+            <span class="common-required">*</span>所属项目
+            <input type="hidden" name="mockid" value="{{ mockid }}">
+        </label>
+        <div class="col-sm-6">
+            <label class="btn btn-default btn-select">
+                <select name="project_id" class="validate[required]"
+                        id="form-validation-field-0">
+                    {% set curProjectProxy='' %}
+
+                    {% for item in  project %}
+                        {% if item.project_id== project_id %}
+                            {% set curProjectProxy=item.proxy_url %}
+
+                            <option selected value="{{ item.project_id }}">{{ item.project_name }}</option>
+                        {% else %}
+                            <option value="{{ item.project_id }}">{{ item.project_name }}</option>
+
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </label>
+            <p class="help-block">用于区分不同项目的接口</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">
+            <span class="common-required">*</span>接口名称
+        </label>
+        <div class="col-sm-6">
+            <input type="text" name="api_name" value="{{ api_name }}" class="form-control  validate[required]" placeholder="请输入要求输入的内容"/>
+        </div>
+    </div>
+</div>

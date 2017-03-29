@@ -1,0 +1,49 @@
+<div class="form-group-dashed tab-pane fade" role="tabpanel" id="proxy_set">
+    <div class="content_wrap">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                系统二次代理前缀
+            </label>
+            <div class="col-sm-6">
+                <input type="text" readonly value="{{ systemConfig.proxy_url }}" class="form-control globalProxy" placeholder=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                项目二次代理前缀
+            </label>
+            <div class="col-sm-6">
+                <input type="text" readonly value="{{ curProjectProxy }}" class="form-control projectProxy" placeholder=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                二次代理前缀
+            </label>
+            <div class="col-sm-6">
+                <input type="text" name="proxy_prefix" value="{{ proxy_prefix if proxy_prefix else curProjectProxy }}"
+                       class="form-control proxy_prefix validate[custom[url]]"
+                       placeholder="请输入要求输入的内容"/>
+                <p class="help-block">格式如:http://192.168.1.2/</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                开启二次代理
+            </label>
+            <div class="col-sm-6">
+                <div class="select-group radio-group J_open_proxy" data-toggle="buttons">
+                    <!-- <div> -->
+                    <label class="btn {% if is_proxy==0 %}active{% endif %}">
+                        <input type="radio" name="is_proxy" value="0" {% if is_proxy==0 %}checked{% endif %} autocomplete="off">关闭
+                    </label>
+                    <label class="btn {% if is_proxy==1 %}active{% endif %}">
+                        <input type="radio" name="is_proxy" value="1" {% if is_proxy==1 %}checked{% endif %} autocomplete="off">开启
+                    </label>
+                    <div style="display: inline;" class="proxy_tips"></div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

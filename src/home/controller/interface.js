@@ -97,6 +97,9 @@ export default class extends Base {
                 res[0].project = project;
                 res[0].systemConfig = systemConfig;
                 res[0].project_prefix = project_prefix;
+                res[0].curr_project = project.filter((item)=> {
+                    item['project_id'] == res[0].project_id
+                });
                 this.assign(res[0])
             }
         } else {
