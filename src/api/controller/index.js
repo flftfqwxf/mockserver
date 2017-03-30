@@ -9,6 +9,8 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
+        //允许跨域访问接口
+        this.http.header('Access-Control-Allow-Origin', '*');
         //获取全局配置
         this.systemConfig = await this.model('system').limit(1).find();
         //auto render template file index_index.html
