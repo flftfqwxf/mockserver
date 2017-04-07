@@ -42,7 +42,7 @@ export default class extends Base {
                 data = tempdata[0];
             } else if (tempdata.length > 1) {
                 data = [];
-                tempdata.forEach((item, index)=> {
+                tempdata.forEach((item, index) => {
                     if (item.exact_match !== 1) {
                         data.push(item);
                     }
@@ -80,7 +80,7 @@ export default class extends Base {
                     this.http.status(item.api_state_code)
                 }
                 if (item.api_lazy_time && item.api_lazy_time > 0) {
-                    setTimeout(()=> {
+                    setTimeout(() => {
                         this.json(item.api_content);
                     }, item.api_lazy_time)
                 } else {
@@ -122,7 +122,7 @@ export default class extends Base {
         let parm, parmstr = [], tempObj = {};
         if (tempUrl.length == 2) {
             let parmsList = tempUrl[1].split('&');
-            parmsList.forEach((item)=> {
+            parmsList.forEach((item) => {
                 parm = item.split('=');
                 if (parm.length == 2) {
                     tempObj[parm[0]] = parm[1];
@@ -181,6 +181,22 @@ export default class extends Base {
             postDataSource: ''
             // headers:this.http.headers
         };
+        const headerList = [
+            // 'Accept',
+            'Cookie',
+            // 'Host',
+            'Origin',
+            'Referer',
+            'User-Agent',
+            'X-Requested-With'
+        ]
+        const headersBlacklist = [
+            'host',
+            // 'accept',
+            // 'accept-language',
+            'accept-encoding'
+        ]
+        let headersObj = {};
         if (this.systemConfig && this.systemConfig.api_headers) {
             let api_headers;
             try {
@@ -188,18 +204,34 @@ export default class extends Base {
             } catch (e) {
                 return this.fail({message: e.message})
             }
-            if (think.isArray(api_headers.headers)) {
-                let headersObj = {};
-                api_headers.headers.forEach((item)=> {
-                    item = item.toLowerCase();
-                    if (_this.http.headers[item]) {
-                        headersObj[item] = _this.http.headers[item];
-                    }
-                });
-                send.headers = headersObj;
-            } else {
-                return this.fail({message: 'header格式错误,请参考全局配置中格式说明'})
+            let headers = this.http.headers;
+            for (var key in headers) {
+                key = key.toLowerCase();
+                if (headersBlacklist.indexOf(key) === -1) {
+                    headersObj[key] = headers[key];
+                }
             }
+            // this.http.headers.forEach((val,key) => {
+            //     key = key.toLowerCase();
+            //     if (headersBlacklist.indexOf(key) === -1) {
+            //         headersObj[key] = _this.http.headers[val];
+            //     }
+            // });
+            send.headers = headersObj;
+            // if (think.isArray(api_headers.headers)) {
+            //     api_headers.headers = api_headers.headers.concat(headerList);
+            //     let headersObj = {};
+            //     api_headers.headers.forEach((item) => {
+            //         item = item.toLowerCase();
+            //         if (_this.http.headers[item]) {
+            //             headersObj[item] = _this.http.headers[item];
+            //         }
+            //     });
+            //     send.headers = headersObj;
+            //     // send.headers = _this.http.headers;
+            // } else {
+            //     return this.fail({message: 'header格式错误,请参考全局配置中格式说明'})
+            // }
         }
         //将请求端的header信息获取,并传递给请求
         //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误
@@ -228,7 +260,7 @@ export default class extends Base {
             }
             content.body.proxyDataSource = url
             if (_this.item && _this.item.api_lazy_time && _this.item.api_lazy_time > 0) {
-                setTimeout(()=> {
+                setTimeout(() => {
                     _this.json(content.body);
                 }, _this.item.api_lazy_time)
             } else {
@@ -240,3 +272,4 @@ export default class extends Base {
         });
     }
 }
+
