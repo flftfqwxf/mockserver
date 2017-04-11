@@ -3,13 +3,19 @@
 欢迎star,并提出改进意见
 
 
+#更新日志：
 
+
+```
+2017-4-11 有更新，需要重新导入数据库文件
+
+```
 ## Install dependencies
 
 ```
 npm install
 ```
-##导入mysql数据库文件
+#导入mysql数据库文件
 
 ```
 需要安装mysql[5.7.14], 并导入最新的mockserver-xx-xx.sql 文件
@@ -21,7 +27,7 @@ npm install
 npm start
 ```
 
-##
+
 
 ##功能说明:
 
