@@ -2,6 +2,7 @@
 import request from "request";
 import Base from './base.js';
 import Mock from 'mockjs';
+import _ from 'lodash';
 let prefix = '/api/';
 export default class extends Base {
     /**
@@ -181,57 +182,39 @@ export default class extends Base {
             postDataSource: ''
             // headers:this.http.headers
         };
-        const headerList = [
-            // 'Accept',
-            'Cookie',
-            // 'Host',
-            'Origin',
-            'Referer',
-            'User-Agent',
-            'X-Requested-With'
-        ]
-        const headersBlacklist = [
-            // 'host',
-            // 'accept',
-            // 'accept-language',
+        let headersWhiteList = []
+        let headersBlacklist = [
+            'host',
             'accept-encoding'
         ]
         let headersObj = {};
-        if (this.systemConfig && this.systemConfig.api_headers) {
-            let api_headers;
-            try {
-                api_headers = JSON.parse(this.systemConfig.api_headers);
-            } catch (e) {
-                return this.fail({message: e.message})
-            }
-            let headers = this.http.headers;
-            for (var key in headers) {
-                key = key.toLowerCase();
-                if (headersBlacklist.indexOf(key) === -1) {
-                    headersObj[key] = headers[key];
+        let headers = this.http.headers;
+        if (this.systemConfig) {
+            if (this.systemConfig.headers_proxy_state === 0 || !this.systemConfig.headers_proxy_state) {
+                if (this.systemConfig.headers_black_list) {
+                    headersBlacklist = this.systemConfig.headers_black_list.toLowerCase().replace('\r\n', '||').replace('\n', '||').split('||').filter((item) => {
+                        return item.replace(/\s/ig, '')
+                    });
+                }
+                for (var key in headers) {
+                    key = _.trim(key.toLowerCase());
+                    if (headersBlacklist.indexOf(key) === -1) {
+                        headersObj[key] = headers[key];
+                    }
+                }
+            } else if (this.systemConfig.headers_proxy_state === 1) {
+                if (this.systemConfig.headers_white_list) {
+                    headersWhiteList = this.systemConfig.headers_white_list.toLowerCase().replace('\r\n', '||').replace('\n', '||').split('||').filter((item) => {
+                        return item.replace(/\s/ig, '')
+                    })
+                }
+                for (var key in headersWhiteList) {
+                    key = _.trim(key.toLowerCase());
+                    headersObj[headersWhiteList[key]] = headers[headersWhiteList[key]];
                 }
             }
-            // this.http.headers.forEach((val,key) => {
-            //     key = key.toLowerCase();
-            //     if (headersBlacklist.indexOf(key) === -1) {
-            //         headersObj[key] = _this.http.headers[val];
-            //     }
-            // });
+            // headersObj.host='www.covisiondd.com'
             send.headers = headersObj;
-            // if (think.isArray(api_headers.headers)) {
-            //     api_headers.headers = api_headers.headers.concat(headerList);
-            //     let headersObj = {};
-            //     api_headers.headers.forEach((item) => {
-            //         item = item.toLowerCase();
-            //         if (_this.http.headers[item]) {
-            //             headersObj[item] = _this.http.headers[item];
-            //         }
-            //     });
-            //     send.headers = headersObj;
-            //     // send.headers = _this.http.headers;
-            // } else {
-            //     return this.fail({message: 'header格式错误,请参考全局配置中格式说明'})
-            // }
         }
         //将请求端的header信息获取,并传递给请求
         //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误

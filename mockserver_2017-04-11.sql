@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.14)
 # Database: mockserver
-# Generation Time: 2017-04-01 09:32:36 +0000
+# Generation Time: 2017-04-11 10:59:08 +0000
 # ************************************************************
 
 
@@ -72,7 +72,8 @@ VALUES
 	(74,4,'11111','sdfsdf?dddd','{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,0,0,5000,NULL,NULL,NULL),
 	(75,2,'sdfsdf','ddddd','{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','post',200,0,0,0,'{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}',NULL,NULL),
 	(77,32,'dddd','test','{\r\n  \"array\": [\r\n    13,\r\n    23,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 1323,\r\n  \"object\": {\r\n    \"a\": \"b3\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参3数说明\",\r\n  \"password\": \"参3数说明\"\r\n}',0,'','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,1,0,0,'{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}',NULL,NULL),
-	(78,32,'dddd','testuuyyyy','{\r\n  \"array\": [\r\n    1,\r\n    26666666,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'http://192.168.28.213/sdfsdf','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,1,0,0,'{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}',NULL,'{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}');
+	(78,32,'dddd','testuuyyyy','{\r\n  \"array\": [\r\n    1,\r\n    26666666,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}','{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}',0,'http://192.168.28.213/sdfsdf','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','get',200,1,0,0,'{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}',NULL,'{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}'),
+	(79,33,'test','knowledge_skill/364','{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"number\": 123,\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  },\r\n  \"string\": \"Hello World\"\r\n}',NULL,1,'http://www.covisiondev.com','{\r\n  \"headere1\": \"模拟参数值\",\r\n  \"header2\": \"模拟参数值\"\r\n}','{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}',NULL,'{\r\n  \"username\": \"模拟参数值\",\r\n  \"password\": \"模拟参数值\"\r\n}','delete',200,0,0,0,'{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}',NULL,'{\r\n  \"headere1\": \"headere1参数说明\",\r\n  \"header2\": \"header2参数说明\"\r\n}');
 
 /*!40000 ALTER TABLE `mock_mockserver` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -99,7 +100,8 @@ INSERT INTO `mock_project` (`project_id`, `project_name`, `project_prefix`, `pro
 VALUES
 	(2,'物联安全-web','/ajax/','http://192.168.28.218',1),
 	(3,'物联安全-mobile',NULL,'http://192.168.28.219',1),
-	(32,'reactsss','/ajax/','',1);
+	(32,'reactsss','/ajax/','',1),
+	(33,'web','/evaluations/','',1);
 
 /*!40000 ALTER TABLE `mock_project` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -113,17 +115,18 @@ DROP TABLE IF EXISTS `mock_system`;
 CREATE TABLE `mock_system` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `proxy_url` varchar(200) DEFAULT '',
-  `api_headers` varchar(2000) DEFAULT NULL,
-  `api_headers_desc` varchar(2000) DEFAULT NULL,
+  `headers_white_list` varchar(2000) DEFAULT '',
+  `headers_black_list` varchar(2000) DEFAULT 'host\r\naccept-encoding',
+  `headers_proxy_state` tinyint(2) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `mock_system` WRITE;
 /*!40000 ALTER TABLE `mock_system` DISABLE KEYS */;
 
-INSERT INTO `mock_system` (`id`, `proxy_url`, `api_headers`, `api_headers_desc`)
+INSERT INTO `mock_system` (`id`, `proxy_url`, `headers_white_list`, `headers_black_list`, `headers_proxy_state`)
 VALUES
-	(1,'http://192.168.28.218','{\r\n  \"headers\": [\r\n    \"AdminAuthorization\",\r\n    \"Authorization\"\r\n  ]\r\n}','{}');
+	(4,'http://www.covisiondev.com','cookie','accept-encoding',1);
 
 /*!40000 ALTER TABLE `mock_system` ENABLE KEYS */;
 UNLOCK TABLES;
