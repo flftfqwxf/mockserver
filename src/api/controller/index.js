@@ -191,7 +191,7 @@ export default class extends Base {
             'X-Requested-With'
         ]
         const headersBlacklist = [
-            'host',
+            // 'host',
             // 'accept',
             // 'accept-language',
             'accept-encoding'

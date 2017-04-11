@@ -1,7 +1,10 @@
 {% extends '../../module/main.nunj' %}
 {% block content %}
 
-
+    <style>
+        .txtarea_wrap{ display: none; }
+        textarea.header_area{ height: 200px }
+    </style>
     <div class="row">
         <div class="col-md-12">
             <div class="item">
@@ -54,34 +57,42 @@
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">全局header字段</label>
-                                <div class="col-sm-10">
-
-                                        <textarea name="api_headers" style="display: none" id="api_headers" cols="30" rows="10">
-                                        {{ api_headers }}
-                                    </textarea>
-                                    <iframe id="headerIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
-                                    <p class="help-block">二次代理开启后，将被传递的header字段</p>
+                                <label class="col-sm-2 control-label">代理header设置</label>
+                                <div class="col-sm-8">
+                                    <div class="select-group radio-group" data-toggle="buttons">
+                                        <!-- <div> -->
+                                        <label class="btn {% if headers_proxy_state==0 or not  headers_proxy_state %}active{% endif %}">
+                                            <input type="radio" name="headers_proxy_state" value="0" {% if headers_proxy_state==0 %}checked{% endif %} autocomplete="off">启用黑名单
+                                        </label>
+                                        <label class="btn {% if headers_proxy_state==1 %}active{% endif %}">
+                                            <input type="radio" name="headers_proxy_state" value="1" {% if headers_proxy_state==1 %}checked{% endif %} autocomplete="off">启用白名单
+                                        </label>
+                                        <!-- </div> -->
+                                        <br>
+                                    </div>
+                                    <div class="txtarea_wrap" {% if headers_proxy_state==0 or not headers_proxy_state %} style="display: block;"{% endif %}>
+                                        <textarea type="text" placeholder="header黑名单字段，一行一个"
+                                                  class="form-control header_area"
+                                                  name="headers_black_list" id="headers_black_list">{{ headers_black_list if  headers_black_list else 'host\r\naccept-encoding' }}</textarea>
+                                        <p class="help-block" style="color: red;">当启用黑名单时，二次代理开启后，当前指定header字段将不会被传递到二次代理的服务上,为空时，默认值为 host 和 accept-encoding两个header字段，<br>
+                                            原因为：如果请求的url域名与代理的 host 不一致时，二次代理会报错<br>
+                                            accept-encoding:代理后，容易出现乱码</p>
+                                    </div>
+                                    <div class="txtarea_wrap" {% if headers_proxy_state==1 %} style="display: block;" {% endif %} >
+                                        <textarea type="text" placeholder="header白名单字段，一行一个"
+                                                  class="form-control header_area" name="headers_white_list"
+                                                  id="headers_white_list">{{ headers_white_list }}</textarea>
+                                        <p class="help-block " style="color: red;">当启用白名单时，二次代理开启后，将只传递当前指定header字段到二次代理服务上</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">全局header字段参数说明</label>
-                                <div class="col-sm-10">
-
-                                        <textarea name="api_headers_desc" style="display: none" id="api_headers_desc" cols="30" rows="10">
-                                        {{ api_headers_desc }}
-                                    </textarea>
-                                    <iframe id="headerDescIframe" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;" frameborder="0"></iframe>
-                                    <p class="help-block">二次代理开启后，将被传递的header字段</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group-dashed">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"></label>
-                                <div class="col-sm-10">
-                                    <button class="btn btn-default" type="button">取消</button>
-                                    <button class="btn btn-info" type="submit">保存修改</button>
+                            <div class="form-group-dashed">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-10">
+                                        <button class="btn btn-default" type="button">取消</button>
+                                        <button class="btn btn-info" type="submit">保存修改</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -114,18 +125,22 @@
             $("#headerDescIframe")[0].contentWindow.setJson(api_headers_desc);
         })
         $('#formId').submit(function() {
-            var header = $("#headerIframe")[0].contentWindow.getJson();
-            var headerDesc = $("#headerDescIframe")[0].contentWindow.getJson();
-            if (header) {
-                $('#api_headers').val(header);
-            }
-            if (headerDesc) {
-                $('#api_headers_desc').val(headerDesc);
-            }
-            if (header && headerDesc) {
-                return true;
-            }
-            return false
+//            var header = $("#headerIframe")[0].contentWindow.getJson();
+//            var headerDesc = $("#headerDescIframe")[0].contentWindow.getJson();
+//            if (header) {
+//                $('#api_headers').val(header);
+//            }
+//            if (headerDesc) {
+//                $('#api_headers_desc').val(headerDesc);
+//            }
+//            if (header && headerDesc) {
+//                return true;
+//            }
+//            return false
         })
+        var states = $('input[name="headers_proxy_state"]')
+        states.change(function() {
+            $('.txtarea_wrap').hide().eq(states.index($(this))).show();
+        });
     </script>
 {% endblock %}
