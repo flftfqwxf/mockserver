@@ -1,5 +1,5 @@
 'use strict';
-import Base from './base.js';
+import Base from '../../common/controller/common';
 export default class extends Base {
     /**
      * index action

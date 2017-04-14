@@ -1,6 +1,6 @@
 'use strict';
 import request from "request";
-import Base from './base.js';
+import Base from '../../common/controller/common';
 import Mock from 'mockjs';
 import _ from 'lodash';
 let prefix = '/api/';

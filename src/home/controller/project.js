@@ -1,5 +1,5 @@
 'use strict';
-import Base from './base.js';
+import Base from '../../common/controller/common';
 import excludeConfig from '../../common/config/exclude_config'
 export default class extends Base {
     /**
@@ -64,7 +64,7 @@ export default class extends Base {
         if (think.isEmpty(data)) {
             return this.setSucess('数据为空:点击返回列表', '/')
         }
-        excludeConfig.some((item)=> {
+        excludeConfig.some((item) => {
             if (data.project_prefix.indexOf(item) === 0) {
                 return this.setSucess('不能使用：【' + item + '】作为前缀开头,该前缀已经被系统占有用', '/');
             }

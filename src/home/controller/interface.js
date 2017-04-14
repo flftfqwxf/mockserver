@@ -1,5 +1,6 @@
 'use strict';
-import Base from './base.js';
+import Base from '../../common/controller/common';
+
 let project_prefix = '/api/';
 export default class extends Base {
     /**
@@ -57,7 +58,7 @@ export default class extends Base {
         let data = this.get();
         let curr_project;
         if (data.project_id) {
-            curr_project = project.filter(item=>item.project_id.toString() === data.project_id);
+            curr_project = project.filter(item => item.project_id.toString() === data.project_id);
             curr_project.length > 0 ? project_prefix = curr_project[0].project_prefix ? curr_project[0].project_prefix : project_prefix : '';
         }
         if (data.mockid && data.iscopy === '1') {
@@ -76,7 +77,7 @@ export default class extends Base {
                 systemConfig: systemConfig,
                 project_id: data.project_id,
                 project_prefix: project_prefix,
-                curr_project: project.filter((item)=> {
+                curr_project: project.filter((item) => {
                     if (item['project_id'] == data.project_id) {
                         return item;
                     }
@@ -95,14 +96,14 @@ export default class extends Base {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
             if (res.length === 1) {
                 if (res[0].project_id) {
-                    curr_project = project.filter(item=>item.project_id === res[0].project_id);
+                    curr_project = project.filter(item => item.project_id === res[0].project_id);
                     curr_project.length > 0 ? project_prefix = curr_project[0].project_prefix ? curr_project[0].project_prefix :
-                        project_prefix : '';
+                            project_prefix : '';
                 }
                 res[0].project = project;
                 res[0].systemConfig = systemConfig;
                 res[0].project_prefix = project_prefix;
-                res[0].curr_project = project.filter((item)=> {
+                res[0].curr_project = project.filter((item) => {
                     if (item['project_id'] == res[0].project_id) {
                         return item;
                     }

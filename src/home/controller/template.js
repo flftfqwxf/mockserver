@@ -1,5 +1,5 @@
 'use strict';
-import Base from './base.js';
+import Base from '../../common/controller/common';
 export default class extends Base {
     /**
      * index action
@@ -18,7 +18,7 @@ export default class extends Base {
     addAction() {
         //auto render template file index_index.html
         this.assign({
-            is_proxy:0
+            is_proxy: 0
         })
         return this.display();
     }
@@ -67,7 +67,6 @@ export default class extends Base {
                 this.fail("操作失败！");
             }
         } else {
-
             let res = await this.model('project').add(data);
             if (res) {
                 // this.active = "/";
@@ -83,6 +82,4 @@ export default class extends Base {
         }
         return this.display();
     }
-
-
 }

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="item">
                 <div class="item-head clearfix">
-                    <h4 class="pull-left">项目列表</h4>
+                    <h4 class="pull-left">{{ LN.projectList }}</h4>
                     {#<div class="pull-right form-inline">#}
                     {#<div class="input-group">#}
                     {#<div class="has-feedback">#}
@@ -19,17 +19,17 @@
                     {#</div>#}
                     {#</div>#}
                     <span style="padding-right: 20px;float: right">
-                            <a class="btn btn-info" href="/project/add.html">添加项目</a>
+                            <a class="btn btn-info" href="/project/add.html">{{ LN.addProject }}</a>
                                                         </span>
                 </div>
                 <div class="item-main">
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>项目名称</th>
-                            <th>项目接口前缀</th>
-                            <th>代理前缀</th>
-                            <th>操作</th>
+                            <th>{{ LN.projectName }}</th>
+                            <th>{{ LN.projectInterfacePrefix }}</th>
+                            <th>{{ LN.proxyProxy }}</th>
+                            <th>{{ LN.actions }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,7 +37,6 @@
                             <tr>
                                 <td><a href="/interface/index?project_id={{ item.project_id }}">{{ item.project_name }}</a></td>
                                 <td>{{ item.project_prefix if item.project_prefix else '/api/(默认)' }}</td>
-
                                 <td>{{ item.proxy_url }}</td>
                                 <td><a class="deleteLnk" href="/project/delete?project_id={{ item.project_id }}">删除</a> <a href="/project/edit?project_id={{ item.project_id }}">修改</a>
                                     <a href="/interface/index?project_id={{ item.project_id }}">查看接口</a>

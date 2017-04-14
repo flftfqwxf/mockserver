@@ -7,9 +7,9 @@
             <div class="item">
                 <h4>
                     {% if project_name %}
-                        修改 项目
+                        {{ LN.editProject }}
                     {% else %}
-                        添加 项目
+                        {{ LN.addProject }}
                     {% endif %}
                 </h4>
                 <div class="item-main">
