@@ -7,16 +7,11 @@
 欢迎star,并提出改进意见
 
 
-## 更新日志：
-
-
-```
-2017-4-11 有更新，需要重新导入数据库文件
-```
-
 ## clone
 
+```
 git clone --depth=1 https://github.com/flftfqwxf/mock-server
+```
 
 ## Install dependencies
 
@@ -255,7 +250,12 @@ npm start
 
  
  
+## 更新日志：
 
+
+```
+2017-4-11 有更新，需要重新导入数据库文件
+```
  
 
 
