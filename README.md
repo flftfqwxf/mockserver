@@ -2,7 +2,7 @@
 
 ## [demo](http://47.93.62.181:8033/)
 
-### demo只作演示作用，并会定期清除数据，
+### demo只作演示作用，并会定期清除数据
 
 欢迎star,并提出改进意见
 
@@ -13,6 +13,11 @@
 ```
 2017-4-11 有更新，需要重新导入数据库文件
 ```
+
+## clone
+
+git clone --depth=1 https://github.com/flftfqwxf/mock-server
+
 ## Install dependencies
 
 ```
