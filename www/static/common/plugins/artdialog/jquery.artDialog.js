@@ -1593,7 +1593,7 @@
             .time(time || 1.5);
         return tips;
     };
-    $.gmMessage = $.dialog.gmMessage = artDialog.gmMessage = function(content, success, time) {
+    $.commonTips = $.dialog.commonTips = artDialog.commonTips = function(content, success, time) {
         var gmMsg = artDialog.get('gmMsg'), api, wrap;
         var icon = '';
         switch (success) {

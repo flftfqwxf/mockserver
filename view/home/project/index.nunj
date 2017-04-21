@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="item">
                 <div class="item-head clearfix">
-                    <h4 class="pull-left">{{ LN.projectList }}</h4>
+                    <h4 class="pull-left">{{ LN.project.index.projectList }}</h4>
                     {#<div class="pull-right form-inline">#}
                     {#<div class="input-group">#}
                     {#<div class="has-feedback">#}
@@ -19,27 +19,29 @@
                     {#</div>#}
                     {#</div>#}
                     <span style="padding-right: 20px;float: right">
-                            <a class="btn btn-info" href="/project/add.html">{{ LN.addProject }}</a>
+                            <a class="btn btn-info" href="/project/add.html">{{ LN.project.index.addProject }}</a>
                                                         </span>
                 </div>
                 <div class="item-main">
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th>{{ LN.projectName }}</th>
-                            <th>{{ LN.projectInterfacePrefix }}</th>
-                            <th>{{ LN.proxyProxy }}</th>
-                            <th>{{ LN.actions }}</th>
+                            <th>{{ LN.project.index.projectName }}</th>
+                            <th>{{ LN.project.index.projectInterfacePrefix }}</th>
+                            <th>{{ LN.project.index.proxyProxy }}</th>
+                            <th>{{ LN.project.index.actions }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for item in list %}
                             <tr>
                                 <td><a href="/interface/index?project_id={{ item.project_id }}">{{ item.project_name }}</a></td>
-                                <td>{{ item.project_prefix if item.project_prefix else '/api/(默认)' }}</td>
+                                <td>{{ item.project_prefix if item.project_prefix else '/api/(default)' }}</td>
                                 <td>{{ item.proxy_url }}</td>
-                                <td><a class="deleteLnk" href="/project/delete?project_id={{ item.project_id }}">删除</a> <a href="/project/edit?project_id={{ item.project_id }}">修改</a>
-                                    <a href="/interface/index?project_id={{ item.project_id }}">查看接口</a>
+                                <td>
+                                    <a class="J_deleteLnk" href="/project/delete?project_id={{ item.project_id }}">{{ LN.project.index.delete }}</a>
+                                    <a href="/project/edit?project_id={{ item.project_id }}">{{ LN.project.index.edit }}</a>
+                                    <a href="/interface/index?project_id={{ item.project_id }}">{{ LN.project.index.details }}</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -51,8 +53,15 @@
         <!--table end-->
     </div>
     <script>
-        $('.deleteLnk').click(function() {
-            if (confirm('删除项目无法恢复且其项目下的接口不会同步删除,你确定删除该项目么?')) {
+//        parent.postMessage("isComplete", "http://www.covision.com");
+//        window.addEventListener('message', function(event) {
+//            var origin = event.origin || event.originalEvent.origin;
+//            if (origin === 'http://www.covision.com') {
+//                parent.postMessage(event.data, "http://www.covision.com");
+//            }
+//        }, false)
+        $('.J_deleteLnk').click(function() {
+            if (confirm('{{ LN.project.index.deleteTips }}')) {
                 return true;
             } else {
                 return false;

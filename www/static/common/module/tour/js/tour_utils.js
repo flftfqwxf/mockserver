@@ -38,7 +38,7 @@
 				async: false,
 				success: $.noop,
 				error: function(d) {
-					$.gmMessage(js + "未找到！", false);
+					$.commonTips(js + "未找到！", false);
 				}
 			});
 		},

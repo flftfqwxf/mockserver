@@ -164,9 +164,9 @@ $(function () {
                         var count = Number(countNode.text() || 0) - 1;
                         elem.remove();
                         countNode.text(count < 0 ? 0 : count);
-                        $.gmMessage(data.result.message, true);
+                        $.commonTips(data.result.message, true);
                     } else {
-                        $.gmMessage(data.result.message);
+                        $.commonTips(data.result.message);
                     }
                 }
             });

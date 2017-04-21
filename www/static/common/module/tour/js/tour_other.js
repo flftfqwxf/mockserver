@@ -271,11 +271,11 @@ var constractdata;
 							d = eval('(' + d + ")");
 						if(d.result && d.result.success == false){
 						        submitFormStatus = true;
-							$.gmMessage(d.result.message,true);
+							$.commonTips(d.result.message,true);
 							return;
 						}
 						$.unbindbeforeout();
-						$.gmMessage("操作成功",true);
+						$.commonTips("操作成功",true);
 						setTimeout(function(){
 							submitFormStatus = true;
                             location.href = "/product?line="+(Tour.current.lineId || (Tour.current.data.product.touristLine && Tour.current.data.product.touristLine.id));
@@ -286,7 +286,7 @@ var constractdata;
 						setTimeout(function(){
 							submitFormStatus = true;
 						},1000);
-						$.gmMessage("保存失败，请稍后重试");
+						$.commonTips("保存失败，请稍后重试");
 					}).always(function(){
 						Placeholders.enable(Tour.current.docForm);
 						$this.text('确认保存').removeClass('btn-primary common-loading').addClass('btn-info');
@@ -435,7 +435,7 @@ function setDialogSearch(uri, dialog){
 			try {
 				var json = eval("(" + objData + ")");
 				dialog.close();
-				$.gmMessage("请重新登录", false);
+				$.commonTips("请重新登录", false);
 				return false;
 			} catch(e) {
 			}
@@ -463,7 +463,7 @@ function setDialogSearch(uri, dialog){
 				try {
 					var json = eval("(" + objData + ")");
 					dialog.close();
-					$.gmMessage("请重新登录", false);
+					$.commonTips("请重新登录", false);
 					return false;
 				} catch(e) {
 				}

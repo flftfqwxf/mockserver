@@ -1,6 +1,5 @@
 'use strict';
 import Base from '../../common/controller/common';
-
 let project_prefix = '/api/';
 export default class extends Base {
     /**
@@ -170,40 +169,40 @@ export default class extends Base {
         const mockid = this.get('mockid');
         const is_proxy = this.get('is_proxy');
         if (think.isEmpty(mockid)) {
-            this.fail({message: 'mockid为空 '})
+            this.fail(400, 'mockid为空 ')
         }
         if (think.isEmpty(is_proxy)) {
-            this.fail({message: 'is_proxy为空 '})
+            this.fail(400, 'is_proxy为空 ')
         }
         let data = await this.model('mockserver').where("mockid=" + mockid + "").find();
         if (!think.isEmpty(data)) {
             var _this = this;
             let data = await this.model('mockserver').where("mockid=" + mockid + "").update({is_proxy: is_proxy});
             if (data) {
-                this.success({message: '修改成功'})
+                this.success('修改成功')
             } else {
-                this.fail({message: '修改失败'})
+                this.fail(500, '修改失败')
             }
         } else {
-            this.fail({message: 'mockid不存在'})
+            this.fail(400, 'mockid不存在')
         }
         // return this.display();
     }
 
-    async setproxysAction() {
+    async setproxiesAction() {
         const is_proxy = this.get('is_proxy');
         const mockids = this.get('mockids');
         if (think.isEmpty(is_proxy)) {
-            this.fail({message: 'is_proxy为空 '})
+            this.fail(400, 'is_proxy为空 ')
         }
         if (think.isEmpty(mockids)) {
-            this.fail({message: 'mockids为空 '})
+            this.fail(400, 'mockids为空 ')
         }
         let data = await this.model('mockserver').where(" mockid in (" + mockids + ")").update({is_proxy: is_proxy});
         if (data) {
-            this.success({message: '修改成功'})
+            this.success('修改成功')
         } else {
-            this.fail({message: '修改失败'})
+            this.fail(500, '修改失败')
         }
         // return this.display();
     }

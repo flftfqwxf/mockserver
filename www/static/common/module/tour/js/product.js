@@ -27,9 +27,9 @@ function useTemp(id){
 		        			if (typeof data === "string") {
 		        				data = JSON.parse(data);
 		        			}
-		        			$.gmMessage(data.message);
+		        			$.commonTips(data.message);
 		        		},error:function(){
-		        			$.gmMessage("保存失败,请刷新重试");
+		        			$.commonTips("保存失败,请刷新重试");
 		        		}
 		            });
 		        },
@@ -61,7 +61,7 @@ function setProductSaleStatus(obj, id){
 			type: "GET",
 			dataType: "json",
 			success:function(data){
-				$.gmMessage(data.result.message, true);
+				$.commonTips(data.result.message, true);
 				if(data.result.success){
 					$(obj).attr("attr_st", st);
 					$(obj).text(text);
@@ -132,7 +132,7 @@ function deleteProduct(productId) {
 			type: "DELETE",
 			dataType: "json",
 			success:function(data){
-				$.gmMessage(data.result.message, true);
+				$.commonTips(data.result.message, true);
 				window.location.href = window.location.href;
 			}
 		});
@@ -308,11 +308,11 @@ $(function(){
 					dataType: "json",
                     data:products=moredata,
 					success:function(data){
-						$.gmMessage(data.result.message, true);
+						$.commonTips(data.result.message, true);
 						window.location.reload();
 					},
 					error:function(){
-						$.gmMessage(data.result.message, false);
+						$.commonTips(data.result.message, false);
 					}
 				});
 			};
@@ -369,7 +369,7 @@ function reserve(productId,productName){
 						data:$("#reserveForm").serialize(),
 						dataType: "json",
 						success:function(data){					
-		                    $.gmMessage("设置成功", true);                 
+		                    $.commonTips("设置成功", true);
 						}
 					});
 				}

@@ -5,32 +5,32 @@
             <a href="#nav2" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
                 <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
                 <i class="gm-icon gm-peer-plan"></i>
-                <span>{{ LN.projectAdmin }}</span>
+                <span>{{ LN.sidebar.projectAdmin }}</span>
             </a>
             <ul class="collapse in" id="nav2">
-                <li><a href="/">{{ LN.projectList }}</a></li>
-                <li><a href="/project/add.html">{{ LN.addProject }}</a></li>
+                <li><a href="/">{{ LN.sidebar.projectList }}</a></li>
+                <li><a href="/project/add.html">{{ LN.sidebar.addProject }}</a></li>
             </ul>
         </li>
         <li>
             <a href="#nav3" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
                 <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
                 <i class="gm-icon gm-peer-plan"></i>
-                <span>{{ LN.apiAdmin }}</span>
+                <span>{{ LN.sidebar.apiAdmin }}</span>
             </a>
             <ul class="collapse in" id="nav3">
-                <li><a href="/interface/index">{{ LN.apiAdmin }}</a></li>
-                <li><a href="/interface/add.html">{{ LN.addApi }}</a></li>
+                <li><a href="/interface/index">{{ LN.sidebar.apiAdmin }}</a></li>
+                <li><a href="/interface/add.html">{{ LN.sidebar.addApi }}</a></li>
             </ul>
         </li>
         <li>
             <a href="#nav4" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
                 <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
                 <i class="gm-icon gm-peer-plan"></i>
-                <span>{{ LN.systemAdmin }}</span>
+                <span>{{ LN.sidebar.systemAdmin }}</span>
             </a>
             <ul class="collapse in" id="nav3">
-                <li><a href="/system/add.html">{{ LN.globalParamsSetting }}</a></li>
+                <li><a href="/system/add.html">{{ LN.sidebar.globalParamsSetting }}</a></li>
             </ul>
         </li>
 

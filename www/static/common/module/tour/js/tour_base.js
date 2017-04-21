@@ -426,7 +426,7 @@ template.helper('join', function(array, separator) {
 				callback && callback(d);
 			}
 		}, 'json').fail(function() {
-			$.gmMessage("操作失败，请稍后重试");
+			$.commonTips("操作失败，请稍后重试");
 		}).always(function() {
 			/*$(".loading-wrap").show();
 			setTimeout(function() {

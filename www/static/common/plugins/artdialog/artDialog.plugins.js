@@ -139,7 +139,7 @@ function showmsg(tobj, data, extra){
 	}
 	if (data.result.hasOwnProperty("fieldErrors")) {
 		$.each(data.result.fieldErrors, function(k,v){
-			$.dialog.gmMessage(v.defaultMessage, false);
+			$.dialog.commonTips(v.defaultMessage, false);
 		});
 		return;
 	}
@@ -153,10 +153,10 @@ function showmsg(tobj, data, extra){
 				reload(0);
 			}
 		} else {
-			$.dialog.gmMessage(data.result.message, data.result.success);
+			$.dialog.commonTips(data.result.message, data.result.success);
 		}
 	} else {
-		$.dialog.gmMessage(data.result.message, data.result.success);
+		$.dialog.commonTips(data.result.message, data.result.success);
 	}
 }
 

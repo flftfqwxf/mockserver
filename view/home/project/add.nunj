@@ -7,9 +7,9 @@
             <div class="item">
                 <h4>
                     {% if project_name %}
-                        {{ LN.editProject }}
+                        {{ LN.project.add.editProject }}
                     {% else %}
-                        {{ LN.addProject }}
+                        {{ LN.project.add.addProject }}
                     {% endif %}
                 </h4>
                 <div class="item-main">
@@ -17,12 +17,11 @@
                         <div class="form-group-dashed">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">
-                                    <span class="common-required">*</span>项目名称
+                                    <span class="common-required">*</span>{{ LN.project.add.projectName }}
                                     <input type="hidden" name="project_id" value="{{ project_id }}">
                                 </label>
                                 <div class="col-sm-6">
                                     <input type="text" name="project_name" value="{{ project_name }}" class="form-control  validate[required]"/>
-                                    <p class="help-block">用于区分不同项目的接口</p>
                                 </div>
                             </div>
                             {#<div class="form-group has-feedback-left">#}
@@ -36,23 +35,24 @@
                             {#</div>#}
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">
-                                    接口前缀
+                                    {{ LN.project.add.projectInterfacePrefix }}
                                 </label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="project_prefix" value="{{ project_prefix }}" class="form-control validate[custom[project_prefix]]" placeholder="请输入接口前缀,不填写，默认为 /api/"/>
-                                    <p class="help-block">格式如: /api/,默认为：/api/<br>
-                                        不能为以下关键词开头，因为以下关键词已经被系统占用:<br>
+                                    <input type="text" name="project_prefix" value="{{ project_prefix }}" class="form-control validate[custom[project_prefix]]"
+                                           placeholder="default: /api/"/>
+                                    <p class="help-block">format: /api/,default：/api/<br>
+                                        {{ LN.project.add.prefixExclude }}<br>
                                         project,system,interface
                                     </p>
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">
-                                    项目二次代理前缀
+                                    {{ LN.project.add.projectProxyUrl }}
                                 </label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control" placeholder="请输入要求输入的内容"/>
-                                    <p class="help-block">格式如:http://192.168.1.2</p>
+                                    <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control"/>
+                                    <p class="help-block">{{ LN.project.add.format }}:http://192.168.1.2</p>
                                 </div>
                             </div>
                             {#<div class="form-group ">#}
@@ -78,8 +78,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-6">
-                                    <button class="btn btn-default" type="button">取消</button>
-                                    <button class="btn btn-info" type="submit">保存修改</button>
+                                    <button class="btn btn-info" type="submit">{{ LN.project.add.save }}</button>
                                 </div>
                             </div>
                         </div>

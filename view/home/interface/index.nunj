@@ -16,11 +16,11 @@
                             <div class="input-group">
                                 <div class="has-feedback">
                                     <input type="hidden" name="project_id" value="{{ project_id }}">
-                                    <input type="text" class="form-control" placeholder="路径或名称" name="keyword" value="{{ keyword }}">
+                                    <input type="text" class="form-control" placeholder="{{ LN.interface.index.searchPlaceHolder }}" name="keyword" value="{{ keyword }}">
                                     <i class="fa fa-times-circle form-control-feedback" data-role="button"></i>
                                 </div>
                                 <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit">搜搜</button>
+                        <button class="btn btn-info" type="submit">{{ LN.interface.index.search }}</button>
                         </span>
                             </div>
                         </div>
@@ -41,9 +41,9 @@
                     {#</span>#}
                     {#</div>#}
                     {#</div>#}
-                    <button style="padding-right: 20px;float: right" data-is-proxy="1" id="oer_all_proxy" class="btn btn-info" type="button">关闭全部二次代理</button>
+                    <button style="padding-right: 20px;float: right" data-is-proxy="1" id="oer_all_proxy" class="btn btn-info" type="button">{{ LN.interface.index.closeAllProxies }}</button>
                     <span style="padding-right: 20px;float: right">
-                            <a class="btn btn-info" href="/interface/add/{{ project_id }}">添加接口</a>
+                            <a class="btn btn-info" href="/interface/add/{{ project_id }}">{{ LN.interface.index.addInterface }}</a>
                                                         </span>
                 </div>
                 <div class="item-main">
@@ -51,11 +51,11 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>项目名称</th>
-                            <th>接口名称</th>
-                            <th>接口地址</th>
-                            <th>二次代理</th>
-                            <th>操作</th>
+                            <th>{{ LN.interface.index.projectName }}</th>
+                            <th>{{ LN.interface.index.interfaceName }}</th>
+                            <th>{{ LN.interface.index.interfaceUrl }}</th>
+                            <th>{{ LN.interface.index.againProxy }}</th>
+                            <th>{{ LN.interface.index.active }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -65,16 +65,16 @@
                                 <td>{{ item.project_name }}</td>
                                 <td>{{ item.api_name }}</td>
                                 <td><a target="_blank" href="/api/{{ item.api_url }}">{{ item.api_url }}</a></td>
-                                <td class="proxy_state">{{ '已关闭' if item.is_proxy==0 else '已开启' }}</td>
-                                <td><a class="deleteLnk" href="/interface/delete?mockid={{ item.mockid }}">删除</a>
-                                    <a href="/interface/edit?mockid={{ item.mockid }}">修改</a>
-                                    <a href="/interface/add?iscopy=1&mockid={{ item.mockid }}">复制</a>
-                                    <a href="{{ item.project_prefix if item.project_prefix else '/api/' }}{{ item.api_url }}" target="_blank">查看</a>
+                                <td class="proxy_state">{{ LN.interface.index.closed if item.is_proxy==0 else LN.interface.index.opened }}</td>
+                                <td><a class="deleteLnk" href="/interface/delete?mockid={{ item.mockid }}">{{ LN.interface.index.delete }}</a>
+                                    <a href="/interface/edit?mockid={{ item.mockid }}">{{ LN.interface.index.edit }}</a>
+                                    <a href="/interface/add?iscopy=1&mockid={{ item.mockid }}">{{ LN.interface.index.clone }}</a>
+                                    <a href="{{ item.project_prefix if item.project_prefix else '/api/' }}{{ item.api_url }}" target="_blank">{{ LN.interface.index.detail }}</a>
                                     <a href="javascript:;" mockid="{{ item.mockid }}" class="oper_proxy" data-is-proxy="{{ item.is_proxy }}">
                                         {% if item.is_proxy==0 %}
-                                            开启二次代理
+                                            {{ LN.interface.index.openProxy }}
                                         {% else %}
-                                            关闭二次代理
+                                            {{ LN.interface.index.closeProxy }}
                                         {% endif %}
                                     </a>
                                 </td>
@@ -89,7 +89,7 @@
     </div>
     <script>
         $('.deleteLnk').click(function() {
-            if (confirm('删除后无法恢复,你确定删除该接口么?')) {
+            if (confirm('{{ LN.interface.index.deleteTips }}')) {
                 return true;
             } else {
                 return false;
@@ -100,13 +100,15 @@
         })
         $('.oper_proxy').click(function() {
             var _this = $(this), is_proxy = $(this).attr('data-is-proxy'),
-                    mockid = $(this).attr('mockid'), txt = is_proxy === "0" ? '关闭二次代理' : '开启二次代理',
-                    oper_proxy = is_proxy === "0" ? 1 : 0,
-                    state = is_proxy === "0" ? '已开启' : '已关闭';
+                mockid = $(this).attr('mockid'), txt = is_proxy === "0" ? '{{ LN.interface.index.closeProxy }}' : '{{ LN.interface.index.openProxy }}',
+                oper_proxy = is_proxy === "0" ? 1 : 0,
+                state = is_proxy === "0" ? '{{ LN.interface.index.opened }}' : '{{ LN.interface.index.closed }}';
             $.getJSON('/interface/setproxy', {mockid: mockid, is_proxy: oper_proxy}).done(function(data) {
-                if (data) {
+                if (data && data.errno ===0) {
                     _this.html(txt).attr('data-is-proxy', oper_proxy);
                     _this.parent().siblings('.proxy_state').html(state)
+                }else{
+                    $.commonTips(data.errmsg,'danger',1500);
                 }
             }).fail(function(err) {
                 alert(err.message)
@@ -114,18 +116,20 @@
         })
         $('#oer_all_proxy').click(function() {
             var _this = $(this), is_proxy = $(this).attr('data-is-proxy'),
-                    txt = is_proxy === "0" ? '关闭全部二次代理' : '开启全部二次代理',
-                    txtitem = is_proxy === "0" ? '关闭二次代理' : '开启二次代理',
-                    oper_proxy = is_proxy === "0" ? 1 : 0,
-                    state = is_proxy === "0" ? '已开启' : '已关闭';
+                txt = is_proxy === "0" ? '{{ LN.interface.index.closeAllProxies }}' : '{{ LN.interface.index.openAllProxies }}',
+                txtitem = is_proxy === "0" ? '{{ LN.interface.index.closeProxy }}' : '{{ LN.interface.index.openProxy }}',
+                oper_proxy = is_proxy === "0" ? 1 : 0,
+                state = is_proxy === "0" ? '{{ LN.interface.index.opened }}' : '{{ LN.interface.index.closed }}';
             var mockids = $('.oper_proxy').map(function() {
                 return $(this).attr('mockid');
             }).get().join(",");
-            $.getJSON('/interface/setproxys', {is_proxy: oper_proxy, mockids: mockids}).done(function(data) {
-                if (data) {
+            $.getJSON('/interface/setproxies', {is_proxy: oper_proxy, mockids: mockids}).done(function(data) {
+                if (data && data.errno===0) {
                     $('.oper_proxy').html(txtitem);
                     _this.html(txt).attr('data-is-proxy', oper_proxy);
                     $('.proxy_state').html(state)
+                }else{
+                    $.commonTips(data.errmsg,'danger',1500);
                 }
             }).fail(function(err) {
                 alert(err.message)

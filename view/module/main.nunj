@@ -91,13 +91,13 @@
             });
             $('#formId').validationEngine();
             $('.J_common_success').click(function() {
-                $.gmMessage('已成功上架该产品', 'success', 3)
+                $.commonTips('已成功上架该产品', 'success', 3)
             })
             $('.J_common_info').click(function() {
-                $.gmMessage('已成功上架该产品', 'info', 3)
+                $.commonTips('已成功上架该产品', 'info', 3)
             })
             $('.J_common_danger').click(function() {
-                $.gmMessage('已成功上架该产品', 'danger', 2)
+                $.commonTips('已成功上架该产品', 'danger', 2)
             })
             // $('.page-content-inner').scrollTop(3811);
         });
