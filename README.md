@@ -18,7 +18,7 @@ git clone --depth=1 https://github.com/flftfqwxf/mock-server
 ```
 npm install
 ```
-##导入mysql数据库文件
+## 导入mysql数据库文件
 
 ```
 需要安装mysql[5.7.14], 并导入最新的mockserver-xx-xx.sql 文件
