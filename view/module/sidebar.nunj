@@ -8,7 +8,7 @@
                 <span>{{ LN.sidebar.projectAdmin }}</span>
             </a>
             <ul class="collapse in" id="nav2">
-                <li><a href="/">{{ LN.sidebar.projectList }}</a></li>
+                <li class="open"><a href="/">{{ LN.sidebar.projectList }}</a></li>
                 <li><a href="/project/add.html">{{ LN.sidebar.addProject }}</a></li>
             </ul>
         </li>

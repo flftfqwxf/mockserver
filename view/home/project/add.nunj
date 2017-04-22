@@ -41,8 +41,6 @@
                                     <input type="text" name="project_prefix" value="{{ project_prefix }}" class="form-control validate[custom[project_prefix]]"
                                            placeholder="default: /api/"/>
                                     <p class="help-block">format: /api/,default：/api/<br>
-                                        {{ LN.project.add.prefixExclude }}<br>
-                                        project,system,interface
                                     </p>
                                 </div>
                             </div>

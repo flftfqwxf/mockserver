@@ -1,6 +1,6 @@
 "use strict";
-import cn from '../config/language/zh-cn';
-import en from '../config/language/en';
+import cn from '../config/locale/zh-cn';
+import en from '../config/locale/en';
 export default class language extends think.controller.base {
     /**
      * load language config
@@ -8,22 +8,27 @@ export default class language extends think.controller.base {
      * @private
      */
     async __before() {
-        let system = await this.model('system').limit(1).select();
-        if (think.isEmpty(system)) {
-            this.assign({'LN': cn});
-        } else {
-            switch (system[0].language_type) {
-                case 'en':
-                    this.assign({'LN': en});
-                    break;
-                case 'cn':
-                    this.assign({'LN': cn});
-                    break;
-                default:
-                    this.assign({'LN': cn});
-                    break;
-            }
+        let lang = this.lang()
+        switch (lang) {
+            case 'en':
+                this.assign({'LN': en});
+                break;
+            case 'cn':
+                this.assign({'LN': cn});
+                break;
+            default:
+                this.assign({'LN': cn});
+                break;
         }
+        this.getCurrentRoute();
+    }
+
+    /**
+     * 获取当前路由
+     */
+    getCurrentRoute() {
+        console.log(this.lang())
+        console.log(this.http.pathname)
     }
 
     /**

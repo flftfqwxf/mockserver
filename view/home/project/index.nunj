@@ -6,7 +6,8 @@
         <div class="col-md-12">
             <div class="item">
                 <div class="item-head clearfix">
-                    <h4 class="pull-left">{{ LN.project.index.projectList }}</h4>
+                    <h4 class="pull-left">{{ LN.project.index.projectList }}
+                    </h4>
                     {#<div class="pull-right form-inline">#}
                     {#<div class="input-group">#}
                     {#<div class="has-feedback">#}
@@ -53,13 +54,13 @@
         <!--table end-->
     </div>
     <script>
-//        parent.postMessage("isComplete", "http://www.covision.com");
-//        window.addEventListener('message', function(event) {
-//            var origin = event.origin || event.originalEvent.origin;
-//            if (origin === 'http://www.covision.com') {
-//                parent.postMessage(event.data, "http://www.covision.com");
-//            }
-//        }, false)
+        //        parent.postMessage("isComplete", "http://www.covision.com");
+        //        window.addEventListener('message', function(event) {
+        //            var origin = event.origin || event.originalEvent.origin;
+        //            if (origin === 'http://www.covision.com') {
+        //                parent.postMessage(event.data, "http://www.covision.com");
+        //            }
+        //        }, false)
         $('.J_deleteLnk').click(function() {
             if (confirm('{{ LN.project.index.deleteTips }}')) {
                 return true;

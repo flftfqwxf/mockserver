@@ -1,5 +1,152 @@
-'use strict';
+module.exports = {
+    projectList: 'Project List',
+    addProject: 'Add Project',
+    projectName: 'Project Name',
+    projectInterfacePrefix: 'Interface Prefix',
+    proxyPrefix: 'proxy Prefix',
+    actions: 'actions',
+    delete: 'delete',
+    edit: 'edit',
+    details: 'details',
 
-export default {
-  
-};
+    sidebar: {
+        projectAdmin: 'Project Admin',
+        projectList: 'Project List',
+        addProject: 'Add Project',
+        apiAdmin: 'API Admin',
+        addApi: 'Add API',
+        systemAdmin: 'System Admin',
+        globalParamsSetting: 'Global Settings',
+    },
+    project: {
+        index: {
+            projectList: 'Project List',
+            addProject: 'Add Project',
+            projectName: 'Project Name',
+            projectInterfacePrefix: 'API Prefix',
+            proxyPrefix: 'Proxy Path',
+            actions: 'actions',
+            delete: 'delete',
+            edit: 'edit',
+            details: 'details',
+            deleteTips: 'This action cannot be undone.Are you sure you want to delete this project?'
+        },
+        add: {
+            editProject: "Edit Project",
+            addProject: 'Add Project',
+            projectName: 'Project Name',
+            projectInterfacePrefix: 'API Prefix',
+            prefixExclude: 'to exclude the following path，because these path  are occupied',
+            projectProxyUrl: 'Project Proxy Url',
+            format: 'format',
+            save: 'Save Project'
+        }
+    },
+    interface: {
+        index: {
+            searchPlaceHolder: 'API path or name',
+            search: 'Search',
+            closeAllProxies: 'Close All Proxies',
+            openAllProxies: 'Open All Proxies',
+            openProxy: 'Open Proxy',
+            closeProxy: 'Close Proxy',
+            addInterface: 'Add API',
+            projectName: 'Project Name',
+            interfaceName: 'API Name',
+            interfaceUrl: 'API Url',
+            againProxy: 'Proxy Switch',
+            actions: 'actions',
+            closed: 'closed',
+            opened: 'opened',
+            delete: 'delete',
+            edit: 'edit',
+            clone: 'clone',
+            detail: 'details',
+            deleteTips: 'This action cannot be undone.Are you sure you want to delete this API?'
+        },
+        add: {
+            addApi: 'Add API',
+            editApi: 'Edit API',
+            baseInfoTab: 'Basic Information',
+            requestTab: 'Request Settings',
+            responseTab: 'Response Settings',
+            proxyTab: 'Proxy Settings',
+            testTab: 'Test Settings',
+            save: 'Save API',
+            paramValue: 'Parameter Value',
+            paramSpecification: 'Parameter Description',
+            baseInfo: {
+                belongTo: 'Belong To',
+                interfaceName: 'API Name',
+                placeholder: 'Enter API Name'
+            },
+            request: {
+                methodTypes: '请求类型',
+                interfaceUrl: '接口地址',
+                proxyPrefixTips: '此项目下所有接口统一加上前缀',
+                getParamsTitle: 'Get参数说明',
+                getParamsTip: '说明：接口地址中【?】query参数说明',
+                headersParamsTitle: '请求header参数说明',
+                headersParamsTips: '说明：发送请求的header信息参数说明',
+                requestHeadersTitle: '请求header信息',
+                requestHeadersTips: '说明：发送请求的header信息参数值',
+                urlMatchMode: 'Url匹配方式',
+                exactMatch: '精准匹配',
+                exactMatchTips: '精准匹配时,只有路径完全一致时才会匹配',
+                incompleteMatch: '只匹配【?】前部分',
+                incompleteMatchTips: '只匹配【?】则以下都会匹配:website\/articles\/comment<br>website\/articles/comment?post_id=xx&rrr=vvv...',
+                requestBodyTitleDesc: '请求 body 参数说明',
+                requestBodyTitleTips: 'post,put等非URL带的参数，如post表单提交的数据字段',
+                requestBodyTitle: '请求 body 参数',
+            },
+            response: {
+                responseTitleDesc: '响应数据参数说明',
+                responseContentTitle: '响应数据',
+                responseStatusCode: '返回状态码',
+                responseStatusCodeTips: '返回状态码，默认200',
+                delayTime: '延迟返回数据',
+                delayTimeTips: '延迟单位为毫秒，默认0<br>注意：请求数据本身会消耗一定时间，所以返回数据的时候会大于设置的延迟时间',
+                mockjsTitle: '开启mockjs',
+                open: '开启',
+                close: '关闭',
+                mockjsSite: 'mockjs官网',
+                responseHeadersDesc: '响应header参数说明',
+                responseHeadersTitle: '响应header参数',
+                responseHeadersTips: '添加返回接口的 header信息',
+            },
+            proxy: {
+                globalProxyUrl: '全局二次代理Url路径',
+                projectProxyUrl: '项目二次代理Url',
+                proxyUrl: '二次代理Url',
+                openProxyTipsPrefix: '开启时，接口将从：',
+                openProxyTipsPostfix: '返回数据',
+                closeProxyTips:'关闭时，将从响应数据设置后返回模拟数据',
+                format: '格式如:http://192.168.1.2/',
+                proxySwitch: '开启二次代理',
+                close: '关闭',
+                open: '开启'
+            },
+            test:{
+
+            }
+        }
+    },
+    projectAdmin: '项目管理',
+    projectList: '项目列表',
+    projectInterfacePrefix: '项目接口前缀',
+    proxyPrefix: '代理前缀',
+    actions: '操作',
+    delete: '删除',
+    edit: '修改',
+    details: '查看接口',
+    apiAdmin: '接口管理',
+    addApi: '添加接口',
+    systemAdmin: '系统管理',
+    globalParamsSetting: '系统参数设置',
+    baseInfo: '基本信息',
+    request: '请求参数设置',
+    response: '响应参数设置',
+    proxy: '代理设置',
+    tests: '接口测试'
+
+}

@@ -55,7 +55,7 @@
                             <th>{{ LN.interface.index.interfaceName }}</th>
                             <th>{{ LN.interface.index.interfaceUrl }}</th>
                             <th>{{ LN.interface.index.againProxy }}</th>
-                            <th>{{ LN.interface.index.active }}</th>
+                            <th>{{ LN.interface.index.actions }}</th>
                         </tr>
                         </thead>
                         <tbody>

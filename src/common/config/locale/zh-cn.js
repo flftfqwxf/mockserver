@@ -34,7 +34,7 @@ module.exports = {
     },
     interface: {
         index: {
-            searchPlaceHolder: '项目路径或名称',
+            searchPlaceHolder: '接口路径或名称',
             search: '搜索',
             closeAllProxies: '关闭全部二次代理',
             openAllProxies: '开启全部二次代理',
@@ -45,7 +45,7 @@ module.exports = {
             interfaceName: '接口名称',
             interfaceUrl: '接口地址',
             againProxy: '二次代理',
-            active: '操作',
+            actions: '操作',
             closed: '已关闭',
             opened: '已开启',
             delete: '删除',
