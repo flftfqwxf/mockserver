@@ -2,7 +2,7 @@
     <div class="content_wrap">
         <div class="form-group">
             <label class="col-sm-2 control-label">
-                系统二次代理前缀
+                {{ LN.interface.add.proxy.globalProxyUrl }}
             </label>
             <div class="col-sm-6">
                 <input type="text" readonly value="{{ systemConfig.proxy_url }}" class="form-control globalProxy" placeholder=""/>
@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">
-                项目二次代理前缀
+                {{ LN.interface.add.proxy.globalProxyUrl }}
             </label>
             <div class="col-sm-6">
                 <input type="text" readonly value="{{ curr_project[0].proxy_url }}" class="form-control projectProxy" placeholder=""/>
@@ -18,34 +18,47 @@
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">
-                二次代理前缀
+                {{ LN.interface.add.proxy.proxyUrl }}
             </label>
             <div class="col-sm-6">
                 {#{% if not proxy_prefix and  curr_project[0].proxy_url %}#}
-                    {#{% set  proxy_prefix= curr_project[0].proxy_url %}#}
+                {#{% set  proxy_prefix= curr_project[0].proxy_url %}#}
                 {#{% elseif not proxy_prefix and systemConfig.proxy_url %}#}
-                    {#{% set  proxy_prefix= systemConfig.proxy_url %}#}
+                {#{% set  proxy_prefix= systemConfig.proxy_url %}#}
                 {#{% endif %}#}
                 <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}"
                        class="form-control proxy_prefix validate[custom[url]]"
-                       placeholder="请输入要求输入的内容"/>
-                <p class="help-block">格式如:http://192.168.1.2/</p>
+                       placeholder=""/>
+                <p class="help-block">{{ LN.interface.add.proxy.format }}</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">
-                开启二次代理
+                {{ LN.interface.add.proxy.proxySwitch }}
             </label>
             <div class="col-sm-6">
                 <div class="select-group radio-group J_open_proxy" data-toggle="buttons">
                     <!-- <div> -->
                     <label class="btn {% if is_proxy==0 %}active{% endif %}">
-                        <input type="radio" name="is_proxy" value="0" {% if is_proxy==0 %}checked{% endif %} autocomplete="off">关闭
+                        <input type="radio" name="is_proxy" value="0" {% if is_proxy==0 %}checked{% endif %} autocomplete="off">{{ LN.interface.add.proxy.close }}
                     </label>
                     <label class="btn {% if is_proxy==1 %}active{% endif %}">
-                        <input type="radio" name="is_proxy" value="1" {% if is_proxy==1 %}checked{% endif %} autocomplete="off">开启
+                        <input type="radio" name="is_proxy" value="1" {% if is_proxy==1 %}checked{% endif %} autocomplete="off">{{ LN.interface.add.proxy.open }}
                     </label>
-                    <div style="display: inline;" class="proxy_tips"></div>
+                    <br>
+                    <div style="display: inline;" class="proxy_tips">
+                        {% if is_proxy==1 %}
+                            {% if not proxy_prefix and  curr_project[0].proxy_url %}
+                                {% set  proxy_prefix= curr_project[0].proxy_url %}
+                            {% elseif not proxy_prefix and systemConfig.proxy_url %}
+                                {% set  proxy_prefix= systemConfig.proxy_url %}
+                            {% endif %}
+                            {{ LN.interface.add.proxy.openProxyTipsPrefix }}[ <span style="color: red;">
+                            {{ proxy_prefix }} /api/{{ api_url }}</span> ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}
+                        {% else %}
+                            {{ LN.interface.add.proxy.closeProxyTips }}
+                        {% endif %}
+                    </div>
                     <!-- </div> -->
                 </div>
             </div>

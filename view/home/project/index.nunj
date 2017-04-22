@@ -28,7 +28,7 @@
                         <tr>
                             <th>{{ LN.project.index.projectName }}</th>
                             <th>{{ LN.project.index.projectInterfacePrefix }}</th>
-                            <th>{{ LN.project.index.proxyProxy }}</th>
+                            <th>{{ LN.project.index.proxyPrefix }}</th>
                             <th>{{ LN.project.index.actions }}</th>
                         </tr>
                         </thead>

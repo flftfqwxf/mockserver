@@ -7,27 +7,27 @@
             <div class="item">
                 <h4>
                     {% if mockid %}
-                        修改 api
+                        {{ LN.interface.add.editApi }}
                     {% else %}
-                        添加 api
+                        {{ LN.interface.add.addApi }}
                     {% endif %}
                 </h4>
                 <div class="item-main" style="background-color: #f6f6f6;">
                     <ul class="nav nav-tabs" role="tablist" id="interfaceTabs">
                         <li class="active" role="presentation">
-                            <a href="#base_set" aria-controls="base_set" role="tab" data-toggle="tab">基本信息</a>
+                            <a href="#base_set" aria-controls="base_set" role="tab" data-toggle="tab">{{ LN.interface.add.baseInfoTab }}</a>
                         </li>
                         <li role="presentation">
-                            <a href="#request_set" aria-controls="request_set" role="tab" data-toggle="tab">请求参数设置</a>
+                            <a href="#request_set" aria-controls="request_set" role="tab" data-toggle="tab">{{ LN.interface.add.requestTab }}</a>
                         </li>
                         <li role="presentation">
-                            <a href="#response_set" aria-controls="response_set" role="tab" data-toggle="tab">响应参数设置</a>
+                            <a href="#response_set" aria-controls="response_set" role="tab" data-toggle="tab">{{ LN.interface.add.responseTab }}</a>
                         </li>
                         <li role="presentation">
-                            <a href="#proxy_set" aria-controls="proxy_set" role="tab" data-toggle="tab">代理设置</a>
+                            <a href="#proxy_set" aria-controls="proxy_set" role="tab" data-toggle="tab">{{ LN.interface.add.proxyTab }}</a>
                         </li>
                         <li role="presentation">
-                            <a href="#test_set" aria-controls="test_set" role="tab" data-toggle="tab">接口测试</a>
+                            <a href="#test_set" aria-controls="test_set" role="tab" data-toggle="tab">{{ LN.interface.add.testTab }}</a>
                         </li>
                     </ul>
                     <form class="form-horizontal" id="formId" method="post" action="/interface/update">
@@ -37,13 +37,11 @@
                             {% include './module/response_setting.twig' %}
                             {% include './module/proxy_setting.twig' %}
                             {% include './module/test_setting.twig' %}
-
                             <div class="form-group-dashed">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-6">
-                                        <button class="btn btn-default" type="button">取消</button>
-                                        <button class="btn btn-info" type="submit">保存修改</button>
+                                        <button class="btn btn-info" type="submit">{{ LN.interface.add.save }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -55,14 +53,14 @@
     </div>
     {% if api_req_header |length ===0 or api_req_header|trim|length===0 %}
         {% set api_req_header=' {
-                    "headere1": "模拟参数值",
-                     "header2": "模拟参数值"
+                    "header1": "'~LN.interface.add.paramValue ~'",
+                     "header2": "'~LN.interface.add.paramValue ~'"
                 }' %}
     {% endif %}
     {% if api_req_header_desc|length ===0 or api_req_header_desc|trim|length===0 %}
         {% set api_req_header_desc=' {
-                "headere1": "headere1参数说明",
-                "header2": "header2参数说明"
+                "headere1": "'~LN.interface.add.paramSpecification ~'",
+                "header2": "'~LN.interface.add.paramSpecification ~'"
             }' %}
     {% endif %}
 
@@ -86,39 +84,39 @@
     {% endif %}
     {% if api_content_desc|length ===0 or api_content_desc|trim|length===0 %}
         {% set api_content_desc=' {
-                "username": "参数说明",
-                "password": "参数说明"
+                "username": "'~LN.interface.add.paramValue ~'",
+                "password": "'~LN.interface.add.paramValue ~'"
             }' %}
     {% endif %}
 
     {% if api_querys_desc |length ===0 or api_querys_desc|trim|length===0 %}
         {% set api_querys_desc='{
-                "query1": "参数说明",
-                "query2": "参数说明"
+                "query1": "'~LN.interface.add.paramSpecification ~'",
+                "query2": "'~LN.interface.add.paramSpecification ~'"
         }' %}
     {% endif %}
     {% if api_parms | length ===0 or api_parms|trim|length===0 %}
         {% set api_parms='{
-                    "username": "模拟参数值",
-                     "password": "模拟参数值"
+                    "username": "'~LN.interface.add.paramValue ~'",
+                     "password": "'~LN.interface.add.paramValue ~'"
                 }' %}
     {% endif %}
     {% if api_parms_desc |length ===0 or api_parms_desc|trim|length===0 %}
         {% set api_parms_desc='{
-                "username": "模拟参数值",
-                "password": "模拟参数值"
+                "username": "'~LN.interface.add.paramSpecification ~'",
+                "password": "'~LN.interface.add.paramSpecification ~'"
         }' %}
     {% endif %}
     {% if api_header |length ===0 or api_header|trim|length===0 %}
         {% set api_header=' {
-                    "headere1": "模拟参数值",
-                     "header2": "模拟参数值"
+                    "headere1": "'~LN.interface.add.paramValue ~'",
+                     "header2": "'~LN.interface.add.paramValue ~'"
                 }' %}
     {% endif %}
     {% if api_header_desc|length ===0 or api_header_desc|trim|length===0 %}
         {% set api_header_desc=' {
-                "headere1": "headere1参数说明",
-                "header2": "header2参数说明"
+                "headere1": "'~LN.interface.add.paramSpecification ~'",
+                "header2": "'~LN.interface.add.paramSpecification ~'"
             }' %}
     {% endif %}
     <script>
@@ -135,36 +133,35 @@
                 api_querys_desc:{{ api_querys_desc | safe }},
                 api_req_header:{{ api_req_header | safe }},
                 api_req_header_desc:{{ api_req_header_desc | safe }},
-                api_querys_desc:{{ api_querys_desc | safe }},
                 api_header:{{ api_header | safe }},
                 api_header_desc:{{ api_header_desc | safe }},
             }
         } catch (e) {
         }
-        $('.getProxy').click(function() {
-            var gp = '{{ curProjectProxy }}';
-            var url = '{{ proxy_prefix }}';
-            var api_url = '{{ api_url }}';
-            var is_proxy = {{ is_proxy }};
-            if ((gp || api_url) && is_proxy == 1) {
-                url += '/api/' + api_url;
-                $('.getTips').html('正在从【' + url + '】获取数据');
-                $.ajax({
-                    'datatype': 'json', type: 'get', url: url, success: function(data) {
-                        if (data) {
-                            api_content = data;
-                            $("#jsonIframe")[0].src = $("#jsonIframe")[0].src;
-                            $('.getTips').html('获取成功')
-                        }
-                    }, error: function(err) {
-                        $('.getTips').html('获取失败' + err)
-                    }
-                })
-            } else {
-                $('.getTips').html('此功能必须设置了全局二次代理和局部二次代理之一,并开启二次代理才有效');
-                return false;
-            }
-        });
+        {#$('.getProxy').click(function() {#}
+        {#var gp = '{{ curProjectProxy }}';#}
+        {#var url = '{{ proxy_prefix }}';#}
+        {#var api_url = '{{ api_url }}';#}
+        {#var is_proxy = {{ is_proxy }};#}
+        {#if ((gp || api_url) && is_proxy == 1) {#}
+        {#url += '/api/' + api_url;#}
+        {#$('.getTips').html('正在从【' + url + '】获取数据');#}
+        {#$.ajax({#}
+        {#'datatype': 'json', type: 'get', url: url, success: function(data) {#}
+        {#if (data) {#}
+        {#api_content = data;#}
+        {#$("#jsonIframe")[0].src = $("#jsonIframe")[0].src;#}
+        {#$('.getTips').html('获取成功')#}
+        {#}#}
+        {#}, error: function(err) {#}
+        {#$('.getTips').html('获取失败' + err)#}
+        {#}#}
+        {#})#}
+        {#} else {#}
+        {#$('.getTips').html('此功能必须设置了全局二次代理和局部二次代理之一,并开启二次代理才有效');#}
+        {#return false;#}
+        {#}#}
+        {#});#}
         $('.jsoneditor').load(function() {
             var toObj = $(this).attr('data-obj')
             $(this)[0].contentWindow.setJson(jsonEditorData[toObj]);
@@ -185,9 +182,9 @@
                 if (isOpen === '1') {
                     var proxy_url = $('.proxy_prefix').val() || $('.projectProxy').val() || $('.globalProxy').val();
                     var api_url = $('.api_url').val();
-                    $('.proxy_tips').show().html('开启后，接口将返回：[ <span style="color: red;"> ' + proxy_url + '/api/' + api_url + '</span>  ]的数据');
+                    $('.proxy_tips').show().html('{{ LN.interface.add.proxy.openProxyTipsPrefix }}[ <span style="color: red;"> ' + proxy_url + '/api/' + api_url + '</span>  ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}');
                 } else {
-                    $('.proxy_tips').hide()
+                    $('.proxy_tips').show().html('{{ LN.interface.add.proxy.closeProxyTips }}')
                 }
             }, 20)
         }
@@ -196,11 +193,6 @@
         })
         $('.proxy_prefix,.api_url').on('change input blur', function() {
             proxyOpenTips();
-        })
-        $('.J_collapse').click(function() {
-            var el = $(this).find('a');
-            el.html(el.html() === '点击折叠' ? '点击展开' : '点击折叠');
-            $(this).next('div').toggle();
         })
         $('#send_test').click(function() {
             return false;

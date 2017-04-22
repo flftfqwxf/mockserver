@@ -1,7 +1,7 @@
 <div class="form-group-dashed tab-pane fade in active" role="tabpanel" id="base_set">
     <div class="form-group">
         <label class="col-sm-2 control-label">
-            <span class="common-required">*</span>所属项目
+            <span class="common-required">*</span>{{ LN.interface.add.baseInfo.belongTo }}
             <input type="hidden" name="mockid" value="{{ mockid }}">
         </label>
         <div class="col-sm-6">
@@ -22,15 +22,14 @@
                     {% endfor %}
                 </select>
             </label>
-            <p class="help-block">用于区分不同项目的接口</p>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">
-            <span class="common-required">*</span>接口名称
+            <span class="common-required">*</span>{{ LN.interface.add.baseInfo.interfaceName }}
         </label>
         <div class="col-sm-6">
-            <input type="text" name="api_name" value="{{ api_name }}" class="form-control  validate[required]" placeholder="请输入要求输入的内容"/>
+            <input type="text" name="api_name" maxlength="500" value="{{ api_name }}" class="form-control  validate[required]" placeholder="{{ LN.interface.add.baseInfo.placeholder }}"/>
         </div>
     </div>
 </div>

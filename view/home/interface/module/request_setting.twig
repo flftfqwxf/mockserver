@@ -2,7 +2,7 @@
     <div class="content_wrap">
         <div class="form-group">
             <label class="col-sm-2 control-label">
-                <span class="common-required">*</span>接口类型
+                <span class="common-required">*</span>{{ LN.interface.add.request.methodTypes }}
             </label>
             <div class="col-sm-6">
                 {% set methods=[
@@ -51,19 +51,18 @@
         </div>
         <div class="form-group ">
             <label class="col-sm-2 control-label">
-                <span class="common-required">*</span>接口地址
+                <span class="common-required">*</span>{{ LN.interface.add.request.interfaceUrl }}
             </label>
             <div class="col-sm-6 ">
                 <div class="input-group"><span class="input-group-addon">{{ project_prefix }}</span>
-                    <input type="text" name="api_url" value="{{ api_url }}" class="form-control api_url  validate[required] use_test"
-                           placeholder="请输入路径地址"/>
+                    <input type="text" name="api_url" value="{{ api_url }}" class="form-control api_url  validate[required] use_test"/>
                     <input type="hidden" name="project_prefix" value="{{ project_prefix }}">
                 </div>
-                <p class="help-block">此项目下所有接口统一加上【{{ project_prefix }}】前缀</p>
+                <p class="help-block">{{ LN.interface.add.request.proxyPrefixTips }}【{{ project_prefix }}】</p>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Get参数说明</label>
+            <label class="col-sm-2 control-label">{{ LN.interface.add.request.getParamsTitle }}</label>
             <div class="col-sm-10">
                                         <textarea name="api_querys_desc" style="display: none" id="api_querys_desc" cols="30" rows="10">
                                         {{ api_querys_desc }}
@@ -71,11 +70,11 @@
                 <iframe id="querysDescIframe" class="jsoneditor" data-obj="api_querys_desc" src="/static/common/jsoneditor/index.html"
                         style="width: 100%;height: 300px;"
                         frameborder="0"></iframe>
-                <p class="help-block">说明：接口地址中【?】query参数说明</p>
+                <p class="help-block">{{ LN.interface.add.request.getParamsTip }}</p>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">请求 header参数说明</label>
+            <label class="col-sm-2 control-label">{{ LN.interface.add.request.headersParamsTitle }}</label>
             <div class="col-sm-10">
                                         <textarea name="api_req_header_desc" style="display: none" id="api_req_header_desc" cols="30" rows="10">
                                         {{ api_req_header_desc }}
@@ -83,11 +82,11 @@
                 <iframe id="querysDescIframe" class="jsoneditor" data-obj="api_req_header_desc" src="/static/common/jsoneditor/index.html"
                         style="width: 100%;height: 300px;"
                         frameborder="0"></iframe>
-                <p class="help-block">说明：发送请求的header信息参数说明</p>
+                <p class="help-block">{{ LN.interface.add.request.headersParamsTips }}</p>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">请求 header信息</label>
+            <label class="col-sm-2 control-label">{{ LN.interface.add.request.requestHeadersTitle }}</label>
             <div class="col-sm-10">
                                         <textarea name="api_req_header_desc use_test" style="display: none" id="api_req_header_desc" cols="30" rows="10">
                                         {{ api_req_header_desc }}
@@ -95,34 +94,34 @@
                 <iframe id="querysDescIframe" class="jsoneditor" data-obj="api_req_header_desc" src="/static/common/jsoneditor/index.html"
                         style="width: 100%;height: 300px;"
                         frameborder="0"></iframe>
-                <p class="help-block">说明：发送请求的header信息参数值</p>
+                <p class="help-block">{{ LN.interface.add.request.requestHeadersTips }}</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">
-                <span class="common-required">*</span>匹配方式
+                <span class="common-required">*</span>{{ LN.interface.add.request.urlMatchMode }}
             </label>
             <div class="col-sm-6 ">
                 <div class="select-group radio-group" data-toggle="buttons">
                     <!-- <div> -->
                     <label class="btn {% if exact_match===1 %}active{% endif %}">
-                        <input type="radio" name="exact_match" value="1" {% if exact_match==1 %}checked{% endif %} autocomplete="off">精准匹配
+                        <input type="radio" name="exact_match" value="1" {% if exact_match==1 %}checked{% endif %} autocomplete="off">{{ LN.interface.add.request.exactMatch }}
                     </label>
                     <label class="btn {% if exact_match==0 or exact_match=="" or exact_match==null %}active{% endif %}">
                         <input type="radio" name="exact_match" value="0" {% if exact_match==0 or exact_match=="" or exact_match==null %}checked{% endif %}
-                               autocomplete="off">只匹配【?】前部分
+                               autocomplete="off">{{ LN.interface.add.request.incompleteMatch }}
                     </label>
                     <!-- </div> -->
                 </div>
-                <p class="help-block">精准匹配时,只有路径完全一致时才会匹配,<br>
-                    只匹配【?】则以下都会匹配:
-                    website/articles/comment<br>
-                    website/articles/comment?post_id=xx&rrr=vvv...
+                <p class="help-block">
+                    {{ LN.interface.add.request.exactMatchTips }}
+                    {{ LN.interface.add.request.incompleteMatchTips|safe }}
+
                 </p>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">请求 body 参数说明</label>
+            <label class="col-sm-2 control-label">{{ LN.interface.add.request.requestBodyTitleDesc }}</label>
             <div class="col-sm-10">
                                         <textarea name="api_parms_desc" style="display: none" id="api_parms_desc" cols="30" rows="10">
                                         {{ api_parms_desc }}
@@ -130,11 +129,11 @@
                 <iframe id="parmsDescIframe" class="jsoneditor" data-obj="api_parms_desc" src="/static/common/jsoneditor/index.html"
                         style="width: 100%;height: 300px;"
                         frameborder="0"></iframe>
-                <p class="help-block">post,put等非URL带的参数，如post表单提交的数据字段</p>
+                <p class="help-block">{{ LN.interface.add.request.requestBodyTitleTips }}</p>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">请求 body 参数</label>
+            <label class="col-sm-2 control-label">{{ LN.interface.add.request.requestBodyTitle }}</label>
             <div class="col-sm-10">
 
                                         <textarea name="api_parms use_test" style="display: none" id="api_parms" cols="30" rows="10">
@@ -142,7 +141,6 @@
                                     </textarea>
                 <iframe id="parmsIframe" class="jsoneditor" data-obj="api_parms" src="/static/common/jsoneditor/index.html" style="width: 100%;height: 300px;"
                         frameborder="0"></iframe>
-                <p class="help-block">post,put等非URL带的参数，如post表单提交的数据字段</p>
             </div>
         </div>
     </div>
