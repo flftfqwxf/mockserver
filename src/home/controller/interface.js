@@ -7,7 +7,7 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
-        let data = this.get(), res, where = {}, projectData = {project_name: '全部接口'};
+        let data = this.get(), res, where = {}, projectData = {project_name: this.LN.interface.controller.projectName};
         if (data.keyword) {
             where._complex = {
                 api_name: ["like", "%" + data.keyword + "%"],
@@ -39,7 +39,7 @@ export default class extends Base {
                 .select();
         }
         this.assign({
-            title: '接口列表',
+            title: this.LN.interface.controller.APIList,
             list: res,
             project_id: data.project_id,
             project_name: projectData.project_name,
@@ -67,7 +67,7 @@ export default class extends Base {
                 res.project = project;
                 this.assign(res)
             } else {
-                return this.setSucess('复制的数据不存在', '/interface/index')
+                return this.setSucess(this.LN.interface.controller.cloneError, '/interface/index')
             }
         } else {
             this.assign({
@@ -120,10 +120,10 @@ export default class extends Base {
         if (get.mockid) {
             let res = await this.model('mockserver').where('mockid=' + get.mockid).delete();
             if (res) {
-                return this.setSucess('删除成功', this.http.header.referer)
+                return this.setSucess(this.LN.interface.controller.deleteSuccess, this.http.header.referer)
             }
         } else {
-            return this.setSucess('ID不存在', this.http.header.referer)
+            return this.setSucess(this.LN.interface.controller.idIsNotExit, this.http.header.referer)
         }
     }
 
@@ -131,34 +131,34 @@ export default class extends Base {
         // console.log(this.post())
         let data = this.post();
         if (think.isEmpty(data)) {
-            return this.setSucess('数据为空:点击返回列表', '/interface/index')
+            return this.setSucess(this.LN.interface.controller.dataIsEmpty, '/interface/index')
         }
         let urlData = await this.model('mockserver').where('api_url="' + data.api_url + '"').find();
         project_prefix = data.project_prefix;
         if (data.mockid) {
             if (!think.isEmpty(urlData) && urlData.mockid.toString() !== data.mockid) {
-                return this.setSucess('修改失败:接口地址[' + data.api_url + ']已存在,返回修改', this.http.header.referer)
+                return this.setSucess(this.LN.interface.controller.cloneError + data.api_url + ']', this.http.header.referer)
             } else {
                 let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
                 //行为记录
                 if (res) {
                     await this.model('mockserver').update(data);
-                    return this.setSucess('修改成功', '/interface/index?project_id=' + data.project_id, '返回列表', project_prefix + data.api_url, '查看接口')
+                    return this.setSucess(this.LN.interface.controller.editSuccess, '/interface/index?project_id=' + data.project_id,this.LN.interface.controller.returnList, project_prefix + data.api_url,this.LN.interface.controller.details)
                 } else {
-                    this.fail("操作失败！");
+                    this.fail(this.LN.interface.controller.actionError);
                 }
             }
             return this.display('common/tips/sucess.nunj');
         } else {
             if (!think.isEmpty(urlData)) {
-                return this.setSucess('添加失败:接口地址[' + data.api_url + ']已存在,返回修改', this.http.headers.referer)
+                return this.setSucess(this.LN.interface.controller.addApiIsExist+ data.api_url, this.http.headers.referer)
             }
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.setSucess('添加成功', '/interface/index?project_id=' + data.project_id, '返回列表', project_prefix + data.api_url, '查看接口')
+                this.setSucess(this.LN.interface.controller.addSuccess, '/interface/index?project_id=' + data.project_id, this.LN.interface.controller.returnList, project_prefix + data.api_url,this.LN.interface.controller.details)
             } else {
-                this.fail("操作失败！");
+                this.fail(this.LN.interface.controller.actionError);
             }
             // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         }
@@ -169,22 +169,22 @@ export default class extends Base {
         const mockid = this.get('mockid');
         const is_proxy = this.get('is_proxy');
         if (think.isEmpty(mockid)) {
-            this.fail(400, 'mockid为空 ')
+            this.fail(400,this.LN.interface.controller.mockIdIsEmpty)
         }
         if (think.isEmpty(is_proxy)) {
-            this.fail(400, 'is_proxy为空 ')
+            this.fail(400, this.LN.interface.controller.proxyIsEmpty)
         }
         let data = await this.model('mockserver').where("mockid=" + mockid + "").find();
         if (!think.isEmpty(data)) {
             var _this = this;
             let data = await this.model('mockserver').where("mockid=" + mockid + "").update({is_proxy: is_proxy});
             if (data) {
-                this.success('修改成功')
+                this.success(this.LN.interface.controller.editSuccess)
             } else {
-                this.fail(500, '修改失败')
+                this.fail(500, this.LN.interface.controller.editFail)
             }
         } else {
-            this.fail(400, 'mockid不存在')
+            this.fail(400,this.LN.interface.controller.mockIdIsEmpty)
         }
         // return this.display();
     }
@@ -193,16 +193,16 @@ export default class extends Base {
         const is_proxy = this.get('is_proxy');
         const mockids = this.get('mockids');
         if (think.isEmpty(is_proxy)) {
-            this.fail(400, 'is_proxy为空 ')
+            this.fail(400, this.LN.interface.controller.proxyIsEmpty)
         }
         if (think.isEmpty(mockids)) {
-            this.fail(400, 'mockids为空 ')
+            this.fail(400, this.LN.interface.controller.mockIdIsEmpty)
         }
         let data = await this.model('mockserver').where(" mockid in (" + mockids + ")").update({is_proxy: is_proxy});
         if (data) {
-            this.success('修改成功')
+            this.success(this.LN.interface.controller.editSuccess)
         } else {
-            this.fail(500, '修改失败')
+            this.fail(500, this.LN.interface.controller.editFail)
         }
         // return this.display();
     }

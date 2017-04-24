@@ -9,80 +9,52 @@
         <div class="col-md-12">
             <div class="item">
                 <h4>
-                    系统设置
+                    {{ LN.system.systemSettings }}
                 </h4>
                 <div class="item-main">
                     <form class="form-horizontal" id="formId" method="post" action="/system/update">
                         <div class="form-group-dashed">
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">
-                                    全局二次代理前缀
+                                    {{ LN.system.globalProxyUrl }}
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control" placeholder="请输入要求输入的内容"/>
-                                    <p class="help-block">格式如:http://192.168.1.2</p>
-                                    <p style="line-height: 2">
-                                        <b>重要:此参数用于设置所有通过此系统,再次代理到其他服务的URL前缀</b>
-                                        <br><br><br>
-                                        重要!!!二次代理用途:<br>
-                                        开发过程中,由于实际的数据未准备好,通过访问本系统定义的API,并关闭所有二次代理,则会直接返回模拟的数据<br>
-                                        但在开发完成后,需要访问真实的数据时,则可以通过设置二次代理,将请求再次代理到【真实数据服务上】,并返回真实数据<br><br>
-                                        举例说明:<br><br>
-                                        <b>开发中:</b><br>
-                                        1)某个AJAX服务,需要模拟,通过NGINX或其他方法将 [http://127.0.0.1/api]下所有请求,全部指向到本系统,<br>
-                                        并假定本系统启动后的地址为【http://127.0.0.1:8083】.<br>
-                                        2)当访问[http://127.0.0.1/api/a.json]时,实际会代理到【http://127.0.0.1:8083/api/a.json】<br>
-                                        3)当访问时,系统会在数据库查询到该接口,并返回模拟数据<br><br>
-                                        <b>开发完成或某个接口的真实完成后:</b><br>
-                                        同样是第三步,可以通过开启二次代理,将请求再次代理到真实的接口上,以此达到更灵活在模拟数据和真实数据切换目的<br>
-                                        如:<br>
-                                        原本被代理到【http://127.0.0.1:8083/api/a.json】返回的数据,<br>
-                                        通过设置二次代理为【http://192.168.0.1:8083】,则会返回<br>
-                                        【http://192.168.0.1:8083/api/a.json】(前提是这个接口是真实存在的)<br><br>
-                                        <b>而为了更灵活的设置二次代理:</b><br>
-                                        分别开发了,全站级二次代理、项目级二次代理、单个接口的二次代理<br>
-                                        权重为全站级二次代理 &lt;项目级二次代理 &lt;单个接口的二次代理<br>
-                                        <br>
-                                        <b style="color: red">另:如果某个接口,在本系统中根本没有定义,但依然使用此系统去访问该接口时,会使用【全局二次代理前缀】作为服务去获取数据。
-                                        </b><br>
-                                        如:<br>
-                                        假设全局二次代理前缀为【http://192.160.2.1】<br>
-                                        假设 本系统启动地址为【http://127.0.0.1:8083】<br>
-                                        <br>
-                                        访问:http://127.0.0.1:8083/api/b<br>
-                                        在系统中未找到此接口,则会去获取【http://192.160.2.1/api/b】的数据<br>
+                                    <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control" placeholder=""/>
+                                    <p class="help-block">{{ LN.system.format }}</p>
+                                    <p style="line-height: 2;color: red;">
+                                        {{ LN.system.globalProxyUrlTips|safe }}
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">代理header设置</label>
+                                <label class="col-sm-2 control-label">{{ LN.system.ProxyHeaders }}</label>
                                 <div class="col-sm-8">
                                     <div class="select-group radio-group" data-toggle="buttons">
                                         <!-- <div> -->
                                         <label class="btn {% if headers_proxy_state==0 or not  headers_proxy_state %}active{% endif %}">
-                                            <input type="radio" name="headers_proxy_state" value="0" {% if headers_proxy_state==0 %}checked{% endif %} autocomplete="off">启用黑名单
+                                            <input type="radio" name="headers_proxy_state" value="0" {% if headers_proxy_state==0 %}checked{% endif %}
+                                                   autocomplete="off">{{ LN.system.BlackList }}
                                         </label>
                                         <label class="btn {% if headers_proxy_state==1 %}active{% endif %}">
-                                            <input type="radio" name="headers_proxy_state" value="1" {% if headers_proxy_state==1 %}checked{% endif %} autocomplete="off">启用白名单
+                                            <input type="radio" name="headers_proxy_state" value="1" {% if headers_proxy_state==1 %}checked{% endif %}
+                                                   autocomplete="off">{{ LN.system.WhiteList }}
                                         </label>
                                         <!-- </div> -->
                                         <br>
                                     </div>
                                     <div class="txtarea_wrap" {% if headers_proxy_state==0 or not headers_proxy_state %} style="display: block;"{% endif %}>
-                                        <textarea type="text" placeholder="header黑名单字段，一行一个"
+                                        <textarea type="text" placeholder="{{ LN.system.BlackListPlaceHolder }}"
                                                   class="form-control header_area"
                                                   name="headers_black_list" id="headers_black_list">{{ headers_black_list if  headers_black_list else 'host\r\naccept-encoding' }}</textarea>
-                                        <p class="help-block" style="color: red;">当启用黑名单时，二次代理开启后，当前指定header字段将不会被传递到二次代理的服务上,为空时，默认值为 host 和 accept-encoding两个header字段，<br>
-                                            原因为：如果请求的url域名与代理的 host 不一致时，二次代理会报错<br>
-                                            accept-encoding:代理后，容易出现乱码</p>
+                                        <p class="help-block" style="color: red;">{{ LN.system.BlackListDesc }}</p>
                                     </div>
                                     <div class="txtarea_wrap" {% if headers_proxy_state==1 %} style="display: block;" {% endif %} >
-                                        <textarea type="text" placeholder="header白名单字段，一行一个"
+                                        <textarea type="text" placeholder="{{ LN.system.WhiteListPlaceHolder|safe }}"
                                                   class="form-control header_area" name="headers_white_list"
                                                   id="headers_white_list">{{ headers_white_list }}</textarea>
-                                        <p class="help-block " style="color: red;">当启用白名单时，二次代理开启后，将只传递当前指定header字段到二次代理服务上</p>
+                                        <p class="help-block " style="color: red;">{{ LN.system.WhiteListDesc }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -90,8 +62,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-10">
-                                        <button class="btn btn-default" type="button">取消</button>
-                                        <button class="btn btn-info" type="submit">保存修改</button>
+                                        <button class="btn btn-info" type="submit">{{ LN.system.save }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +80,7 @@
     {% endif %}
     {% if api_headers_desc|length ===0 or api_headers_desc|trim|length===0 %}
         {% set api_headers_desc=' {
-                "headers": ["header字段名1","header字段名2","header字段名3"]
+                "headers": ["header1","header2","header3"]
             }' %}
     {% endif %}
     <script>

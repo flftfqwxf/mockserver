@@ -10,6 +10,8 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
+        this.LN = this.assign('LN');
+        let _this = this;
         //允许跨域访问接口
         this.http.header('Access-Control-Allow-Origin', '*');
         //获取全局配置
@@ -49,13 +51,12 @@ export default class extends Base {
                     }
                 })
                 if (data.length > 1) {
-                    return this.json({'message': '有多个接口使用了此路径', list: data})
+                    return this.json({'message': _this.LN.api.multipleInterfaceError, list: data})
                 }
             }
         }
         if (!think.isEmpty(data)) {
             var item = data;
-            var _this = this;
             this.item = data;
             let headers;
             if (item.is_proxy === 0) {
@@ -64,7 +65,7 @@ export default class extends Base {
                     try {
                         api_header = JSON.parse(item.api_header);
                     } catch (e) {
-                        return this.fail({message: 'header信息格式错误'});
+                        return this.fail({message: _this.LN.api.headerFormatError});
                     }
                     for (var header in api_header) {
                         // console.log(header, api_header[header])
@@ -106,7 +107,7 @@ export default class extends Base {
                     // this.json({message: '此接口没有提定代理地址请检查并修改2'});
                 } else {
                     if (!this.checkProjectProxy(_this.systemConfig.proxy_url)) {
-                        this.fail({message: '此接口没有指定全局和局部代理地址请检查并修改'})
+                        this.fail({message: _this.LN.api.proxyIsEmptyError})
                     } else {
                         this.getProxyFromProject(item.api_type, _this.systemConfig.proxy_url)
                     }
@@ -138,7 +139,7 @@ export default class extends Base {
         if (proxy_url) {
             return this.getProxy(proxy_url, prefix, this.http.url.replace(prefix, ''), methodType);
         } else {
-            return this.fail({message: '此接口未定义全局代理'})
+            return this.fail({message: this.LN.api.globalProxyIsEmptyError})
         }
     }
 
@@ -155,7 +156,7 @@ export default class extends Base {
         if (systemProxyUrl) {
             return systemProxyUrl
         } else {
-            return this.fail({message: '请在全局设置中设置全局二次代理'})
+            return this.fail({message: this.LN.api.globalProxyIsEmptyError})
         }
     }
 
@@ -251,7 +252,7 @@ export default class extends Base {
             }
         }).catch(function(err) {
             console.log(err)
-            _this.fail({message: url + ':获取数据错误,可能是接口不存在,或参数错误,错误信息:' + err});
+            _this.fail({message: url + this.LN.api.globalProxyIsEmptyError + err});
         });
     }
 }

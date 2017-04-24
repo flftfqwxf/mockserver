@@ -9,7 +9,7 @@ export default class extends Base {
     async indexAction() {
         let res = await this.model('project').select();
         this.assign({
-            title: '项目列表',
+            title: this.LN.project.controller.title,
             list: res
         })
         //auto render template file index_index.html
@@ -36,7 +36,7 @@ export default class extends Base {
                 this.assign(res[0])
             }
         } else {
-            return this.setSucess('项目不存在', '/')
+            return this.setSucess(this.LN.project.controller.projectIsNotExit, '/')
         }
         return this.display('add.nunj')
     }
@@ -46,10 +46,10 @@ export default class extends Base {
         if (get.project_id) {
             let res = await this.model('project').where('project_id=' + get.project_id).delete();
             if (res) {
-                return this.setSucess('删除成功', '/')
+                return this.setSucess(this.LN.project.controller.deleteSuccess, '/')
             }
         } else {
-            return this.setSucess('ID不存在', '/')
+            return this.setSucess(this.LN.project.controller.idIsNotExit, '/')
         }
     }
 
@@ -62,38 +62,38 @@ export default class extends Base {
         // console.log(this.post())
         let data = this.post();
         if (think.isEmpty(data)) {
-            return this.setSucess('数据为空:点击返回列表', '/')
+            return this.setSucess(this.LN.project.controller.dataIsEmpty, '/')
         }
-        excludeConfig.some((item) => {
-            if (data.project_prefix.indexOf(item) === 0) {
-                return this.setSucess('不能使用：【' + item + '】作为前缀开头,该前缀已经被系统占有用', '/');
-            }
-        });
-        excludeConfig.indexOf(data.project_prefix);
+        // excludeConfig.some((item) => {
+        //     if (data.project_prefix.indexOf(item) === 0) {
+        //         return this.setSucess('【' + item + '】'this.LN.project.controller.title, '/');
+        //     }
+        // });
+        // excludeConfig.indexOf(data.project_prefix);
         let projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
         //修改
         if (data.project_id) {
             if (!think.isEmpty(projectData) && data.project_id !== projectData.project_id.toString()) {
-                return this.setSucess('项目名称已存在', '/')
+                return this.setSucess(this.LN.project.controller.projectNameIsExit, '/')
             }
             let res = await this.model('project').where('project_id=' + data.project_id).select();
             //行为记录˙
             if (res) {
                 await this.model('project').update(data);
-                return this.setSucess('修改成功', '/')
+                return this.setSucess(this.LN.project.controller.editSuccess, '/')
             } else {
-                this.fail("操作失败！");
+                this.fail(this.LN.project.controller.actionError);
             }
         } else {//添加
             if (!think.isEmpty(projectData)) {
-                return this.setSucess('项目名称已存在', '/')
+                return this.setSucess(this.LN.project.controller.projectNameIsExit, '/')
             }
             let res = await this.model('project').add(data);
             if (res) {
                 // this.active = "/";
-                return this.setSucess('添加成功', '/')
+                return this.setSucess(this.LN.project.controller.addSuccess, '/')
             } else {
-                this.fail("操作失败！");
+                this.fail(this.LN.project.controller.actionError);
             }
             // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         }

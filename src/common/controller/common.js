@@ -20,6 +20,7 @@ export default class language extends think.controller.base {
                 this.assign({'LN': cn});
                 break;
         }
+        this.LN=this.assign('LN')
         this.getCurrentRoute();
     }
 
