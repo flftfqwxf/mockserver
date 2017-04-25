@@ -34,3 +34,8 @@ app/
 
 runtime/
 /src/common/config/db-noUpload.js
+/www/static/common/jsoneditor-5.6.0/docs/
+/www/static/common/jsoneditor-5.6.0/dist/
+/www/static/common/jsoneditor-5.6.0/examples/
+/www/static/common/jsoneditor-5.6.0/src/
+/www/static/common/jsoneditor-5.6.0/node_modules/

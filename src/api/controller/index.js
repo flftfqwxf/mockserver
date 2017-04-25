@@ -102,19 +102,19 @@ export default class extends Base {
                     if (item.exact_match === 0) {
                         item.api_url = url;
                     }
-                    _this.getProxy(item.proxy_prefix, prefix, item.api_url, item.api_type)
+                    return _this.getProxy(item.proxy_prefix, prefix, item.api_url, item.api_type)
                     // console.log(fn)
                     // this.json({message: '此接口没有提定代理地址请检查并修改2'});
                 } else {
                     if (!this.checkProjectProxy(_this.systemConfig.proxy_url)) {
                         this.fail({message: _this.LN.api.proxyIsEmptyError})
                     } else {
-                        this.getProxyFromProject(item.api_type, _this.systemConfig.proxy_url)
+                        return this.getProxyFromProject(item.api_type, _this.systemConfig.proxy_url)
                     }
                 }
             }
         } else {
-            this.getProxyFromProject(null, this.systemConfig.proxy_url)
+            return this.getProxyFromProject(null, this.systemConfig.proxy_url)
         }
         // return this.display();
     }
@@ -252,7 +252,7 @@ export default class extends Base {
             }
         }).catch(function(err) {
             console.log(err)
-            _this.fail({message: url + this.LN.api.globalProxyIsEmptyError + err});
+            return _this.fail({proxyUurl: url, errorMessage: _this.LN.api.getProxyDataError, errorContent: err});
         });
     }
 }

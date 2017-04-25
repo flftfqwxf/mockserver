@@ -176,6 +176,6 @@ module.exports = {
         headerFormatError: 'Response headers format is error',
         proxyIsEmptyError: "Couldn't get proxy url",
         globalProxyIsEmptyError: "Couldn't get global proxy url",
-        getProxyDataError: 'Data is error,API dose not exist or parameters are error ,error information:'
+        getProxyDataError: 'Get data is failed,API dose not exist or parameters are error,may be you should send some parameters to proxy url'
     }
 }

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>JSONEditor | Custom Ace</title>
+    <!-- load a custom version of Ace editor -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>-->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <!-- load the minimalist version of JSONEditor, which doesn't have Ace embedded -->
+    <link href="/static/common/jsoneditor-5.6.0/app.min.css" rel="stylesheet" type="text/css">
+    <script src="/static/common/jsoneditor-5.6.0/app.min.js/"></script>
+    <script src="/static/common/jsoneditor-5.6.0/main.js/"></script>
+</head>
+<body>
+<div id="header">
+    <div id="name-menu">
+        <div id="name" title="Document name. Click to change"></div>
+        <div id="name-status" title="Changes are automatically saved online"></div>
+    </div>
+    <div id="menu">
+        <ul>
+            <li>
+                <a id="new" title="Open a new, empty document">New</a>
+            </li>
+            <li>
+                <a id="open" title="Open file">
+                    Open <span class="dropDownIcon">&#x25BC;</span>
+                </a>
+                <ul id="openMenu">
+                    <li>
+                        <a id="openFromDisk" title="Open file from disk">Open from disk</a>
+                    </li>
+                    <li>
+                        <a id="openUrl" title="Open file from url">Open url</a>
+                    </li>
+                    <li id="filesList"></li>
+                </ul>
+            </li>
+            <li>
+                <a id="save" title="Save file">
+                    Save <span class="dropDownIcon">&#x25BC;</span>
+                </a>
+                <ul id="saveMenu">
+                    <li>
+                        <a id="saveToDisk" title="Save file to disk">Save to disk</a>
+                    </li>
+                    <li>
+                        <a id="saveOnline" title="Save and share online">Save online</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="settings">
+                <a id="settings" title="Settings">
+                    Settings <span class="dropDownIcon">&#x25BC;</span>
+                </a>
+                <ul id="settingsMenu">
+                    <li>
+                        <div class="indentation">
+                            <label for="indentation">Indentation <input id="indentation" value="2"/></label>
+                        </div>
+                    </li>
+                    <li id="schemasList"></li>
+                </ul>
+            </li>
+            <li>
+                <a id="help" title="Open documentation (opens in a new window)" href="doc/index.html" target="_blank">Help</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="auto">
+    <div id="contents">
+        <div id="codeEditor"></div>
+        <div id="splitter">
+            <div id="buttons">
+                <div>
+                    <button id="toTree" class="convert" title="Copy code to tree editor (Ctrl + >)">
+                        <div class="convert-right"></div>
+                    </button>
+                </div>
+                <div>
+                    <button id="toCode" class="convert" title="Copy tree to code editor (Ctrl + <)">
+                        <div class="convert-left"></div>
+                    </button>
+                </div>
+            </div>
+            <div id="drag">
+            </div>
+        </div>
+        <div id="treeEditor"></div>
+        <script>
+            function getJson() {
+                document.querySelector('#toTree').click();
+                try {
+                    JSON.parse(codeEditor.getText());
+                    return codeEditor.getText();
+                } catch (e) {
+                    return false
+                }
+            }
+            function setJson(json) {
+                app.load(json);
+                app.resize();
+                document.querySelector('#toTree').click();
+            }
+        </script>
+</body>
+</html>
