@@ -29,7 +29,7 @@
             </form>
             <div class="item">
                 <div class="item-head clearfix">
-                    <h4 class="pull-left">{{ project_name }}</h4>
+                    <h4 class="pull-left">{{ project.project_name }}</h4>
                     {#<div class="pull-right form-inline">#}
                     {#<div class="input-group">#}
                     {#<div class="has-feedback">#}
@@ -64,7 +64,10 @@
                                 <td>{{ item.mockid }}</td>
                                 <td>{{ item.project_name }}</td>
                                 <td>{{ item.api_name }}</td>
-                                <td><a target="_blank" href="/api/{{ item.api_url }}">{{ item.api_url }}</a></td>
+                                <td><a target="_blank" href="/api/{{ item.api_url }}">{{ item.api_url }}</a>
+                                    <p style="display: {{ 'block' if item.is_proxy ==1  else 'none' }}" class="J_proxy_all_tips J_proxy_tips_{{ item.mockid }}">代理开启后,将会从[<span
+                                                style="color: red;">{{ project.proxy_url+'/'+item.api_url }}</span>]，获取数据</p>
+                                </td>
                                 <td class="proxy_state">{{ LN.interface.index.closed if item.is_proxy==0 else LN.interface.index.opened }}</td>
                                 <td><a class="deleteLnk" href="/interface/delete?mockid={{ item.mockid }}">{{ LN.interface.index.delete }}</a>
                                     <a href="/interface/edit?mockid={{ item.mockid }}">{{ LN.interface.index.edit }}</a>
@@ -104,11 +107,12 @@
                 oper_proxy = is_proxy === "0" ? 1 : 0,
                 state = is_proxy === "0" ? '{{ LN.interface.index.opened }}' : '{{ LN.interface.index.closed }}';
             $.getJSON('/interface/setproxy', {mockid: mockid, is_proxy: oper_proxy}).done(function(data) {
-                if (data && data.errno ===0) {
+                if (data && data.errno === 0) {
                     _this.html(txt).attr('data-is-proxy', oper_proxy);
-                    _this.parent().siblings('.proxy_state').html(state)
-                }else{
-                    $.commonTips(data.errmsg,'danger',1500);
+                    _this.parent().siblings('.proxy_state').html(state);
+                    is_proxy === "0" ? $('.J_proxy_tips_' + mockid).show() : $('.J_proxy_tips_' + mockid).hide()
+                } else {
+                    $.commonTips(data.errmsg, 'danger', 1500);
                 }
             }).fail(function(err) {
                 alert(err.message)
@@ -124,12 +128,13 @@
                 return $(this).attr('mockid');
             }).get().join(",");
             $.getJSON('/interface/setproxies', {is_proxy: oper_proxy, mockids: mockids}).done(function(data) {
-                if (data && data.errno===0) {
+                if (data && data.errno === 0) {
                     $('.oper_proxy').html(txtitem);
                     _this.html(txt).attr('data-is-proxy', oper_proxy);
+                    is_proxy === "0" ? $('.J_proxy_all_tips').show() : $('.J_proxy_all_tips').hide()
                     $('.proxy_state').html(state)
-                }else{
-                    $.commonTips(data.errmsg,'danger',1500);
+                } else {
+                    $.commonTips(data.errmsg, 'danger', 1500);
                 }
             }).fail(function(err) {
                 alert(err.message)

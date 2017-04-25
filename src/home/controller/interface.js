@@ -20,7 +20,7 @@ export default class extends Base {
             where['mockserver.project_id'] = data.project_id;
             res = await this.model('mockserver').where(where).order('mockid desc')
                 .alias('mockserver')
-                .field('`mockserver`.*, `project`.`project_name`,`project`.`project_prefix`')
+                .field('`mockserver`.*, `project`.`*`')
                 .join([{
                     table: 'project',
                     as: 'project',
@@ -30,7 +30,7 @@ export default class extends Base {
         } else {
             res = await this.model('mockserver').where(where)
                 .alias('mockserver')
-                .field('`mockserver`.*, `project`.`project_name`,`project`.`project_prefix`')
+                .field('`mockserver`.*, `project`.`*`')
                 .join([{
                     table: 'project',
                     as: 'project',
@@ -42,7 +42,7 @@ export default class extends Base {
             title: this.LN.interface.controller.APIList,
             list: res,
             project_id: data.project_id,
-            project_name: projectData.project_name,
+            project: projectData,
             api_name: data.api_name,
             keyword: data.keyword,
         })
@@ -143,7 +143,7 @@ export default class extends Base {
                 //行为记录
                 if (res) {
                     await this.model('mockserver').update(data);
-                    return this.setSucess(this.LN.interface.controller.editSuccess, '/interface/index?project_id=' + data.project_id,this.LN.interface.controller.returnList, project_prefix + data.api_url,this.LN.interface.controller.details)
+                    return this.setSucess(this.LN.interface.controller.editSuccess, '/interface/index?project_id=' + data.project_id, this.LN.interface.controller.returnList, project_prefix + data.api_url, this.LN.interface.controller.details)
                 } else {
                     this.fail(this.LN.interface.controller.actionError);
                 }
@@ -151,12 +151,12 @@ export default class extends Base {
             return this.display('common/tips/sucess.nunj');
         } else {
             if (!think.isEmpty(urlData)) {
-                return this.setSucess(this.LN.interface.controller.addApiIsExist+ data.api_url, this.http.headers.referer)
+                return this.setSucess(this.LN.interface.controller.addApiIsExist + data.api_url, this.http.headers.referer)
             }
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.setSucess(this.LN.interface.controller.addSuccess, '/interface/index?project_id=' + data.project_id, this.LN.interface.controller.returnList, project_prefix + data.api_url,this.LN.interface.controller.details)
+                this.setSucess(this.LN.interface.controller.addSuccess, '/interface/index?project_id=' + data.project_id, this.LN.interface.controller.returnList, project_prefix + data.api_url, this.LN.interface.controller.details)
             } else {
                 this.fail(this.LN.interface.controller.actionError);
             }
@@ -169,7 +169,7 @@ export default class extends Base {
         const mockid = this.get('mockid');
         const is_proxy = this.get('is_proxy');
         if (think.isEmpty(mockid)) {
-            this.fail(400,this.LN.interface.controller.mockIdIsEmpty)
+            this.fail(400, this.LN.interface.controller.mockIdIsEmpty)
         }
         if (think.isEmpty(is_proxy)) {
             this.fail(400, this.LN.interface.controller.proxyIsEmpty)
@@ -184,7 +184,7 @@ export default class extends Base {
                 this.fail(500, this.LN.interface.controller.editFail)
             }
         } else {
-            this.fail(400,this.LN.interface.controller.mockIdIsEmpty)
+            this.fail(400, this.LN.interface.controller.mockIdIsEmpty)
         }
         // return this.display();
     }

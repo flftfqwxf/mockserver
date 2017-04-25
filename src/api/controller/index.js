@@ -252,7 +252,7 @@ export default class extends Base {
             }
         }).catch(function(err) {
             console.log(err)
-            return _this.fail({proxyUurl: url, errorMessage: _this.LN.api.getProxyDataError, errorContent: err});
+            return _this.fail({proxyUrl: url, errorMessage: _this.LN.api.getProxyDataError, errorContent: err});
         });
     }
 }
