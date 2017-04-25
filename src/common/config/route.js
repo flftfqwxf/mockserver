@@ -13,6 +13,7 @@ export default [
     [/^system\/add/, 'home/system/add'],
     [/^system\/update/, 'home/system/update'],
     [/^system\/edit/, 'home/system/edit'],
+    [/^system\/lang\/([\w-]+)$/, 'home/system/lang?lang=:1'],
     //接口设置路由
     [/^interface\/index/, 'home/interface/index'],
     [/^interface\/add$/, 'home/interface/add'],

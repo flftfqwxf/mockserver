@@ -36,7 +36,7 @@ export default class extends Base {
                 this.assign(res[0])
             }
         } else {
-            return this.setSucess(this.LN.project.controller.projectIsNotExit, '/')
+            return this.setSucess(this.LN.project.controller.projectIsNotExist, '/')
         }
         return this.display('add.nunj')
     }
@@ -49,7 +49,7 @@ export default class extends Base {
                 return this.setSucess(this.LN.project.controller.deleteSuccess, '/')
             }
         } else {
-            return this.setSucess(this.LN.project.controller.idIsNotExit, '/')
+            return this.setSucess(this.LN.project.controller.idIsNotExist, '/')
         }
     }
 
@@ -74,7 +74,7 @@ export default class extends Base {
         //修改
         if (data.project_id) {
             if (!think.isEmpty(projectData) && data.project_id !== projectData.project_id.toString()) {
-                return this.setSucess(this.LN.project.controller.projectNameIsExit, '/')
+                return this.setSucess(this.LN.project.controller.projectNameIsExist, '/')
             }
             let res = await this.model('project').where('project_id=' + data.project_id).select();
             //行为记录˙
@@ -86,7 +86,7 @@ export default class extends Base {
             }
         } else {//添加
             if (!think.isEmpty(projectData)) {
-                return this.setSucess(this.LN.project.controller.projectNameIsExit, '/')
+                return this.setSucess(this.LN.project.controller.projectNameIsExist, '/')
             }
             let res = await this.model('project').add(data);
             if (res) {

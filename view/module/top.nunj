@@ -3,31 +3,46 @@
         <button type="button" class="btn btn-default" id="nav-button"><i class="gm-icon gm-menu"></i></button>
         <h2>
             mock-server
-            <small>
-                {#<a href="#"><i class="fa fa-retweet"></i>供应商管理中心</a>#}
+            <small class="lang_switcher">
+                {{ LN.languageSwitcher }}<i class="fa fa-retweet"></i><a href="javascript:;" _href="/system/lang/zh-cn" id="chinese">中文</a>&nbsp;
+                <a href="javascript:;" _href="/system/lang/en" id="english">English</a>
             </small>
         </h2>
     </div>
-    <ul class="pull-right login-state">
-        <li class="common-notice">
-            <a href="#">
-                <i class="gm-icon gm-notice"></i>
-                <span class="label label-warning">8</span>
-            </a>
-        </li>
-        <li class="dropdown">
-            <div id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="gm-icon gm-user"></i>
-                183****1324
-                <i class="fa fa-angle-down"></i>
-            </div>
-            <ul class="dropdown-menu" aria-labelledby="drop1">
-                {#<li><a href="#"><i class="gm-icon gm-supplier"></i>供应商中心</a></li>#}
-                {#<li><a href="#"><i class="gm-icon gm-distributor"></i>分销商中心</a></li>#}
-                {#<li><a href="#"><i class="gm-icon gm-modify-pwd"></i>修改密码</a></li>#}
-                <li role="separator" class="divider"></li>
-                <li><a href="#"><i class="gm-icon gm-logout"></i>退出登录</a></li>
-            </ul>
-        </li>
-    </ul>
+    {#<ul class="pull-right login-state">#}
+    {#<li class="common-notice">#}
+    {#<a href="#">#}
+    {#<i class="gm-icon gm-notice"></i>#}
+    {#<span class="label label-warning">8</span>#}
+    {#</a>#}
+    {#</li>#}
+    {#<li class="dropdown">#}
+    {#<div id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+    {#<i class="gm-icon gm-user"></i>#}
+    {#183****1324#}
+    {#<i class="fa fa-angle-down"></i>#}
+    {#</div>#}
+    {#<ul class="dropdown-menu" aria-labelledby="drop1">#}
+    {#<li><a href="#"><i class="gm-icon gm-supplier"></i>供应商中心</a></li>#}
+    {#<li><a href="#"><i class="gm-icon gm-distributor"></i>分销商中心</a></li>#}
+    {#<li><a href="#"><i class="gm-icon gm-modify-pwd"></i>修改密码</a></li>#}
+    {#<li role="separator" class="divider"></li>#}
+    {#<li><a href="#"><i class="gm-icon gm-logout"></i>退出登录</a></li>#}
+    {#</ul>#}
+    {#</li>#}
+    {#</ul>#}
 </div>
+<script>
+    $('#chinese,#english').click(function() {
+        $.getJSON($(this).attr('_href')).done(function(data) {
+            if (data && data.errno === 0) {
+                location.reload();
+            } else {
+                $.commonTips(data.errmsg, 'danger', 1500);
+            }
+        }).fail(function(err) {
+            alert(err.message)
+        });
+        return false;
+    })
+</script>

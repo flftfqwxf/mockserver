@@ -123,7 +123,7 @@ export default class extends Base {
                 return this.setSucess(this.LN.interface.controller.deleteSuccess, this.http.header.referer)
             }
         } else {
-            return this.setSucess(this.LN.interface.controller.idIsNotExit, this.http.header.referer)
+            return this.setSucess(this.LN.interface.controller.idIsNotExist, this.http.header.referer)
         }
     }
 

@@ -6,7 +6,7 @@
         </label>
         <div class="col-sm-6">
             <label class="btn btn-default btn-select">
-                <select name="project_id" class="validate[required]"
+                <select name="project_id" class="validate[required,custom[url]]"
                         id="form-validation-field-0">
                     {% set curProjectProxy='' %}
 

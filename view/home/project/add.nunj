@@ -49,7 +49,7 @@
                                     {{ LN.project.add.projectProxyUrl }}
                                 </label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control"/>
+                                    <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control validate[custom[url]]"/>
                                     <p class="help-block">{{ LN.project.add.format }}:http://192.168.1.2</p>
                                 </div>
                             </div>

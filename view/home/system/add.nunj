@@ -16,10 +16,10 @@
                         <div class="form-group-dashed">
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">
-                                    {{ LN.system.globalProxyUrl }}
+                                    <span class="common-required">*</span>{{ LN.system.globalProxyUrl }}
                                 </label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control" placeholder=""/>
+                                <div class="col-sm-8">
+                                    <input type="text" name="proxy_url" value="{{ proxy_url }}" class="form-control validate[required,custom[url]]" placeholder=""/>
                                     <p class="help-block">{{ LN.system.format }}</p>
                                     <p style="line-height: 2;color: red;">
                                         {{ LN.system.globalProxyUrlTips|safe }}
@@ -48,13 +48,13 @@
                                         <textarea type="text" placeholder="{{ LN.system.BlackListPlaceHolder }}"
                                                   class="form-control header_area"
                                                   name="headers_black_list" id="headers_black_list">{{ headers_black_list if  headers_black_list else 'host\r\naccept-encoding' }}</textarea>
-                                        <p class="help-block" style="color: red;">{{ LN.system.BlackListDesc }}</p>
+                                        <p class="help-block" style="color: red;">{{ LN.system.BlackListDesc|safe }}</p>
                                     </div>
                                     <div class="txtarea_wrap" {% if headers_proxy_state==1 %} style="display: block;" {% endif %} >
                                         <textarea type="text" placeholder="{{ LN.system.WhiteListPlaceHolder|safe }}"
                                                   class="form-control header_area" name="headers_white_list"
                                                   id="headers_white_list">{{ headers_white_list }}</textarea>
-                                        <p class="help-block " style="color: red;">{{ LN.system.WhiteListDesc }}</p>
+                                        <p class="help-block " style="color: red;">{{ LN.system.WhiteListDesc |safe}}</p>
                                     </div>
                                 </div>
                             </div>

@@ -8,6 +8,7 @@ export default class language extends think.controller.base {
      * @private
      */
     async __before() {
+        // this.lang('en');
         let lang = this.lang()
         switch (lang) {
             case 'en':

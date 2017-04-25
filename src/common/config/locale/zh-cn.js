@@ -1,4 +1,5 @@
 module.exports = {
+    languageSwitcher:'切换语言：',
     sidebar: {
         projectAdmin: '项目管理',
         projectList: '项目列表',
@@ -163,7 +164,14 @@ module.exports = {
         WhiteList: '启用白名单',
         WhiteListPlaceHolder: 'header白名单，一行一个',
         WhiteListDesc: '当启用白名单时，二次代理开启后，将只传递当前指定header字段到二次代理服务上',
-        save: '保存全局设置'
+        save: '保存全局设置',
+        controller:{
+            dataIsEmpty:'请设置全局参数',
+            updateSuccess:'设置成功',
+            updateFailed:'操作失败',
+            langIsEmpty:'错误：参数 lang 为空',
+
+        }
     },
     api: {
         multipleInterfaceError: '有多个接口使用了此路径',

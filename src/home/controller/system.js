@@ -19,7 +19,7 @@ export default class extends Base {
         // console.log(this.post())
         let data = this.post();
         if (think.isEmpty(data)) {
-            return this.setSucess('请设置全局参数', '/')
+            return this.setSucess(this.LN.system.controller.dataIsEmpty, '/')
         }
         let systemData = await this.model('system').limit(1).find();
         let res;
@@ -30,11 +30,21 @@ export default class extends Base {
         }
         if (res) {
             // this.active = "/";
-            return this.setSucess('设置成功', '/')
+            return this.setSucess(this.LN.system.controller.dataIsEmpty, '/')
         } else {
-            this.fail("操作失败！");
+            this.fail(this.LN.system.controller.dataIsEmpty);
         }
         // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         return this.display();
+    }
+
+    async langAction() {
+        let lang = this.get('lang');
+        if (think.isEmpty(lang)) {
+            return this.fail(this.LN.system.controller.langIsEmpty, 500)
+        }
+        await this.cookie('think_locale', lang);
+        this.lang(lang);
+        return this.success(this.LN.system.controller.updateSuccess);
     }
 }
