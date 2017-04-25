@@ -137,7 +137,7 @@ export default class extends Base {
         project_prefix = data.project_prefix;
         if (data.mockid) {
             if (!think.isEmpty(urlData) && urlData.mockid.toString() !== data.mockid) {
-                return this.setSucess(this.LN.interface.controller.cloneError + data.api_url + ']', this.http.header.referer)
+                return this.setSucess(this.LN.interface.controller.addApiIsExist + data.api_url, this.http.header.referer)
             } else {
                 let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
                 //行为记录
@@ -210,5 +210,10 @@ export default class extends Base {
     demoAction() {
         //auto render template file index_index.html
         return this.display();
+    }
+
+    demoProxyAction() {
+        //auto render template file index_index.html
+        return this.success({data: {arguments: 1, test: 2}});
     }
 }

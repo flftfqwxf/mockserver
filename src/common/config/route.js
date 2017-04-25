@@ -4,6 +4,8 @@
 // const apireg=/^/
 export default [
     [/^demo$/, 'home/interface/demo'],
+    [/^demo\/proxy$/, 'home/interface/demo_proxy'],
+
     //项目设置路由
     [/^project\/add$/, 'home/project/add'],
     [/^project\/update$/, 'home/project/update'],

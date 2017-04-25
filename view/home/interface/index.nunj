@@ -64,9 +64,10 @@
                                 <td>{{ item.mockid }}</td>
                                 <td>{{ item.project_name }}</td>
                                 <td>{{ item.api_name }}</td>
-                                <td><a target="_blank" href="/api/{{ item.api_url }}">{{ item.api_url }}</a>
+                                <td><a target="_blank" href="{{ project.project_prefix +item.api_url }}">{{ item.api_url }}</a>
                                     <p style="display: {{ 'block' if item.is_proxy ==1  else 'none' }}" class="J_proxy_all_tips J_proxy_tips_{{ item.mockid }}">代理开启后,将会从[<span
-                                                style="color: red;">{{ project.proxy_url+'/'+item.api_url }}</span>]，获取数据</p>
+                                                style="color: red;">{{ project.proxy_url+project.project_prefix+item.api_url }}</span>]，获取数据<br>
+                                        若此地址无法获取到数据，则会等待超时或报错</p>
                                 </td>
                                 <td class="proxy_state">{{ LN.interface.index.closed if item.is_proxy==0 else LN.interface.index.opened }}</td>
                                 <td><a class="deleteLnk" href="/interface/delete?mockid={{ item.mockid }}">{{ LN.interface.index.delete }}</a>
