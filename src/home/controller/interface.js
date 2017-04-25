@@ -211,9 +211,4 @@ export default class extends Base {
         //auto render template file index_index.html
         return this.display();
     }
-
-    demoProxyAction() {
-        //auto render template file index_index.html
-        return this.success({data: {arguments: 1, test: 2}});
-    }
 }
