@@ -1,30 +1,32 @@
-Mock-server is a Node.js web system for mock data,and switch between mock data and real data.
+基于thinkjs开发的WEB MOCK-SERVER(数据模拟)工具 ,其主要目的是在前后端分离开发时,用于模拟后端返回数据
 
-[中文文档](README-CN.md)
-## Feature
+[English](README.md)
+
+## 功能说明
 
  ```
-  It suports  [jsonEditor](http://jsoneditoronline.org/) 
+ 支持可视化编辑JSON接口数据及接口文档
  
-  It suports method types: GET、POST、PUT、DELETE...
+ 支持GET、POST、PUT、DELETE请求类型
  
-  It suports specify status code，default:200
+ 支持指定返回状态码，默认200
  
-  It suports dealy to return data
+ 支持延时返回数据
  
-  It suports Mockjs
+ 支持mockjs
 
-  It suports json for cross-domain calls  
+ 支持跨域调用项目接口
 
-  It suports switch between mock data and real data
+ 支持模拟接口与真实接口切换
  
-  It suports switch between Chinese and English
+ 支持中英文切换
 ```
 
 ## [demo](http://47.93.62.181:8033/)
 
-### This demo is for demonstration purposes only.The System will clear data regularly
+### demo只作演示作用，并会定期清除数据
 
+欢迎star,并提出改进意见
 
 
 ## Install dependencies
@@ -32,14 +34,12 @@ Mock-server is a Node.js web system for mock data,and switch between mock data a
 ```
 npm install
 ```
-## Import Mysql file
+## 导入mysql数据库文件
 
 ```
-mysql[5.7.14]+,
-import mysql file [mockserver-xx-xx.sql]
-mysql coifnig in [/src/common/config/db.js]
+需要安装mysql[5.7.14], 并导入最新的mockserver-xx-xx.sql 文件
+修改/src/common/config/db.js中的数据库配置
 ```
-
 ## Config 
 ``
 /src/common/config/config.js
@@ -53,18 +53,17 @@ npm start
 
 ```
 
-
 ## Examples
 
-### Suppose:
+### 假设:
 
 Server running at http://127.0.0.1:8033
 
-Created a API :  /api/demo
+已创建一个接口 :  /api/demo
 
-### cross-domain:
+### 跨域:
 
-**With the jQuery AJAX methods:**
+**以 jQuery AJAX 为例:**
 
 ```
     $.getJSON('http://127.0.0.1:8033/api/demo').done(function(){
@@ -76,7 +75,7 @@ Created a API :  /api/demo
 
 ```
 
-### Same domain：
+### 同域：
 
 **nginx config:**
 
@@ -88,7 +87,7 @@ Created a API :  /api/demo
     
             gzip_static on;
     
-            # proxy to mock server
+            # 将 /api目录下所有请求代理到 mock-server服务下
             location ^~ /api {
                 proxy_pass http://127.0.0.1:8033;
             }
@@ -109,7 +108,7 @@ Created a API :  /api/demo
         }
 
 ```
-Ajax in your.site.com:
+在[your.site.com]下，就可以同域调用接口:
 
 ```
     $.getJSON('/api/demo').done(function(){
@@ -120,6 +119,39 @@ Ajax in your.site.com:
     })
 
 ```
+
+## 更新日志：
+
+
+```
+2017-4-25
+
+添加国际化，中英文切换
+
+修改jsoneditor 中文输入BUG
+
+
+2017-4-11 
+
+有更新，需要重新导入数据库文件
+
+支持跨域调用项目接口
+
+添加header 代理白名单和黑名单
+
+允许自定义项目接口前缀
+
+优化交互体验及BUG
+
+ 添加返回状态码
+ 
+ 添加延迟返回数据
+ 
+ 优化部分验证
+
+```
+
+
 
 
 
