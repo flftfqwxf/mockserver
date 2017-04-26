@@ -3,23 +3,25 @@ Mock-server is a Node.js web system for mock data,and switch between mock data a
 [中文文档](README-CN.md)
 ## Feature
 
- ```
-  It suports  [jsonEditor](http://jsoneditoronline.org/) 
  
-  It suports method types: GET、POST、PUT、DELETE...
+  
+  - Supports  [jsonEditor](http://jsoneditoronline.org/) 
  
-  It suports specify status code，default:200
+  - Supports method types: GET、POST、PUT、DELETE...
  
-  It suports dealy to return data
+  - Allow to specify status code，default:200
  
-  It suports Mockjs
+  - Supports delay to return data
+ 
+  - Supports [Mockjs](http://mockjs.com/)
 
-  It suports json for cross-domain calls  
+  - Supports json for cross-domain calls  
 
-  It suports switch between mock data and real data
+  - Supports switch between mock data and real data
  
-  It suports switch between Chinese and English
-```
+  - Supports switch between Chinese and English
+  
+
 
 ## [demo](http://47.93.62.181:8033/)
 
