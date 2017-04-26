@@ -16,13 +16,17 @@
     <script src="/static/common/bootstrap/js/bootstrap.js"></script>
     <script src="/static/common/js/toolbar.js"></script>
     <script src="/static/common/plugins/jQuery.cookie/jQuery.cookie.js"></script>
+    {% if LN.LN==='chinese' %}
+        <script src="/static/common/plugins/validation/js/jquery.validationEngine-zh_CN.js"></script>
+    {% else %}
+        <script src="/static/common/plugins/validation/js/jquery.validationEngine-en.js"></script>
 
-    <script src="/static/common/plugins/validation/js/jquery.validationEngine-zh_CN.js"></script>
+    {% endif %}
     <script src="/static/common/plugins/validation/js/jquery.validationEngine.js"></script>
     <script type="text/javascript" src="/static/common/plugins/artdialog/jquery.artDialog.js"></script>
     {% block js %}{% endblock %}
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             function showDemoDialog(withTitle) {
                 var opts = {
                     title: withTitle ? '详情统计' : false,
@@ -42,14 +46,14 @@
                         button: [
                             {
                                 name: '常规按钮',
-                                callback: function () {
+                                callback: function() {
                                     console.log('常规按钮..');
                                 }
                             },
                             {
                                 name: '蓝色按钮',
                                 className: 'btn-process',
-                                callback: function () {
+                                callback: function() {
                                     this.content('你同意了').time(2);
                                     return false;
                                 },
@@ -58,7 +62,7 @@
                             {
                                 name: '红色按钮',
                                 className: 'btn-important',
-                                callback: function () {
+                                callback: function() {
                                     alert('你不同意')
                                 }
                             },
@@ -70,11 +74,11 @@
                     }
                 } else {
                     btnOpt = {
-                        cancel: function () {
+                        cancel: function() {
                         },
                         cancelVal: '关闭',
                         okCssClass: 'btn-save',
-                        ok: function () {
+                        ok: function() {
                             console.log('ok..');
                         },
                         okVal: '确认',
@@ -121,7 +125,6 @@
                 <div class="page-footer">
                     <ul class="pull-left">
                         <li>github：github.com/flftfqwxf</li>
-
                         <li>qq：120377576</li>
                     </ul>
                 </div>
@@ -129,6 +132,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
