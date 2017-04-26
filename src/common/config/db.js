@@ -8,11 +8,11 @@ export default {
     type: 'mysql',
     adapter: {
         mysql: {
-            host: '127.0.0.1',
+            host: 'rm-uf65v49t1eyxu4xv8o.mysql.rds.aliyuncs.com',
             port: '3306',
             database: 'mockserver',
-            user: 'root',
-            password: '',
+            user: 'flftfqwxf',
+            password: 'flftfqwxf@126520',
             prefix: 'mock_',
             encoding: 'UTF8MB4_GENERAL_CI'
         },

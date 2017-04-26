@@ -77,7 +77,7 @@ module.exports = {
             editApi: 'Edit API',
             baseInfoTab: 'Basic Information',
             requestTab: 'Request Settings',
-            responseTab: 'Response Settings',
+            responseTab: 'Responses Settings',
             proxyTab: 'Proxy Settings',
             testTab: 'Test Settings',
             save: 'Save API',
@@ -108,8 +108,8 @@ module.exports = {
                 requestBodyTitle: 'Request Body',
             },
             response: {
-                responseTitleDesc: 'Response Data Description',
-                responseContentTitle: 'Response Data',
+                responseTitleDesc: 'Responses Data Description',
+                responseContentTitle: 'Responses Data',
                 responseStatusCode: 'Response Status Code',
                 responseStatusCodeTips: 'Default:200',
                 delayTime: 'Delay Time',
@@ -118,8 +118,8 @@ module.exports = {
                 open: 'Open',
                 close: 'Close',
                 mockjsSite: 'mockjs doc',
-                responseHeadersDesc: 'Response Headers Description',
-                responseHeadersTitle: 'Response Headers',
+                responseHeadersDesc: 'Responses Headers Description',
+                responseHeadersTitle: 'Responses Headers',
                 responseHeadersTips: '',
             },
             proxy: {
@@ -177,7 +177,7 @@ module.exports = {
     },
     api: {
         multipleInterfaceError: 'API URL is repetitive',
-        headerFormatError: 'Response headers format is error',
+        headerFormatError: 'Responses headers format is error',
         proxyIsEmptyError: "Couldn't get proxy URL",
         globalProxyIsEmptyError: "Couldn't get global proxy URL",
         getProxyDataError: 'Get data is failed,API dose not exist or parameters are error,may be you should send some parameters to proxy URL'
