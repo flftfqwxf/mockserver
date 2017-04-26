@@ -11,9 +11,10 @@ let server = http.createServer((req, res) => {
     // console.log(11);
     // res.writeHead(200, {"Access-Control-Allow-Origin": '*',"Accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',"Accept-Encoding": 'gzip, deflate, sdch',"Accept-Language": 'en,zh-CN;q=0.8,zh;q=0.6'});
     // res.writeHead(200, {"Connection:":'keep-alive'});
-    if (req.url === '/api/demo') {
+    if (req.url === '/api/demo/proxy') {
+        var data = {data: {proxy: 1, message: "this is proxy"}};
         res.writeHead(200, {"Content-Type": 'application/json; charset=utf-8'});
-        res.write('{data:{proxy:1,message:"this is proxy"}}');
+        res.write(JSON.stringify(data));
         res.end()
     } else {
         res.writeHead(404, {"Content-Type": 'text/html'});

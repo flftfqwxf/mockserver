@@ -64,10 +64,19 @@
                                 <td>{{ item.mockid }}</td>
                                 <td>{{ item.project_name }}</td>
                                 <td>{{ item.api_name }}</td>
+                                {% if item.proxy_prefix %}
+                                    {% set cur_prefix=item.proxy_prefix %}
+                                {% elseif project.project_prefix %}
+                                    {% set cur_prefix=project.proxy_url %}
+                                {% else %}
+                                    {% set cur_prefix=systemData.proxy_url %}
+
+                                {% endif %}
                                 <td><a target="_blank" href="{{ project.project_prefix +item.api_url }}">{{ item.api_url }}</a>
-                                    <p style="display: {{ 'block' if item.is_proxy ==1  else 'none' }}" class="J_proxy_all_tips J_proxy_tips_{{ item.mockid }}">代理开启后,将会从[<span
-                                                style="color: red;">{{ project.proxy_url+project.project_prefix+item.api_url }}</span>]，获取数据<br>
-                                        若此地址无法获取到数据，则会等待超时或报错</p>
+                                    <p style="display: {{ 'block' if item.is_proxy ==1  else 'none' }}"
+                                       class="J_proxy_all_tips J_proxy_tips_{{ item.mockid }}">{{ LN.interface.index.openProxyTipsPrefix }}[
+                                        <span style="color: red;">
+                                      {{ cur_prefix+project.project_prefix+item.api_url }}</span>]{{ LN.interface.index.openProxyTipsPostfix|safe }}</p>
                                 </td>
                                 <td class="proxy_state">{{ LN.interface.index.closed if item.is_proxy==0 else LN.interface.index.opened }}</td>
                                 <td><a class="deleteLnk" href="/interface/delete?mockid={{ item.mockid }}">{{ LN.interface.index.delete }}</a>

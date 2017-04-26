@@ -38,6 +38,7 @@ export default class extends Base {
                 }])
                 .select();
         }
+        let systemData = await this.model('system').limit(1).find();
         this.assign({
             title: this.LN.interface.controller.APIList,
             list: res,
@@ -45,6 +46,7 @@ export default class extends Base {
             project: projectData,
             api_name: data.api_name,
             keyword: data.keyword,
+            systemData: systemData
         })
         //auto render template file index_index.html
         return this.display();

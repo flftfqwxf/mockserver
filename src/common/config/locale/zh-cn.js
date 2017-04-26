@@ -1,5 +1,7 @@
 module.exports = {
-    languageSwitcher:'切换语言：',
+    languageSwitcher: '切换语言：',
+    info: '提示信息',
+    goBack: '返回上一步',
     sidebar: {
         projectAdmin: '项目管理',
         projectList: '项目列表',
@@ -67,7 +69,9 @@ module.exports = {
             clone: '复制',
             detail: '查看',
             deleteTips: '删除后无法恢复,你确定删除该接口么?',
-            controllerProjectName: '全部接口'
+            controllerProjectName: '全部接口',
+            openProxyTipsPrefix: '代理开启时，接口将从：',
+            openProxyTipsPostfix: '，返回数据<br>若此地址无法获取到数据，则会等待超时或报错',
         },
         add: {
             addApi: '添加API',
@@ -165,12 +169,11 @@ module.exports = {
         WhiteListPlaceHolder: 'header白名单，一行一个',
         WhiteListDesc: '当启用白名单时，二次代理开启后，将只传递当前指定header字段到二次代理服务上',
         save: '保存全局设置',
-        controller:{
-            dataIsEmpty:'请设置全局参数',
-            updateSuccess:'设置成功',
-            updateFailed:'操作失败',
-            langIsEmpty:'错误：参数 lang 为空',
-
+        controller: {
+            dataIsEmpty: '请设置全局参数',
+            updateSuccess: '设置成功',
+            updateFailed: '操作失败',
+            langIsEmpty: '错误：参数 lang 为空',
         }
     },
     api: {

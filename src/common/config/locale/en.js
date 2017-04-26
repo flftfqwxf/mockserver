@@ -1,5 +1,7 @@
 module.exports = {
     languageSwitcher: 'Language Switcher：',
+    info: 'Notices',
+    goBack: 'Go Back',
     sidebar: {
         projectAdmin: 'Project Admin',
         projectList: 'Project List',
@@ -66,7 +68,9 @@ module.exports = {
             edit: 'Edit',
             clone: 'Clone',
             detail: 'Details',
-            deleteTips: 'This action cannot be undone.Are you sure you want to delete this API?'
+            deleteTips: 'This action cannot be undone.Are you sure you want to delete this API?',
+            openProxyTipsPrefix: 'If proxy is opened,the data from ',
+            openProxyTipsPostfix: '<br> Cannot get data and get some error when the proxy url does not exist.Error types: timeout or get error message ',
         },
         add: {
             addApi: 'Add API',
