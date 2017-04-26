@@ -37,7 +37,7 @@
                             {% include './module/response_setting.twig' %}
                             {% include './module/proxy_setting.twig' %}
                             {#{% include './module/test_setting.twig' %}#}
-                            <div class="form-group-dashed">
+                            <div class="form-group-dashed" style="padding-bottom: 20px" >
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-6">
