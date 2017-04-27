@@ -1,6 +1,7 @@
 Mock-server is a Node.js web system for mock data,and switch between mock data and real data.
 
 [中文文档](README-CN.md)
+
 ## Features
 
  
