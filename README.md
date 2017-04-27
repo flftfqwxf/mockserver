@@ -60,7 +60,7 @@ npm start
 
 ### Suppose:
 
-- Server running at http://127.0.0.1:8033
+- Mock Server running at http://127.0.0.1:8033
 - Created a API :  /api/demo
 
 ### cross-domain:
@@ -81,7 +81,7 @@ npm start
 
 ### Suppose:
 
-- Server running at http://127.0.0.1:8033
+- Mock Server running at http://127.0.0.1:8033
 - Created a API :  /api/demo
 
 **nginx config:**

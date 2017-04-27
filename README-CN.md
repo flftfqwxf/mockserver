@@ -55,7 +55,7 @@ npm start
 
 ### 假设:
 
-- Server running at http://127.0.0.1:8033
+- mock-server启动地址： http://127.0.0.1:8033
 - 已创建一个接口 :  /api/demo
 
 ### 跨域:
@@ -76,7 +76,7 @@ npm start
 
 ### 假设:
 - 你的WEB项目启动地址： http://127.0.0.1:8034
-- Server running at http://127.0.0.1:8033
+- mock-server启动地址： http://127.0.0.1:8033
 - 已创建一个接口 :  /api/demo
 
 ```
