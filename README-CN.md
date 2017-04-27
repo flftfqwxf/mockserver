@@ -6,7 +6,7 @@
 
  - 支持可视化编辑JSON接口数据及接口文档
  
- - 支持GET、POST、PUT、DELETE请求类型
+ - 支持GET、POST、PUT、DELETE，SEARCH,等所有请求类型
  
  - 支持指定返回状态码，默认200
  
@@ -16,7 +16,7 @@
 
  - 支持跨域调用项目接口
 
- - 支持模拟接口与真实接口切换
+ - 支持模拟接口与真实接口切换,在切换到真实接口时，能够接收POST,GET,COOKIE等在http header请求的参数
  
  - 支持中英文切换
 
@@ -55,9 +55,8 @@ npm start
 
 ### 假设:
 
-Server running at http://127.0.0.1:8033
-
-已创建一个接口 :  /api/demo
+- Server running at http://127.0.0.1:8033
+- 已创建一个接口 :  /api/demo
 
 ### 跨域:
 
@@ -73,36 +72,80 @@ Server running at http://127.0.0.1:8033
 
 ```
 
-### 同域：
+### 同域，但API接口与nginx server_name不在同一域名下：
+
+### 假设:
+- 你的WEB项目启动地址： http://127.0.0.1:8034
+- Server running at http://127.0.0.1:8033
+- 已创建一个接口 :  /api/demo
+
+```
+    server {
+            listen 80;
+            server_name  www.site.com;
+            root your/project/path;
+            gzip_static on;
+             # 将 /api下所有请求代理到 mock-server
+            location ^~ /api {
+               proxy_pass http://127.0.0.1:8033;
+               break;
+        
+            }
+            location  / {
+                proxy_pass http://127.0.0.1:8034;
+            }
+        
+        }
+```
+
+### 同域且API接口与项目在同一个域名下：
+
+
+### 假设:
+- 你的WEB项目启动地址： http://127.0.0.1:8034
+- Mock-server 启动地址 ： http://127.0.0.1:8033
+- 已创建一个接口 :  /api/demo
+- /api/demo 的二次代理地址为 : http://www.site.com
+- nginx server_name:www.site.com
 
 **nginx config:**
 
-```
+```      
         server {
             listen 80;
-            server_name your.site.com;
+            server_name  www.site.com;
             root your/project/path;
-    
             gzip_static on;
-    
-            # 将 /api目录下所有请求代理到 mock-server服务下
+             
             location ^~ /api {
-                proxy_pass http://127.0.0.1:8033;
+                set $is_proxy 0;
+                # 如果是从mock-server代理到的请求，则会含有$http_is_mock_server_proxy参数
+                if ($http_is_mock_server_proxy){
+                    # $http_is_mock_server_proxy is mock-server writed header
+                    set $is_proxy $http_is_mock_server_proxy;
+        
+                }
+                # 如果不是从mock-server代理过来的请求
+                # 则将 /api目录下所有请求代理到 mock-server服务下
+                if ($is_proxy = 0 ){
+                    proxy_pass http://127.0.0.1:8033;
+                    break;
+                }
+        
+                #当二次代理开启并且 二次代理域名与 [server_name]一样时，
+                #请求会选代理到mock-server,然后再代理到nginx，出现循环代理，因此
+                #在此处判断如果已经是从mock-server代理过来的请求则不再次代理
+                if ($is_proxy = 1 ){
+                    add_header http_is_mock_server_proxy "$my_header";
+                    proxy_pass http://127.0.0.1:8034;
+                    break;
+        
+                }
             }
-           
-    
-            # Attempt to load static files, if not found route to @rootfiles
-            location ~ (.+)\.(html|json|txt|js|css|jpg|jpeg|gif|png|svg|ico|eot|otf|woff|woff2|ttf)$ {
-                add_header Access-Control-Allow-Origin *;
-    
-                try_files $uri @rootfiles;
+            location  / {
+                proxy_pass http://127.0.0.1:8034;
             }
-    
-            # Check for app route "directories" in the request uri and strip "directories"
-            # from request, loading paths relative to root.
-            location @rootfiles {
-                rewrite ^/(?:foo/bar/baz|foo/bar|foo|tacos)/(.*) /$1 redirect;
-            }
+        
         }
 
 ```

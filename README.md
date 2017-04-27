@@ -1,7 +1,7 @@
 Mock-server is a Node.js web system for mock data,and switch between mock data and real data.
 
 [中文文档](README-CN.md)
-## Feature
+## Features
 
  
   
@@ -60,9 +60,8 @@ npm start
 
 ### Suppose:
 
-Server running at http://127.0.0.1:8033
-
-Created a API :  /api/demo
+- Server running at http://127.0.0.1:8033
+- Created a API :  /api/demo
 
 ### cross-domain:
 
@@ -78,7 +77,12 @@ Created a API :  /api/demo
 
 ```
 
-### Same domain：
+### Same domain and mock-server proxy URL different with nginx server_name：
+
+### Suppose:
+
+- Server running at http://127.0.0.1:8033
+- Created a API :  /api/demo
 
 **nginx config:**
 
@@ -111,7 +115,58 @@ Created a API :  /api/demo
         }
 
 ```
-Ajax in your.site.com:
+
+
+### Same domain and mock-server proxy URL equals nginx server_name：
+
+### Suppose:
+
+- Your Web Server running at http://127.0.0.1:8034
+- Mock Server running at http://127.0.0.1:8033
+- Created a API :  /api/demo
+- Proxy URL value : http://www.site.com
+- Nginx server_name : www.site.com
+
+**nginx config:**
+
+```
+        server {
+                   listen 80;
+                   server_name  www.site.com;
+                   root your/project/path;
+                   gzip_static on;
+                    
+                   location ^~ /api {
+                       set $is_proxy 0;
+                       # $http_is_mock_server_proxy comes from mock-server when mock-server's proxy is opened
+                       if ($http_is_mock_server_proxy){
+                           # $http_is_mock_server_proxy is mock-server writed header
+                           set $is_proxy $http_is_mock_server_proxy;
+               
+                       }
+                       # $is_proxy
+                       # nginx proxy to mock-server
+                       if ($is_proxy = 0 ){
+                           proxy_pass http://127.0.0.1:8033;
+                           break;
+                       }
+               
+                       #Avoid circular proxy
+                       if ($is_proxy = 1 ){
+                           add_header http_is_mock_server_proxy "$my_header";
+                           proxy_pass http://127.0.0.1:8034;
+                           break;
+               
+                       }
+                   }
+                   location  / {
+                       proxy_pass http://127.0.0.1:8034;
+                   }
+               
+               }
+```
+
+ **Ajax in your.site.com:**
 
 ```
     $.getJSON('/api/demo').done(function(){

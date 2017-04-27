@@ -217,6 +217,7 @@ export default class extends Base {
             // headersObj.host='www.covisiondd.com'
             send.headers = headersObj;
         }
+        send.headers['is-mock-server-proxy'] = 1;
         //将请求端的header信息获取,并传递给请求
         //此处将 accept-encodeing 设置空:是因为编码问题,可能会造成乱码,并解析错误
         // send.headers = Object.assign({}, this.http.headers, {'accept-encoding': null})
