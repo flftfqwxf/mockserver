@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,YAAa;EAAC,KAAK,EAAC,KAAK;EAAC,MAAM,EAAC,KAAK;EAAC,YAAY,EAAC,cAAc;EAAC,UAAU,EAAC,+DAA+D",
-"sources": ["mobilePreview.scss"],
-"names": [],
-"file": "mobilePreview.css"
-}

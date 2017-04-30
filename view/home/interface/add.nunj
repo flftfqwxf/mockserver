@@ -120,10 +120,6 @@
             }' %}
     {% endif %}
     <script>
-        $('#interfaceTabs a').click(function(e) {
-            e.preventDefault()
-            $(this).tab('show')
-        })
         try {
             var jsonEditorData = {
                 api_content:{{ api_content | safe }},
@@ -162,75 +158,11 @@
         {#return false;#}
         {#}#}
         {#});#}
-        $('.jsoneditor').load(function() {
-            var toObj = $(this).attr('data-obj')
-            $(this)[0].contentWindow.setJson(jsonEditorData[toObj]);
-        })
+
         //        ("#jsonIframe")[0].contentWindow.getJson();
-        var interfaceForm = $('#interfaceForm');
-        var tabMenu = {
-            'project_id': 0,
-            'api_name': 0,
-            'api_url': 1,
-            'api_querys_desc': 1,
-            'api_req_header_desc': 1,
-            'api_req_header': 1,
-            'api_parms_desc': 1,
-            'api_parms': 1,
-            'api_content_desc': 2,
-            'api_content': 2,
-            'api_state_code': 2,
-            'api_lazy_time': 2,
-            'api_header_desc': 2,
-            'api_header': 2,
-            'proxy_prefix': 3
-        }
-        interfaceForm.validationEngine({
-            validateNonVisibleFields: true, onFieldFailure: function(filed) {
-                console.log(filed);
-//                if (filed && tabMenu[filed.attr('id')] !== undefined) {
-//                    $('#interfaceTabs >li >a').eq(tabMenu[filed.attr('id')]).click();
-////                    filed.focus();
-//                }
-            }
-        });
-        interfaceForm.submit(function() {
-            var result = true;
-            $('.jsoneditor').each(function() {
-                var toObj = $(this).attr('data-obj')
-                var json = $(this)[0].contentWindow.getJson();
-                json ? $('#' + toObj).val(json) : result = false;
-            })
-//            interfaceForm.bind('jqv.form.result', function(event, errorFound){
-//
-//                console.log(event);
-//                console.log(errorFound)
-//            });
-            if (!$('#interfaceForm').validationEngine('validate')) {
-                return false;
-            }
-            return result
-        })
-        function proxyOpenTips() {
-            setTimeout(function() {
-                var isOpen = $('.J_open_proxy input:checked').val();
-                if (isOpen === '1') {
-                    var proxy_url = $('.proxy_prefix').val() || $('.projectProxy').val() || $('.globalProxy').val();
-                    var api_url = $('.api_url').val();
-                    $('.proxy_tips').show().html('{{ LN.interface.add.proxy.openProxyTipsPrefix }}[ <span style="color: red;"> ' + proxy_url + '/api/' + api_url + '</span>  ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}');
-                } else {
-                    $('.proxy_tips').show().html('{{ LN.interface.add.proxy.closeProxyTips }}')
-                }
-            }, 20)
-        }
-        $('.J_open_proxy label').click(function() {
-            proxyOpenTips()
-        })
-        $('.proxy_prefix,.api_url').on('change input blur', function() {
-            proxyOpenTips();
-        })
-        $('#send_test').click(function() {
-            return false;
-        });
+    </script>
+    <script type="text/javascript" src="/static/common/js/interface.js"></script>
+    <script>
+        window.interface.init(jsonEditorData);
     </script>
 {% endblock %}

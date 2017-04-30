@@ -24,6 +24,7 @@
     {% endif %}
     <script src="/static/common/plugins/validation/js/jquery.validationEngine.js"></script>
     <script type="text/javascript" src="/static/common/plugins/artdialog/jquery.artDialog.js"></script>
+    <script type="text/javascript" src="/static/common/plugins/gasparesganga-jquery-loading-overlay/src/loadingoverlay.min.js"></script>
     {% block js %}{% endblock %}
     <script type="text/javascript">
         $(function() {
@@ -93,7 +94,7 @@
             $("#btn-open-dialog-without-titlebar").click(function() {
                 showDemoDialog();
             });
-            $('#formId').validationEngine({validateNonVisibleFields:true});
+            $('#formId').validationEngine({validateNonVisibleFields: true});
             $('.J_common_success').click(function() {
                 $.commonTips('已成功上架该产品', 'success', 3)
             })
@@ -132,6 +133,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261788850'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261788850' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1261788850'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261788850' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>
