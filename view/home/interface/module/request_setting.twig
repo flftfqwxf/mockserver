@@ -40,7 +40,7 @@
                 'UNLOCK',
                 'UNSUBSCRIBE' ] %}
                 <label class="btn btn-default btn-select">
-                    <select style="" name="api_type" class="validate[required] use_test">
+                    <select style="" name="api_type" id="api_type" class="validate[required] use_test">
                         {% for  method in methods %}
                             <option value="{{ method.toLowerCase() }}" {{ "selected" if api_type==method.toLowerCase() }}>{{ method }}</option>
 
@@ -55,7 +55,7 @@
             </label>
             <div class="col-sm-6 ">
                 <div class="input-group"><span class="input-group-addon">{{ project_prefix }}</span>
-                    <input type="text" name="api_url" value="{{ api_url }}" class="form-control api_url  validate[required] use_test"/>
+                    <input type="text" name="api_url" id="api_url" value="{{ api_url }}" class="form-control api_url  validate[required] use_test"/>
                     <input type="hidden" name="project_prefix" value="{{ project_prefix }}">
                 </div>
                 <p class="help-block">{{ LN.interface.add.request.proxyPrefixTips }}【{{ project_prefix }}】</p>
@@ -88,10 +88,10 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">{{ LN.interface.add.request.requestHeadersTitle }}</label>
             <div class="col-sm-10">
-                                        <textarea name="api_req_header_desc use_test" style="display: none" id="api_req_header_desc" cols="30" rows="10">
-                                        {{ api_req_header_desc }}
+                                        <textarea name="api_req_header" style="display: none" id="api_req_header" cols="30" rows="10">
+                                        {{ api_req_header }}
                                     </textarea>
-                <iframe id="querysDescIframe" class="jsoneditor" data-obj="api_req_header_desc" src="/static/common/jsoneditor-5.6.0/index.html"
+                <iframe id="querysIframe" class="jsoneditor" data-obj="api_req_header" src="/static/common/jsoneditor-5.6.0/index.html"
                         style="width: 100%;height: 300px;"
                         frameborder="0"></iframe>
                 <p class="help-block">{{ LN.interface.add.request.requestHeadersTips }}</p>
@@ -133,10 +133,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">{{ LN.interface.add.request.requestBodyTitle }}</label>
+            <label class="col-sm-2 control-label"><span class="common-required">*</span>{{ LN.interface.add.request.requestBodyTitle }}</label>
             <div class="col-sm-10">
 
-                                        <textarea name="api_parms use_test" style="display: none" id="api_parms" cols="30" rows="10">
+                                        <textarea name="api_parms" style="display: none" id="api_parms" cols="30" rows="10">
                                         {{ api_parms }}
                                     </textarea>
                 <iframe id="parmsIframe" class="jsoneditor" data-obj="api_parms" src="/static/common/jsoneditor-5.6.0/index.html" style="width: 100%;height: 300px;"

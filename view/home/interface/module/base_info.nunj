@@ -6,8 +6,8 @@
         </label>
         <div class="col-sm-6">
             <label class="btn btn-default btn-select">
-                <select name="project_id" class="validate[required,custom[url]]"
-                        id="form-validation-field-0">
+                <select name="project_id" class="validate[required]"
+                        id="project_id">
                     {% set curProjectProxy='' %}
 
                     {% for item in  project %}
@@ -29,7 +29,7 @@
             <span class="common-required">*</span>{{ LN.interface.add.baseInfo.interfaceName }}
         </label>
         <div class="col-sm-6">
-            <input type="text" name="api_name" maxlength="500" value="{{ api_name }}" class="form-control  validate[required]" placeholder="{{ LN.interface.add.baseInfo.placeholder }}"/>
+            <input type="text" name="api_name" id="api_name" maxlength="500" value="{{ api_name }}" class="form-control  validate[required]" placeholder="{{ LN.interface.add.baseInfo.placeholder }}"/>
         </div>
     </div>
 </div>

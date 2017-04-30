@@ -26,7 +26,7 @@
                 {#{% elseif not proxy_prefix and systemConfig.proxy_url %}#}
                 {#{% set  proxy_prefix= systemConfig.proxy_url %}#}
                 {#{% endif %}#}
-                <input type="text" name="proxy_prefix" value="{{ proxy_prefix }}"
+                <input type="text" id="proxy_prefix" name="proxy_prefix" value="{{ proxy_prefix }}"
                        class="form-control proxy_prefix validate[custom[url]]"
                        placeholder=""/>
                 <p class="help-block">{{ LN.interface.add.proxy.format }}</p>

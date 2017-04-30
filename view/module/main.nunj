@@ -93,7 +93,7 @@
             $("#btn-open-dialog-without-titlebar").click(function() {
                 showDemoDialog();
             });
-            $('#formId').validationEngine();
+            $('#formId').validationEngine({validateNonVisibleFields:true});
             $('.J_common_success').click(function() {
                 $.commonTips('已成功上架该产品', 'success', 3)
             })

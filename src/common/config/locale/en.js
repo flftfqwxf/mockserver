@@ -1,4 +1,5 @@
 module.exports = {
+    LN:'english',
     languageSwitcher: 'Language Switcher：',
     info: 'Notices',
     goBack: 'Go Back',

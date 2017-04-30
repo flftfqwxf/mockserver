@@ -27,17 +27,17 @@
                             <a href="#proxy_set" aria-controls="proxy_set" role="tab" data-toggle="tab">{{ LN.interface.add.proxyTab }}</a>
                         </li>
                         {#<li role="presentation">#}
-                            {#<a href="#test_set" aria-controls="test_set" role="tab" data-toggle="tab">{{ LN.interface.add.testTab }}</a>#}
+                        {#<a href="#test_set" aria-controls="test_set" role="tab" data-toggle="tab">{{ LN.interface.add.testTab }}</a>#}
                         {#</li>#}
                     </ul>
-                    <form class="form-horizontal" id="formId" method="post" action="/interface/update">
+                    <form class="form-horizontal" id="interfaceForm" method="post" action="/interface/update">
                         <div class="tab-content" style="min-height: 600px">
                             {% include './module/base_info.nunj' %}
                             {% include './module/request_setting.twig' %}
                             {% include './module/response_setting.twig' %}
                             {% include './module/proxy_setting.twig' %}
                             {#{% include './module/test_setting.twig' %}#}
-                            <div class="form-group-dashed" style="padding-bottom: 20px" >
+                            <div class="form-group-dashed" style="padding-bottom: 20px">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-6">
@@ -167,13 +167,48 @@
             $(this)[0].contentWindow.setJson(jsonEditorData[toObj]);
         })
         //        ("#jsonIframe")[0].contentWindow.getJson();
-        $('#formId').submit(function() {
+        var interfaceForm = $('#interfaceForm');
+        var tabMenu = {
+            'project_id': 0,
+            'api_name': 0,
+            'api_url': 1,
+            'api_querys_desc': 1,
+            'api_req_header_desc': 1,
+            'api_req_header': 1,
+            'api_parms_desc': 1,
+            'api_parms': 1,
+            'api_content_desc': 2,
+            'api_content': 2,
+            'api_state_code': 2,
+            'api_lazy_time': 2,
+            'api_header_desc': 2,
+            'api_header': 2,
+            'proxy_prefix': 3
+        }
+        interfaceForm.validationEngine({
+            validateNonVisibleFields: true, onFieldFailure: function(filed) {
+                console.log(filed);
+//                if (filed && tabMenu[filed.attr('id')] !== undefined) {
+//                    $('#interfaceTabs >li >a').eq(tabMenu[filed.attr('id')]).click();
+////                    filed.focus();
+//                }
+            }
+        });
+        interfaceForm.submit(function() {
             var result = true;
             $('.jsoneditor').each(function() {
                 var toObj = $(this).attr('data-obj')
                 var json = $(this)[0].contentWindow.getJson();
                 json ? $('#' + toObj).val(json) : result = false;
             })
+//            interfaceForm.bind('jqv.form.result', function(event, errorFound){
+//
+//                console.log(event);
+//                console.log(errorFound)
+//            });
+            if (!$('#interfaceForm').validationEngine('validate')) {
+                return false;
+            }
             return result
         })
         function proxyOpenTips() {

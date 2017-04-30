@@ -24,34 +24,6 @@
             </div>
         </div>
         <div class="form-group-dashed">
-            <div class="form-group ">
-                <label class="col-sm-2 control-label">
-                    <span class="common-required">*</span>{{ LN.interface.add.response.responseStatusCode }}
-                </label>
-                <div class="col-sm-6">
-                    <input type="text" name="api_state_code" maxlength="8" value="{{ api_state_code if api_state_code else  200 }}"
-                           class="form-control api_state_code w100  validate[required,custom[md8]]"
-                           placeholder="default:200"/>
-                    <p class="help-block">{{ LN.interface.add.response.responseStatusCodeTips }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="form-group-dashed">
-            <div class="form-group ">
-                <label class="col-sm-2 control-label">
-                    <span class="common-required">*</span>{{ LN.interface.add.response.delayTime }}
-                </label>
-                <div class="col-sm-6">
-                    <input type="text" name="api_lazy_time" maxlength="8" value="{{ api_lazy_time if api_lazy_time else  0 }}"
-                           class="form-control api_state_code w100  validate[required,custom[md8]]"
-                           placeholder="默认0"/>
-                    <p class="help-block">
-                        {{ LN.interface.add.response.delayTimeTips|safe}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="form-group-dashed">
             <div class="form-group">
                 <label class="col-sm-2 control-label">
                     {{ LN.interface.add.response.mockjsTitle }}
@@ -69,6 +41,35 @@
                         </p>
                         <!-- </div> -->
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group-dashed">
+            <div class="form-group ">
+                <label class="col-sm-2 control-label">
+                    <span class="common-required">*</span>{{ LN.interface.add.response.responseStatusCode }}
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" id="api_state_code" name="api_state_code" maxlength="8" value="{{ api_state_code if api_state_code else  200 }}"
+                           class="form-control api_state_code w100  validate[required,custom[md8]]"
+                           placeholder="default:200"/>
+                    <p class="help-block">{{ LN.interface.add.response.responseStatusCodeTips }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group-dashed">
+            <div class="form-group ">
+                <label class="col-sm-2 control-label">
+                    <span class="common-required">*</span>{{ LN.interface.add.response.delayTime }}
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" id="api_lazy_time" name="api_lazy_time" maxlength="8" value="{{ api_lazy_time if api_lazy_time else  0 }}"
+                           class="form-control api_state_code w100  validate[required,custom[md8]]"
+                           placeholder="默认0"/>
+                    <p class="help-block">
+                        {{ LN.interface.add.response.delayTimeTips|safe}}
+                    </p>
                 </div>
             </div>
         </div>

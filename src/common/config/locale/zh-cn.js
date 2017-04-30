@@ -1,4 +1,5 @@
 module.exports = {
+    LN:'chinese',
     languageSwitcher: '切换语言：',
     info: '提示信息',
     goBack: '返回上一步',
