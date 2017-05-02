@@ -1,6 +1,6 @@
 {
   "name": "web-mock-server",
-  "description": "A web system for mock-server and siwtch between ,一个WEB版本的mock-server系统",
+  "description": "Mock-server is a Node.js web system for mock data,and switch between mock data and real data.一个WEB版的数据模拟及文档管理系统",
   "version": "2.1.4",
   "scripts": {
     "start": "node www/development.js",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flftfqwxf/mock-server.git"
+    "url": "git+https://github.com/flftfqwxf/mockserver.git"
   },
   "license": "MIT",
   "main": "www/development.js",
@@ -39,7 +39,7 @@
   ],
   "author": "flftfqwxf",
   "bugs": {
-    "url": "https://github.com/flftfqwxf/mock-server/issues"
+    "url": "https://github.com/flftfqwxf/mockserver/issues"
   },
-  "homepage": "https://github.com/flftfqwxf/mock-server#readme"
+  "homepage": "https://github.com/flftfqwxf/mockserver#readme"
 }
