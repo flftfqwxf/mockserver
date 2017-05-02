@@ -101,14 +101,15 @@ window.interface = {
         })
     },
     proxyOpenTips: function() {
+        var _this = this;
         setTimeout(function() {
             var isOpen = $('.J_open_proxy input:checked').val();
             if (isOpen === '1') {
                 var proxy_url = $('.proxy_prefix').val() || $('.projectProxy').val() || $('.globalProxy').val();
                 var api_url = $('.api_url').val();
-                $('.proxy_tips').show().html('{{ LN.interface.add.proxy.openProxyTipsPrefix }}[ <span style="color: red;"> ' + proxy_url + '/api/' + api_url + '</span>  ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}');
+                $('.proxy_tips').show().html(_this.opts.LN.interface.add.proxy.openProxyTipsPrefix + '[ <span style="color: red;"> ' + proxy_url + '/api/' + api_url + '</span>  ]' + _this.opts.LN.interface.add.proxy.openProxyTipsPostfix);
             } else {
-                $('.proxy_tips').show().html('{{ LN.interface.add.proxy.closeProxyTips }}')
+                $('.proxy_tips').show().html( _this.opts.LN.interface.add.proxy.closeProxyTips)
             }
         }, 20)
     },

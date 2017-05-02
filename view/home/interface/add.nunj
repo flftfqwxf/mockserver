@@ -163,6 +163,6 @@
     </script>
     <script type="text/javascript" src="/static/common/js/interface.js"></script>
     <script>
-        window.interface.init(jsonEditorData);
+        window.interface.init({LN:{{ LN|dump|safe }} });
     </script>
 {% endblock %}
