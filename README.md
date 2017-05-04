@@ -37,7 +37,7 @@ npm install
 ```
 ## Initialize database
 
-1. Use System automatic initialization feature (recommend)
+1. Use MockServer automatic initialization feature (recommend)
 2. Manually import .sql file
 
 ```
