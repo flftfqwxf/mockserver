@@ -52,16 +52,16 @@ export default class extends Base {
     async initPost(post) {
         var _this = this;
         if (!post.host) {
-            return this.setSucess('host不能为空', '/system/init')
+            return this.setSucess(this.LN.system.controller.hostIsEmpty, '/system/init')
         }
         if (!post.port) {
-            return this.setSucess('port不能为空', '/system/init')
+            return this.setSucess(this.LN.system.controller.portIsEmpty, '/system/init')
         }
         if (!post.database) {
-            return this.setSucess('数据库不能为空', '/system/init')
+            return this.setSucess(this.LN.system.controller.databaseIsEmpty, '/system/init')
         }
         if (!post.user) {
-            return this.setSucess('用户名不能为空', '/system/init')
+            return this.setSucess(this.LN.system.controller.userIsEmpty, '/system/init')
         }
         let mysqlConfig = {
             host: post.host,

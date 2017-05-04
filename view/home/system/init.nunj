@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="item">
                 <h4>
-                    初始化数据库
+                    {{ LN.system.init.initDataBase }}
                 </h4>
                 <div class="item-main">
                     <form class="form-horizontal" id="formId" method="post" action="/system/init">
@@ -31,7 +31,7 @@
                         <div class="form-group-dashed">
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">
-                                    <span class="common-required">*</span>数据库名称
+                                    <span class="common-required">*</span>{{ LN.system.init.database }}
                                 </label>
                                 <div class="col-sm-4">
                                     <input type="text" name="database" maxlength="100" value="mockserver2" class="form-control validate[required]" placeholder=""/>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><span class="common-required">*</span>数据库用户名</label>
+                                <label class="col-sm-2 control-label"><span class="common-required">*</span>{{ LN.system.init.user }}</label>
                                 <div class="col-sm-4">
                                     <div class="select-group radio-group" data-toggle="buttons">
                                         <input type="text" name="user" maxlength="100" value="root" class="form-control validate[required]" placeholder=""/>
@@ -50,10 +50,10 @@
                         </div>
                         <div class="form-group-dashed">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">数据库密码</label>
+                                <label class="col-sm-2 control-label">{{ LN.system.init.password }}</label>
                                 <div class="col-sm-4">
                                     <div class="select-group radio-group" data-toggle="buttons">
-                                        <input type="text" name="password" maxlength="100" value="{{ password }}" class="form-control" placeholder="默认为空："/>
+                                        <input type="text" name="password" maxlength="100" value="{{ password }}" class="form-control" placeholder=""/>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-10">
-                                    <button class="btn btn-info" type="submit">保存</button>
+                                    <button class="btn btn-info" type="submit">{{ LN.system.init.start }}</button>
                                 </div>
                             </div>
                         </div>

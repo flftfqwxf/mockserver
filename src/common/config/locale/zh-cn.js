@@ -175,6 +175,19 @@ module.exports = {
             updateSuccess: '设置成功',
             updateFailed: '操作失败',
             langIsEmpty: '错误：参数 lang 为空',
+            hostIsEmpty: '错误：参数 Host为空',
+            portIsEmpty: '错误：参数 port 为空',
+            databaseIsEmpty: '错误：数据库名称 为空',
+            userIsEmpty: '错误：数据用户名为空',
+
+        },
+        init:{
+            initDataBase:'初始化数据库',
+            database:'数据库名称',
+            user:'数据库用户名',
+            password:'初始化数据库',
+            start:'开始初始化'
+
         }
     },
     api: {
@@ -183,7 +196,7 @@ module.exports = {
         proxyIsEmptyError: '没有获取二次代理Url',
         globalProxyIsEmptyError: '没有获取全局二次代理Url',
         getProxyDataError: '获取数据错误,可能是接口不存在,或参数错误,错误信息:'
-    }
+    },
     //
     // projectAdmin: '项目管理',
     // projectList: '项目列表',

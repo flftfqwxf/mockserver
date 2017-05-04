@@ -33,10 +33,13 @@
 ```
 npm install
 ```
-## 导入mysql数据库文件
+## 初始化数据库
+
+1. 使用系统自带初始化数据库功能(推荐)
+2. 手动导入数据库文件，并修改数据库配置
 
 ```
-需要安装mysql[5.7.14], 并导入最新的mockserver-xx-xx.sql 文件
+需要安装mysql[5.7.14], 并导入最新的mockserver.sql 文件
 修改/src/common/config/db.js中的数据库配置
 ```
 ## Config 

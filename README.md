@@ -35,7 +35,10 @@ Mock-server is a Node.js web system for mock data,and switch between mock data a
 ```
 npm install
 ```
-## Import Mysql file
+## Initialize database
+
+1. Use System automatic initialization feature (recommend)
+2. Manually import .sql file
 
 ```
 mysql[5.7.14]+,

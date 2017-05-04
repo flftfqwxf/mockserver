@@ -1,5 +1,5 @@
 module.exports = {
-    LN:'english',
+    LN: 'english',
     languageSwitcher: 'Language Switcher：',
     info: 'Notices',
     goBack: 'Go Back',
@@ -173,7 +173,18 @@ module.exports = {
             dataIsEmpty: 'Error: post parameters is empty',
             updateSuccess: 'Error: update successful',
             updateFailed: 'Error: operation failed',
-            langIsEmpty: 'Error: parameter:lang is empty'
+            langIsEmpty: 'Error: parameter:lang is empty',
+            hostIsEmpty: 'Error： Host is empty',
+            portIsEmpty: 'Error： port is empty',
+            databaseIsEmpty: 'Error：database is empty',
+            userIsEmpty: 'Error：user is empty',
+        },
+        init: {
+            initDataBase: 'Initialized Database',
+            database: 'database',
+            user: 'user',
+            password: 'password',
+            start: 'start'
         }
     },
     api: {
