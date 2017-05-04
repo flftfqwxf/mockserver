@@ -4,7 +4,7 @@ var fs = require('fs')
 let mysqlConfig = {
     host: '127.0.0.1',
     port: '3306',
-    database: 'mockserver_import5',
+    database: 'mockserver_import',
     user: 'root',
     password: '',
     sqlfile: path.resolve(__dirname, '../mockserver.sql') // destination file

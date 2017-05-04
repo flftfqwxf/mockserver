@@ -1,5 +1,8 @@
 'use strict';
 import Base from '../../common/controller/common';
+import mysql from 'mysql';
+import path from 'path';
+import fs from'fs';
 export default class extends Base {
     /**
      * index action
@@ -30,12 +33,116 @@ export default class extends Base {
         }
         if (res) {
             // this.active = "/";
-            return this.setSucess(this.LN.system.controller.dataIsEmpty, '/')
+            return this.setSucess(this.LN.system.controller.updateSuccess, '/')
         } else {
-            this.fail(this.LN.system.controller.dataIsEmpty);
+            this.fail(this.LN.system.controller.updateFailed);
         }
         // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         return this.display();
+    }
+
+    async initAction() {
+        if (this.http.isPost()) {
+            await this.initPost(this.post())
+        } else {
+            return this.display()
+        }
+    }
+
+    async initPost(post) {
+        var _this = this;
+        if (!post.host) {
+            return this.setSucess('host不能为空', '/system/init')
+        }
+        if (!post.port) {
+            return this.setSucess('port不能为空', '/system/init')
+        }
+        if (!post.database) {
+            return this.setSucess('数据库不能为空', '/system/init')
+        }
+        if (!post.user) {
+            return this.setSucess('用户名不能为空', '/system/init')
+        }
+        let mysqlConfig = {
+            host: post.host,
+            port: post.port || 3306,
+            database: post.database,
+            user: post.user,
+            password: post.password || '',
+            sqlfile: path.resolve(__dirname, '../../../mockserver.sql'), // .sql file
+            db_config_file: path.resolve(__dirname, '../../../src/common/config/db.js')
+        }
+        console.log(mysqlConfig.sqlfile)
+        var con = mysql.createConnection({
+            host: mysqlConfig.host,
+            user: mysqlConfig.user,
+            password: mysqlConfig.password,
+            multipleStatements: true
+        });
+        await con.connect(function(err) {
+            if (err) {
+                return _this.setSucess(err, '/system/init')
+            }
+            console.log("Connected!");
+            con.query("CREATE DATABASE " + mysqlConfig.database, function(err, result) {
+                if (err) {
+                    return _this.setSucess(err, '/system/init')
+                }
+                console.log("Database created");
+                fs.readFile(mysqlConfig.sqlfile, 'utf8', function(err, sql) {
+                    if (err) {
+                        return _this.setSucess(err, '/system/init')
+                    }
+                    // console.log(sql)
+                    con.query('use ' + mysqlConfig.database + ';' + sql, function(err, results) {
+                        if (err) {
+                            return _this.setSucess(err, '/system/init')
+                        }
+                        // if (!_.isArray(results)) {
+                        //     results = [results];
+                        // }
+                        // console.log(results)
+                        if (results) {
+                            fs.open('myfile', 'w', (err, fd) => {
+                                if (err) {
+                                    return _this.setSucess(err, '/system/init')
+                                }
+                                let config = " 'use strict';                                    \n" +
+                                    " /**                                              \n" +
+                                    " * db config                                     \n " +
+                                    " * @type {Object}                                 \n" +
+                                    " */                                               \n" +
+                                    " export default {                                \n " +
+                                    "     type: 'mysql',                              \n " +
+                                    "     adapter: {                                  \n " +
+                                    "          mysql: {                             \n " +
+                                    "              host: '" + mysqlConfig.host + "',                \n" +
+                                    "              port: '" + mysqlConfig.port + "',                     \n" +
+                                    "              database: '" + mysqlConfig.database + "',           \n" +
+                                    "              user: '" + mysqlConfig.user + "',                     \n" +
+                                    "              password: '" + mysqlConfig.password + "',                     \n" +
+                                    "              prefix: 'mock_',                  \n" +
+                                    "             encoding: 'UTF8MB4_GENERAL_CI'     \n" +
+                                    "          },                                    \n" +
+                                    "         mongo: {                                 \n" +
+                                    "                                                  \n" +
+                                    "         }                                        \n" +
+                                    "     }                                            \n" +
+                                    " };                                               \n"
+                                fs.writeFile(mysqlConfig.db_config_file, config, 'utf8', function(err) {
+                                    if (err) {
+                                        return _this.setSucess(err, '/system/init')
+                                    }
+                                    setTimeout(() => {
+                                        _this.redirect('/system/add')
+                                    }, 1500)
+                                })
+                            });
+                        }
+                    });
+                });
+            });
+        });
     }
 
     async langAction() {

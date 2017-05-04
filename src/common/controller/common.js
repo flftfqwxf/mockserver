@@ -1,6 +1,7 @@
 "use strict";
 import cn from '../config/locale/zh-cn';
 import en from '../config/locale/en';
+import db from '../config/db';
 export default class language extends think.controller.base {
     /**
      * load language config
@@ -21,16 +22,33 @@ export default class language extends think.controller.base {
                 this.assign({'LN': cn});
                 break;
         }
-        this.LN=this.assign('LN')
+        this.LN = this.assign('LN')
         this.getCurrentRoute();
+        this.checkMysqlInit();
+        //需要在此入返回一个 promise.reject，否则依然会进入action，在数据库未初始化时会报出一个错误
+        if (this.stop) {
+            return Promise.reject("Database is uninitialized");
+        }
     }
 
     /**
      * 获取当前路由
      */
     getCurrentRoute() {
-        console.log(this.lang())
-        console.log(this.http.pathname)
+        // console.log(this.lang())
+        // console.log(this.http.pathname)
+    }
+
+    /**
+     * check mysql init
+     */
+    checkMysqlInit() {
+        // console.log(db.adapter.mysql)
+        if (!db.adapter.mysql && this.http.url !== '/system/init') {
+            // console.log(this.http.url)
+            this.stop = true;
+            this.redirect('/system/init');
+        }
     }
 
     /**

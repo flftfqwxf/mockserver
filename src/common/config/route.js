@@ -10,6 +10,7 @@ export default [
     [/^project\/edit/, 'home/project/edit'],
     [/^project\/delete/, 'home/project/delete'],
     //系统设置路由
+    [/^system\/init/, 'home/system/init'],
     [/^system\/add/, 'home/system/add'],
     [/^system\/update/, 'home/system/update'],
     [/^system\/edit/, 'home/system/edit'],
