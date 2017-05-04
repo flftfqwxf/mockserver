@@ -185,7 +185,7 @@ module.exports = {
             initDataBase:'初始化数据库',
             database:'数据库名称',
             user:'数据库用户名',
-            password:'初始化数据库',
+            password:'数据库密码',
             start:'开始初始化'
 
         }

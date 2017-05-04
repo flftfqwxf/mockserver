@@ -180,7 +180,7 @@ module.exports = {
             userIsEmpty: 'Error：user is empty',
         },
         init: {
-            initDataBase: 'Initialized Database',
+            initDataBase: 'Initialize Database',
             database: 'database',
             user: 'user',
             password: 'password',

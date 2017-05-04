@@ -44,10 +44,14 @@ export default class language extends think.controller.base {
      */
     checkMysqlInit() {
         // console.log(db.adapter.mysql)
-        if (!db.adapter.mysql && this.http.url !== '/system/init') {
-            // console.log(this.http.url)
-            this.stop = true;
-            this.redirect('/system/init');
+        if (!db.adapter.mysql) {
+            if (this.http.url !== '/system/init' && this.http.url !== '/system/lang/en' && this.http.url !== '/system/lang/zh-cn') {
+                {
+                    // console.log(this.http.url)
+                    this.stop = true;
+                    this.redirect('/system/init');
+                }
+            }
         }
     }
 
