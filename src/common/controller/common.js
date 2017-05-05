@@ -64,7 +64,7 @@ export default class language extends think.controller.base {
      * @param apiUrlTxt
      */
     setSucess(message, url, btnTxt, apiUrl, apiUrlTxt) {
-        btnTxt = btnTxt || 'go back';
+        // btnTxt = btnTxt || 'go back';
         this.assign({message: message, url: url, btnTxt: btnTxt, apiUrl: apiUrl, apiUrlTxt: apiUrlTxt, preUrl: this.http.headers.referer})
         return this.display('common/tips/sucess.nunj');
     }

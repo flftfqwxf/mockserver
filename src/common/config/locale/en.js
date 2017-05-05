@@ -47,6 +47,9 @@ module.exports = {
             editFail: 'Update failed',
             actionError: 'Operation failed',
             addSuccess: 'Add successful',
+            returnProjectList: 'Go to Project List',
+            editAgain: 'Edit',
+            add: 'Add a new project'
         }
     },
     interface: {
@@ -147,13 +150,15 @@ module.exports = {
             apiIsExist: 'Update error:API is already exists：',
             editSuccess: 'Update successful',
             editFail: 'Update failed',
-            returnList: 'Return list',
+            returnList: 'Go to API list',
             details: 'API details',
             actionError: 'Operation failed',
             addApiIsExist: 'Add failed:API is already exists：',
             addSuccess: 'Add successful',
             mockIdIsEmpty: 'Error:mock_id is empty',
             proxyIsEmpty: 'Error:is_proxy is empty',
+            cloneFailed: 'Clone failed',
+            editAgain: 'Edit'
         }
     },
     system: {
@@ -171,13 +176,14 @@ module.exports = {
         save: 'Save Settings',
         controller: {
             dataIsEmpty: 'Error: post parameters is empty',
-            updateSuccess: 'Error: update successful',
+            updateSuccess: 'update successful',
             updateFailed: 'Error: operation failed',
             langIsEmpty: 'Error: parameter:lang is empty',
             hostIsEmpty: 'Error： Host is empty',
             portIsEmpty: 'Error： port is empty',
             databaseIsEmpty: 'Error：database is empty',
             userIsEmpty: 'Error：user is empty',
+            editAgain: 'Edit again'
         },
         init: {
             initDataBase: 'Initialize Database',

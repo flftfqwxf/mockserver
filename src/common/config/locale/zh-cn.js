@@ -47,6 +47,9 @@ module.exports = {
             editFail: '修改失败',
             actionError: '操作失败',
             addSuccess: '添加成功',
+            returnProjectList:'返回项目列表',
+            editAgain:'再次修改',
+            add:'再次添加'
         }
     },
     interface: {
@@ -155,6 +158,8 @@ module.exports = {
             addSuccess: '添加成功',
             mockIdIsEmpty: 'mock id 为空',
             proxyIsEmpty: 'is_proxy为空',
+            cloneFailed:'复制失败',
+            editAgain:'返回修改'
         }
     },
     system: {
@@ -179,6 +184,7 @@ module.exports = {
             portIsEmpty: '错误：参数 port 为空',
             databaseIsEmpty: '错误：数据库名称 为空',
             userIsEmpty: '错误：数据用户名为空',
+            editAgain:'返回修改'
 
         },
         init:{
