@@ -60,13 +60,29 @@ export default class extends Base {
         let curr_project;
         if (data.project_id) {
             curr_project = project.filter(item => item.project_id.toString() === data.project_id);
-            curr_project.length > 0 ? project_prefix = curr_project[0].project_prefix ? curr_project[0].project_prefix : project_prefix : '';
+            if (curr_project.length > 0 && curr_project[0].project_prefix) {
+                project_prefix = curr_project[0].project_prefix
+            }
         }
         if (data.mockid && data.iscopy === '1') {
             let res = await this.model('mockserver').where('mockid=' + data.mockid).find();
             if (!think.isEmpty(res)) {
+                if (res.project_id) {
+                    curr_project = project.filter(item => item.project_id.toString() === res.project_id);
+                    if (curr_project.length > 0 && curr_project[0].project_prefix) {
+                        project_prefix = curr_project[0].project_prefix
+                    }
+                }
                 res.mockid = '';
                 res.project = project;
+                res.systemConfig = systemConfig;
+                res.project_prefix = project_prefix;
+                res.curr_project = project.filter((item) => {
+                    if (item['project_id'] == data.project_id) {
+                        return item;
+                    }
+                });
+                // res.project_id=data.project_id
                 this.assign(res)
             } else {
                 return this.setSuccess({message: this.LN.interface.controller.cloneError, url: '/interface/index', btnTxt: this.LN.interface.controller.returnList})
@@ -151,7 +167,7 @@ export default class extends Base {
                         url: '/interface/index?project_id=' + data.project_id,
                         btnTxt: this.LN.interface.controller.returnList,
                         apiUrl: project_prefix + data.api_url,
-                        apiTxt: this.LN.interface.controller.details
+                        apiUrlTxt: this.LN.interface.controller.details
                     })
                 } else {
                     return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
@@ -170,7 +186,7 @@ export default class extends Base {
                     url: '/interface/index?project_id=' + data.project_id,
                     btnTxt: this.LN.interface.controller.returnList,
                     apiUrl: project_prefix + data.api_url,
-                    apiTxt: this.LN.interface.controller.details
+                    apiUrlTxt: this.LN.interface.controller.details
                 })
             } else {
                 return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})

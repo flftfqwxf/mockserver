@@ -81,7 +81,7 @@ export default class extends Base {
                     url: this.http.headers.referer,
                     btnTxt: this.LN.project.controller.editAgain,
                     apiUrl: '/',
-                    apiTxt: this.LN.project.controller.returnProjectList
+                    apiUrlTxt: this.LN.project.controller.returnProjectList
                 })
             }
             let res = await this.model('project').where('project_id=' + data.project_id).select();
@@ -93,7 +93,7 @@ export default class extends Base {
                     url: this.http.headers.referer,
                     btnTxt: this.LN.project.controller.editAgain,
                     apiUrl: '/',
-                    apiTxt: this.LN.project.controller.returnProjectList
+                    apiUrlTxt: this.LN.project.controller.returnProjectList
                 })
             } else {
                 return this.setSuccess({
@@ -101,7 +101,7 @@ export default class extends Base {
                     url: this.http.headers.referer,
                     btnTxt: this.LN.project.controller.editAgain,
                     apiUrl: '/',
-                    apiTxt: this.LN.project.controller.returnProjectList
+                    apiUrlTxt: this.LN.project.controller.returnProjectList
                 })
             }
         } else {//添加
@@ -111,7 +111,7 @@ export default class extends Base {
                     url: this.http.headers.referer,
                     btnTxt: this.LN.project.controller.editAgain,
                     apiUrl: '/',
-                    apiTxt: this.LN.project.controller.returnProjectList
+                    apiUrlTxt: this.LN.project.controller.returnProjectList
                 })
             }
             let res = await this.model('project').add(data);
@@ -122,7 +122,7 @@ export default class extends Base {
                     url: this.http.headers.referer,
                     btnTxt: this.LN.project.controller.add,
                     apiUrl: '/',
-                    apiTxt: this.LN.project.controller.returnProjectList
+                    apiUrlTxt: this.LN.project.controller.returnProjectList
                 })
             } else {
                 return this.setSuccess({
@@ -130,7 +130,7 @@ export default class extends Base {
                     url: this.http.headers.referer,
                     btnTxt: this.LN.project.controller.editAgain,
                     apiUrl: '/',
-                    apiTxt: this.LN.project.controller.returnProjectList
+                    apiUrlTxt: this.LN.project.controller.returnProjectList
                 })
             }
             // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
