@@ -35,8 +35,12 @@ export default class language extends think.controller.base {
      * 获取当前路由
      */
     getCurrentRoute() {
-        // console.log(this.lang())
-        // console.log(this.http.pathname)
+        console.log(this.lang())
+        console.log(this.http.url);
+        this.assign(
+            {
+                curr_path: this.http.url
+            })
     }
 
     /**

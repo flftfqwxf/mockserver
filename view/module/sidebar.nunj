@@ -8,8 +8,8 @@
                 <span>{{ LN.sidebar.projectAdmin }}</span>
             </a>
             <ul class="collapse in" id="nav2">
-                <li class="open"><a href="/">{{ LN.sidebar.projectList }}</a></li>
-                <li><a href="/project/add.html">{{ LN.sidebar.addProject }}</a></li>
+                <li class="{{ curr_path|check_route('/') }}"><a href="/">{{ LN.sidebar.projectList }}</a></li>
+                <li class="{{ curr_path|check_route('/project/add') }}"><a href="/project/add">{{ LN.sidebar.addProject }}</a></li>
             </ul>
         </li>
         <li>
@@ -19,8 +19,8 @@
                 <span>{{ LN.sidebar.apiAdmin }}</span>
             </a>
             <ul class="collapse in" id="nav3">
-                <li><a href="/interface/index">{{ LN.sidebar.apiAdmin }}</a></li>
-                <li><a href="/interface/add.html">{{ LN.sidebar.addApi }}</a></li>
+                <li class="{{ curr_path|check_route('/interface/index') }}"><a  href="/interface/index">{{ LN.sidebar.apiAdmin }}</a></li>
+                <li class="{{ curr_path|check_route('/interface/add') }}"><a href="/interface/add">{{ LN.sidebar.addApi }}</a></li>
             </ul>
         </li>
         <li>
@@ -30,9 +30,8 @@
                 <span>{{ LN.sidebar.systemAdmin }}</span>
             </a>
             <ul class="collapse in" id="nav3">
-                <li><a href="/system/add.html">{{ LN.sidebar.globalParamsSetting }}</a></li>
+                <li class="{{ curr_path|check_route('/system/add') }}"><a href="/system/add">{{ LN.sidebar.globalParamsSetting }}</a></li>
             </ul>
         </li>
-
     </ul>
 </div>
