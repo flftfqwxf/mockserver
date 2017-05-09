@@ -39,3 +39,4 @@ runtime/
 /www/static/common/jsoneditor-5.6.0/examples/
 /www/static/common/jsoneditor-5.6.0/src/
 /www/static/common/jsoneditor-5.6.0/node_modules/
+/crontab/re-init-mysql-copy.js

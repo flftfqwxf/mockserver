@@ -49,6 +49,11 @@ export default class extends Base {
         }
     }
 
+    /**
+     *  init database
+     * @param post
+     * @returns {Promise.<*>}
+     */
     async initPost(post) {
         var _this = this;
         if (!post.host) {
