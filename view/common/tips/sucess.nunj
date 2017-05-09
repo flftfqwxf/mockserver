@@ -8,7 +8,10 @@
                 <div class="item-main">
                     <div class="emptylist-placeholder">
                         <p class="base-fontColor">{{ message }}</p>
-                        {#<a class="btn btn-default" href="{{ preUrl }}">{{ LN.goBack }}</a>#}
+                        {% if goBack %}
+                            <a class="btn btn-default" href="javascript:history.go(-1)">{{ LN.goBack }}</a>
+
+                        {% endif %}
                         {% if  btnTxt %}
                             <a class="btn btn-default" href="{{ url }}">{{ btnTxt }}</a>
 

@@ -35,10 +35,10 @@ export default class extends Base {
             if (res.length === 1) {
                 this.assign(res[0])
             } else {
-                return this.setSucess(this.LN.project.controller.projectIsNotExist, '/', this.LN.project.controller.returnProjectList)
+                return this.setSuccess({message: this.LN.project.controller.projectIsNotExist, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
             }
         } else {
-            return this.setSucess(this.LN.project.controller.projectIsNotExist, '/', this.LN.project.controller.returnProjectList)
+            return this.setSuccess({message: this.LN.project.controller.projectIsNotExist, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
         }
         return this.display('add.nunj')
     }
@@ -48,10 +48,10 @@ export default class extends Base {
         if (get.project_id) {
             let res = await this.model('project').where('project_id=' + get.project_id).delete();
             if (res) {
-                return this.setSucess(this.LN.project.controller.deleteSuccess, '/', this.LN.project.controller.returnProjectList)
+                return this.setSuccess({message: this.LN.project.controller.deleteSuccess, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
             }
         } else {
-            return this.setSucess(this.LN.project.controller.idIsNotExist, '/', this.LN.project.controller.returnProjectList)
+            return this.setSuccess({message: this.LN.project.controller.idIsNotExist, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
         }
     }
 
@@ -64,11 +64,11 @@ export default class extends Base {
         // console.log(this.post())
         let data = this.post();
         if (think.isEmpty(data)) {
-            return this.setSucess(this.LN.project.controller.dataIsEmpty, '/', this.LN.project.controller.returnProjectList)
+            return this.setSuccess({message: this.LN.project.controller.dataIsEmpty, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
         }
         // excludeConfig.some((item) => {
         //     if (data.project_prefix.indexOf(item) === 0) {
-        //         return this.setSucess('【' + item + '】'this.LN.project.controller.title, '/');
+        //         return this.setSuccess({message:'【' + item +url: '】'this.LN.project.controller.title,btnTxt: '/'});
         //     }
         // });
         // excludeConfig.indexOf(data.project_prefix);
@@ -76,26 +76,62 @@ export default class extends Base {
         //修改
         if (data.project_id) {
             if (!think.isEmpty(projectData) && data.project_id !== projectData.project_id.toString()) {
-                return this.setSucess(this.LN.project.controller.projectNameIsExist, this.http.headers.referer, this.LN.project.controller.editAgain, '/', this.LN.project.controller.returnProjectList)
+                return this.setSuccess({
+                    message: this.LN.project.controller.projectNameIsExist,
+                    url: this.http.headers.referer,
+                    btnTxt: this.LN.project.controller.editAgain,
+                    apiUrl: '/',
+                    apiTxt: this.LN.project.controller.returnProjectList
+                })
             }
             let res = await this.model('project').where('project_id=' + data.project_id).select();
             //行为记录˙
             if (res) {
                 await this.model('project').update(data);
-                return this.setSucess(this.LN.project.controller.editSuccess, this.http.headers.referer, this.LN.project.controller.editAgain, '/', this.LN.project.controller.returnProjectList)
+                return this.setSuccess({
+                    message: this.LN.project.controller.editSuccess,
+                    url: this.http.headers.referer,
+                    btnTxt: this.LN.project.controller.editAgain,
+                    apiUrl: '/',
+                    apiTxt: this.LN.project.controller.returnProjectList
+                })
             } else {
-                return this.setSucess(this.LN.project.controller.actionError, this.http.headers.referer, this.LN.project.controller.editAgain, '/', this.LN.project.controller.returnProjectList)
+                return this.setSuccess({
+                    message: this.LN.project.controller.actionError,
+                    url: this.http.headers.referer,
+                    btnTxt: this.LN.project.controller.editAgain,
+                    apiUrl: '/',
+                    apiTxt: this.LN.project.controller.returnProjectList
+                })
             }
         } else {//添加
             if (!think.isEmpty(projectData)) {
-                return this.setSucess(this.LN.project.controller.projectNameIsExist, this.http.headers.referer, this.LN.project.controller.editAgain, '/', this.LN.project.controller.returnProjectList)
+                return this.setSuccess({
+                    message: this.LN.project.controller.projectNameIsExist,
+                    url: this.http.headers.referer,
+                    btnTxt: this.LN.project.controller.editAgain,
+                    apiUrl: '/',
+                    apiTxt: this.LN.project.controller.returnProjectList
+                })
             }
             let res = await this.model('project').add(data);
             if (res) {
                 // this.active = "/";
-                return this.setSucess(this.LN.project.controller.addSuccess, this.http.headers.referer, this.LN.project.controller.add, '/', this.LN.project.controller.returnProjectList)
+                return this.setSuccess({
+                    message: this.LN.project.controller.addSuccess,
+                    url: this.http.headers.referer,
+                    btnTxt: this.LN.project.controller.add,
+                    apiUrl: '/',
+                    apiTxt: this.LN.project.controller.returnProjectList
+                })
             } else {
-                return this.setSucess(this.LN.project.controller.actionError, this.http.headers.referer, this.LN.project.controller.editAgain, '/', this.LN.project.controller.returnProjectList)
+                return this.setSuccess({
+                    message: this.LN.project.controller.actionError,
+                    url: this.http.headers.referer,
+                    btnTxt: this.LN.project.controller.editAgain,
+                    apiUrl: '/',
+                    apiTxt: this.LN.project.controller.returnProjectList
+                })
             }
             // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         }

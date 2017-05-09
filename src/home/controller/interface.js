@@ -69,7 +69,7 @@ export default class extends Base {
                 res.project = project;
                 this.assign(res)
             } else {
-                return this.setSucess(this.LN.interface.controller.cloneError, '/interface/index', this.LN.interface.controller.returnList)
+                return this.setSuccess({message: this.LN.interface.controller.cloneError, url: '/interface/index', btnTxt: this.LN.interface.controller.returnList})
             }
         } else {
             this.assign({
@@ -111,7 +111,7 @@ export default class extends Base {
                 });
                 this.assign(res[0])
             } else {
-                return this.setSucess(this.LN.interface.controller.idIsNotExist, '/interface/index', this.LN.interface.controller.returnList)
+                return this.setSuccess({message: this.LN.interface.controller.idIsNotExist, url: '/interface/index', btnTxt: this.LN.interface.controller.returnList})
             }
         } else {
             return this.display('common/tips/sucess.nunj');
@@ -124,10 +124,10 @@ export default class extends Base {
         if (get.mockid) {
             let res = await this.model('mockserver').where('mockid=' + get.mockid).delete();
             if (res) {
-                return this.setSucess(this.LN.interface.controller.deleteSuccess, this.http.headers.referer, this.LN.interface.controller.returnList)
+                return this.setSuccess({message: this.LN.interface.controller.deleteSuccess, url: this.http.headers.referer, btnTxt: this.LN.interface.controller.returnList})
             }
         } else {
-            return this.setSucess(this.LN.interface.controller.idIsNotExist, this.http.headers.referer, this.LN.interface.controller.returnList)
+            return this.setSuccess({message: this.LN.interface.controller.idIsNotExist, url: this.http.headers.referer, btnTxt: this.LN.interface.controller.returnList})
         }
     }
 
@@ -135,34 +135,45 @@ export default class extends Base {
         // console.log(this.post())
         let data = this.post();
         if (think.isEmpty(data)) {
-            return this.setSucess(this.LN.interface.controller.dataIsEmpty, '/interface/index', this.LN.interface.controller.returnList)
+            return this.setSuccess({message: this.LN.interface.controller.dataIsEmpty, goBack: true})
         }
         let urlData = await this.model('mockserver').where('api_url="' + data.api_url + '"').find();
         project_prefix = data.project_prefix;
         if (data.mockid) {
             if (!think.isEmpty(urlData) && urlData.mockid.toString() !== data.mockid) {
-                return this.setSucess(this.LN.interface.controller.addApiIsExist + data.api_url, this.http.headers.referer, this.LN.interface.controller.editAgain)
+                return this.setSuccess({message: this.LN.interface.controller.addApiIsExist + data.api_url, url: this.http.headers.referer, btnTxt: this.LN.interface.controller.editAgain})
             } else {
                 let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
-                //行为记录
                 if (res) {
                     await this.model('mockserver').update(data);
-                    return this.setSucess(this.LN.interface.controller.editSuccess, '/interface/index?project_id=' + data.project_id, this.LN.interface.controller.returnList, project_prefix + data.api_url, this.LN.interface.controller.details)
+                    return this.setSuccess({
+                        message: this.LN.interface.controller.editSuccess,
+                        url: '/interface/index?project_id=' + data.project_id,
+                        btnTxt: this.LN.interface.controller.returnList,
+                        apiUrl: project_prefix + data.api_url,
+                        apiTxt: this.LN.interface.controller.details
+                    })
                 } else {
-                    return this.setSucess(this.LN.interface.controller.actionError, this.http.headers.referer, this.LN.interface.controller.editAgain)
+                    return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
                 }
             }
             return this.display('common/tips/sucess.nunj');
         } else {
             if (!think.isEmpty(urlData)) {
-                return this.setSucess(this.LN.interface.controller.addApiIsExist + data.api_url, this.http.headers.referer, this.LN.interface.controller.editAgain)
+                return this.setSuccess({message: this.LN.interface.controller.addApiIsExist + data.api_url, goBack: true})
             }
             let res = await this.model('mockserver').add(data);
             if (res) {
                 // this.active = "/";
-                this.setSucess(this.LN.interface.controller.addSuccess, '/interface/index?project_id=' + data.project_id, this.LN.interface.controller.returnList, project_prefix + data.api_url, this.LN.interface.controller.details)
+                this.setSuccess({
+                    message: this.LN.interface.controller.addSuccess,
+                    url: '/interface/index?project_id=' + data.project_id,
+                    btnTxt: this.LN.interface.controller.returnList,
+                    apiUrl: project_prefix + data.api_url,
+                    apiTxt: this.LN.interface.controller.details
+                })
             } else {
-                return this.setSucess(this.LN.interface.controller.actionError, this.http.headers.referer, this.LN.interface.controller.editAgain)
+                return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
             }
             // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         }

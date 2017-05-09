@@ -22,7 +22,7 @@ export default class extends Base {
         // console.log(this.post())
         let data = this.post();
         if (think.isEmpty(data)) {
-            return this.setSucess(this.LN.system.controller.dataIsEmpty, '/system/add', this.LN.system.controller.editAgain)
+            return this.setSuccess({message:this.LN.system.controller.dataIsEmpty,url: '/system/add',btnTxt: this.LN.system.controller.editAgain})
         }
         let systemData = await this.model('system').limit(1).find();
         let res;
@@ -33,9 +33,9 @@ export default class extends Base {
         }
         if (res) {
             // this.active = "/";
-            return this.setSucess(this.LN.system.controller.updateSuccess, '/system/add', this.LN.system.controller.editAgain)
+            return this.setSuccess({message:this.LN.system.controller.updateSuccess,url: '/system/add',btnTxt: this.LN.system.controller.editAgain})
         } else {
-            return this.setSucess(this.LN.system.controller.updateFailed, '/system/add', this.LN.system.controller.editAgain)
+            return this.setSuccess({message:this.LN.system.controller.updateFailed,url: '/system/add',btnTxt: this.LN.system.controller.editAgain})
         }
         // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         return this.display();
@@ -52,16 +52,16 @@ export default class extends Base {
     async initPost(post) {
         var _this = this;
         if (!post.host) {
-            return this.setSucess(this.LN.system.controller.hostIsEmpty, '/system/init',this.LN.system.controller.editAgain)
+            return this.setSuccess({message:this.LN.system.controller.hostIsEmpty,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
         }
         if (!post.port) {
-            return this.setSucess(this.LN.system.controller.portIsEmpty, '/system/init',this.LN.system.controller.editAgain)
+            return this.setSuccess({message:this.LN.system.controller.portIsEmpty,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
         }
         if (!post.database) {
-            return this.setSucess(this.LN.system.controller.databaseIsEmpty, '/system/init',this.LN.system.controller.editAgain)
+            return this.setSuccess({message:this.LN.system.controller.databaseIsEmpty,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
         }
         if (!post.user) {
-            return this.setSucess(this.LN.system.controller.userIsEmpty, '/system/init',this.LN.system.controller.editAgain)
+            return this.setSuccess({message:this.LN.system.controller.userIsEmpty,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
         }
         let mysqlConfig = {
             host: post.host,
@@ -81,22 +81,22 @@ export default class extends Base {
         });
         await con.connect(function(err) {
             if (err) {
-                return _this.setSucess(err, '/system/init',this.LN.system.controller.editAgain)
+                return _this.setSuccess({message:err,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
             }
             console.log("Connected!");
             con.query("CREATE DATABASE " + mysqlConfig.database, function(err, result) {
                 if (err) {
-                    return _this.setSucess(err, '/system/init',this.LN.system.controller.editAgain)
+                    return _this.setSuccess({message:err,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
                 }
                 console.log("Database created");
                 fs.readFile(mysqlConfig.sqlfile, 'utf8', function(err, sql) {
                     if (err) {
-                        return _this.setSucess(err, '/system/init',this.LN.system.controller.editAgain)
+                        return _this.setSuccess({message:err,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
                     }
                     // console.log(sql)
                     con.query('use ' + mysqlConfig.database + ';' + sql, function(err, results) {
                         if (err) {
-                            return _this.setSucess(err, '/system/init',this.LN.system.controller.editAgain)
+                            return _this.setSuccess({message:err,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
                         }
                         // if (!_.isArray(results)) {
                         //     results = [results];
@@ -105,7 +105,7 @@ export default class extends Base {
                         if (results) {
                             fs.open('myfile', 'w', (err, fd) => {
                                 if (err) {
-                                    return _this.setSucess(err, '/system/init',this.LN.system.controller.editAgain)
+                                    return _this.setSuccess({message:err,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
                                 }
                                 let config = " 'use strict';                                    \n" +
                                     " /**                                              \n" +
@@ -131,7 +131,7 @@ export default class extends Base {
                                     " };                                               \n"
                                 fs.writeFile(mysqlConfig.db_config_file, config, 'utf8', function(err) {
                                     if (err) {
-                                        return _this.setSucess(err, '/system/init',this.LN.system.controller.editAgain)
+                                        return _this.setSuccess({message:err,url: '/system/init',btnTxt:this.LN.system.controller.editAgain})
                                     }
                                     setTimeout(() => {
                                         _this.redirect('/system/add')
