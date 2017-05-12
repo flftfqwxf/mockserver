@@ -96,6 +96,7 @@ module.exports = {
                 methodTypes: 'Method Types',
                 interfaceUrl: 'API URL',
                 proxyPrefixTips: 'All URL add prefix in this project',
+                urlFormat: 'Allow to Use RESTful format，e.g：a/:id/:name',
                 getParamsTitle: 'Get Parameters Description',
                 getParamsTip: 'Note： The get parameters description after [?] in  API URL',
                 headersParamsTitle: 'Request Headers Parameters Description',

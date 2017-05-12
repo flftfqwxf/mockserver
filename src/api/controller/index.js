@@ -24,7 +24,7 @@ export default class extends Base {
         }
         let url = this.http.url.replace(prefix, '');
         //先全路径匹配
-        let data = await this.model('mockserver').where({api_url: this.http.url.replace(prefix, ''), project_prefix: prefix})
+        let data = await this.model('mockserver').where({api_url: url, project_prefix: prefix})
             .alias('mockserver')
             .join([{
                 table: 'project',
@@ -39,7 +39,14 @@ export default class extends Base {
         //如果查不到相应接口,则将 URL【?】后去掉后再查询
         if (think.isEmpty(data)) {
             // let firstObj = this.urlParmsTransform(url);
-            const tempdata = await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??'").select();
+            const tempdata = await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??' and project_prefix='" + prefix + "'")
+                .alias('mockserver')
+                .join([{
+                    table: 'project',
+                    as: 'project',
+                    on: ['`mockserver`.`project_id`', '`project`.`project_id`']
+                }])
+                .select();
             //当匹配方式为只匹配【?】后面参数时
             if (tempdata.length == 1 && tempdata[0].exact_match === 0) {
                 data = tempdata[0];
@@ -55,10 +62,39 @@ export default class extends Base {
                 }
             }
         }
+        /**
+         * 如果查不到相应接口，则通过 api_url_regexp 匹配查询
+         */
+        if (think.isEmpty(data)) {
+            // let firstObj = this.urlParmsTransform(url);
+            const regList = await this.model('mockserver').where({project_prefix: prefix, api_url_regexp: ['!=', null]})
+                .alias('mockserver')
+                .join([{
+                    table: 'project',
+                    as: 'project',
+                    on: ['`mockserver`.`project_id`', '`project`.`project_id`']
+                }])
+                // .field('mockid')
+                .select();
+            let reg_data = regList.filter((item) => {
+                let m = new RegExp(item.api_url_regexp, "i").exec(url)
+                if (m) {
+                    return true;
+                }
+            })
+            console.log(reg_data.length)
+            if (reg_data.length === 1) {
+                // console.log(reg_data)
+                data = reg_data[0]
+            } else if (reg_data.length > 1) {
+                return this.json({'message': _this.LN.api.multipleInterfaceError, list: reg_data})
+            }
+        }
         if (!think.isEmpty(data)) {
-            var item = data;
-            this.item = data;
+            var item = this.item = data;
+            // this.item = data[0];
             let headers;
+            // console.log('is_proxy:', item)
             if (item.is_proxy === 0) {
                 let api_header;
                 if (item.api_header) {

@@ -9,6 +9,8 @@
  
  - 支持GET、POST、PUT、DELETE，SEARCH,等所有请求类型
  
+ - 支持RESTful格式路径：如: /a/:user/:id
+ 
  - 支持指定返回状态码，默认200
  
  - 支持延时返回数据

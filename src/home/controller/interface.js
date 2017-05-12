@@ -171,7 +171,14 @@ export default class extends Base {
             return this.setSuccess({message: errorMsg.join('\r\n'), goBack: true})
         }
         let keys = [];
-        data.api_url_regexp = pathToRegexp(data.api_url, keys);
+        let reg = pathToRegexp(data.api_url, keys).toString().substring(1);
+        reg = reg.substring(0, reg.length - 2)
+        //当路径中存在类似 /:id/:use 等动态参数时才保存生成的正则表达式
+        if (keys.length > 0) {
+            data.api_url_regexp = reg
+        } else {
+            data.api_url_regexp = null
+        }
         let urlData = await this.model('mockserver').where('api_url="' + data.api_url + '"').find();
         project_prefix = data.project_prefix;
         if (data.mockid) {

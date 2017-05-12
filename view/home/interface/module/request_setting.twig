@@ -58,7 +58,8 @@
                     <input type="text" name="api_url" id="api_url" value="{{ api_url }}" class="form-control api_url  validate[required] use_test"/>
                     <input type="hidden" name="project_prefix" value="{{ project_prefix }}">
                 </div>
-                <p class="help-block">{{ LN.interface.add.request.proxyPrefixTips }}【{{ project_prefix }}】</p>
+                <p class="help-block">{{ LN.interface.add.request.urlFormat }}</p>
+                {#<p class="help-block">{{ LN.interface.add.request.proxyPrefixTips }}【{{ project_prefix }}】</p>#}
             </div>
         </div>
         <div class="form-group">
@@ -116,7 +117,6 @@
                 <p class="help-block">
                     {{ LN.interface.add.request.exactMatchTips }}
                     {{ LN.interface.add.request.incompleteMatchTips|safe }}
-
                 </p>
             </div>
         </div>

@@ -9,6 +9,8 @@ Mock-server is a Node.js web system for mock data,and switch between mock data a
   - Supports  [jsonEditor](http://jsoneditoronline.org/) 
  
   - Supports method types: GET、POST、PUT、DELETE...
+
+  - RESTful path format，e.g: /a/:user/:id
  
   - Allow to specify status code，default:200
  

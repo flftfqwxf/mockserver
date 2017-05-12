@@ -1,5 +1,5 @@
 module.exports = {
-    LN:'chinese',
+    LN: 'chinese',
     languageSwitcher: '切换语言：',
     info: '提示信息',
     goBack: '返回上一步',
@@ -47,9 +47,9 @@ module.exports = {
             editFail: '修改失败',
             actionError: '操作失败',
             addSuccess: '添加成功',
-            returnProjectList:'返回项目列表',
-            editAgain:'再次修改',
-            add:'再次添加'
+            returnProjectList: '返回项目列表',
+            editAgain: '再次修改',
+            add: '再次添加'
         }
     },
     interface: {
@@ -97,6 +97,7 @@ module.exports = {
                 methodTypes: '请求类型',
                 interfaceUrl: '接口地址',
                 proxyPrefixTips: '此项目下所有接口统一加上前缀',
+                urlFormat: '支持RESTful格式，示例如：a/:id/:name',
                 getParamsTitle: 'Get参数说明',
                 getParamsTip: '说明：接口地址中【?】query参数说明',
                 headersParamsTitle: '请求header参数说明',
@@ -158,8 +159,8 @@ module.exports = {
             addSuccess: '添加成功',
             mockIdIsEmpty: 'mock id 为空',
             proxyIsEmpty: 'is_proxy为空',
-            cloneFailed:'复制失败',
-            editAgain:'返回修改'
+            cloneFailed: '复制失败',
+            editAgain: '返回修改'
         }
     },
     system: {
@@ -184,16 +185,14 @@ module.exports = {
             portIsEmpty: '错误：参数 port 为空',
             databaseIsEmpty: '错误：数据库名称 为空',
             userIsEmpty: '错误：数据用户名为空',
-            editAgain:'返回修改'
-
+            editAgain: '返回修改'
         },
-        init:{
-            initDataBase:'初始化数据库',
-            database:'数据库名称',
-            user:'数据库用户名',
-            password:'数据库密码',
-            start:'开始初始化'
-
+        init: {
+            initDataBase: '初始化数据库',
+            database: '数据库名称',
+            user: '数据库用户名',
+            password: '数据库密码',
+            start: '开始初始化'
         }
     },
     api: {
