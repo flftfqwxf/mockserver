@@ -1,5 +1,6 @@
 'use strict';
 import Base from '../../common/controller/common';
+import pathToRegexp from 'path-to-regexp'
 let project_prefix = '/api/';
 export default class extends Base {
     /**
@@ -153,6 +154,24 @@ export default class extends Base {
         if (think.isEmpty(data)) {
             return this.setSuccess({message: this.LN.interface.controller.dataIsEmpty, goBack: true})
         }
+        let errorMsg = []
+        if (think.isEmpty(data.project_id)) {
+            errorMsg.push('project_id is empty')
+        }
+        if (think.isEmpty(data.api_name)) {
+            errorMsg.push('api_name is empty')
+        }
+        if (think.isEmpty(data.api_url)) {
+            errorMsg.push('api_url is empty')
+        }
+        if (think.isEmpty(data.api_content)) {
+            errorMsg.push('api_content is empty')
+        }
+        if (errorMsg.length > 0) {
+            return this.setSuccess({message: errorMsg.join('\r\n'), goBack: true})
+        }
+        let keys = [];
+        data.api_url_regexp = pathToRegexp(data.api_url, keys);
         let urlData = await this.model('mockserver').where('api_url="' + data.api_url + '"').find();
         project_prefix = data.project_prefix;
         if (data.mockid) {
