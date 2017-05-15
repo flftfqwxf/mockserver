@@ -4,10 +4,5 @@
  * https://thinkjs.org/doc/middleware.html
  */
 
-/**
- * 
- * think.middleware('xxx', http => {
- *   
- * })
- * 
- */
+const rawBody = require('think-raw-body')
+think.middleware('raw_body', rawBody)

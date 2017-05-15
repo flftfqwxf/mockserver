@@ -17,6 +17,7 @@
     "path-to-regexp": "^1.7.0",
     "request": "^2.75.0",
     "source-map-support": "0.4.0",
+    "think-raw-body": "^1.0.2",
     "thinkjs": "2.2.x"
   },
   "devDependencies": {
