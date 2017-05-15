@@ -24,6 +24,8 @@ Mock-server is a Node.js web system for mock data,and switch between mock data a
  
   - Supports switch between Chinese and English
   
+  - Support 'text/plain' type post 
+  
 
 
 ## [demo](http://47.93.62.181:8033/)

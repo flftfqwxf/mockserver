@@ -22,6 +22,8 @@
  - 支持模拟接口与真实接口切换,在切换到真实接口时，能够接收POST,GET,COOKIE等在http header请求的参数
  
  - 支持中英文切换
+ 
+ - 支持客户端 'text/plain' 类型的 POST 提交（postman中 `Body` 选择 `raw`）
 
 ## [demo](http://47.93.62.181:8033/)
 
