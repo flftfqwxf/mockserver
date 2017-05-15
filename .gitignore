@@ -42,3 +42,4 @@ runtime/
 /crontab/re-init-mysql-copy.js
 /src/common/config/db-noupload.js
 /think-raw-body/
+/src/common/config/db.js
