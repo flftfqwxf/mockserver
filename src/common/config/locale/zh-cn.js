@@ -150,12 +150,16 @@ module.exports = {
             idIsNotExist: 'ID不存在',
             dataIsEmpty: '数据为空:点击返回列表',
             apiIsExist: '修改失败:接口地址已存在：',
+            RESTfulApiIsExist: '修改失败:相同规则的RESTful接口地址已存在：',
+
             editSuccess: '修改成功',
             editFail: '修改失败',
             returnList: '返回列表',
             details: '查看接口',
             actionError: '操作失败',
             addApiIsExist: '添加失败:接口地址已存在：',
+            addRESTfullApiIsExist: '添加失败:相同规则的RESTful接口地址已存在：',
+
             addSuccess: '添加成功',
             mockIdIsEmpty: 'mock id 为空',
             proxyIsEmpty: 'is_proxy为空',

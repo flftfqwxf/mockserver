@@ -77,12 +77,12 @@ export default class extends Base {
                 // .field('mockid')
                 .select();
             let reg_data = regList.filter((item) => {
-                let m = new RegExp(item.api_url_regexp, "i").exec(url)
+                let m = new RegExp(decodeURI(item.api_url_regexp), "i").exec(url)
                 if (m) {
                     return true;
                 }
             })
-            console.log(reg_data.length)
+            // console.log(reg_data.length)
             if (reg_data.length === 1) {
                 // console.log(reg_data)
                 data = reg_data[0]

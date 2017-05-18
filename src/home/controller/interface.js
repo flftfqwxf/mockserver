@@ -172,18 +172,36 @@ export default class extends Base {
         }
         let keys = [];
         let reg = pathToRegexp(data.api_url, keys).toString().substring(1);
-        reg = reg.substring(0, reg.length - 2)
+        reg = encodeURI(reg.substring(0, reg.length - 2))
         //当路径中存在类似 /:id/:use 等动态参数时才保存生成的正则表达式
         if (keys.length > 0) {
             data.api_url_regexp = reg
         } else {
             data.api_url_regexp = null
         }
-        let urlData = await this.model('mockserver').where('api_url="' + data.api_url + '"').find();
+        let where = 'api_url="' + data.api_url + '"', check_reg = false;
+        let urlData = await this.model('mockserver').where(where).find();
+        if (think.isEmpty(urlData) && data.api_url_regexp) {
+            where = ' api_url_regexp="' + data.api_url_regexp + '"';
+            urlData = await this.model('mockserver').where(where).find();
+            check_reg = true;
+        }
         project_prefix = data.project_prefix;
         if (data.mockid) {
             if (!think.isEmpty(urlData) && urlData.mockid.toString() !== data.mockid) {
-                return this.setSuccess({message: this.LN.interface.controller.addApiIsExist + data.api_url, url: this.http.headers.referer, btnTxt: this.LN.interface.controller.editAgain})
+                if (check_reg) {
+                    return this.setSuccess({
+                        message: this.LN.interface.controller.RESTfulApiIsExist + data.api_url + '\r\n' + urlData.api_url,
+                        url: this.http.headers.referer,
+                        btnTxt: this.LN.interface.controller.editAgain
+                    })
+                } else {
+                    return this.setSuccess({
+                        message: this.LN.interface.controller.apiIsExist + data.api_url,
+                        url: this.http.headers.referer,
+                        btnTxt: this.LN.interface.controller.editAgain
+                    })
+                }
             } else {
                 let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
                 if (res) {
@@ -202,7 +220,17 @@ export default class extends Base {
             return this.display('common/tips/sucess.nunj');
         } else {
             if (!think.isEmpty(urlData)) {
-                return this.setSuccess({message: this.LN.interface.controller.addApiIsExist + data.api_url, goBack: true})
+                if (check_reg) {
+                    return this.setSuccess({
+                        message: this.LN.interface.controller.addRESTfullApiIsExist + data.api_url + '<br>' + urlData.api_url,
+                        goBack: true
+                    })
+                } else {
+                    return this.setSuccess({
+                        message: this.LN.interface.controller.addApiIsExist + data.api_url,
+                        goBack: true
+                    })
+                }
             }
             let res = await this.model('mockserver').add(data);
             if (res) {

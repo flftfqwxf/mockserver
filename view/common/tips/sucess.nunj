@@ -7,7 +7,7 @@
                 </h4>
                 <div class="item-main">
                     <div class="emptylist-placeholder">
-                        <p class="base-fontColor">{{ message }}</p>
+                        <p class="base-fontColor">{{ message |safe }}</p>
                         {% if goBack %}
                             <a class="btn btn-default" href="javascript:history.go(-1)">{{ LN.goBack }}</a>
 
