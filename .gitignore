@@ -43,3 +43,5 @@ runtime/
 /src/common/config/db-noupload.js
 /think-raw-body/
 /src/common/config/db.js
+/crontab/
+/example/
