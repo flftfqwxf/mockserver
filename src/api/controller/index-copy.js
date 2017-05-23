@@ -10,7 +10,6 @@ export default class extends Base {
      */
     async indexAction() {
         this.project_id = "";
-        this.prefix = "";
         this.LN = this.assign('LN');
         let _this = this;
         //允许跨域访问接口
@@ -19,14 +18,13 @@ export default class extends Base {
         this.systemConfig = await this.model('system').limit(1).find();
         //auto render template file index_index.html
         // console.log(this.http.url)
-        this.prefix = this.http.url.match(/\/[\w_\d]+\//);
-        if (this.prefix.length > 0) {
-            this.prefix = this.prefix[0];
-            this.project_id = this.prefix.replace(/\//ig, '');
+        this.project_id = this.http.url.match(/\/[\w_\d]+\//);
+        if (this.project_id.length > 0) {
+            this.project_id = this.project_id [0];
         }
-        let url = this.http.url.replace(this.prefix, '');
+        let url = this.http.url.replace(this.project_id, '');
         //先全路径匹配
-        let data = await this.model('mockserver').where({api_url: url, "mockserver.project_id": this.project_id})
+        let data = await this.model('mockserver').where({api_url: url, project_id: this.project_id})
             .alias('mockserver')
             .join([{
                 table: 'project',
@@ -41,7 +39,7 @@ export default class extends Base {
         //如果查不到相应接口,则将 URL【?】后去掉后再查询
         if (think.isEmpty(data)) {
             // let firstObj = this.urlParmsTransform(url);
-            const tempdata = await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??' and mockserver.project_id='" + this.project_id + "'")
+            const tempdata = await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??' and project_id='" + this.project_id + "'")
                 .alias('mockserver')
                 .join([{
                     table: 'project',
@@ -69,7 +67,7 @@ export default class extends Base {
          */
         if (think.isEmpty(data)) {
             // let firstObj = this.urlParmsTransform(url);
-            const regList = await this.model('mockserver').where({"mockserver.project_id": this.project_id, api_url_regexp: ['!=', null]})
+            const regList = await this.model('mockserver').where({project_id: this.project_id, api_url_regexp: ['!=', null]})
                 .alias('mockserver')
                 .join([{
                     table: 'project',
@@ -175,7 +173,7 @@ export default class extends Base {
     async  getProxyFromProject(methodType, systemProxyUrl) {
         const proxy_url = await this.checkProjectProxy(systemProxyUrl);
         if (proxy_url) {
-            return this.getProxy(proxy_url, this.http.url.replace(this.prefix, ''), methodType);
+            return this.getProxy(proxy_url, this.http.url.replace(this.project_id, ''), methodType);
         } else {
             return this.fail({message: this.LN.api.globalProxyIsEmptyError})
         }
@@ -212,7 +210,7 @@ export default class extends Base {
         let fn = think.promisify(request[method]);
         const curHttp = this.http;
         // console.log(this.http.headers)
-        let url = httpPrefix +'/'+ api_url;
+        let url = httpPrefix + api_url;
         curHttp.url = url;
         let send = {
             url: url,

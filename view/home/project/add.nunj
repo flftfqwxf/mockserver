@@ -33,17 +33,17 @@
                             {#<p class="help-block">此项用于设置整个项目的代理前缀地址,格式: 192.168.22.11或 192.168.22.11/xxx 最后不带 【/】</p>#}
                             {#</div>#}
                             {#</div>#}
-                            <div class="form-group ">
-                                <label class="col-sm-2 control-label">
-                                    {{ LN.project.add.projectInterfacePrefix }}
-                                </label>
-                                <div class="col-sm-6">
-                                    <input type="text" name="project_prefix" value="{{ project_prefix }}" class="form-control validate[custom[project_prefix]]"
-                                           placeholder="default: /api/"/>
-                                    <p class="help-block">format: /api/,default：/api/<br>
-                                    </p>
-                                </div>
-                            </div>
+                            {#<div class="form-group ">#}
+                                {#<label class="col-sm-2 control-label">#}
+                                    {#{{ LN.project.add.projectInterfacePrefix }}#}
+                                {#</label>#}
+                                {#<div class="col-sm-6">#}
+                                    {#<input type="text" name="project_prefix" value="{{ project_prefix }}" class="form-control validate[custom[project_prefix]]"#}
+                                           {#placeholder="default: /api/"/>#}
+                                    {#<p class="help-block">format: /api/,default：/api/<br>#}
+                                    {#</p>#}
+                                {#</div>#}
+                            {#</div>#}
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">
                                     {{ LN.project.add.projectProxyUrl }}

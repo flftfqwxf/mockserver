@@ -216,7 +216,7 @@
                     "alertText": "* 只能是15位以内的数字"
                 },
                 "project_prefix":{
-                    "regex":/^\/[\w_\d]+\/$/,
+                    "regex":/(\/\w+)*\/$/,
                     "alertText": "格式错误，正确格式为/xxx/"
 
                 }

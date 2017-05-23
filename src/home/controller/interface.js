@@ -21,7 +21,7 @@ export default class extends Base {
             where['mockserver.project_id'] = data.project_id;
             res = await this.model('mockserver').where(where).order('mockid desc')
                 .alias('mockserver')
-                .field('`mockserver`.*, `project`.`*`')
+                .field('`mockserver`.*, project.*')
                 .join([{
                     table: 'project',
                     as: 'project',
