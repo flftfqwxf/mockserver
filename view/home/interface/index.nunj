@@ -53,6 +53,7 @@
                             <th>ID</th>
                             <th>{{ LN.interface.index.projectName }}</th>
                             <th>{{ LN.interface.index.interfaceName }}</th>
+                            <th>{{ LN.interface.index.methodType }}</th>
                             <th>{{ LN.interface.index.interfaceUrl }}</th>
                             <th>{{ LN.interface.index.againProxy }}</th>
                             <th>{{ LN.interface.index.actions }}</th>
@@ -63,6 +64,7 @@
                             <tr>
                                 <td>{{ item.mockid }}</td>
                                 <td>{{ item.project_name }}</td>
+                                <td>{{ item.api_type }}</td>
                                 <td>{{ item.api_name }}</td>
                                 {% if item.proxy_prefix %}
                                     {% set cur_prefix=item.proxy_prefix %}
@@ -72,7 +74,7 @@
                                     {% set cur_prefix=systemData.proxy_url %}
 
                                 {% endif %}
-                                <td><a target="_blank" style="color: #ff7e1d;" href="/{{ project.project_id +'/'+item.api_url }}">{{ item.api_url }}</a>
+                                <td><a style="color: #ff7e1d;" class="J_lnk" method="{{ item.api_type }}" href="/{{ project.project_id +'/'+item.api_url }}">{{ item.api_url }}</a>
                                     <p style="display: {{ 'block' if item.is_proxy ==1  else 'none' }}"
                                        class="J_proxy_all_tips J_proxy_tips_{{ item.mockid }}">{{ LN.interface.index.openProxyTipsPrefix }}[
                                         <span style="color: red;">
@@ -82,7 +84,7 @@
                                 <td><a class="deleteLnk" href="/interface/delete?mockid={{ item.mockid }}">{{ LN.interface.index.delete }}</a>
                                     <a href="/interface/edit?mockid={{ item.mockid }}">{{ LN.interface.index.edit }}</a>
                                     <a href="/interface/add?iscopy=1&mockid={{ item.mockid }}">{{ LN.interface.index.clone }}</a>
-                                    <a href="/{{ project.project_id +'/'+item.api_url }}" target="_blank">{{ LN.interface.index.detail }}</a>
+                                    <a method="{{ item.api_type }}" class="J_lnk" href="/{{ project.project_id +'/'+item.api_url }}">{{ LN.interface.index.detail }}</a>
                                     <a href="javascript:;" mockid="{{ item.mockid }}" class="oper_proxy" data-is-proxy="{{ item.is_proxy }}">
                                         {% if item.is_proxy==0 %}
                                             {{ LN.interface.index.openProxy }}
@@ -100,6 +102,9 @@
         </div>
         <!--table end-->
     </div>
+    <form action="" method="" id="locationForm" target="_blank">
+        <input type="hidden" name="_method" value=""/>
+    </form>
     <script>
         $('.deleteLnk').click(function() {
             if (confirm('{{ LN.interface.index.deleteTips }}')) {
@@ -110,6 +115,15 @@
         })
         $('.fa-times-circle').click(function() {
             $(this).prev('.form-control').val('')
+        })
+        $('.J_lnk').click(function() {
+            $('#locationForm')
+                .attr('action', $(this).attr('href'))
+                .attr('method', $(this).attr('method') === 'get' ? 'get' : 'post')
+                .find('input').val($(this).attr('method'))
+                .end()
+                .submit()
+            return false
         })
         $('.oper_proxy').click(function() {
             var _this = $(this), is_proxy = $(this).attr('data-is-proxy'),

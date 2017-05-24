@@ -179,10 +179,10 @@ export default class extends Base {
         } else {
             data.api_url_regexp = null
         }
-        let where = 'api_url="' + data.api_url + '"', check_reg = false;
+        let where = {api_url: data.api_url, api_type: data.api_type}, check_reg = false;
         let urlData = await this.model('mockserver').where(where).find();
         if (think.isEmpty(urlData) && data.api_url_regexp) {
-            where = ' api_url_regexp="' + data.api_url_regexp + '"';
+            where = {api_url_regexp: data.api_url_regexp, api_type: data.api_type};
             urlData = await this.model('mockserver').where(where).find();
             check_reg = true;
         }

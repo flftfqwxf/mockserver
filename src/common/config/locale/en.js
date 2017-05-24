@@ -63,6 +63,7 @@ module.exports = {
             addInterface: 'Add API',
             projectName: 'Project Name',
             interfaceName: 'API Name',
+            methodType: 'Method Type',
             interfaceUrl: 'API URL',
             againProxy: 'Proxy Switch',
             actions: 'Actions',

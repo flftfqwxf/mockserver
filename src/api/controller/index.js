@@ -25,8 +25,9 @@ export default class extends Base {
             this.project_id = this.prefix.replace(/\//ig, '');
         }
         let url = this.http.url.replace(this.prefix, '');
+        let api_type = this.post('_method') || this.method()
         //先全路径匹配
-        let data = await this.model('mockserver').where({api_url: url, "mockserver.project_id": this.project_id})
+        let data = await this.model('mockserver').where({api_url: url, api_type: api_type, "mockserver.project_id": this.project_id})
             .alias('mockserver')
             .join([{
                 table: 'project',
@@ -41,7 +42,7 @@ export default class extends Base {
         //如果查不到相应接口,则将 URL【?】后去掉后再查询
         if (think.isEmpty(data)) {
             // let firstObj = this.urlParmsTransform(url);
-            const tempdata = await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??' and mockserver.project_id='" + this.project_id + "'")
+            const tempdata = await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??' and mockserver.project_id='" + this.project_id + "' and api_type='" + api_type + "'")
                 .alias('mockserver')
                 .join([{
                     table: 'project',
@@ -69,7 +70,7 @@ export default class extends Base {
          */
         if (think.isEmpty(data)) {
             // let firstObj = this.urlParmsTransform(url);
-            const regList = await this.model('mockserver').where({"mockserver.project_id": this.project_id, api_url_regexp: ['!=', null]})
+            const regList = await this.model('mockserver').where({"mockserver.project_id": this.project_id, api_type: api_type, api_url_regexp: ['!=', null]})
                 .alias('mockserver')
                 .join([{
                     table: 'project',
@@ -212,7 +213,7 @@ export default class extends Base {
         let fn = think.promisify(request[method]);
         const curHttp = this.http;
         // console.log(this.http.headers)
-        let url = httpPrefix +'/'+ api_url;
+        let url = httpPrefix + '/' + api_url;
         curHttp.url = url;
         let send = {
             url: url,
