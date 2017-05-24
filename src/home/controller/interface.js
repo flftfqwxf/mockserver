@@ -210,7 +210,7 @@ export default class extends Base {
                         message: this.LN.interface.controller.editSuccess,
                         url: '/interface/index?project_id=' + data.project_id,
                         btnTxt: this.LN.interface.controller.returnList,
-                        apiUrl: project_prefix + data.api_url,
+                        apiUrl: '/' + data.project_id + '/' + data.api_url,
                         apiUrlTxt: this.LN.interface.controller.details
                     })
                 } else {
@@ -239,7 +239,7 @@ export default class extends Base {
                     message: this.LN.interface.controller.addSuccess,
                     url: '/interface/index?project_id=' + data.project_id,
                     btnTxt: this.LN.interface.controller.returnList,
-                    apiUrl: project_prefix + data.api_url,
+                    apiUrl: '/' + data.project_id + '/' + data.api_url,
                     apiUrlTxt: this.LN.interface.controller.details
                 })
             } else {
