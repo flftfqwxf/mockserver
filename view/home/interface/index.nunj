@@ -72,17 +72,17 @@
                                     {% set cur_prefix=systemData.proxy_url %}
 
                                 {% endif %}
-                                <td><a target="_blank" style="color: #ff7e1d;" href="/{{ project.project_id+ item.project_prefix +item.api_url }}">{{ item.api_url }}</a>
+                                <td><a target="_blank" style="color: #ff7e1d;" href="/{{ project.project_id +'/'+item.api_url }}">{{ item.api_url }}</a>
                                     <p style="display: {{ 'block' if item.is_proxy ==1  else 'none' }}"
                                        class="J_proxy_all_tips J_proxy_tips_{{ item.mockid }}">{{ LN.interface.index.openProxyTipsPrefix }}[
                                         <span style="color: red;">
-                                      {{ cur_prefix+item.project_prefix+item.api_url }}</span>]{{ LN.interface.index.openProxyTipsPostfix|safe }}</p>
+                                      {{ cur_prefix+'/'+item.api_url }}</span>]{{ LN.interface.index.openProxyTipsPostfix|safe }}</p>
                                 </td>
                                 <td class="proxy_state">{{ LN.interface.index.closed if item.is_proxy==0 else LN.interface.index.opened }}</td>
                                 <td><a class="deleteLnk" href="/interface/delete?mockid={{ item.mockid }}">{{ LN.interface.index.delete }}</a>
                                     <a href="/interface/edit?mockid={{ item.mockid }}">{{ LN.interface.index.edit }}</a>
                                     <a href="/interface/add?iscopy=1&mockid={{ item.mockid }}">{{ LN.interface.index.clone }}</a>
-                                    <a href="{{ item.project_prefix if item.project_prefix else '/api/' }}{{ item.api_url }}" target="_blank">{{ LN.interface.index.detail }}</a>
+                                    <a href="/{{ project.project_id +'/'+item.api_url }}" target="_blank">{{ LN.interface.index.detail }}</a>
                                     <a href="javascript:;" mockid="{{ item.mockid }}" class="oper_proxy" data-is-proxy="{{ item.is_proxy }}">
                                         {% if item.is_proxy==0 %}
                                             {{ LN.interface.index.openProxy }}
