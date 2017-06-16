@@ -18,7 +18,7 @@ export default [
     //接口设置路由
     [/^interface\/index/, 'home/interface/index'],
     [/^interface\/add$/, 'home/interface/add'],
-    [/^interface\/add\/(\d+)$/, 'home/interface/add?project_id=:1'],
+    [/^interface\/add\/(\w+)$/, 'home/interface/add?project_id=:1'],
     [/^interface\/update/, '/home/interface/update'],
     [/^interface\/delete/, '/home/interface/delete'],
     [/^interface\/edit/, '/home/interface/edit'],
