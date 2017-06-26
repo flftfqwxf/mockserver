@@ -73,7 +73,7 @@ export default class extends Base {
         //     }
         // });
         // excludeConfig.indexOf(data.project_prefix);
-        let projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
+        var projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
         //修改
         if (data.project_id) {
             if (!think.isEmpty(projectData) && data.project_id !== projectData.project_id.toString()) {
@@ -117,8 +117,9 @@ export default class extends Base {
             }
             data.project_id = crypto.randomBytes(10).toString('hex')
             let res = await this.model('project').add(data);
-            console.log(res)
-            if (res) {
+             projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
+            console.log('res:'+projectData.project_id)
+            if (projectData.project_id) {
                 // this.active = "/";
                 return this.setSuccess({
                     message: this.LN.project.controller.addSuccess,
