@@ -114,11 +114,15 @@ export default class extends Base {
                     // headers = item.api_header.split(':');
                     // this.http.header(prefix + headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
                 }
+                item.api_content = JSON.parse(item.api_content)
                 if (item.is_mockjs) {
-                    item.api_content = Mock.mock(JSON.parse(item.api_content));
+                    item.api_content = Mock.mock(item.api_content);
                 }
                 if (item.api_state_code) {
                     this.http.status(item.api_state_code)
+                }
+                if (item.api_type !== 'get') {
+                    item.api_content.desc = "当请求类型不为GET时，查看接口是通过表单提交来获取不同的请求类型的数据。因此，刷新时会提示再次提交表单，为正常现象。相反，如果在浏览器的地址栏中，回车刷新页面，则不会提交表单，此时访问的接口为GET请求，可能与预期不一致，因此不建议如此使用"
                 }
                 if (item.api_lazy_time && item.api_lazy_time > 0) {
                     setTimeout(() => {
@@ -127,6 +131,7 @@ export default class extends Base {
                 } else {
                     this.json(item.api_content);
                 }
+
             } else {
                 if (item.proxy_prefix) {
                     let api_url = item.api_url.split('?');

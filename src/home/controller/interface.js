@@ -211,7 +211,8 @@ export default class extends Base {
                         url: '/interface/index?project_id=' + data.project_id,
                         btnTxt: this.LN.interface.controller.returnList,
                         apiUrl: '/' + data.project_id + '/' + data.api_url,
-                        apiUrlTxt: this.LN.interface.controller.details
+                        apiUrlTxt: this.LN.interface.controller.details,
+                        api_type : data.api_type
                     })
                 } else {
                     return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
@@ -240,7 +241,9 @@ export default class extends Base {
                     url: '/interface/index?project_id=' + data.project_id,
                     btnTxt: this.LN.interface.controller.returnList,
                     apiUrl: '/' + data.project_id + '/' + data.api_url,
-                    apiUrlTxt: this.LN.interface.controller.details
+                    apiUrlTxt: this.LN.interface.controller.details,
+                    api_type : data.api_type
+
                 })
             } else {
                 return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})

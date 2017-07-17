@@ -17,11 +17,14 @@
 
                         {% endif %}
                         {% if apiUrl %}
-                            <a class="btn btn-default" href="{{ apiUrl }}">{{ apiUrlTxt }}</a>
+                            <a class="btn btn-default J_lnk" method="{{ api_type }}" href="{{ apiUrl }}">{{ apiUrlTxt }}</a>
                         {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <form action="" method="" id="locationForm" target="_blank">
+        <input type="hidden" name="_method" value=""/>
+    </form>
 {% endblock %}
