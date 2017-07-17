@@ -69,6 +69,8 @@ npm start
 ### Suppose:
 
 - Mock Server running at http://127.0.0.1:8033
+- Created a project，project id：8a15fbb94471050bb46f
+
 - Created a API :  /api/demo
 
 ### cross-domain:
@@ -76,7 +78,7 @@ npm start
 **With the jQuery AJAX methods:**
 
 ```
-    $.getJSON('http://127.0.0.1:8033/api/demo').done(function(){
+    $.getJSON('http://127.0.0.1:8033/8a15fbb94471050bb46f/api/demo').done(function(){
     
     
     }).fail(function(){
@@ -90,6 +92,8 @@ npm start
 ### Suppose:
 
 - Mock Server running at http://127.0.0.1:8033
+- Created a project，project id：8a15fbb94471050bb46f
+
 - Created a API :  /api/demo
 
 **nginx config:**
@@ -104,7 +108,13 @@ npm start
     
             # proxy to mock server
             location ^~ /api {
-                proxy_pass http://127.0.0.1:8033;
+                rewrite ^/api/(.*) '/8a15fbb94471050bb46f/api/$1' break;
+                 proxy_set_header Host $host;
+                 proxy_set_header X-Real-IP $remote_addr;
+                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                 proxy_set_header X-Forwarded-Proto $scheme;
+                 proxy_pass http://127.0.0.1:8033/;
+                 break;
             }
            
     
@@ -132,6 +142,7 @@ npm start
 - Your Web Server running at http://127.0.0.1:8034
 - Mock Server running at http://127.0.0.1:8033
 - Created a API :  /api/demo
+- Created a project，project id：8a15fbb94471050bb46f
 - Proxy URL value : http://www.site.com
 - Nginx server_name : www.site.com
 
@@ -155,8 +166,13 @@ npm start
                        # $is_proxy
                        # nginx proxy to mock-server
                        if ($is_proxy = 0 ){
-                           proxy_pass http://127.0.0.1:8033;
-                           break;
+                             rewrite ^/api/(.*) '/8a15fbb94471050bb46f/api/$1' break;
+                             proxy_set_header Host $host;
+                             proxy_set_header X-Real-IP $remote_addr;
+                             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                             proxy_set_header X-Forwarded-Proto $scheme;
+                             proxy_pass http://127.0.0.1:8033/;
+                             break;
                        }
                
                        #Avoid circular proxy

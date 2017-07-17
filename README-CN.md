@@ -64,6 +64,7 @@ npm start
 ### 假设:
 
 - mock-server启动地址： http://127.0.0.1:8033
+- 已创建一个项目，项目 id为：8a15fbb94471050bb46f
 - 已创建一个接口 :  /api/demo
 
 ### 跨域:
@@ -71,7 +72,7 @@ npm start
 **以 jQuery AJAX 为例:**
 
 ```
-    $.getJSON('http://127.0.0.1:8033/api/demo').done(function(){
+    $.getJSON('http://127.0.0.1:8033/8a15fbb94471050bb46f/api/demo').done(function(){
     
     
     }).fail(function(){
@@ -85,6 +86,7 @@ npm start
 ### 假设:
 - 你的WEB项目启动地址： http://127.0.0.1:8034
 - mock-server启动地址： http://127.0.0.1:8033
+- 已创建一个项目，项目 id为：8a15fbb94471050bb46f
 - 已创建一个接口 :  /api/demo
 
 ```
@@ -94,11 +96,16 @@ npm start
             root your/project/path;
             gzip_static on;
              # 将 /api下所有请求代理到 mock-server
-            location ^~ /api {
-               proxy_pass http://127.0.0.1:8033;
-               break;
-        
-            }
+             location ^~ /api {
+            
+                        rewrite ^/api/(.*) '/8a15fbb94471050bb46f/api/$1' break;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+                        proxy_pass http://127.0.0.1:8033/;
+                        break;
+                    }
             location  / {
                 proxy_pass http://127.0.0.1:8034;
             }
@@ -112,6 +119,7 @@ npm start
 ### 假设:
 - 你的WEB项目启动地址： http://127.0.0.1:8034
 - Mock-server 启动地址 ： http://127.0.0.1:8033
+- 已创建一个项目，项目 id为：8a15fbb94471050bb46f
 - 已创建一个接口 :  /api/demo
 - /api/demo 的二次代理地址为 : http://www.site.com
 - nginx server_name:www.site.com
@@ -136,12 +144,17 @@ npm start
                 # 如果不是从mock-server代理过来的请求
                 # 则将 /api目录下所有请求代理到 mock-server服务下
                 if ($is_proxy = 0 ){
-                    proxy_pass http://127.0.0.1:8033;
+                    rewrite ^/api/(.*) '/8a15fbb94471050bb46f/api/$1' break;
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+                    proxy_pass http://127.0.0.1:8033/;
                     break;
                 }
         
                 #当二次代理开启并且 二次代理域名与 [server_name]一样时，
-                #请求会选代理到mock-server,然后再代理到nginx，出现循环代理，因此
+                #请求会先代理到mock-server,然后再代理到nginx，出现循环代理，因此
                 #在此处判断如果已经是从mock-server代理过来的请求则不再次代理
                 if ($is_proxy = 1 ){
                     add_header http_is_mock_server_proxy "$my_header";
@@ -173,6 +186,12 @@ npm start
 
 
 ```
+2017-7-16
+
+修改项目ID为随机hash，并以此ID为接口路径的前缀，并删除原设置API前缀功能
+
+优化代码，及提供POST,PUT,DELETE等method type的接口预览功能
+
 2017-4-25
 
 添加国际化，中英文切换
