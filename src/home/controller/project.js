@@ -1,6 +1,7 @@
 'use strict';
 import Base from '../../common/controller/common';
 import excludeConfig from '../../common/config/exclude_config'
+import crypto from 'crypto'
 export default class extends Base {
     /**
      * index action
@@ -31,7 +32,7 @@ export default class extends Base {
     async  editAction() {
         let data = this.get();
         if (data.project_id) {
-            let res = await this.model('project').where('project_id=' + data.project_id).select();
+            let res = await this.model('project').where({project_id: data.project_id}).select();
             if (res.length === 1) {
                 this.assign(res[0])
             } else {
@@ -46,7 +47,7 @@ export default class extends Base {
     async deleteAction() {
         let get = this.get();
         if (get.project_id) {
-            let res = await this.model('project').where('project_id=' + get.project_id).delete();
+            let res = await this.model('project').where({project_id: get.project_id}).delete();
             if (res) {
                 return this.setSuccess({message: this.LN.project.controller.deleteSuccess, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
             }
@@ -72,7 +73,7 @@ export default class extends Base {
         //     }
         // });
         // excludeConfig.indexOf(data.project_prefix);
-        let projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
+        var projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
         //修改
         if (data.project_id) {
             if (!think.isEmpty(projectData) && data.project_id !== projectData.project_id.toString()) {
@@ -84,7 +85,7 @@ export default class extends Base {
                     apiUrlTxt: this.LN.project.controller.returnProjectList
                 })
             }
-            let res = await this.model('project').where('project_id=' + data.project_id).select();
+            let res = await this.model('project').where({project_id: data.project_id}).select();
             //行为记录˙
             if (res) {
                 await this.model('project').update(data);
@@ -114,8 +115,11 @@ export default class extends Base {
                     apiUrlTxt: this.LN.project.controller.returnProjectList
                 })
             }
+            data.project_id = crypto.randomBytes(10).toString('hex')
             let res = await this.model('project').add(data);
-            if (res) {
+             projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
+            console.log('res:'+projectData.project_id)
+            if (projectData.project_id) {
                 // this.active = "/";
                 return this.setSuccess({
                     message: this.LN.project.controller.addSuccess,

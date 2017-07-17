@@ -179,10 +179,10 @@ export default class extends Base {
         } else {
             data.api_url_regexp = null
         }
-        let where = 'api_url="' + data.api_url + '"', check_reg = false;
+        let where = {api_url: data.api_url, api_type: data.api_type}, check_reg = false;
         let urlData = await this.model('mockserver').where(where).find();
         if (think.isEmpty(urlData) && data.api_url_regexp) {
-            where = ' api_url_regexp="' + data.api_url_regexp + '"';
+            where = {api_url_regexp: data.api_url_regexp, api_type: data.api_type};
             urlData = await this.model('mockserver').where(where).find();
             check_reg = true;
         }
@@ -210,8 +210,9 @@ export default class extends Base {
                         message: this.LN.interface.controller.editSuccess,
                         url: '/interface/index?project_id=' + data.project_id,
                         btnTxt: this.LN.interface.controller.returnList,
-                        apiUrl: project_prefix + data.api_url,
-                        apiUrlTxt: this.LN.interface.controller.details
+                        apiUrl: '/' + data.project_id + '/' + data.api_url,
+                        apiUrlTxt: this.LN.interface.controller.details,
+                        api_type : data.api_type
                     })
                 } else {
                     return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
@@ -239,8 +240,10 @@ export default class extends Base {
                     message: this.LN.interface.controller.addSuccess,
                     url: '/interface/index?project_id=' + data.project_id,
                     btnTxt: this.LN.interface.controller.returnList,
-                    apiUrl: project_prefix + data.api_url,
-                    apiUrlTxt: this.LN.interface.controller.details
+                    apiUrl: '/' + data.project_id + '/' + data.api_url,
+                    apiUrlTxt: this.LN.interface.controller.details,
+                    api_type : data.api_type
+
                 })
             } else {
                 return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
