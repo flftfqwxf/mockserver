@@ -3,53 +3,38 @@ import request from "request";
 import Base from '../../common/controller/common';
 import Mock from 'mockjs';
 import _ from 'lodash';
+// import index from '../model/index'
 export default class extends Base {
     /**
      * index action
      * @return {Promise} []
      */
     async indexAction() {
+        //允许跨域访问接口
+        this.http.header('Access-Control-Allow-Origin', '*');
+        let _this = this;
         this.project_id = "";
         this.prefix = "";
         this.LN = this.assign('LN');
-        let _this = this;
-        //允许跨域访问接口
-        this.http.header('Access-Control-Allow-Origin', '*');
         //获取全局配置
-        this.systemConfig = await this.model('system').limit(1).find();
+        this.systemConfig = await this.model('index').getSystemConfig();
         //auto render template file index_index.html
         // console.log(this.http.url)
         this.prefix = this.http.url.match(/\/[\w_\d]+\//);
         if (this.prefix.length > 0) {
             this.prefix = this.prefix[0];
             this.project_id = this.prefix.replace(/\//ig, '');
+        } else {
+            return this.fail({message: 'Url format is error'});
         }
-        let url = this.http.url.replace(this.prefix, '');
+        this.url = this.http.url.replace(this.prefix, '');
         let api_type = this.post('_method') || this.method()
         //先全路径匹配
-        let data = await this.model('mockserver').where({api_url: url, api_type: api_type, "mockserver.project_id": this.project_id})
-            .alias('mockserver')
-            .join([{
-                table: 'project',
-                as: 'project',
-                on: ['`mockserver`.`project_id`', '`project`.`project_id`']
-            }])
-            .find();
-        let tempUrl = url;
-        if (tempUrl.split('?').length == 2) {
-            tempUrl = tempUrl.split('?')[0];
-        }
+        let data = await this.model('index').getApiByExactMatch(this.url, api_type, this.project_id)
         //如果查不到相应接口,则将 URL【?】后去掉后再查询
         if (think.isEmpty(data)) {
             // let firstObj = this.urlParmsTransform(url);
-            const tempdata = await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??' and mockserver.project_id='" + this.project_id + "' and api_type='" + api_type + "'")
-                .alias('mockserver')
-                .join([{
-                    table: 'project',
-                    as: 'project',
-                    on: ['`mockserver`.`project_id`', '`project`.`project_id`']
-                }])
-                .select();
+            const tempdata = await this.model('index').getApiByNotExactMatch(this.url, api_type, this.project_id)
             //当匹配方式为只匹配【?】后面参数时
             if (tempdata.length == 1 && tempdata[0].exact_match === 0) {
                 data = tempdata[0];
@@ -70,22 +55,8 @@ export default class extends Base {
          */
         if (think.isEmpty(data)) {
             // let firstObj = this.urlParmsTransform(url);
-            const regList = await this.model('mockserver').where({"mockserver.project_id": this.project_id, api_type: api_type, api_url_regexp: ['!=', null]})
-                .alias('mockserver')
-                .join([{
-                    table: 'project',
-                    as: 'project',
-                    on: ['`mockserver`.`project_id`', '`project`.`project_id`']
-                }])
-                // .field('mockid')
-                .select();
-            let reg_data = regList.filter((item) => {
-                let m = new RegExp(decodeURI(item.api_url_regexp), "i").exec(url)
-                if (m) {
-                    return true;
-                }
-            })
-            // console.log(reg_data.length)
+            const reg_data = await this.model('index').getApiByRESTfulFormat(this.url, api_type, this.project_id)
+            // console.log(reg_data)
             if (reg_data.length === 1) {
                 // console.log(reg_data)
                 data = reg_data[0]
@@ -95,9 +66,6 @@ export default class extends Base {
         }
         if (!think.isEmpty(data)) {
             var item = this.item = data;
-            // this.item = data[0];
-            let headers;
-            // console.log('is_proxy:', item)
             if (item.is_proxy === 0) {
                 let api_header;
                 if (item.api_header) {
@@ -109,10 +77,9 @@ export default class extends Base {
                     for (var header in api_header) {
                         // console.log(header, api_header[header])
                         let val = api_header[header];
-                        this.http.header(header, encodeURIComponent(val));
+                        // this.http.header(header, encodeURIComponent(val));
+                        this.http.header(header, encodeURI(val));
                     }
-                    // headers = item.api_header.split(':');
-                    // this.http.header(prefix + headers[0], headers[1].replace(/\r\n/ig, '').replace(/\n/ig, ''));
                 }
                 item.api_content = JSON.parse(item.api_content)
                 if (item.is_mockjs) {
@@ -131,20 +98,17 @@ export default class extends Base {
                 } else {
                     this.json(item.api_content);
                 }
-
             } else {
                 if (item.proxy_prefix) {
-                    let api_url = item.api_url.split('?');
-                    let request_url = url.split('?');
                     /**
                      * 当模式为只匹配【?】前部分并开启了二次代理时，直接请求用户发送的URL，
                      * 原因是：当能匹配到数据时，说明用户发送的URL与数据库的数据的【？】前部分匹配，而【?】后的参数不一定相同，如：
                      * 数据库URL为：/a/b?a=1
                      * 用户请求URL为:/a/b?a=2
-                     * 此时开启了二次代理，直接请求用户请数的URL，才可获取到用户动态参数的的数据
+                     * 此时开启了二次代理，直接请求用户请求的URL，才可获取到用户动态参数的的数据
                      */
                     if (item.exact_match === 0) {
-                        item.api_url = url;
+                        item.api_url = _this.url;
                     }
                     return _this.getProxy(item.proxy_prefix, item.api_url, item.api_type)
                     // console.log(fn)
@@ -163,21 +127,6 @@ export default class extends Base {
         // return this.display();
     }
 
-    urlParmsTransform(url) {
-        let tempUrl = url.split('?');
-        let parm, parmstr = [], tempObj = {};
-        if (tempUrl.length == 2) {
-            let parmsList = tempUrl[1].split('&');
-            parmsList.forEach((item) => {
-                parm = item.split('=');
-                if (parm.length == 2) {
-                    tempObj[parm[0]] = parm[1];
-                }
-            })
-        }
-        return tempObj;
-    }
-
     async  getProxyFromProject(methodType, systemProxyUrl) {
         const proxy_url = await this.checkProjectProxy(systemProxyUrl);
         if (proxy_url) {
@@ -193,7 +142,11 @@ export default class extends Base {
      * @returns {*}
      */
     async checkProjectProxy(systemProxyUrl) {
+        let current_project = await this.model('project').where({"project_id": this.project_id}).find()
         let proxy_prefix = this.cookie('proxy_prefix') || this.http.headers.proxy_prefix;
+        if (!think.isEmpty(current_project)) {
+            proxy_prefix = current_project.proxy_url
+        }
         if (proxy_prefix) {
             return proxy_prefix;
         }
@@ -267,6 +220,7 @@ export default class extends Base {
         // }
         // console.log(url)
         // _this.fail({message: ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'});
+        console.log(send)
         fn(send).then(function(content) {
             // console.log(content.body)
             try {

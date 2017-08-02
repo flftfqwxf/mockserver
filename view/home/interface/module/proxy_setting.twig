@@ -55,7 +55,7 @@
                             {% endif %}
                             {{ LN.interface.add.proxy.openProxyTipsPrefix }}
                             [ <span style="color: red;">
-                            {{ proxy_prefix }} {{ project_prefix if project_prefix else '/api/' }}{{ api_url }}</span> ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}
+                            {{ proxy_prefix }} {{ project_prefix if project_prefix else '' }}{{ api_url }}</span> ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}
                         {% else %}
                             {{ LN.interface.add.proxy.closeProxyTips }}
                         {% endif %}
