@@ -1,6 +1,5 @@
 'use strict';
 import Base from '../../common/controller/common';
-import excludeConfig from '../../common/config/exclude_config'
 import crypto from 'crypto'
 export default class extends Base {
     /**

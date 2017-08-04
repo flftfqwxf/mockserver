@@ -220,7 +220,7 @@ export default class extends Base {
         // }
         // console.log(url)
         // _this.fail({message: ':获取数据错误,可能是接口不存在,或参数错误,错误信息:'});
-        console.log(send)
+        // console.log(send)
         fn(send).then(function(content) {
             // console.log(content.body)
             try {
