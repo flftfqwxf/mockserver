@@ -41,7 +41,7 @@ export default class extends think.model.base {
         if (tempUrl.split('?').length == 2) {
             tempUrl = tempUrl.split('?')[0];
         }
-        return await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??' and mockserver.project_id='" + project_id + "' and api_type='" + api_type + "'")
+        return await this.model('mockserver').where("api_url regexp '^" + tempUrl + "\\\\??$' and mockserver.project_id='" + project_id + "' and api_type='" + api_type + "'")
             .alias('mockserver')
             .join([{
                 table: 'project',

@@ -37,23 +37,31 @@ var getHttp = function(options) {
 }
 describe('unit test', function() {
     it('test controller', function(done) {
-        getHttp().then(function(http) {
+        getHttp({
+            module: 'home',
+            controller: 'project',
+            action: 'add'
+        }).then(function(http) {
             // beforeEach(function() {
             //     console.log('beforeEach');
             // });
             var instance = think.controller('project', http, 'home');
             // console.log(instance.indexAction())
             instance.__before().then(() => {
-               return instance.addAction().then((data) => {
+                return instance.addAction().then((data) => {
                     console.log(data)
                     done()
                 }).catch(error => {
-                    console.log(error)
-                    done()
+                    if (think.isPrevent(error)) {
+                        done()
+                        return;
+                    }
                 })
             }).catch(error => {
-                console.log(error)
-                done()
+                if (think.isPrevent(error)) {
+                    done()
+                    return;
+                }
             })
             /**
              * instance.xxx().then(function(){

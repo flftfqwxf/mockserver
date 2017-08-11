@@ -1,7 +1,7 @@
 'use strict';
 import Base from '../../common/controller/common';
 import pathToRegexp from 'path-to-regexp'
-let project_prefix = '/api/';
+let project_prefix = '/';
 export default class extends Base {
     /**
      * index action

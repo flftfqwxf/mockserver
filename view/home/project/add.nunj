@@ -38,7 +38,7 @@
                                     {{ LN.project.add.projectInterfacePrefix }}
                                 </label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="project_prefix" value="{{ project_prefix }}" class="form-control validate[custom[project_prefix]]"
+                                    <input type="text" name="project_prefix" value="{{ project_prefix if project_prefix else '/' }}" class="form-control validate[custom[project_prefix]]"
                                            placeholder=""/>
                                     <p class="help-block">format: /api/,default："/"<br>
                                     </p>

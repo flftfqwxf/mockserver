@@ -7,17 +7,18 @@ export default class extends Base {
      * @return {Promise} []
      */
     async indexAction() {
-        let res = await this.model('project').select();
+        let res = await this.model('project').getAllProjects();
         this.assign({
             title: this.LN.project.controller.title,
             list: res
         })
-        //auto render template file index_index.html
         return this.display();
     }
 
+    /**
+     * 添加项目
+     */
     addAction() {
-        //auto render template file index_index.html
         this.assign({
             is_proxy: 0
         })
@@ -31,9 +32,9 @@ export default class extends Base {
     async  editAction() {
         let data = this.get();
         if (data.project_id) {
-            let res = await this.model('project').where({project_id: data.project_id}).select();
-            if (res.length === 1) {
-                this.assign(res[0])
+            let res = await this.model('project').getProjectById(data.project_id);
+            if (!think.isEmpty(res)) {
+                this.assign(res)
             } else {
                 return this.setSuccess({message: this.LN.project.controller.projectIsNotExist, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
             }
@@ -46,7 +47,7 @@ export default class extends Base {
     async deleteAction() {
         let get = this.get();
         if (get.project_id) {
-            let res = await this.model('project').where({project_id: get.project_id}).delete();
+            let res = await this.model('project').deleteProjectById(get.project_id);
             if (res) {
                 return this.setSuccess({message: this.LN.project.controller.deleteSuccess, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
             }
@@ -66,13 +67,7 @@ export default class extends Base {
         if (think.isEmpty(data)) {
             return this.setSuccess({message: this.LN.project.controller.dataIsEmpty, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
         }
-        // excludeConfig.some((item) => {
-        //     if (data.project_prefix.indexOf(item) === 0) {
-        //         return this.setSuccess({message:'【' + item +url: '】'this.LN.project.controller.title,btnTxt: '/'});
-        //     }
-        // });
-        // excludeConfig.indexOf(data.project_prefix);
-        var projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
+        var projectData = await this.model('project').getProjectByName(data.project_name)
         //修改
         if (data.project_id) {
             if (!think.isEmpty(projectData) && data.project_id !== projectData.project_id.toString()) {
@@ -116,8 +111,9 @@ export default class extends Base {
             }
             data.project_id = crypto.randomBytes(10).toString('hex')
             let res = await this.model('project').add(data);
-             projectData = await this.model('project').where('project_name="' + data.project_name + '"').find()
-            console.log('res:'+projectData.project_id)
+            //此处必须在添加后重新查找一次，以判断是否添加成功，原因为project表没有主键id，在添加成功后，无法判断是否添加成功
+            projectData = await this.model('project').getProjectByName(data.project_name)
+            console.log('res:' + projectData.project_id)
             if (projectData.project_id) {
                 // this.active = "/";
                 return this.setSuccess({
