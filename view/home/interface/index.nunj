@@ -74,7 +74,7 @@
                                     {% set cur_prefix=systemData.proxy_url %}
 
                                 {% endif %}
-                                <td><a style="color: #ff7e1d;" class="J_lnk" method="{{ item.api_type }}" href="/{{ project.project_id +'/'+item.api_url }}">{{ item.api_url }}</a>
+                                <td><a style="color: #ff7e1d;" class="J_lnk" method="{{ item.api_type }}" href="/{{ item.project_id +'/'+item.api_url }}">{{ item.api_url }}</a>
                                     <p style="display: {{ 'block' if item.is_proxy ==1  else 'none' }}"
                                        class="J_proxy_all_tips J_proxy_tips_{{ item.mockid }}">{{ LN.interface.index.openProxyTipsPrefix }}[
                                         <span style="color: red;">

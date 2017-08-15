@@ -160,7 +160,7 @@ div.prompt-contents td, div.prompt-contents th{ padding: 8px 0 }
 div.prompt-contents td input[type=text]{ width: 100% }
 body, html{ font-family: arial, sans-serif; font-size: 11pt; width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden }
 span.header-light{ color: gray }
-#header{ width: 100%; height: 40px; background: #4d4d4d url(img/header_background.png); box-shadow: 0 0 4px 2px rgba(0, 0, 0, .4); color: #fff }
+#header{ width: 100%; height: 40px; background: #4d4d4d; box-shadow: 0 0 4px 2px rgba(0, 0, 0, .4); color: #fff }
 #logo{ height: 32px; margin: 4px 10px; border: none }
 #name-menu{ position: absolute; left: 220px; top: 7px }
 #name-menu div{ display: inline-block }
