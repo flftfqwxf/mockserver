@@ -28,7 +28,7 @@ export default class extends Base {
             return this.fail({message: 'Url format is error'});
         }
         this.url = this.http.url.replace(this.prefix, '');
-        let api_type = this.post('_method') | this.method()
+        let api_type = this.post('_method') || this.method()
         //先全路径匹配
         let data = await this.model('index').getApiByExactMatch(this.url, api_type, this.project_id)
         //如果查不到相应接口,则将 URL【?】后去掉后再查询
