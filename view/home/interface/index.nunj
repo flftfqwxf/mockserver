@@ -84,7 +84,7 @@
                                 <td><a class="deleteLnk" href="/interface/delete?mockid={{ item.mockid }}">{{ LN.interface.index.delete }}</a>
                                     <a href="/interface/edit?mockid={{ item.mockid }}">{{ LN.interface.index.edit }}</a>
                                     <a href="/interface/add?iscopy=1&mockid={{ item.mockid }}">{{ LN.interface.index.clone }}</a>
-                                    <a method="{{ item.api_type }}" class="J_lnk" href="/{{ project.project_id +'/'+item.api_url }}">{{ LN.interface.index.detail }}</a>
+                                    <a method="{{ item.api_type }}" class="J_lnk" href="/{{ item.project_id +'/'+item.api_url }}">{{ LN.interface.index.detail }}</a>
                                     <a href="javascript:;" mockid="{{ item.mockid }}" class="oper_proxy" data-is-proxy="{{ item.is_proxy }}">
                                         {% if item.is_proxy==0 %}
                                             {{ LN.interface.index.openProxy }}
