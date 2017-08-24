@@ -83,6 +83,43 @@ export default class extends Base {
             //行为记录˙
             if (res) {
                 await this.model('project').update(data);
+                // if (data.swagger_url) {
+                //     const swagger_json = await this.getProxy(data.swagger_url, 'get')
+                //     if (typeof swagger_json === 'object') {
+                //         for (var path in swagger_json.paths) {
+                //             let apiArray = swagger_json.paths[path]
+                //             for (var method in apiArray) {
+                //                 let api = apiArray[method];
+                //                 let postData = {
+                //                     "project_id": data.project_id,
+                //                     "api_name": api.tags + '-' + api.summary,
+                //                     "api_type": method,
+                //                     "api_url": path,
+                //                     "project_prefix": "/",
+                //                     "api_querys_desc": "{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}",
+                //                     "api_req_header_desc": "{\r\n  \"headere1\": \"参数说明\",\r\n  \"header2\": \"参数说明\"\r\n}",
+                //                     "api_req_header": "{\r\n  \"header1\": \"参数值\",\r\n  \"header2\": \"参数值\"\r\n}",
+                //                     "exact_match": "0",
+                //                     "api_parms_desc": "{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}",
+                //                     "api_parms": "{\r\n  \"username\": \"参数值\",\r\n  \"password\": \"参数值\"\r\n}",
+                //                     "api_content_desc": "{\r\n  \"username\": \"参数值\",\r\n  \"password\": \"参数值\"\r\n}",
+                //                     "api_content": "{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"stringsss\": \"@string(5)\",\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  }\r\n}",
+                //                     "is_mockjs": "0",
+                //                     "api_state_code": "200",
+                //                     "api_lazy_time": "0",
+                //                     "api_header_desc": "{\r\n  \"headere1\": \"参数说明\",\r\n  \"header2\": \"参数说明\"\r\n}",
+                //                     "api_header": "{\r\n  \"headere1\": \"参数值\",\r\n  \"header2\": \"参数值\"\r\n}",
+                //                     "proxy_prefix": "",
+                //                     "is_proxy": "0"
+                //                 }
+                //                 for (var item in postData) {
+                //                     this.http.post(item, postData[item])
+                //                 }
+                //                 await this.action('home/interface','update')
+                //             }
+                //         }
+                //     }
+                // }
                 return this.setSuccess({
                     message: this.LN.project.controller.editSuccess,
                     url: this.http.headers.referer,

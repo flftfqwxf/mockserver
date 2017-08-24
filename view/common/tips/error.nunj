@@ -1,0 +1,23 @@
+{% extends '../../module/main.nunj' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="item">
+                <h4>{{ LN.info }}
+                </h4>
+                <div class="item-main">
+                    <div class="emptylist-placeholder">
+                        <p class="base-fontColor">
+                            {% for key,val in errors %}
+
+                                <b>{{ key }}</b>：{{ val }}<br>
+                            {% endfor %}
+                        </p>
+                        <a class="btn btn-default" href="javascript:history.go(-1)">{{ LN.goBack }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

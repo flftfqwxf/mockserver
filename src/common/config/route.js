@@ -9,6 +9,8 @@ export default [
     [/^project\/update$/, 'home/project/update'],
     [/^project\/edit/, 'home/project/edit'],
     [/^project\/delete/, 'home/project/delete'],
+    //swagger 路由
+    [/^swagger\/index/, 'home/swagger/index'],
     //系统设置路由
     [/^system\/init/, 'home/system/init'],
     [/^system\/add/, 'home/system/add'],

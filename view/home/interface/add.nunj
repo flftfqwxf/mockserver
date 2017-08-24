@@ -26,9 +26,9 @@
                         <li role="presentation">
                             <a href="#proxy_set" aria-controls="proxy_set" role="tab" data-toggle="tab">{{ LN.interface.add.proxyTab }}</a>
                         </li>
-                        {#<li role="presentation">#}
-                        {#<a href="#test_set" aria-controls="test_set" role="tab" data-toggle="tab">{{ LN.interface.add.testTab }}</a>#}
-                        {#</li>#}
+                        <li role="presentation">
+                        <a href="#swagger_set" aria-controls="swagger_set" role="tab" data-toggle="tab">swagger</a>
+                        </li>
                     </ul>
                     <form class="form-horizontal" id="interfaceForm" method="post" action="/interface/update">
                         <div class="tab-content" style="min-height: 600px">
@@ -36,7 +36,7 @@
                             {% include './module/request_setting.twig' %}
                             {% include './module/response_setting.twig' %}
                             {% include './module/proxy_setting.twig' %}
-                            {#{% include './module/test_setting.twig' %}#}
+                            {% include './module/swagger.twig' %}
                             <div class="form-group-dashed" style="padding-bottom: 20px">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"></label>

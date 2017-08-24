@@ -28,8 +28,8 @@
                         <thead>
                         <tr>
                             <th>{{ LN.project.index.projectName }}</th>
-                            {#<th>{{ LN.project.index.projectInterfacePrefix }}</th>#}
                             <th>{{ LN.project.index.proxyPrefix }}</th>
+                            <th>{{ LN.project.index.swaggerUrl }}</th>
                             <th>{{ LN.project.index.actions }}</th>
                         </tr>
                         </thead>
@@ -39,6 +39,7 @@
                                 <td><a  href="/interface/index?project_id={{ item.project_id }}">{{ item.project_name }}</a></td>
                                 {#<td>{{ item.project_prefix if item.project_prefix else '/api/(default)' }}</td>#}
                                 <td>{{ item.proxy_url }}</td>
+                                <td><a href="{{ item.swagger_url }}" style="color: #ff7e1d;" target="_blank">{{ item.swagger_url }}</a></td>
                                 <td>
                                     <a class="J_deleteLnk" href="/project/delete?project_id={{ item.project_id }}">{{ LN.project.index.delete }}</a>
                                     <a href="/project/edit?project_id={{ item.project_id }}">{{ LN.project.index.edit }}</a>

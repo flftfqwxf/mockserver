@@ -27,6 +27,16 @@
             <a href="#nav4" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
                 <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
                 <i class="gm-icon gm-peer-plan"></i>
+                <span>{{ LN.sidebar.swaggerAdmin }}</span>
+            </a>
+            <ul class="collapse in" id="nav3">
+                <li class="{{ curr_path|check_route('/swagger/index') }}"><a href="/swagger/index">{{ LN.sidebar.swagger }}</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#nav4" data-toggle="collapse" data-parent="#nav" aria-expanded="true">
+                <!-- 此处的 aria-expanded="true" 和下面 ul 上面的in需要共存 -->
+                <i class="gm-icon gm-peer-plan"></i>
                 <span>{{ LN.sidebar.systemAdmin }}</span>
             </a>
             <ul class="collapse in" id="nav3">
