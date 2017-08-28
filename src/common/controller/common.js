@@ -5,6 +5,7 @@ import db from '../config/db';
 import request from "request";
 import _ from 'lodash';
 import mixin from 'mixin';
+import pathToRegexp from 'path-to-regexp'
 export default class Base extends mixin(think.logic.base, think.controller.base) {
     /**
      * load language config
@@ -97,7 +98,8 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
         };
         let headersBlacklist = [
             'host',
-            'accept-encoding'
+            'accept-encoding',
+            'content-type'//！！！要注意，如果不屏蔽content-type，将会影响当前请求的显示，比如，url参数类型为 json，如果不屏蔽，则页面只会以json格式输出
         ]
         let headersObj = {};
         let headers = this.http.headers;
@@ -114,7 +116,7 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
             } catch (e) {
                 return Promise.reject(content.body);
             }
-            //todo:将返回的HEADER返回给客户端,有BUG,
+            //todo:将返回的HEADER返回给客户端,有BUG
             //有些HEADER信息返回后会无法返回数据
             /**
              * todo:将返回的HEADER返回给客户端.
@@ -127,10 +129,58 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
                 _this.header(item, content.headers[item])
             }
             content.body.proxyDataSource = url
-            return content.body;
+            return Promise.resolve(content.body);
         }).catch(function(err) {
             console.log(err)
             return Promise.reject(err);
         });
+    }
+
+    /**
+     * 如果输入的api地址是 RESTful格式，则转换为正则，并设置验证状态
+     * @param data
+     * @returns {Promise.<{data: *, check_reg: boolean, urlData: *}>}
+     */
+    async checkApiIsExit(data) {
+        let keys = [];
+        let reg = pathToRegexp(data.api_url, keys).toString().substring(1);
+        reg = encodeURI(reg.substring(0, reg.length - 2))
+        //当路径中存在类似 /:id/:use 等动态参数时才保存生成的正则表达式
+        if (keys.length > 0) {
+            data.api_url_regexp = reg
+        } else {
+            data.api_url_regexp = null
+        }
+        let where = {api_url: data.api_url, api_type: data.api_type}, check_reg = false;
+        let urlData = await this.model('mockserver').where(where).find();
+        if (think.isEmpty(urlData) && data.api_url_regexp) {
+            where = {api_url_regexp: data.api_url_regexp, api_type: data.api_type};
+            urlData = await this.model('mockserver').where(where).find();
+            check_reg = true;
+        }
+        return {data, check_reg, urlData}
+    }
+
+    /**
+     * 导入api接口
+     * @param importData
+     * @returns {Promise.<*>}
+     */
+    async importApi(importData) {
+        let {data, check_reg, urlData} = await this.checkApiIsExit(importData)
+        if (!think.isEmpty(urlData)) {
+            if (check_reg) {
+                return this.LN.interface.controller.addRESTfullApiIsExist + data.api_url + '<br>' + urlData.api_url
+            } else {
+                return this.LN.interface.controller.addApiIsExist + data.api_url
+            }
+        }
+        let res = await this.model('mockserver').add(data);
+        if (res) {
+            // this.active = "/";
+            return data.api_url + this.LN.interface.controller.addSuccess
+        } else {
+            return data.api_url + this.LN.interface.controller.actionError
+        }
     }
 }

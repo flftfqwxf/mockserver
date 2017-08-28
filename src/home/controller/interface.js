@@ -150,108 +150,97 @@ export default class extends Base {
 
     async updateAction() {
         // console.log(this.post())
-        let data = this.post();
-        if (think.isEmpty(data)) {
-            return this.setSuccess({message: this.LN.interface.controller.dataIsEmpty, goBack: true})
-        }
-        let errorMsg = []
-        if (think.isEmpty(data.project_id)) {
-            errorMsg.push('project_id is empty')
-        }
-        if (think.isEmpty(data.api_name)) {
-            errorMsg.push('api_name is empty')
-        }
-        if (think.isEmpty(data.api_url)) {
-            errorMsg.push('api_url is empty')
-        }
-        if (think.isEmpty(data.api_content)) {
-            errorMsg.push('api_content is empty')
-        }
-        if (errorMsg.length > 0) {
-            return this.setSuccess({message: errorMsg.join('\r\n'), goBack: true})
-        }
-        let keys = [];
-        let reg = pathToRegexp(data.api_url, keys).toString().substring(1);
-        reg = encodeURI(reg.substring(0, reg.length - 2))
-        //当路径中存在类似 /:id/:use 等动态参数时才保存生成的正则表达式
-        if (keys.length > 0) {
-            data.api_url_regexp = reg
-        } else {
-            data.api_url_regexp = null
-        }
-        let where = {api_url: data.api_url, api_type: data.api_type}, check_reg = false;
-        let urlData = await this.model('mockserver').where(where).find();
-        if (think.isEmpty(urlData) && data.api_url_regexp) {
-            where = {api_url_regexp: data.api_url_regexp, api_type: data.api_type};
-            urlData = await this.model('mockserver').where(where).find();
-            check_reg = true;
-        }
+        let {data, check_reg, urlData} = await this.checkApiIsExit(this.post())
         project_prefix = data.project_prefix;
         if (data.mockid) {
-            if (!think.isEmpty(urlData) && urlData.mockid.toString() !== data.mockid) {
-                if (check_reg) {
-                    return this.setSuccess({
-                        message: this.LN.interface.controller.RESTfulApiIsExist + data.api_url + '\r\n' + urlData.api_url,
-                        url: this.http.headers.referer,
-                        btnTxt: this.LN.interface.controller.editAgain
-                    })
-                } else {
-                    return this.setSuccess({
-                        message: this.LN.interface.controller.apiIsExist + data.api_url,
-                        url: this.http.headers.referer,
-                        btnTxt: this.LN.interface.controller.editAgain
-                    })
-                }
-            } else {
-                let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
-                if (res) {
-                    await this.model('mockserver').update(data);
-                    return this.setSuccess({
-                        message: this.LN.interface.controller.editSuccess,
-                        url: '/interface/index?project_id=' + data.project_id,
-                        btnTxt: this.LN.interface.controller.returnList,
-                        apiUrl: '/' + data.project_id + '/' + data.api_url,
-                        apiUrlTxt: this.LN.interface.controller.details,
-                        api_type : data.api_type
-                    })
-                } else {
-                    return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
-                }
-            }
-            return this.display('common/tips/sucess.nunj');
+            await  this.addApi(data, urlData, check_reg)
         } else {
-            if (!think.isEmpty(urlData)) {
-                if (check_reg) {
-                    return this.setSuccess({
-                        message: this.LN.interface.controller.addRESTfullApiIsExist + data.api_url + '<br>' + urlData.api_url,
-                        goBack: true
-                    })
-                } else {
-                    return this.setSuccess({
-                        message: this.LN.interface.controller.addApiIsExist + data.api_url,
-                        goBack: true
-                    })
-                }
+            await  this.updateApi(data, urlData, check_reg)
+        }
+    }
+
+    /**
+     * 添加API
+     * @param data
+     * @param urlData
+     * @param isRESTFulPath
+     * @returns {Promise.<*>}
+     */
+    async updateApi(data, urlData, isRESTFulPath) {
+        //如果
+        if (!think.isEmpty(urlData) && urlData.mockid.toString() !== data.mockid) {
+            if (isRESTFulPath) {
+                return this.setSuccess({
+                    message: this.LN.interface.controller.RESTfulApiIsExist + data.api_url + '\r\n' + urlData.api_url,
+                    url: this.http.headers.referer,
+                    btnTxt: this.LN.interface.controller.editAgain
+                })
+            } else {
+                return this.setSuccess({
+                    message: this.LN.interface.controller.apiIsExist + data.api_url,
+                    url: this.http.headers.referer,
+                    btnTxt: this.LN.interface.controller.editAgain
+                })
             }
-            let res = await this.model('mockserver').add(data);
+        } else {
+            let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
             if (res) {
-                // this.active = "/";
-                this.setSuccess({
-                    message: this.LN.interface.controller.addSuccess,
+                await this.model('mockserver').update(data);
+                return this.setSuccess({
+                    message: this.LN.interface.controller.editSuccess,
                     url: '/interface/index?project_id=' + data.project_id,
                     btnTxt: this.LN.interface.controller.returnList,
                     apiUrl: '/' + data.project_id + '/' + data.api_url,
                     apiUrlTxt: this.LN.interface.controller.details,
-                    api_type : data.api_type
-
+                    api_type: data.api_type
                 })
             } else {
                 return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
             }
-            // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         }
-        // return this.display();
+        return this.display('common/tips/sucess.nunj');
     }
+
+
+
+    /**
+     * 修改api
+     * @param data
+     * @param urlData
+     * @param isRESTFulPath
+     * @returns {Promise.<*>}
+     */
+    async addApi(data, urlData, isRESTFulPath) {
+        if (!think.isEmpty(urlData)) {
+            if (isRESTFulPath) {
+                return this.setSuccess({
+                    message: this.LN.interface.controller.addRESTfullApiIsExist + data.api_url + '<br>' + urlData.api_url,
+                    goBack: true
+                })
+            } else {
+                return this.setSuccess({
+                    message: this.LN.interface.controller.addApiIsExist + data.api_url,
+                    goBack: true
+                })
+            }
+        }
+        let res = await this.model('mockserver').add(data);
+        if (res) {
+            // this.active = "/";
+            this.setSuccess({
+                message: this.LN.interface.controller.addSuccess,
+                url: '/interface/index?project_id=' + data.project_id,
+                btnTxt: this.LN.interface.controller.returnList,
+                apiUrl: '/' + data.project_id + '/' + data.api_url,
+                apiUrlTxt: this.LN.interface.controller.details,
+                api_type: data.api_type
+            })
+        } else {
+            return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
+        }
+    }
+
+
 
     async setproxyAction() {
         const mockid = this.get('mockid');

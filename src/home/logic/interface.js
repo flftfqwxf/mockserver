@@ -5,7 +5,7 @@ import Base from '../../common/controller/common';
  * @param  {} []
  * @return {}     []
  */
-export default class extends think.logic.base {
+export default class extends Base {
     /**
      * index action logic
      * @return {} []
@@ -13,12 +13,13 @@ export default class extends think.logic.base {
     updateAction() {
         this.allowMethods = 'post'
         let rules = {
-            project_name: 'required',
-            proxy_url: "url",
-            swagger_url: 'url'
+            project_id: 'required',
+            api_name: "required",
+            api_url: 'required',
+            api_content: 'required',
         }
         if (!this.validate(rules)) {
-           // return this.setErrorMessage(this.errors())
+            return this.setErrorMessage(this.errors())
         }
     }
 

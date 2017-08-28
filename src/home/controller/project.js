@@ -64,9 +64,6 @@ export default class extends Base {
         //不允许使用的前缀
         // console.log(this.post())
         let data = this.post();
-        if (think.isEmpty(data)) {
-            return this.setSuccess({message: this.LN.project.controller.dataIsEmpty, url: '/', btnTxt: this.LN.project.controller.returnProjectList})
-        }
         var projectData = await this.model('project').getProjectByName(data.project_name)
         //修改
         if (data.project_id) {
@@ -80,48 +77,12 @@ export default class extends Base {
                 })
             }
             let res = await this.model('project').where({project_id: data.project_id}).select();
-            //行为记录˙
+            //行为记录
             if (res) {
                 await this.model('project').update(data);
-                // if (data.swagger_url) {
-                //     const swagger_json = await this.getProxy(data.swagger_url, 'get')
-                //     if (typeof swagger_json === 'object') {
-                //         for (var path in swagger_json.paths) {
-                //             let apiArray = swagger_json.paths[path]
-                //             for (var method in apiArray) {
-                //                 let api = apiArray[method];
-                //                 let postData = {
-                //                     "project_id": data.project_id,
-                //                     "api_name": api.tags + '-' + api.summary,
-                //                     "api_type": method,
-                //                     "api_url": path,
-                //                     "project_prefix": "/",
-                //                     "api_querys_desc": "{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}",
-                //                     "api_req_header_desc": "{\r\n  \"headere1\": \"参数说明\",\r\n  \"header2\": \"参数说明\"\r\n}",
-                //                     "api_req_header": "{\r\n  \"header1\": \"参数值\",\r\n  \"header2\": \"参数值\"\r\n}",
-                //                     "exact_match": "0",
-                //                     "api_parms_desc": "{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}",
-                //                     "api_parms": "{\r\n  \"username\": \"参数值\",\r\n  \"password\": \"参数值\"\r\n}",
-                //                     "api_content_desc": "{\r\n  \"username\": \"参数值\",\r\n  \"password\": \"参数值\"\r\n}",
-                //                     "api_content": "{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"stringsss\": \"@string(5)\",\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  }\r\n}",
-                //                     "is_mockjs": "0",
-                //                     "api_state_code": "200",
-                //                     "api_lazy_time": "0",
-                //                     "api_header_desc": "{\r\n  \"headere1\": \"参数说明\",\r\n  \"header2\": \"参数说明\"\r\n}",
-                //                     "api_header": "{\r\n  \"headere1\": \"参数值\",\r\n  \"header2\": \"参数值\"\r\n}",
-                //                     "proxy_prefix": "",
-                //                     "is_proxy": "0"
-                //                 }
-                //                 for (var item in postData) {
-                //                     this.http.post(item, postData[item])
-                //                 }
-                //                 await this.action('home/interface','update')
-                //             }
-                //         }
-                //     }
-                // }
+                let importResult = await this.importApiBySwagger(data.swagger_url, data.project_id)
                 return this.setSuccess({
-                    message: this.LN.project.controller.editSuccess,
+                    message: this.LN.project.controller.editSuccess + importResult,
                     url: this.http.headers.referer,
                     btnTxt: this.LN.project.controller.editAgain,
                     apiUrl: '/',
@@ -152,9 +113,10 @@ export default class extends Base {
             projectData = await this.model('project').getProjectByName(data.project_name)
             console.log('res:' + projectData.project_id)
             if (projectData.project_id) {
+                let importResult = this.importApiBySwagger(data.swagger_url, data.project_id)
                 // this.active = "/";
                 return this.setSuccess({
-                    message: this.LN.project.controller.addSuccess,
+                    message: this.LN.project.controller.addSuccess + importResult,
                     url: this.http.headers.referer,
                     btnTxt: this.LN.project.controller.add,
                     apiUrl: '/',
@@ -172,5 +134,49 @@ export default class extends Base {
             // await this.model("action").log("add_document", "document", res.id, this.user.uid, this.ip(), this.http.url);
         }
         return this.display();
+    }
+
+    async importApiBySwagger(swagger_url, project_id) {
+        let result = []
+        if (swagger_url) {
+            const swagger_json = await this.getProxy(swagger_url, 'get')
+            console.log('swagger_json', swagger_json)
+            if (typeof swagger_json === 'object') {
+                for (var path in swagger_json.paths) {
+                    let apiArray = swagger_json.paths[path]
+                    for (var method in apiArray) {
+                        let api = apiArray[method];
+                        path = path.replace(/\{(\w+)\}/ig, ':$1')
+                        let postData = {
+                            "project_id": project_id,
+                            "api_name": api.tags + '-' + api.summary,
+                            "api_type": method,
+                            "api_url": path,
+                            "project_prefix": "/",
+                            "api_querys_desc": "{\r\n  \"query1\": \"参数说明\",\r\n  \"query2\": \"参数说明\"\r\n}",
+                            "api_req_header_desc": "{\r\n  \"headere1\": \"参数说明\",\r\n  \"header2\": \"参数说明\"\r\n}",
+                            "api_req_header": "{\r\n  \"header1\": \"参数值\",\r\n  \"header2\": \"参数值\"\r\n}",
+                            "exact_match": "0",
+                            "api_parms_desc": "{\r\n  \"username\": \"参数说明\",\r\n  \"password\": \"参数说明\"\r\n}",
+                            "api_parms": "{\r\n  \"username\": \"参数值\",\r\n  \"password\": \"参数值\"\r\n}",
+                            "api_content_desc": "{\r\n  \"username\": \"参数值\",\r\n  \"password\": \"参数值\"\r\n}",
+                            "api_content": "{\r\n  \"array\": [\r\n    1,\r\n    2,\r\n    3\r\n  ],\r\n  \"boolean\": true,\r\n  \"null\": null,\r\n  \"stringsss\": \"@string(5)\",\r\n  \"object\": {\r\n    \"a\": \"b\",\r\n    \"c\": \"d\",\r\n    \"e\": \"f\"\r\n  }\r\n}",
+                            "is_mockjs": "0",
+                            "api_state_code": "200",
+                            "api_lazy_time": "0",
+                            "api_header_desc": "{\r\n  \"headere1\": \"参数说明\",\r\n  \"header2\": \"参数说明\"\r\n}",
+                            "api_header": "{\r\n  \"headere1\": \"参数值\",\r\n  \"header2\": \"参数值\"\r\n}",
+                            "proxy_prefix": "",
+                            "is_proxy": "0"
+                        }
+                        // for (var item in postData) {
+                        //     this.http.post(item, postData[item])
+                        // }
+                        result.push(await this.importApi(postData))
+                    }
+                }
+            }
+        }
+        return result.join('<br>')
     }
 }
