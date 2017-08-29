@@ -1,7 +1,5 @@
 {% extends '../../module/main.nunj' %}
-{% block js %}
-    <script src="/static/common/json-format/c.js"></script>
-{% endblock %}
+
 {% block content %}
 
     <div class="row">

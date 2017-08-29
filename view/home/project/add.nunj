@@ -24,17 +24,17 @@
                                     <input type="text" name="project_name" value="{{ project_name }}" class="form-control  validate[required]"/>
                                 </div>
                             </div>
-                            <div class="form-group ">
-                                <label class="col-sm-2 control-label">
-                                    {{ LN.project.add.projectInterfacePrefix }}
-                                </label>
-                                <div class="col-sm-6">
-                                    <input type="text" name="project_prefix" value="{{ project_prefix if project_prefix else '/' }}" class="form-control validate[custom[project_prefix]]"
-                                           placeholder=""/>
-                                    <p class="help-block">format: /api/,default："/"<br>
-                                    </p>
-                                </div>
-                            </div>
+                            {#<div class="form-group ">#}
+                                {#<label class="col-sm-2 control-label">#}
+                                    {#{{ LN.project.add.projectInterfacePrefix }}#}
+                                {#</label>#}
+                                {#<div class="col-sm-6">#}
+                                    {#<input type="text" name="project_prefix" value="{{ project_prefix if project_prefix else '/' }}" class="form-control validate[custom[project_prefix]]"#}
+                                           {#placeholder=""/>#}
+                                    {#<p class="help-block">format: /api/,default："/"<br>#}
+                                    {#</p>#}
+                                {#</div>#}
+                            {#</div>#}
                             <div class="form-group ">
                                 <label class="col-sm-2 control-label">
                                     {{ LN.project.add.projectProxyUrl }}

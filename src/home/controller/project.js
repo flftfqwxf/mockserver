@@ -80,7 +80,7 @@ export default class extends Base {
             //行为记录
             if (res) {
                 await this.model('project').update(data);
-                let importResult = await this.importApiBySwagger(data.swagger_url, data.project_id)
+                let importResult = await this.importApiBySwagger(data.swagger_url, data.project_id, data.project_prefix)
                 return this.setSuccess({
                     message: this.LN.project.controller.editSuccess + importResult,
                     url: this.http.headers.referer,
@@ -113,7 +113,7 @@ export default class extends Base {
             projectData = await this.model('project').getProjectByName(data.project_name)
             console.log('res:' + projectData.project_id)
             if (projectData.project_id) {
-                let importResult = this.importApiBySwagger(data.swagger_url, data.project_id)
+                let importResult = this.importApiBySwagger(data.swagger_url, data.project_id, data.project_prefix)
                 // this.active = "/";
                 return this.setSuccess({
                     message: this.LN.project.controller.addSuccess + importResult,
@@ -136,17 +136,19 @@ export default class extends Base {
         return this.display();
     }
 
-    async importApiBySwagger(swagger_url, project_id) {
+    async importApiBySwagger(swagger_url, project_id, project_prefix) {
         let result = []
+        project_prefix = project_prefix || '/'
+        let prefix_reg = new RegExp('^'+project_prefix);
         if (swagger_url) {
             const swagger_json = await this.getProxy(swagger_url, 'get')
-            console.log('swagger_json', swagger_json)
+            // console.log('swagger_json', swagger_json)
             if (typeof swagger_json === 'object') {
                 for (var path in swagger_json.paths) {
                     let apiArray = swagger_json.paths[path]
                     for (var method in apiArray) {
                         let api = apiArray[method];
-                        path = path.replace(/\{(\w+)\}/ig, ':$1')
+                        path = path.replace(/\{(\w+)\}/ig, ':$1').replace(prefix_reg, '')
                         let postData = {
                             "project_id": project_id,
                             "api_name": api.tags + '-' + api.summary,

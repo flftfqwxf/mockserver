@@ -152,7 +152,7 @@ export default class extends Base {
         // console.log(this.post())
         let {data, check_reg, urlData} = await this.checkApiIsExit(this.post())
         project_prefix = data.project_prefix;
-        if (data.mockid) {
+        if (!data.mockid) {
             await  this.addApi(data, urlData, check_reg)
         } else {
             await  this.updateApi(data, urlData, check_reg)
@@ -160,7 +160,7 @@ export default class extends Base {
     }
 
     /**
-     * 添加API
+     * 修改API
      * @param data
      * @param urlData
      * @param isRESTFulPath
@@ -204,7 +204,7 @@ export default class extends Base {
 
 
     /**
-     * 修改api
+     * 添加api
      * @param data
      * @param urlData
      * @param isRESTFulPath

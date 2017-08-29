@@ -99,7 +99,7 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
         let headersBlacklist = [
             'host',
             'accept-encoding',
-            'content-type'//！！！要注意，如果不屏蔽content-type，将会影响当前请求的显示，比如，url参数类型为 json，如果不屏蔽，则页面只会以json格式输出
+            'content-type'//
         ]
         let headersObj = {};
         let headers = this.http.headers;
@@ -119,15 +119,16 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
             //todo:将返回的HEADER返回给客户端,有BUG
             //有些HEADER信息返回后会无法返回数据
             /**
+             * todo:！！！要注意，如果不屏蔽content-type，将会影响当前请求的显示，比如，url参数类型为 json，如果不屏蔽，则页面只会以json格式输出
              * todo:将返回的HEADER返回给客户端.
              * todo:有BUG有些HEADER信息返回后会无法返回数据
              * todo:此处必须try 之后,因为返回content-length header信息,在返回 fail时,会报错:
              * net::ERR_CONTENT_LENGTH_MISMATCH
              */
-            for (var item in content.headers) {
-                // console.log(item)
-                _this.header(item, content.headers[item])
-            }
+            // for (var item in content.headers) {
+            //     // console.log(item)
+            //     _this.header(item, content.headers[item])
+            // }
             content.body.proxyDataSource = url
             return Promise.resolve(content.body);
         }).catch(function(err) {

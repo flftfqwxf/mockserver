@@ -38,7 +38,8 @@
                 'UNBIND',
                 'UNLINK',
                 'UNLOCK',
-                'UNSUBSCRIBE' ] %}
+                'UNSUBSCRIBE'
+                ] %}
                 <label class="btn btn-default btn-select">
                     <select style="" name="api_type" id="api_type" class="validate[required] use_test">
                         {% for  method in methods %}
@@ -54,7 +55,9 @@
                 <span class="common-required">*</span>{{ LN.interface.add.request.interfaceUrl }}
             </label>
             <div class="col-sm-6 ">
-                <div class="input-group"><span class="input-group-addon">{{ project_prefix }}</span>
+                <div class="input-group"><span class="input-group-addon">/
+                        {#{{ project_prefix }}#}
+                    </span>
                     <input type="text" name="api_url" id="api_url" value="{{ api_url }}" class="form-control api_url  validate[required] use_test"/>
                     <input type="hidden" name="project_prefix" value="{{ project_prefix }}">
                 </div>
