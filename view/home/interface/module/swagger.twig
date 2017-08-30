@@ -37,6 +37,8 @@
             const ui = SwaggerUIBundle({
                 url: "http://petstore.swagger.io/v2/swagger.json",
                 dom_id: '#swagger-ui',
+                current_path:'{{ api_url }}',
+                current_method:'{{ api_type }}',
                 deepLinking: true,
                 presets: [
                     SwaggerUIBundle.presets.apis,

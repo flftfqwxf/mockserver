@@ -126,6 +126,7 @@ export default class extends Base {
                         return item;
                     }
                 });
+                res[0].swagger_url =
                 this.assign(res[0])
             } else {
                 return this.setSuccess({message: this.LN.interface.controller.idIsNotExist, url: '/interface/index', btnTxt: this.LN.interface.controller.returnList})
