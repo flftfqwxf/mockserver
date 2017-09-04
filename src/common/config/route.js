@@ -11,6 +11,7 @@ export default [
     [/^project\/delete/, 'home/project/delete'],
     //swagger 路由
     [/^swagger\/index/, 'home/swagger/index'],
+    [/^swagger\/proxy\/(.+)/, 'home/swagger/proxy?url=:1'],
     //系统设置路由
     [/^system\/init/, 'home/system/init'],
     [/^system\/add/, 'home/system/add'],

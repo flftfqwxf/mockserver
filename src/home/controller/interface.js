@@ -1,6 +1,5 @@
 'use strict';
 import Base from '../../common/controller/common';
-import pathToRegexp from 'path-to-regexp'
 let project_prefix = '/';
 export default class extends Base {
     /**
@@ -115,24 +114,21 @@ export default class extends Base {
             if (res.length === 1) {
                 if (res[0].project_id) {
                     curr_project = project.filter(item => item.project_id === res[0].project_id);
-                    curr_project.length > 0 ? project_prefix = curr_project[0].project_prefix ? curr_project[0].project_prefix :
-                            project_prefix : '';
+                    if (curr_project.length > 0) {
+                        project_prefix = curr_project[0].project_prefix
+                        res[0].curr_project = curr_project[0]
+                    } else {
+                        project_prefix = '/'
+                    }
                 }
                 res[0].project = project;
                 res[0].systemConfig = systemConfig;
                 res[0].project_prefix = project_prefix;
-                res[0].curr_project = project.filter((item) => {
-                    if (item['project_id'] == res[0].project_id) {
-                        return item;
-                    }
-                });
-                res[0].swagger_url =
+                // res[0].swagger_url =
                 this.assign(res[0])
             } else {
                 return this.setSuccess({message: this.LN.interface.controller.idIsNotExist, url: '/interface/index', btnTxt: this.LN.interface.controller.returnList})
             }
-        } else {
-            return this.display('common/tips/sucess.nunj');
         }
         return this.display('add.nunj')
     }
@@ -202,8 +198,6 @@ export default class extends Base {
         return this.display('common/tips/sucess.nunj');
     }
 
-
-
     /**
      * 添加api
      * @param data
@@ -240,8 +234,6 @@ export default class extends Base {
             return this.setSuccess({message: this.LN.interface.controller.actionError, goBack: true})
         }
     }
-
-
 
     async setproxyAction() {
         const mockid = this.get('mockid');

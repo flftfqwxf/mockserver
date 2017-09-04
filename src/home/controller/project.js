@@ -139,7 +139,7 @@ export default class extends Base {
     async importApiBySwagger(swagger_url, project_id, project_prefix) {
         let result = []
         project_prefix = project_prefix || '/'
-        let prefix_reg = new RegExp('^'+project_prefix);
+        let prefix_reg = new RegExp('^' + project_prefix);
         if (swagger_url) {
             const swagger_json = await this.getProxy(swagger_url, 'get')
             // console.log('swagger_json', swagger_json)
@@ -149,9 +149,19 @@ export default class extends Base {
                     for (var method in apiArray) {
                         let api = apiArray[method];
                         path = path.replace(/\{(\w+)\}/ig, ':$1').replace(prefix_reg, '')
+                        let api_name = api.tags + '-' + api.summary
+                        if (api.summary) {
+                            if (api.tags) {
+                                api_name = api.tags + '-' + api.summary
+                            } else {
+                                api_name = api.summary
+                            }
+                        } else if (api.description) {
+                            api_name = api.description.substring(0, 50) + '...'
+                        }
                         let postData = {
                             "project_id": project_id,
-                            "api_name": api.tags + '-' + api.summary,
+                            "api_name": api_name,
                             "api_type": method,
                             "api_url": path,
                             "project_prefix": "/",
@@ -169,7 +179,8 @@ export default class extends Base {
                             "api_header_desc": "{\r\n  \"headere1\": \"参数说明\",\r\n  \"header2\": \"参数说明\"\r\n}",
                             "api_header": "{\r\n  \"headere1\": \"参数值\",\r\n  \"header2\": \"参数值\"\r\n}",
                             "proxy_prefix": "",
-                            "is_proxy": "0"
+                            "is_proxy": "0",
+                            "swagger_url": swagger_url
                         }
                         // for (var item in postData) {
                         //     this.http.post(item, postData[item])

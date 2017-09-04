@@ -23,6 +23,16 @@ export default class extends Base {
         }
     }
 
+    editAction() {
+        this.allowMethods = 'get'
+        let rules = {
+            mockid: 'required'
+        }
+        if (!this.validate(rules)) {
+            return this.setErrorMessage(this.errors())
+        }
+    }
+
     addMockServerAction() {
         //auto render template file index_index.html
     }

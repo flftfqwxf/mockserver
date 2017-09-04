@@ -49,8 +49,8 @@
                                     {{ LN.project.add.swaggerUrl }}
                                 </label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="swagger_url" value="{{ swagger_url }}" class="form-control validate[custom[url]]"/>
-                                    <p class="help-block">{{ LN.project.add.format }}:http://petstore.swagger.io/v2/swagger.json</p>
+                                    <input type="text" name="swagger_url" placeholder="http://petstore.swagger.io/v2/swagger.json" value="{{ swagger_url }}" class="form-control validate[custom[url]]"/>
+                                    <p class="help-block">如果后台有提供 Swagger 文档（并且没有验证授权的问题）, 可以在此处填写 Swagger 的接口地址, MockServer 会自动基于此接口创建 Mock 接口</p>
                                 </div>
                             </div>
                         </div>

@@ -36,12 +36,19 @@
                     <div id="swagger-ui"></div>
                     <script src="/static/swagger/swagger-ui-bundle.js"></script>
                     <script src="/static/swagger/swagger-ui-standalone-preset.js"></script>
+                    {#<script src="/static/swagger/lang/translator.js"></script>#}
+
+                    {#<script src="/static/swagger/lang/zh-cn.js"></script>#}
                     <script>
                         window.onload = function() {
 
                             // Build a system
                             const ui = SwaggerUIBundle({
+                                proxy: '/swagger/proxy/',
                                 url: "http://petstore.swagger.io/v2/swagger.json",
+//                                configs: {current_path: '/pet', current_method: 'post', proxy: '/swagger/proxy/'},
+                                configs: { proxy: '/swagger/proxy/'},
+
                                 dom_id: '#swagger-ui',
                                 deepLinking: true,
                                 presets: [
@@ -51,7 +58,12 @@
                                 plugins: [
                                     SwaggerUIBundle.plugins.DownloadUrl
                                 ],
-                                layout: "StandaloneLayout"
+                                layout: "StandaloneLayout",
+//                                onComplete: function(swaggerApi, swaggerUi) {
+//                                    if (window.SwaggerTranslator) {
+//                                        window.SwaggerTranslator.translate();
+//                                    }
+//                                }
                             })
                             window.ui = ui
                         }

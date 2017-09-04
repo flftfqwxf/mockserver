@@ -19,37 +19,7 @@ module.exports.setup = function(app) {
     res.send('Hello World!');
   });
 
-  /**
-   * @swagger
-   * definitions:
-   *   Login:
-   *     required:
-   *       - username
-   *       - password
-   *     properties:
-   *       username:
-   *         type: string
-   *       password:
-   *         type: string
-   *       path:
-   *         type: string
-   */
 
-  /**
-   * @swagger
-   * tags:
-   *   name: Users
-   *   description: User management and login
-   */
-
-  /**
-   * @swagger
-   * tags:
-   *   - name: Login
-   *     description: Login
-   *   - name: Accounts
-   *     description: Accounts
-   */
 
   /**
    * @swagger
