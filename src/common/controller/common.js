@@ -15,6 +15,7 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
     async __before() {
         // this.lang('en');
         let lang = this.lang()
+        console.log(lang)
         switch (lang) {
             case 'en':
                 this.assign({'LN': en});
@@ -85,7 +86,7 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
         return this.display('common/tips/error.nunj');
     }
 
-    async getProxy(url, method) {
+    async getProxy(url, method, addheaders) {
         let _this = this
         method = method || this.method().toLowerCase();
         let post = this.post();
@@ -109,6 +110,12 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
                 headersObj[key] = headers[key];
             }
         }
+        if (addheaders) {
+            addheaders.map((item)=>{
+                headersObj[item.header_name.toLowerCase()] = item.header_val;
+            })
+
+        }
         send.headers = headersObj;
         return await fn(send).then(function(content) {
             try {
@@ -116,10 +123,11 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
             } catch (e) {
                 return Promise.reject(content.body);
             }
+            //将headers 以json形式返回
+            content.body.request_headers = content.headers
             //todo:将返回的HEADER返回给客户端,有BUG
             //有些HEADER信息返回后会无法返回数据
             /**
-             * todo:！！！要注意，如果不屏蔽content-type，将会影响当前请求的显示，比如，url参数类型为 json，如果不屏蔽，则页面只会以json格式输出
              * todo:将返回的HEADER返回给客户端.
              * todo:有BUG有些HEADER信息返回后会无法返回数据
              * todo:此处必须try 之后,因为返回content-length header信息,在返回 fail时,会报错:
@@ -127,7 +135,8 @@ export default class Base extends mixin(think.logic.base, think.controller.base)
              */
             // for (var item in content.headers) {
             //     // console.log(item)
-            //     _this.header(item, content.headers[item])
+            //     content.body.request_headers = content.headers
+            //     // _this.header(item, content.headers[item])
             // }
             content.body.proxyDataSource = url
             return Promise.resolve(content.body);

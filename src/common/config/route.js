@@ -12,6 +12,7 @@ export default [
     //swagger 路由
     [/^swagger\/index/, 'home/swagger/index'],
     [/^swagger\/proxy\/(.+)/, 'home/swagger/proxy?url=:1'],
+    [/^swagger\/set_header\/(\d)/, 'home/swagger/set_header?type=:1'],
     //系统设置路由
     [/^system\/init/, 'home/system/init'],
     [/^system\/add/, 'home/system/add'],
