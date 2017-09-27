@@ -41,18 +41,15 @@
                     {#<script src="/static/swagger/lang/zh-cn.js"></script>#}
                     <script>
                         window.onload = function() {
-
+                            const url = '/swagger/proxy/' + encodeURIComponent("http://petstore.swagger.io/v2/swagger.json")
                             // Build a system
                             const ui = SwaggerUIBundle({
-                                proxy: '/swagger/proxy/',
-                                url: "http://petstore.swagger.io/v2/swagger.json",
+//                                proxy: '/swagger/proxy/',
+                                url: url,
 //                                url: "http://192.168.28.218:8088/v2/api-docs",
-
 //                                configs: {current_path: '/pet', current_method: 'post', proxy: '/swagger/proxy/'},
 //                                configs: {current_path: '/pet', current_method: 'post', proxy: '/swagger/proxy/',cookie:'',save_cookie_url:'/asdfsdft/'},
-                                configs: {proxy: '/swagger/proxy/',cookie:'{{ cookie }}',save_cookie_url:'/swagger/set_header/1'},
-
-
+                                {#configs: {proxy: '/swagger/proxy/', cookie: '{{ cookie }}', api_proxy: '/swagger/proxy/', save_cookie_url: '/swagger/set_header/1'},#}
                                 dom_id: '#swagger-ui',
                                 deepLinking: true,
                                 presets: [
