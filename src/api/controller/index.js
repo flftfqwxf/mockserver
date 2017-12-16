@@ -65,7 +65,7 @@ export default class extends Base {
             }
         }
         if (!think.isEmpty(data)) {
-            var item = this.item = data;
+            var item = this.item = Object.assign({},data||{});
             if (item.is_proxy === 0) {
                 let api_header;
                 if (item.api_header) {
