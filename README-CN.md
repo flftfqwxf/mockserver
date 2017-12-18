@@ -157,7 +157,7 @@ npm start
                 #请求会先代理到mock-server,然后再代理到nginx，出现循环代理，因此
                 #在此处判断如果已经是从mock-server代理过来的请求则不再次代理
                 if ($is_proxy = 1 ){
-                    add_header http_is_mock_server_proxy "$my_header";
+                    add_header http_is_mock_server_proxy "$is_proxy";
                     proxy_pass http://127.0.0.1:8034;
                     break;
         

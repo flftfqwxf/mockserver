@@ -177,7 +177,7 @@ npm start
                
                        #Avoid circular proxy
                        if ($is_proxy = 1 ){
-                           add_header http_is_mock_server_proxy "$my_header";
+                           add_header http_is_mock_server_proxy "$is_proxy";
                            proxy_pass http://127.0.0.1:8034;
                            break;
                
