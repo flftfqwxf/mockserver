@@ -1,0 +1,88 @@
+body {
+    font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif, "宋体";
+    background: rgb(253, 253, 253);
+}
+
+h1, h2, h3 {
+    margin-bottom: 20px;
+}
+
+#desc {
+    height:0;
+    overflow:hidden;
+}
+
+.container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.navbar {
+    margin-bottom: auto;
+}
+
+.glyphicon {
+    top: 2px;
+}
+
+
+#request,
+#response {
+    margin-top: 20px;
+}
+
+#txt_url {
+    margin-left: -1px;
+}
+
+#btn_send {
+    padding: 10px 20px;
+}
+
+.request_text {
+    box-shadow: none;
+    border: 1px solid #e1e1e8;
+    border-top-style: none;
+    border-radius: 0 0 4px 4px;
+    min-height: 100px;
+}
+
+
+.response_text {
+    padding: 9px 14px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    min-height: 100px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+#txt_response_header,
+#txt_request_header,
+#btn_response_setcookie {
+    display: none;
+}
+
+.bs-docs-header {
+    padding-bottom: 60px;
+    text-align: left;
+}
+
+.bs-docs-header {
+    margin-bottom: 40px;
+}
+.bs-docs-header, .bs-docs-masthead {
+    position: relative;
+    padding: 30px 0;
+    color: #e7f8ff;
+    text-shadow: 0 1px 0 rgba(0,0,0,.1);
+    background-color: #3399FF;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#336699),to(#3399CC));
+    background-image: -webkit-linear-gradient(top,#336699 0,#3399CC 100%);
+    background-image: -o-linear-gradient(top,#336699 0,#3366CC 100%);
+    background-image: linear-gradient(to bottom,#336699 0,#3366CC 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#336699', endColorstr='#3399CC', GradientType=0);
+    background-repeat: repeat-x;
+}
