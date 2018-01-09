@@ -12,6 +12,7 @@
   "dependencies": {
     "babel-runtime": "6.x.x",
     "execsql": "^0.0.3",
+    "mixin": "^0.2.0",
     "mockjs": "^1.0.1-beta3",
     "node-crontab": "^0.0.8",
     "nunjucks": "^2.5.2",
