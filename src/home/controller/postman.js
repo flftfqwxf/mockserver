@@ -13,17 +13,51 @@ export default class extends Base {
 		//auto render template file index_index.html
 		let mockid = this.get('mockid');
 		if (mockid) {
-			let interfaceData = await this.model('interfaceData').getInterfaceById(mockid)
+			let interfaceData = await this.model('interface').getInterfaceById(mockid)
 			if (!think.isEmpty(interfaceData)) {
 				let url = {url: 'http://' + this.http.headers.host + '/' + interfaceData.project_id + '/' + interfaceData.api_url}
 				let data = Object.assign({}, interfaceData, url)
+				data.api_type = data.api_type && data.api_type.toUpperCase()
 				this.assign(data)
 			}
 
 
-		}else{
+		} else {
 			this.assign({})
 		}
+
+		let data = this.get();
+		let project = await this.model('project').select();
+		let systemConfig = await this.model('system').find();
+		let curr_project;
+		if (data.mockid) {
+			let interfaceData = await this.model('interface').getInterfaceById(mockid)
+			if (!think.isEmpty(interfaceData)) {
+				if (interfaceData.project_id) {
+					curr_project = project.filter(item => item.project_id === interfaceData.project_id);
+					if (curr_project.length > 0) {
+						project_prefix = curr_project[0].project_prefix
+						interfaceData.curr_project = curr_project[0]
+					} else {
+						project_prefix = '/'
+
+					}
+				}
+				interfaceData.project = project;
+				interfaceData.systemConfig = systemConfig;
+				interfaceData.project_prefix = project_prefix;
+				// interfaceData.swagger_url =
+				let url = {url: 'http://' + this.http.headers.host + '/' + interfaceData.project_id + '/' + interfaceData.api_url}
+				interfaceData = Object.assign({}, interfaceData, url)
+				interfaceData.api_type = interfaceData.api_type && interfaceData.api_type.toUpperCase()
+				this.assign(interfaceData)
+			} else {
+				this.assign({})
+
+			}
+		}
+
+
 		return this.display();
 	}
 
@@ -53,7 +87,7 @@ export default class extends Base {
 			url: url,
 			form: post,
 			// headers: this.http.headers,
-			timeout: 1000 * 5
+			timeout: 1000 * 60
 		};
 
 		return await fn(send).then(function(content) {

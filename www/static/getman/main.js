@@ -287,7 +287,6 @@ function response_view() {
 }
 
 
-document.title = "Getman";
 
 if($("#txt_url").val() == ''){
     $("#txt_url").val(hst[0]);
