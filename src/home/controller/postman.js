@@ -72,6 +72,10 @@ export default class extends Base {
 	 */
 	async getapiAction() {
 		let posts = this.post();
+		if (posts.url.indexOf('https')===0) {
+			posts.url=posts.url.replace('https','http');
+
+		}
 		const res = await  this.getProxy(posts.url, posts.method, posts.body, posts.header)
 		//auto render template file index_index.html
 

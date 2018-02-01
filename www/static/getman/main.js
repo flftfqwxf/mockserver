@@ -200,12 +200,13 @@ function send_local(data) {
 function send_remote(data) {
     var settings = {
         type: "POST",
-        url: "postman/request",
+        url: "/postman/request",
         data: data,
         // headers: {
         //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         // },
         complete: function (res) {
+			$("#btn_send").html('send').attr('disabled',false);
             try {
                 json = JSON.parse(res.responseText);
             } catch (err) {
@@ -377,8 +378,10 @@ $("#btn_send_type").click(function () {
 $("#btn_send").click(function () {
     url = $("#txt_url").val();
     if(url.length == 0){
-        url = 'https://getman.cn/echo';
+        alert('url is empty');
+        return ;
     }
+    $(this).html('sending...').attr('disabled',true)
     setHistory(url);
     body = $("#txt_request_body").val();
     header = kv_to_array($("#txt_request_header").val());
