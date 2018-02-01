@@ -20,6 +20,8 @@
  - 支持mockjs
 
  - 支持跨域调用项目接口
+ 
+ - 支持 swagger 
 
  - 支持模拟接口与真实接口切换,在切换到真实接口时，能够接收POST,GET,COOKIE等在http header请求的参数
  
