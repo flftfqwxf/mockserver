@@ -21,6 +21,9 @@ export default class extends Base {
     async updateAction() {
         // console.log(this.post())
         let data = this.post();
+		if (data.proxy_url && (data.proxy_url.lastIndexOf('/') + 1) !== data.proxy_url.length) {
+			data.proxy_url += '/';
+		}
         if (think.isEmpty(data)) {
             return this.setSuccess({message: this.LN.system.controller.dataIsEmpty, url: '/system/add', btnTxt: this.LN.system.controller.editAgain})
         }

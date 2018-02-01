@@ -174,7 +174,7 @@ module.exports = {
         systemSettings: '系统设置',
         globalProxyUrl: '全局二次代理前缀',
         globalProxyUrlTips: '必须设置。<br>作用1：在二次代理开启时，用于模拟数据与真实数据之间切换。<br>假设：全局二次代理前缀：[http://192.168.1.2]<br>接口地址为：[/api/a/b]，二次代理关闭时，获取模拟数据，二次代理开启时，将获取[http://192.168.1.2/api/a/b]的数据。<br>作用2：假设接口：[/api/dddd],并没有在系统中创建，系统将会请求[http://192.168.1.2/api/dddd],并返回数据',
-        format: '格式如:http://192.168.1.2',
+        format: '格式如:http://192.168.1.2/',
         ProxyHeaders: '代理header设置',
         BlackList: '启用黑名单',
         BlackListPlaceHolder: 'header黑名单，一行一个',

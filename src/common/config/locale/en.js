@@ -174,7 +174,7 @@ module.exports = {
         systemSettings: 'Global Settings',
         globalProxyUrl: 'Global Proxy URL',
         globalProxyUrlTips: "It's necessary!!!.<br>What use does it have?<br>One：<br>Suppose：Global Proxy URL is [http://192.168.1.2] and this API(/api/dddd) dose not created in mock-sever,the system will send to [http://192.168.1.2/api/dddd],and return data,if [http://192.168.1.2/api/dddd] dose not exist,return error message<br>Two:if proxy is opened,it's used switch between mock-data and real data。<br>Suppose：Global Proxy URL is [http://192.168.1.2] and API is [/api/a/b]，the API will get data from  mock-data,when proxy is closed，but the API will get data from [http://192.168.1.2/api/a/b],when proxy is opened",
-        format: 'Format:http://192.168.1.2',
+        format: 'Format:http://192.168.1.2/',
         ProxyHeaders: 'Proxy Headers',
         BlackList: 'Blacklist',
         BlackListPlaceHolder: 'Blacklist，one per row',
