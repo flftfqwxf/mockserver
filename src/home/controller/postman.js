@@ -46,8 +46,26 @@ export default class extends Base {
 				interfaceData.project = project;
 				interfaceData.systemConfig = systemConfig;
 				interfaceData.project_prefix = project_prefix;
+				let tem_url = interfaceData.api_url.split(':');
+				if (!interfaceData.proxy_prefix && curr_project[0].proxy_url) {
+					interfaceData.proxy_prefix = curr_project[0].proxy_url;
+
+				} else if (!interfaceData.proxy_prefix && systemConfig.proxy_url) {
+
+					interfaceData.proxy_prefix = systemConfig.proxy_url;
+
+				}
 				// interfaceData.swagger_url =
-				let url = {url: 'http://' + this.http.headers.host + '/' + interfaceData.project_id + '/' + interfaceData.api_url}
+				let url = {
+					url: tem_url.length > 1 ? ':' + tem_url.slice(1).join(':') : interfaceData.api_url,
+					project_url: 'http://' + this.http.headers.host + '/' + interfaceData.project_id + '/' + interfaceData.api_url.split(':')[0],
+					open_proxy_project_url: interfaceData.proxy_prefix + interfaceData.api_url.split(':')[0]
+
+				};
+
+
+
+
 				interfaceData = Object.assign({}, interfaceData, url)
 				interfaceData.api_type = interfaceData.api_type && interfaceData.api_type.toUpperCase()
 				this.assign(interfaceData)
@@ -72,8 +90,8 @@ export default class extends Base {
 	 */
 	async getapiAction() {
 		let posts = this.post();
-		if (posts.url.indexOf('https')===0) {
-			posts.url=posts.url.replace('https','http');
+		if (posts.url.indexOf('https') === 0) {
+			posts.url = posts.url.replace('https', 'http');
 
 		}
 		const res = await  this.getProxy(posts.url, posts.method, posts.body, posts.header)

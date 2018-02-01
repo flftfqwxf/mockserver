@@ -31,6 +31,10 @@
 		</div>
 
 		<!-- /btn-group -->
+		<input type="hidden" id="project_url" class="form-control" value="{{ project_url }}">
+		{% if url %}
+			<span class="input-group-addon">{{ project_url }}</span>
+		{% endif %}
 		<input id="txt_url" type="text" class="form-control" placeholder="" value="{{ url }}">
 
 		<span class="input-group-btn">
@@ -50,11 +54,7 @@
 		</div>
 		<div style="display: inline;" class="proxy_tips">
 			{% if is_proxy==1 %}
-				{% if not proxy_prefix and  curr_project[0].proxy_url %}
-					{% set  proxy_prefix= curr_project[0].proxy_url %}
-				{% elseif not proxy_prefix and systemConfig.proxy_url %}
-					{% set  proxy_prefix= systemConfig.proxy_url %}
-				{% endif %}
+
 				{{ LN.interface.add.proxy.openProxyTipsPrefix }}
 				[ <span style="color: red;">
                             {{ proxy_prefix }} {{ project_prefix if project_prefix else '' }}{{ api_url }}</span> ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}
@@ -117,48 +117,44 @@
 <script src="/static/getman/main.js?v=6"></script>
 {% if url %}
 
-<script>
-	var LN ={{ LN|dump|safe }},
-		mockid = {{ mockid }};
-	var proxyOpenTips = function() {
-		var _this = this;
-		setTimeout(function() {
+	<script>
+		var LN ={{ LN|dump|safe }},
+			mockid = {{ mockid }};
+		var proxyOpenTips = function() {
+			var _this = this;
+			setTimeout(function() {
+				var isOpen = $('.J_open_proxy input:checked').val();
+
+				$.getJSON('/interface/setproxy', {mockid: mockid, is_proxy: isOpen}).done(function(data) {
+					if (data && data.errno === 0) {
+						changeUrl()
+
+					} else {
+						$.commonTips(data.errmsg, 'danger', 1500);
+					}
+				}).fail(function(err) {
+					alert(err.message)
+				});
+			}, 20)
+		};
+		function changeUrl() {
 			var isOpen = $('.J_open_proxy input:checked').val();
 			if (isOpen === '1') {
-				var proxy_url = "{{ proxy_prefix }}";
-				var api_url = "/{{ api_url }}";
-				$('.proxy_tips').show().html(LN.interface.add.proxy.openProxyTipsPrefix + '[ <span style="color: red;"> ' + proxy_url + api_url + '</span>  ]' + LN.interface.add.proxy.openProxyTipsPostfix);
+				var proxy_url = "{{ open_proxy_project_url }}"  + $('#txt_url').val();
+				$('.proxy_tips').show().html(LN.interface.add.proxy.openProxyTipsPrefix + '[ <span style="color: red;"> ' + proxy_url + '</span>  ]' + LN.interface.add.proxy.openProxyTipsPostfix);
 			} else {
 				$('.proxy_tips').show().html(LN.interface.add.proxy.closeProxyTips)
 			}
-			$.getJSON('/interface/setproxy', {mockid: mockid, is_proxy: isOpen}).done(function(data) {
-				if (data && data.errno === 0) {
-					if (isOpen === '1') {
-						var proxy_url = "{{ proxy_prefix }}";
-						var api_url = "/{{ api_url }}";
-						$('.proxy_tips').show().html(LN.interface.add.proxy.openProxyTipsPrefix + '[ <span style="color: red;"> ' + proxy_url + api_url + '</span>  ]' + LN.interface.add.proxy.openProxyTipsPostfix);
-					} else {
-						$('.proxy_tips').show().html(LN.interface.add.proxy.closeProxyTips)
-					}
-				} else {
-					$.commonTips(data.errmsg, 'danger', 1500);
-				}
-			}).fail(function(err) {
-				alert(err.message)
-			});
-		}, 20)
-	};
-	var _proxyTipsBind = function() {
-		var _this = this;
-		$('.J_open_proxy input').off().click(function() {
-			_this.proxyOpenTips()
-		})
-//		$('.proxy_prefix,.api_url').on('change input blur', function() {
-//			_this.proxyOpenTips();
-//		})
-	}
-	_proxyTipsBind()
-</script>
+		}
+		var _proxyTipsBind = function() {
+			var _this = this;
+			$('.J_open_proxy input').off().click(function() {
+				_this.proxyOpenTips()
+			})
+			$('#txt_url').on('change input blur', changeUrl)
+		}
+		_proxyTipsBind()
+	</script>
 {% endif %}
 </body>
 

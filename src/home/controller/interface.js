@@ -110,7 +110,7 @@ export default class extends Base {
         let systemConfig = await this.model('system').find();
         let curr_project;
         if (data.mockid) {
-            let res = await this.model('interface').getInterfaceById(data.mockid).select();
+            let res = await this.model('mockserver').where('mockid=' + data.mockid).select();
             if (res.length === 1) {
                 if (res[0].project_id) {
                     curr_project = project.filter(item => item.project_id === res[0].project_id);
