@@ -58,10 +58,15 @@ export default class extends Base {
 				// interfaceData.swagger_url =
 				let url = {
 					url: tem_url.length > 1 ? ':' + tem_url.slice(1).join(':') : interfaceData.api_url,
-					project_url: 'http://' + this.http.headers.host + '/' + interfaceData.project_id + '/' + interfaceData.api_url.split(':')[0],
-					open_proxy_project_url: interfaceData.proxy_prefix + interfaceData.api_url.split(':')[0]
+					project_url: 'http://' + this.http.headers.host + '/' + interfaceData.project_id + '/' ,
+					open_proxy_project_url: interfaceData.proxy_prefix
 
 				};
+				if (interfaceData.api_url.split(':').length>1) {
+					url.project_url+=interfaceData.api_url.split(':')[0]
+					url.open_proxy_project_url+=interfaceData.api_url.split(':')[0]
+
+				}
 
 
 
@@ -108,7 +113,7 @@ export default class extends Base {
 		let send = {
 			url: url,
 			form: post,
-			// headers: this.http.headers,
+			headers: this.http.headers,
 			timeout: 1000 * 60
 		};
 

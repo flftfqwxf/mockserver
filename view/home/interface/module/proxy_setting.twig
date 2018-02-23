@@ -13,7 +13,7 @@
                 {{ LN.interface.add.proxy.projectProxyUrl }}
             </label>
             <div class="col-sm-6">
-                <input type="text" readonly value="{{ curr_project[0].proxy_url }}" class="form-control projectProxy" placeholder=""/>
+                <input type="text" readonly value="{{ curr_project.proxy_url }}" class="form-control projectProxy" placeholder=""/>
             </div>
         </div>
         <div class="form-group">
@@ -21,11 +21,7 @@
                 {{ LN.interface.add.proxy.proxyUrl }}
             </label>
             <div class="col-sm-6">
-                {#{% if not proxy_prefix and  curr_project[0].proxy_url %}#}
-                {#{% set  proxy_prefix= curr_project[0].proxy_url %}#}
-                {#{% elseif not proxy_prefix and systemConfig.proxy_url %}#}
-                {#{% set  proxy_prefix= systemConfig.proxy_url %}#}
-                {#{% endif %}#}
+
                 <input type="text" id="proxy_prefix" name="proxy_prefix" value="{{ proxy_prefix }}"
                        class="form-control proxy_prefix validate[custom[url]]"
                        placeholder=""/>
@@ -48,14 +44,14 @@
                     <br>
                     <div style="display: inline;" class="proxy_tips">
                         {% if is_proxy==1 %}
-                            {% if not proxy_prefix and  curr_project[0].proxy_url %}
-                                {% set  proxy_prefix= curr_project[0].proxy_url %}
+                            {% if not proxy_prefix and  curr_project.proxy_url %}
+                                {% set  proxy_prefix= curr_project.proxy_url %}
                             {% elseif not proxy_prefix and systemConfig.proxy_url %}
                                 {% set  proxy_prefix= systemConfig.proxy_url %}
                             {% endif %}
                             {{ LN.interface.add.proxy.openProxyTipsPrefix }}
                             [ <span style="color: red;">
-                            {{ proxy_prefix }} {{ project_prefix if project_prefix else '' }}{{ api_url }}</span> ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}
+                            {{ proxy_prefix }}{{ api_url }}</span> ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}
                         {% else %}
                             {{ LN.interface.add.proxy.closeProxyTips }}
                         {% endif %}

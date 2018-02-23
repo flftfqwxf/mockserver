@@ -321,7 +321,7 @@ $("#txt_url").blur(function() {
 			url = 'http://' + url;
 		}
 		localStorage.setItem("url", url);
-		$("#txt_url").val(url);
+		// $("#txt_url").val(url);
 	}
 });
 
@@ -416,7 +416,7 @@ $("#btn_send").click(function() {
 		}
 
 		$("#txt_request_body").val(body);
-		$("#txt_url").val(url);
+		// $("#txt_url").val(url);
 
 	} else if (content_type.indexOf('application/json') > -1) {
 		if (is_kv(body)) {
