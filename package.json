@@ -1,7 +1,7 @@
 {
   "name": "web-mock-server",
   "description": "Mock-server is a Node.js web site for mock data,and switch between mock data and real data.一个WEB版的数据模拟及文档管理系统",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "scripts": {
     "start": "node www/development.js",
     "compile": "babel --presets es2015-loose,stage-1 --plugins transform-runtime src/ --out-dir app/ --source-maps",
