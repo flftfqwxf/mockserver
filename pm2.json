@@ -2,7 +2,7 @@
   "apps": [{
     "name": "mockserver",
     "script": "www/development.js",
-    "cwd": "/var/www/mockserver",
+    "cwd": "/var/project/mockserver-new",
     "exec_mode": "cluster",
 //    "watch":"../",
     "instances": 0,

@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no,minimal-ui">
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<title>{% if api_name %} {{ api_name }} - {% endif %}在线HTTP接口测试工具</title>
+	<title>{% if api_name %} {{ api_name }} - {% endif %}postman</title>
 	<link rel="stylesheet" href="/static/getman/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/getman/style.css"/>
 	<style>
@@ -42,7 +42,7 @@
             </span>
 	</div>
 	{% if url %}
-		<h3>代理开启</h3>
+		<h3>Switch Data</h3>
 		<div class="input-group input-group-lg J_open_proxy">
 			<label class="radio-inline">
 				<input type="radio" name="is_proxy" {% if is_proxy==0 %} checked{% endif %} class="is_proxy" value="0" autocomplete="off"> {{ LN.interface.add.proxy.close }}
@@ -57,7 +57,7 @@
 
 				{{ LN.interface.add.proxy.openProxyTipsPrefix }}
 				[ <span style="color: red;">
-                            {{ proxy_prefix }} {{ project_prefix if project_prefix else '' }}{{ api_url }}</span> ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}
+                            {{ proxy_prefix }}{{ api_url }}</span> ]{{ LN.interface.add.proxy.openProxyTipsPostfix }}
 			{% else %}
 				{{ LN.interface.add.proxy.closeProxyTips }}
 			{% endif %}

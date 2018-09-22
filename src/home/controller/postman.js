@@ -114,7 +114,7 @@ export default class extends Base {
 			url: url,
 			form: post,
 			headers: this.http.headers,
-			timeout: 1000 * 60
+			timeout: 1000 * 500
 		};
 
 		return await fn(send).then(function(content) {
