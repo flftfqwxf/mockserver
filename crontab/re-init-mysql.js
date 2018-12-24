@@ -22,6 +22,8 @@ let mysqlConfig = {
     password: '',
     sqlfile: path.resolve(__dirname, '../mockserver.sql') // destination file
 }
+fn()
+
 /**
  * 重新初始化数据库
  */

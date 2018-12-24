@@ -1,0 +1,17 @@
+version: '2'
+services:
+  woodyapi:
+    build: .
+    ports:
+      - "8033:8033"
+    volumes:
+      - ./:/root/mock
+    depends_on:
+      - db
+  db:
+    image: mysql:5.5
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_DATABASE=mysql
