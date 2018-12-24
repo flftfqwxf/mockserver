@@ -29,11 +29,15 @@
  
  - 支持客户端 'text/plain' 类型的 POST 提交（postman中 `Body` 选择 `raw`）
 
-## [demo](http://47.93.62.181:8033/)
+## [demo](http://mock.chinesefoodrecipes.net)
 
 ### demo只作演示作用，并会定期清除数据
 
 欢迎star,并提出改进意见
+
+### 支持作者
+
+
 
 
 ## Install dependencies
